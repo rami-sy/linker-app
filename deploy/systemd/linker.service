@@ -1,0 +1,21 @@
+[Unit]
+Description=Linker (Node/Express + Socket.IO + mediasoup)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/linker/server
+EnvironmentFile=/etc/linker/linker.env
+
+# Node entrypoint
+ExecStart=/usr/bin/node /opt/linker/server/app.js
+
+Restart=always
+RestartSec=3
+
+# Keep the first deployment simple/reliable.
+# You can harden later after confirming uploads/recordings paths & permissions.
+
+[Install]
+WantedBy=multi-user.target
+

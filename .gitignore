@@ -1,0 +1,39 @@
+node_modules/
+.env
+.env.*
+!.env*.example
+!.env*-example
+dist/
+build/
+*.log
+.DS_Store
+coverage/
+client/dist/
+server/uploads/
+server/recordings/
+Redis-x64-5.0.14.1.msi
+OTS_VPN/
+OTS_VPN
+
+# Firebase / mobile config (secrets)
+**/google-services.json
+**/GoogleService-Info.plist
+
+# Client local env / test env (contains keys)
+client/env.test
+client/env.*.test
+
+# TLS / private keys / certs
+**/*.pem
+**/*.key
+**/*.crt
+**/*.cer
+**/*.p12
+**/*.pfx
+**/*.jks
+**/*.keystore
+
+# SSH / VPN exports
+**/*.ppk
+**/*.ovpn
+**/*.kdbx

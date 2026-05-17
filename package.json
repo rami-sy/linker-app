@@ -1,0 +1,20 @@
+{
+  "name": "linker-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run start --prefix client",
+    "lint:server": "npm run lint --prefix server",
+    "lint:client": "npm run lint --prefix client",
+    "test:server": "npm run test --prefix server",
+    "test:server:coverage": "npm run test:coverage --prefix server",
+    "test:client": "npm run test:smoke --prefix client",
+    "build:client:web-smoke": "npm run ci:web-smoke --prefix client",
+    "ci": "npm run lint:server && npm run test:server:coverage && npm run lint:client && npm run test:client && npm run build:client:web-smoke"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete My Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px 20px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+            overflow: hidden;
+        }
+        .form-group.hidden {
+            opacity: 0;
+            max-height: 0;
+            margin-bottom: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .radio-group {
+            margin-bottom: 15px;
+        }
+        .radio-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            border: 1px solid #ccd0d5;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .message {
+            text-align: center;
+            margin-top: 15px;
+            color: #27ae60;
+        }
+    </style>
+    <script>
+        function requestVerificationCode() {
+            const inputValue = document.getElementById('contactInput').value.trim();
+            const type = document.querySelector('input[name="contactType"]:checked').value;
+
+            // Simple form validation
+            if (!inputValue) {
+                alert('Please enter your ' + type);
+                return;
+            }
+
+            // Disable the submit button to prevent multiple clicks
+            const submitButton = document.getElementById('submitContact');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Processing...';
+
+            fetch('/api/auth/send-verification-code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contact: inputValue,
+                    type: type,
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit';
+                if (data.type === "success") {
+                    // Hide initial form with a fade-out effect
+                    const initialForm = document.getElementById('initialForm');
+                    initialForm.classList.add('hidden');
+
+                    // Show verification code form with a fade-in effect
+                    const verificationForm = document.getElementById('verificationCodeForm');
+                    verificationForm.style.display = 'block';
+                    setTimeout(() => {
+                        verificationForm.classList.remove('hidden');
+                    }, 50);
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit';
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+
+        function deleteAccount() {
+            const code = document.getElementById('verificationCode').value.trim();
+
+            if (!code) {
+                alert('Please enter the verification code');
+                return;
+            }
+
+            // Disable the delete button to prevent multiple clicks
+            const deleteButton = document.getElementById('deleteAccountButton');
+            deleteButton.disabled = true;
+            deleteButton.textContent = 'Deleting...';
+
+            fetch('/api/auth/delete-my-account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    verificationCode: code
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                deleteButton.disabled = false;
+                deleteButton.textContent = 'Delete Account';
+                if (data.type === "success") {
+                    alert("Account deleted successfully!");
+                    window.location.href = '/';
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                deleteButton.disabled = false;
+                deleteButton.textContent = 'Delete Account';
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete My Account</h1>
+        
+        <!-- Initial Form -->
+        <div id="initialForm" class="form-group">
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="contactType" value="email" checked>
+                    Email
+                </label>
+                <label>
+                    <input type="radio" name="contactType" value="phone">
+                    Phone Number
+                </label>
+            </div>
+            <label for="contactInput">Enter your email or phone number:</label>
+            <input type="text" id="contactInput" placeholder="Email or phone number">
+            <button id="submitContact" onclick="requestVerificationCode()">Submit</button>
+        </div>
+
+        <!-- Verification Code Form -->
+        <div id="verificationCodeForm" class="form-group hidden" style="display: none;">
+            <label for="verificationCode">Enter the verification code sent to you:</label>
+            <input type="text" id="verificationCode" placeholder="Verification code">
+            <button id="deleteAccountButton" onclick="deleteAccount()">Delete Account</button>
+        </div>
+    </div>
+</body>
+</html>

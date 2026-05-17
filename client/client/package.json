@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "linker": "file:..",
+    "mediasoup-client": "3.16.7",
+    "expo": "~52.0.47",
+    "react": "18.3.1",
+    "react-native": "0.76.9"
+  },
+  "name": "client",
+  "version": "1.0.0",
+  "scripts": {
+    "android": "expo run:android",
+    "ios": "expo run:ios"
+  }
+}

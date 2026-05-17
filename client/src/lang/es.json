@@ -1,0 +1,897 @@
+{
+  "translation": {
+    "auth": {
+      "welcome": {
+        "title": "Linker es una plataforma de redes sociales que conecta a las personas con amigos y otras personas que viven, trabajan y estudian a su alrededor.",
+        "description": "Linker es una plataforma de redes sociales que te permite conectar con tus amigos, colegas y descubrir tu comunidad de formas nuevas y divertidas. Gracias a su sistema de recomendaciones inteligente y una interacción sencilla, podrás relacionarte de forma segura y fácil con personas que comparten tus intereses y así establecer vínculos sociales y profesionales.",
+        "getStart": "Empezar",
+        "visitWebsitePrefix": "Para más información, contáctanos mediante ",
+        "visitWebsiteHighlighted": "correo electrónico",
+        "deleteMyAccount": "Eliminar mi cuenta",
+        "privacy&terms": "Privacidad y Términos",
+        "privacyPolicy": "Política de Privacidad",
+        "termsOfService": "Términos y Condiciones"
+      },
+      "phoneAuth": {
+        "title": "Por favor, ingresa tu número de teléfono para continuar",
+        "phoneInputPlaceholder": "Ingresa tu número de teléfono",
+        "phoneInputLabel": "Número de teléfono",
+        "sendCode": "Enviar código",
+        "loginOrSignup": "Iniciar sesión o Registrarse con",
+        "emailAndPassword": "Correo electrónico",
+        "pleaseEnterPhoneNumber": "Por favor, ingresa un número de teléfono"
+      },
+      "login": {
+        "emailPlaceholder": "Correo electrónico",
+        "passwordPlaceholder": "Contraseña",
+        "loginButton": "Iniciar sesión",
+        "setNewPassword": "Configurar nueva contraseña",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "pressHere": "Pulsa aquí",
+        "dontHaveAccount": "¿No tienes una cuenta?",
+        "signup": "Regístrate",
+        "loginWithPhonePrefix": "Iniciar sesión con ",
+        "loginWithPhoneHighlighted": "número de teléfono",
+        "pleaseEnterValidEmail": "Por favor, ingresa una dirección de correo electrónico válida",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordPattern": "La contraseña debe tener entre 6 y 30 caracteres"
+      },
+      "forgetPassword": {
+        "emailPlaceholder": "Correo electrónico",
+        "sendResetCode": "Enviar código de restablecimiento",
+        "resendCode": "Reenviar código",
+        "backToWelcome": "Volver a",
+        "welcomeScreen": "Pantalla de bienvenida",
+        "pleaseEnterValidEmail": "Por favor, ingresa una dirección de correo electrónico válida",
+        "emailRequired": "El correo electrónico es obligatorio"
+      },
+      "resetPassword": {
+        "resetCodeLabel": "Código de restablecimiento",
+        "resetCodePlaceholder": "Ingresa el código de restablecimiento",
+        "newPasswordPlaceholder": "Nueva contraseña",
+        "confirmPasswordPlaceholder": "Confirmar contraseña",
+        "resetPasswordButton": "Restablecer contraseña",
+        "backToForgotPassword": "Volver a ¿Olvidaste tu contraseña?",
+        "backToWelcome": "Volver a",
+        "welcomeScreen": "Pantalla de bienvenida",
+        "forgotPasswordScreen": "Pantalla de contraseña olvidada",
+        "pleaseEnterValidEmail": "Por favor, ingresa un correo electrónico válido",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "resetCodeRequired": "El código de restablecimiento es obligatorio",
+        "resetCodeLength": "El código de restablecimiento debe tener exactamente 6 caracteres",
+        "passwordPattern": "La contraseña debe tener entre 6 y 30 caracteres",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordsDoNotMatch": "Las contraseñas no coinciden",
+        "confirmPasswordRequired": "Por favor, confirma la contraseña"
+      },
+      "signup": {
+        "emailPlaceholder": "Correo electrónico",
+        "passwordPlaceholder": "Contraseña",
+        "confirmPasswordPlaceholder": "Confirmar contraseña",
+        "signupButton": "Registrarse",
+        "doYouHaveAccount": "¿Ya tienes una cuenta?",
+        "login": "Inicia sesión",
+        "loginWithPhonePrefix": "Iniciar sesión con ",
+        "loginWithPhoneHighlighted": "número de teléfono",
+        "pleaseEnterValidEmail": "Por favor, ingresa un correo electrónico válido",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "passwordPattern": "La contraseña debe tener entre 6 y 30 caracteres",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordsDoNotMatch": "Las contraseñas no coinciden",
+        "confirmPasswordRequired": "Por favor, confirma la contraseña"
+      },
+      "verifyEmail": {
+        "emailPlaceholder": "Correo electrónico",
+        "verificationCodeLabel": "Código de verificación",
+        "verificationCodePlaceholder": "Ingresa el código de verificación",
+        "verifyButton": "Verificar",
+        "resendCode": "Reenviar código",
+        "backToWelcome": "Volver a",
+        "welcomeScreen": "Pantalla de bienvenida",
+        "pleaseEnterValidEmail": "Por favor, ingresa un correo electrónico válido",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "resetCodeRequired": "El código de verificación es obligatorio",
+        "resetCodeLength": "El código de verificación debe tener exactamente 6 caracteres"
+      },
+      "verifyPhone": {
+        "verificationCodeLabel": "Código de verificación",
+        "verificationCodePlaceholder": "Ingresa el código de verificación",
+        "verifyButton": "Verificar",
+        "resendCode": "Reenviar código",
+        "backToWelcome": "Volver a",
+        "welcomeScreen": "Pantalla de bienvenida",
+        "resetCodeRequired": "El código de verificación es obligatorio",
+        "resetCodeLength": "El código de verificación debe tener exactamente 6 caracteres",
+        "phoneNumberRequired": "El número de teléfono es obligatorio"
+      },
+      "deleteAccount": {
+        "title": "Eliminar mi cuenta",
+        "emailLabel": "Correo electrónico",
+        "emailPlaceholder": "Ingresa el correo electrónico",
+        "deleteButton": "Eliminar mi cuenta",
+        "getVerificationCode": "Enviar código de verificación",
+        "pleaseEnterValidEmail": "Por favor, ingresa un correo electrónico válido",
+        "emailRequired": "El correo electrónico es obligatorio",
+        "passwordRequired": "La contraseña es obligatoria",
+        "passwordPattern": "La contraseña debe tener entre 6 y 30 caracteres",
+        "backToWelcome": "Volver a",
+        "welcomeScreen": "Pantalla de bienvenida",
+        "verificationCodeLabel": "Código de verificación",
+        "verificationCodePlaceholder": "Ingresa el código de verificación",
+        "resendCode": "Reenviar código",
+        "type": "Tipo de cuenta",
+        "email": "Correo electrónico",
+        "phone": "Número de teléfono",
+        "phoneInputPlaceholder": "Ingresa tu número de teléfono",
+        "phoneInputLabel": "Número de teléfono",
+        "validPhoneRequired": "Por favor, ingresa un número de teléfono válido",
+        "phoneRequired": "El número de teléfono es obligatorio",
+        "validCodeRequired": "Por favor, ingresa un código de verificación válido",
+        "verificationCodeRequired": "El código de verificación es obligatorio",
+        "verificationCodeLength": "El código de verificación debe tener exactamente 6 caracteres"
+      }
+    },
+    "user": {
+      "areYouSureDeleteAccount": "¿Estás seguro de que deseas eliminar tu cuenta?",
+      "actionCannotBeUndone": "Esta acción no se puede deshacer. Se perderán todos tus datos",
+      "areYouSureDeactivateAccount": "¿Estás seguro de que deseas desactivar tu cuenta?",
+      "deactivateWarning": "Al desactivar tu cuenta, no podrás usar la aplicación y todos tus datos estarán ocultos para los demás usuarios, pero no se eliminarán del servidor",
+      "reactivateInfo": "Puedes reactivar tu cuenta iniciando sesión",
+      "profile": "Perfil",
+      "pictures": "Fotos",
+      "info": "Información",
+      "preferences": "Preferencias",
+      "lifestyle": "Estilo de vida",
+      "location": "Ubicación",
+      "physicalAttributes": "Atributos físicos",
+      "background": "Antecedentes",
+      "familyPreferences": "Preferencias familiares",
+      "culturalSocialAttributes": "Atributos culturales y sociales",
+      "appLanguage": "Idioma de la aplicación",
+      "languages": "Idiomas",
+      "interests": "Intereses",
+      "privacy": "Privacidad",
+      "visibility": "Visibilidad",
+      "content": "Contenido",
+      "interactions": "Interacciones",
+      "networking": "Conexiones",
+      "account": "Cuenta",
+      "changePassword": "Cambiar contraseña",
+      "addNewPassword": "Agregar nueva contraseña",
+      "changeEmail": "Cambiar correo electrónico",
+      "addEmail": "Agregar correo electrónico",
+      "changePhoneNumber": "Cambiar número de teléfono",
+      "addPhoneNumber": "Agregar número de teléfono",
+      "deactivateAccount": "Desactivar cuenta",
+      "deleteAccount": "Eliminar cuenta",
+      "notifications": "Notificaciones",
+      "settings": "Configuraciones",
+      "general": "General",
+      "help": "Ayuda",
+      "about": "Acerca de",
+      "logout": "Cerrar sesión",
+      "theme": "Tema",
+      "selectTheme": "Seleccionar tema",
+      "devices": "Dispositivos"
+    },
+    "UpdateProfile": {
+      "pictures": "Fotos",
+      "info": "Información",
+      "preferences": "Preferencias",
+      "lifestyle": "Estilo de vida",
+      "location": "Ubicación",
+      "physicalAttributes": "Atributos físicos",
+      "background": "Antecedentes",
+      "familyPreferences": "Preferencias familiares",
+      "culturalSocialAttributes": "Atributos culturales y sociales",
+      "languages": "Idiomas",
+      "interests": "Intereses"
+    },
+    "culturalSocialAttributes": {
+      "religion": "Religión",
+      "zodiacSign": "Signo zodiacal",
+      "personalityType": "Tipo de personalidad",
+      "updateProfile": "Actualizar perfil"
+    },
+    "familyPreferences": {
+      "wantsKids": "Quiere hijos",
+      "hasKids": "Tiene hijos",
+      "updateProfile": "Actualizar perfil"
+    },
+    "background": {
+      "education": "Educación",
+      "occupation": "Ocupación",
+      "updateProfile": "Actualizar perfil"
+    },
+    "info": {
+      "userName": "Nombre de usuario",
+      "userNameRequired": "El nombre de usuario es obligatorio",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "month": "Mes",
+      "day": "Día",
+      "year": "Año",
+      "birthDateError": "La fecha de nacimiento es obligatoria",
+      "monthError": "El mes es obligatorio",
+      "dayError": "El día es obligatorio",
+      "yearError": "El año es obligatorio",
+      "gender": "Género",
+      "maritalStatus": "Estado civil",
+      "nationality": "Nacionalidad",
+      "bio": "Bio",
+      "updateProfileButton": "Actualizar perfil",
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "monthMustBeNumber": "El mes debe ser un número",
+      "monthRange": "El mes debe estar entre 1 y 12",
+      "monthRequired": "El mes es obligatorio",
+      "dayMustBeNumber": "El día debe ser un número",
+      "dayRange": "El día debe estar entre 1 y 31",
+      "dayRequired": "El día es obligatorio",
+      "yearMustBeNumber": "El año debe ser un número",
+      "yearAfter1900": "El año debe ser después de 1900",
+      "yearBeforeOrEqual": "El año debe ser igual o anterior a {year}",
+      "yearBeforeCurrent": "El año debe ser anterior al año actual",
+      "yearRequired": "El año es obligatorio",
+      "birthDateRequired": "La fecha de nacimiento es obligatoria",
+      "genderRequired": "El género es obligatorio",
+      "maritalStatusRequired": "El estado civil es obligatorio"
+    },
+    "interests": {
+      "label": "Intereses",
+      "showLess": "Mostrar menos",
+      "showMore": "Mostrar más",
+      "updateProfileButton": "Actualizar perfil"
+    },
+    "location": {
+      "accessToLocation": "Acceso a la ubicación",
+      "address": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado",
+      "country": "País",
+      "updateProfileButton": "Actualizar perfil"
+    },
+    "languages": {
+      "label": "Idiomas",
+      "updateProfileButton": "Actualizar perfil"
+    },
+    "physicalAttributes": {
+      "height": "Estatura",
+      "weight": "Peso",
+      "bodyType": "Tipo de cuerpo",
+      "updateProfileButton": "Actualizar perfil"
+    },
+    "preferences": {
+      "preferredGender": "Género preferido",
+      "lookingFor": "Buscando",
+      "preferredAgeRange": "Rango de edad preferido",
+      "minAge": "Edad mínima",
+      "maxAge": "Edad máxima",
+      "preferredDistance": "Distancia preferida",
+      "globe": "Global",
+      "preferredCommunication": "Medio de comunicación preferido",
+      "updateProfileButton": "Actualizar perfil",
+      "errors": {
+        "preferredGendersRequired": "Selecciona al menos un género",
+        "lookingForRequired": "Selecciona al menos una opción de búsqueda",
+        "ageRange": {
+          "rangeLength": "El rango de edad debe contener dos valores",
+          "required": "El rango de edad es obligatorio",
+          "base": "Ingresa un número válido",
+          "integer": "Ingresa un número entero",
+          "min": "La edad mínima es 18",
+          "max": "La edad máxima es 100",
+          "minGreaterThanMax": "La edad mínima no puede ser mayor que la edad máxima",
+          "maxLessThanMin": "La edad máxima no puede ser menor que la edad mínima"
+        }
+      }
+    },
+    "visibilityScreen": {
+      "title": "Configuraciones de Privacidad",
+      "items": {
+        "everyone": "Todos",
+        "friends": "Amigos",
+        "noOne": "Nadie"
+      },
+      "profileInfoDescription": "La información de perfil se mostrará en la sección del perfil, como: lo que buscas, si fumas, comunicación preferida, religión, signo zodiacal, tipo de personalidad, etc.",
+      "fields": {
+        "about": "Acerca de",
+        "images": "Fotos",
+        "location": "Ubicación",
+        "email": "Correo electrónico",
+        "phoneNumber": "Número de teléfono",
+        "fullName": "Nombre completo",
+        "gender": "Género",
+        "age": "Edad",
+        "nationality": "Nacionalidad",
+        "profileInfo": "Información del perfil"
+      },
+      "saveButton": "Guardar"
+    },
+    "interactionScreen": {
+      "title": "Configuraciones de Interacción",
+      "fields": {
+        "status": "Estado",
+        "readReceipts": "Confirmaciones de lectura",
+        "calls": "Llamadas",
+        "videoCalls": "Videollamadas",
+        "messages": "Mensajes",
+        "lastSeen": "Última vez visto",
+        "whoCanAddYou": "Quién puede agregarte"
+      },
+      "saveButton": "Guardar"
+    },
+    "contentScreen": {
+      "title": "Configuraciones de Contenido",
+      "fields": {
+        "posts": "Publicaciones",
+        "images": "Fotos",
+        "videos": "Videos",
+        "stories": "Historias",
+        "likedPages": "Páginas que te gustan"
+      },
+      "saveButton": "Guardar"
+    },
+    "networkScreen": {
+      "title": "Configuraciones de Red",
+      "fields": {
+        "friendsList": "Lista de amigos",
+        "followers": "Seguidores",
+        "following": "Siguiendo",
+        "searchVisibility": "Visibilidad en búsquedas"
+      },
+      "saveButton": "Guardar"
+    },
+    "callSettingsScreen": {
+      "title": "Configuración de Llamadas",
+      "items": {
+        "everyone": "Todos",
+        "admin": "Administrador",
+        "moderator": "Moderador",
+        "friends": "Amigos",
+        "specific": "Persona Específica",
+        "noOne": "Solo Yo"
+      },
+      "fields": {
+        "screenShare": "Compartir Pantalla",
+        "recording": "Grabación",
+        "callTransfer": "Transferir Llamada",
+        "liveStream": "Transmisión en Vivo"
+      },
+      "saveButton": "Guardar",
+      "saveSuccess": "Configuración de llamadas guardada exitosamente",
+      "readOnlyInfo": "Estas configuraciones son de solo lectura. Solo el iniciador de la llamada puede modificarlas.",
+      "askAdmin": "Preguntar al Administrador",
+      "adminRequestSent": "Solicitud enviada al administrador",
+      "adminRequestPending": "Esperando aprobación del administrador..."
+    },
+    "chatSettingsScreen": {
+      "title": "Configuración de Chat",
+      "items": {
+        "everyone": "Todos",
+        "admin": "Administrador",
+        "moderator": "Moderador",
+        "friends": "Amigos",
+        "specific": "Persona Específica",
+        "noOne": "Solo Yo"
+      },
+      "fields": {
+        "videoCall": "Llamada de Video",
+        "audioCall": "Llamada de Audio",
+        "canSend": "Quién Puede Enviar"
+      },
+      "saveButton": "Guardar",
+      "saveSuccess": "Configuración de chat guardada exitosamente"
+    },
+    "account": {
+      "devices": {
+        "title": "Dispositivos"
+      },
+      "phoneScreen": {
+        "title": {
+          "change": "Cambiar número de teléfono",
+          "add": "Agregar número de teléfono"
+        },
+        "input": {
+          "phoneNumber": "Número de teléfono",
+          "verificationCode": "Código de verificación",
+          "verificationCodeLabel": "Ingresa el código de verificación enviado a tu número de teléfono"
+        },
+        "alreadyHaveCode": "¿Ya tienes el código de verificación?",
+        "resendCode": "Reenviar código",
+        "changePhoneNumber": "Cambiar número de teléfono",
+        "buttons": {
+          "verify": "Verificar",
+          "changePhoneNumber": "Cambiar número de teléfono",
+          "addPhoneNumber": "Agregar número de teléfono"
+        },
+        "errors": {
+          "phoneNumber": {
+            "required": "Por favor, ingresa un número de teléfono",
+            "invalid": "Por favor, ingresa un número de teléfono válido"
+          },
+          "verificationCode": {
+            "required": "El código de verificación es obligatorio",
+            "length": "El código de verificación debe tener exactamente 6 caracteres"
+          }
+        }
+      },
+      "passwordScreen": {
+        "title": {
+          "change": "Cambiar contraseña",
+          "add": "Agregar nueva contraseña"
+        },
+        "input": {
+          "oldPassword": "Contraseña anterior",
+          "newPassword": "Nueva contraseña",
+          "confirmPassword": "Confirmar contraseña"
+        },
+        "buttons": {
+          "update": "Actualizar"
+        },
+        "errors": {
+          "oldPassword": "La contraseña anterior es obligatoria",
+          "newPassword": "La nueva contraseña es obligatoria",
+          "confirmPassword": {
+            "mismatch": "Las contraseñas no coinciden",
+            "required": "Por favor, confirma la contraseña"
+          },
+          "pattern": "La contraseña debe tener entre 6 y 30 caracteres"
+        }
+      },
+      "emailScreen": {
+        "title": {
+          "change": "Cambiar correo electrónico",
+          "add": "Agregar correo electrónico"
+        },
+        "input": {
+          "email": "Correo electrónico",
+          "verificationCode": "Código de verificación",
+          "verificationCodeLabel": "Ingresa el código de verificación enviado a tu correo"
+        },
+        "alreadyHaveCode": "¿Ya tienes el código de verificación?",
+        "resendCode": "Reenviar código",
+        "changeEmail": "Cambiar correo electrónico",
+        "buttons": {
+          "verify": "Verificar",
+          "changeEmail": "Cambiar correo electrónico",
+          "addEmail": "Agregar correo electrónico"
+        },
+        "errors": {
+          "email": {
+            "invalid": "Por favor, ingresa una dirección de correo electrónico válida",
+            "required": "El correo electrónico es obligatorio"
+          },
+          "verificationCode": {
+            "required": "El código de verificación es obligatorio",
+            "length": "El código de verificación debe tener exactamente 6 caracteres"
+          }
+        }
+      }
+    },
+    "addFriendScreen": {
+      "apply": "Aplicar",
+      "navBar": {
+        "listMode": "Lista",
+        "gridMode": "Cuadrícula",
+        "cardMode": "Tarjeta",
+        "filter": "Filtrar",
+        "search": "Buscar"
+      },
+      "filter": {
+        "apply": "Aplicar",
+        "title": "Buscar amigos",
+        "searchPlaceholder": "Buscar por correo electrónico o nombre de usuario",
+        "preferredGender": "Género",
+        "lookingFor": "Buscando",
+        "nationality": "Nacionalidad",
+        "minAge": "Edad mínima",
+        "maxAge": "Edad máxima",
+        "nearby": "Cercano",
+        "worldwide": "Global",
+        "country": "País",
+        "distance": "Distancia",
+        "maritalStatus": "Estado civil",
+        "smoking": "Fumar",
+        "drinking": "Beber",
+        "preferredCommunication": "Comunicación preferida",
+        "religion": "Religión",
+        "zodiacSign": "Signo zodiacal",
+        "personalityType": "Tipo de personalidad",
+        "languages": "Idiomas",
+        "education": "Educación",
+        "interests": "Intereses",
+        "showMore": "Mostrar más",
+        "showLess": "Mostrar menos",
+        "discoverUsers": "Descubre a más de +{{usersCount}} usuarios",
+        "discover": "Descubre a más de",
+        "users": "usuarios",
+        "location": {
+          "label": "Ubicación",
+          "nearby": "Cercano",
+          "worldwide": "Global",
+          "country": "País"
+        }
+      },
+      "dropdown": {
+        "mostActive": "Más Activos",
+        "recentlyJoined": "Recién Unidos",
+        "alphabetically": "Alfabéticamente",
+        "nearestFirst": "Más Cercanos Primero",
+        "youngest": "Más Jóvenes",
+        "oldest": "Más Mayores"
+      },
+      "setYourLocation": "Por favor, establece tu ubicación antes de configurar la distancia preferida."
+    },
+    "header": {
+      "forwardTo": "Reenviar a...",
+      "searchPlaceholder": "Buscar",
+      "deleteForEveryone": "Eliminar para todos",
+      "deleteForMe": "Eliminar para mí",
+      "copySuccess": "{{count}} mensaje{{plural}} copiado(s)",
+      "deleteSuccess": "{{count}} mensaje{{plural}} eliminado(s)",
+      "blockUser": "Bloquear usuario",
+      "unblockUser": "Desbloquear usuario",
+      "confirmBlock": "¿Seguro que deseas bloquear a este usuario?",
+      "confirmUnblock": "¿Seguro que deseas desbloquear a este usuario?",
+      "clearChat": "Limpiar chat",
+      "confirmClearChat": "¿Seguro que deseas limpiar este chat?",
+      "deleteChat": "Eliminar chat",
+      "confirmDeleteChat": "¿Seguro que deseas eliminar este chat?",
+      "confirmDeleteMessages": "¿Seguro que deseas eliminar?",
+      "viewProfile": "Ver perfil",
+      "addMember": "Agregar miembro",
+      "cancel": "Cancelar",
+      "typingIndicator": "escribiendo...",
+      "groupNamePlaceholder": "Nombre del grupo",
+      "exitGroup": "Salir del grupo",
+      "groupDetails": "Detalles del grupo",
+      "changeRole": "Cambiar rol",
+      "removeMember": "Eliminar miembro"
+    },
+    "profileScreen": {
+      "activeNow": "Activo ahora",
+      "lastSeen": "Visto por última vez",
+      "lastSeenLongTimeAgo": "Visto hace mucho tiempo",
+      "status": "Estado",
+      "lookingFor": "Buscando",
+      "communications": "Comunicación",
+      "preferredGender": "Género",
+      "smoking": "Fumar",
+      "drinking": "Beber",
+      "height": "Estatura",
+      "weight": "Peso",
+      "bodyType": "Tipo de cuerpo",
+      "education": "Educación",
+      "occupation": "Ocupación",
+      "religion": "Religión",
+      "zodiacSign": "Signo zodiacal",
+      "personalityType": "Tipo de personalidad",
+      "exercise": "Ejercicio",
+      "diet": "Dieta",
+      "sleepSchedule": "Horario de sueño",
+      "about": "Acerca de {{name}}",
+      "photoCount": "{{count}} foto(s)",
+      "interestsCount": "{{count}} interés(es)",
+      "languagesCount": "{{count}} idioma(s)",
+      "thisUserHasPrivateProfile": "Este usuario tiene un perfil privado",
+      "more": "Más",
+      "notAnswered": "No respondido",
+      "gender": "Género",
+      "nationality": "Nacionalidad",
+      "location": "Ubicación",
+      "age": "Edad"
+    },
+    "userInfo": {
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "month": "Mes",
+      "day": "Día",
+      "year": "Año",
+      "gender": "Género",
+      "maritalStatus": "Estado civil",
+      "preferredGender": "Género",
+      "lookingFor": "Buscando",
+      "generalInfo": "Información general",
+      "location": "Ubicación",
+      "interests": "Intereses",
+      "languages": "Idiomas",
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "monthMustBeNumber": "El mes debe ser un número",
+      "monthRange": "El mes debe estar entre 1 y 12",
+      "monthRequired": "El mes es obligatorio",
+      "dayMustBeNumber": "El día debe ser un número",
+      "dayRange": "El día debe estar entre 1 y 31",
+      "dayRequired": "El día es obligatorio",
+      "yearMustBeNumber": "El año debe ser un número",
+      "yearMin": "El año debe ser posterior a 1900",
+      "yearMax": "El año debe ser {year} o anterior",
+      "yearRequired": "El año es obligatorio",
+      "birthDateRequired": "La fecha de nacimiento es obligatoria",
+      "genderRequired": "El género es obligatorio",
+      "maritalStatusRequired": "El estado civil es obligatorio",
+      "preferredGendersRequired": "Debes seleccionar al menos un género preferido",
+      "lookingForRequired": "Debes indicar lo que buscas",
+      "skip": "Omitir",
+      "confirmGoBack": "¿Estás seguro de que deseas volver?",
+      "dataLossWarning": "Perderás todos los datos que ingresaste"
+    },
+    "lifestyle": {
+      "smoking": "Fumar",
+      "drinking": "Beber",
+      "exercise": "Ejercicio",
+      "diet": "Dieta",
+      "sleepSchedule": "Horario de sueño",
+      "hasPets": "Tiene mascotas",
+      "updateProfileButton": "Actualizar perfil"
+    },
+    "attributes": {
+      "gender": {
+        "male": "Hombre",
+        "female": "Mujer",
+        "other": "Otro"
+      },
+      "maritalStatus": {
+        "single": "Soltero/a",
+        "married": "Casado/a",
+        "divorced": "Divorciado/a",
+        "widowed": "Viudo/a"
+      },
+      "lookingFor": {
+        "friendship": "Amistad",
+        "relationship": "Relación",
+        "chatting": "Chat",
+        "networking": "Conexiones",
+        "other": "Otro"
+      },
+      "smoking": {
+        "yes": "Sí",
+        "no": "No",
+        "sometimes": "A veces",
+        "tryingToQuit": "Intentando dejarlo",
+        "inSocialEvents": "En eventos sociales"
+      },
+      "drinking": {
+        "yes": "Sí",
+        "no": "No",
+        "sometimes": "A veces",
+        "tryingToQuit": "Intentando dejarlo",
+        "inSocialEvents": "En eventos sociales"
+      },
+      "zodiacSign": {
+        "Aries": "Aries",
+        "Taurus": "Tauro",
+        "Gemini": "Géminis",
+        "Cancer": "Cáncer",
+        "Leo": "Leo",
+        "Virgo": "Virgo",
+        "Libra": "Libra",
+        "Scorpio": "Escorpio",
+        "Sagittarius": "Sagitario",
+        "Capricorn": "Capricornio",
+        "Aquarius": "Acuario",
+        "Pisces": "Piscis"
+      },
+      "religion": {
+        "agnostic": "Agnóstico",
+        "atheist": "Ateo",
+        "buddhist": "Budista",
+        "christian": "Cristiano",
+        "catholic": "Católico",
+        "hindu": "Hindú",
+        "jewish": "Judío",
+        "muslim": "Musulmán",
+        "sikh": "Sij",
+        "other": "Otro"
+      },
+      "politicalViews": {
+        "anarchist": "Anarquista",
+        "centrist": "Centrista",
+        "conservative": "Conservador",
+        "liberal": "Liberal",
+        "libertarian": "Libertario",
+        "moderate": "Moderado",
+        "progressive": "Progresista",
+        "socialist": "Socialista",
+        "other": "Otro"
+      },
+      "personalityType": {
+        "INTJ": "INTJ",
+        "ENTP": "ENTP",
+        "ISFJ": "ISFJ",
+        "ENFJ": "ENFJ",
+        "ISTP": "ISTP",
+        "ESFP": "ESFP",
+        "ESTJ": "ESTJ",
+        "INFJ": "INFJ",
+        "ISFP": "ISFP",
+        "ESTP": "ESTP",
+        "ENFP": "ENFP",
+        "INTP": "INTP",
+        "ENTJ": "ENTJ",
+        "ISTJ": "ISTJ",
+        "INFP": "INFP",
+        "ESFJ": "ESFJ"
+      },
+      "education": {
+        "noHighSchoolDiploma": "Sin diploma de escuela secundaria",
+        "highSchoolDiploma": "Diploma de escuela secundaria",
+        "someCollege": "Algo de universidad, sin título",
+        "associateDegree": "Título de asociado",
+        "someCollegeNoDegree": "Asistió a la universidad, sin título",
+        "bachelorsDegree": "Licenciatura",
+        "mastersDegree": "Maestría",
+        "doctorateOrHigher": "Doctorado o superior",
+        "other": "Otro"
+      },
+      "preferredCommunications": {
+        "text": "Texto",
+        "voice": "Voz",
+        "video": "Video",
+        "inPerson": "En persona"
+      },
+      "exercise": {
+        "never": "Nunca",
+        "rarely": "Raramente",
+        "sometimes": "A veces",
+        "daily": "Diariamente",
+        "weekly": "Semanalmente",
+        "monthly": "Mensualmente"
+      },
+      "diet": {
+        "anything": "Cualquier cosa",
+        "vegetarian": "Vegetariano",
+        "vegan": "Vegano",
+        "pescatarian": "Solo pescado",
+        "keto": "Keto",
+        "paleo": "Paleo",
+        "glutenFree": "Sin gluten",
+        "halal": "Halal",
+        "kosher": "Kosher",
+        "other": "Otro"
+      },
+      "sleepSchedule": {
+        "earlyBird": "Madrugador",
+        "nightOwl": "Nocturno",
+        "varies": "Variable"
+      },
+      "bodyType": {
+        "slim": "Delgado",
+        "average": "Promedio",
+        "athletic": "Atlético",
+        "fullFigured": "Relleno",
+        "curvy": "Con curvas",
+        "muscular": "Musculoso",
+        "petite": "Pequeño",
+        "aLittleExtra": "Con algo de sobrepeso",
+        "stocky": "Rechoncho",
+        "other": "Otro"
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "messages": "Mensajes",
+      "calls": "Llamadas",
+      "likes": "Me gusta",
+      "comments": "Comentarios",
+      "shares": "Compartir",
+      "tags": "Etiquetas",
+      "friendRequests": "Solicitudes de amistad",
+      "groups": "Grupos",
+      "events": "Eventos",
+      "live": "En vivo",
+      "reminders": "Recordatorios",
+      "birthdays": "Cumpleaños",
+      "stories": "Historias",
+      "videoCalls": "Videollamadas",
+      "nearby": "Cercano"
+    },
+    "about": {
+      "title": "Acerca de Linker",
+      "version": "Versión",
+      "description": "Una aplicación de redes sociales que te permite conectarte con amigos, familiares, colegas y mucho más. Puedes crear grupos, chatear con amigos, compartir fotos, videos, historias y mucho más."
+    },
+    "explore": {
+      "explore-map": "Mapa",
+      "explore": "Lista",
+      "swiper": "Sugerencias"
+    },
+    "navigation": {
+      "chats": "Chats",
+      "explore": "Explorar",
+      "friends": "Amigos",
+      "profile": "Perfil",
+      "users": "Usuarios"
+    },
+    "general": {
+      "pleaseEnterValidPhoneNumber": "Por favor, ingresa un número de teléfono válido",
+      "phoneNumber": "Número de teléfono",
+      "user": "Usuario",
+      "deleteConfirmation": "¿Estás seguro de que deseas eliminar",
+      "theseChats": "estos chats",
+      "thisChat": "este chat",
+      "selected": "seleccionado(s)",
+      "groupChat": "Chat grupal",
+      "chats": "Chats",
+      "search": "Buscar",
+      "today": "Hoy",
+      "yesterday": "Ayer",
+      "invalidRoom": "Sala de chat no valida.",
+      "loadingRoom": "Abriendo chat...",
+      "roomUnavailable": "Este chat no esta disponible o no se pudo cargar.",
+      "yes": "Sí",
+      "no": "No",
+      "skipTheRest": "¿Deseas omitir el resto de pasos?",
+      "enterGruopName": "Ingresa el nombre de la sala",
+      "admin": "Administrador",
+      "moderator": "Moderador",
+      "member": "Miembro",
+      "owner": "Propietario",
+      "adminDescription": "Permisos completos para gestionar el grupo",
+      "moderatorDescription": "Puede gestionar miembros",
+      "memberDescription": "Permisos básicos del grupo",
+      "ownerDescription": "Creador del grupo con permisos supremos",
+      "selectNewRole": "Seleccionar nuevo rol para",
+      "currentRole": "Rol actual",
+      "selectRole": "Por favor seleccione un rol",
+      "confirm": "Confirmar",
+      "cancel": "Cancelar",
+      "members": "Miembros",
+      "settings": "Configuración",
+      "groupDetails": "Detalles del grupo",
+      "changePhoto": "Cambiar foto",
+      "changeRoleConfirmation": "¿Estás seguro de que deseas cambiar el rol de este usuario a {{role}}?",
+      "removeMemberConfirmation": "¿Estás seguro de que deseas eliminar a este miembro?",
+      "toChangeUserRole": " Haz clic en ",
+      "clickOnUser": " para cambiar el rol del usuario ",
+      "exitedTheRoom": "salió de la sala",
+      "addedToTheRoom": "fue agregado a la sala",
+      "wasBlockedBy": "fue bloqueado por",
+      "wasUnblockedBy": "fue desbloqueado por",
+      "removedFromTheRoom": "eliminó",
+      "addedToTheRoom": "agregó",
+      "updatedRoomName": "El nombre de la sala fue actualizado",
+      "updatedRoomImage": "La imagen de la sala fue actualizada",
+      "roleChangedTomember": "cambió el rol a miembro para",
+      "roleChangedTomoderator": "cambió el rol a moderador para",
+      "roleChangedToadmin": "cambió el rol a administrador para",
+      "connectionError": "Por favor, verifica tu conexión a internet",
+      "cannotSend": "No puedes enviar mensajes en este chat",
+      "noChats": "No hay chats. Empieza agregando amigos o únete a un grupo",
+      "noFriends": "No tienes amigos, empieza agregando amigos",
+      "friends": "Amigos",
+      "sent": "Enviado",
+      "received": "Recibido",
+      "blocked": "Bloqueado",
+      "selectCategories": "Selecciona categorías",
+      "dark": "Oscuro",
+      "light": "Claro",
+      "forwarded": "Reenviado",
+      "noUsersFound": "No se encontraron usuarios",
+      "clickToGetRecommendedUsers": "Haz clic para ver usuarios recomendados",
+      "clickToAddFriends": "Haz clic para agregar amigos",
+      "clickToGoToFriendsList": "Haz clic para ir a la lista de amigos",
+      "you": " Tú ",
+      "addPassword": "Agregar contraseña",
+      "removePassword": "Eliminar contraseña",
+      "enterPassword": "Ingrese contraseña",
+      "enterThePasswordToOpenThisChat": "Ingrese la contraseña para abrir esta chat",
+      "enterPasswordToRemove": "Ingrese contraseña para eliminar",
+      "addPasswordToThisChat": "Agregar contraseña a esta chat",
+      "passwordIsNotCorrect": "Contraseña no es correcta",
+      "passwordAddedSuccessfully": "Contraseña agregada correctamente",
+      "passwordRemovedSuccessfully": "Contraseña eliminada correctamente",
+      "openChat": "Abrir chat",
+      "following": "Siguiendo",
+      "fans": "Fans",
+      "visitors": "Visitantes"
+    },
+    "select": {
+      "selectDay": "Seleccionar día",
+      "selectMonth": "Seleccionar mes",
+      "selectYear": "Seleccionar año"
+    }
+  }
+}

@@ -1,0 +1,897 @@
+{
+  "translation": {
+    "auth": {
+      "welcome": {
+        "title": "Linker — это социальная сеть, которая соединяет людей с друзьями и другими, кто живет, работает и учится рядом с ними.",
+        "description": "Linker — это платформа социальной сети, которая позволяет вам общаться с друзьями и коллегами и открывать свое сообщество новыми и увлекательными способами. Благодаря умной системе рекомендаций и простому взаимодействию, вы можете безопасно и легко устанавливать социальные и профессиональные связи с людьми, которые разделяют ваши интересы.",
+        "getStart": "Начать",
+        "visitWebsitePrefix": "Для дополнительной информации свяжитесь с нами через ",
+        "visitWebsiteHighlighted": "электронную почту",
+        "deleteMyAccount": "Удалить мой аккаунт",
+        "privacy&terms": "Конфиденциальность и условия",
+        "privacyPolicy": "Политика конфиденциальности",
+        "termsOfService": "Условия использования"
+      },
+      "phoneAuth": {
+        "title": "Пожалуйста, введите номер телефона, чтобы продолжить",
+        "phoneInputPlaceholder": "Введите номер телефона",
+        "phoneInputLabel": "Номер телефона",
+        "sendCode": "Отправить код",
+        "loginOrSignup": "Войти или зарегистрироваться с помощью",
+        "emailAndPassword": "Электронная почта",
+        "pleaseEnterPhoneNumber": "Пожалуйста, введите номер телефона"
+      },
+      "login": {
+        "emailPlaceholder": "Электронная почта",
+        "passwordPlaceholder": "Пароль",
+        "loginButton": "Войти",
+        "setNewPassword": "Установить новый пароль",
+        "forgotPassword": "Забыли пароль?",
+        "pressHere": "Нажмите здесь",
+        "dontHaveAccount": "Нет аккаунта?",
+        "signup": "Зарегистрироваться",
+        "loginWithPhonePrefix": "Войти с ",
+        "loginWithPhoneHighlighted": "номером телефона",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна",
+        "passwordRequired": "Пароль обязателен",
+        "passwordPattern": "Пароль должен содержать от 6 до 30 символов"
+      },
+      "forgetPassword": {
+        "emailPlaceholder": "Электронная почта",
+        "sendResetCode": "Отправить код сброса",
+        "resendCode": "Отправить код еще раз",
+        "backToWelcome": "Назад к",
+        "welcomeScreen": "Приветственному экрану",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна"
+      },
+      "resetPassword": {
+        "resetCodeLabel": "Код для сброса",
+        "resetCodePlaceholder": "Введите код для сброса",
+        "newPasswordPlaceholder": "Новый пароль",
+        "confirmPasswordPlaceholder": "Подтвердите пароль",
+        "resetPasswordButton": "Сбросить пароль",
+        "backToForgotPassword": "Назад к Забыли пароль",
+        "backToWelcome": "Назад к",
+        "welcomeScreen": "Приветственному экрану",
+        "forgotPasswordScreen": "Экрану «Забыли пароль»",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна",
+        "resetCodeRequired": "Код для сброса обязателен",
+        "resetCodeLength": "Код для сброса должен содержать ровно 6 символов",
+        "passwordPattern": "Пароль должен содержать от 6 до 30 символов",
+        "passwordRequired": "Пароль обязателен",
+        "passwordsDoNotMatch": "Пароли не совпадают",
+        "confirmPasswordRequired": "Пожалуйста, подтвердите пароль"
+      },
+      "signup": {
+        "emailPlaceholder": "Электронная почта",
+        "passwordPlaceholder": "Пароль",
+        "confirmPasswordPlaceholder": "Подтвердите пароль",
+        "signupButton": "Зарегистрироваться",
+        "doYouHaveAccount": "У вас уже есть аккаунт?",
+        "login": "Войти",
+        "loginWithPhonePrefix": "Войти с ",
+        "loginWithPhoneHighlighted": "номером телефона",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна",
+        "passwordPattern": "Пароль должен содержать от 6 до 30 символов",
+        "passwordRequired": "Пароль обязателен",
+        "passwordsDoNotMatch": "Пароли не совпадают",
+        "confirmPasswordRequired": "Пожалуйста, подтвердите пароль"
+      },
+      "verifyEmail": {
+        "emailPlaceholder": "Электронная почта",
+        "verificationCodeLabel": "Код подтверждения",
+        "verificationCodePlaceholder": "Введите код подтверждения",
+        "verifyButton": "Подтвердить",
+        "resendCode": "Отправить код еще раз",
+        "backToWelcome": "Назад к",
+        "welcomeScreen": "Приветственному экрану",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна",
+        "resetCodeRequired": "Код подтверждения обязателен",
+        "resetCodeLength": "Код подтверждения должен содержать ровно 6 символов"
+      },
+      "verifyPhone": {
+        "verificationCodeLabel": "Код подтверждения",
+        "verificationCodePlaceholder": "Введите код подтверждения",
+        "verifyButton": "Подтвердить",
+        "resendCode": "Отправить код еще раз",
+        "backToWelcome": "Назад к",
+        "welcomeScreen": "Приветственному экрану",
+        "resetCodeRequired": "Код подтверждения обязателен",
+        "resetCodeLength": "Код подтверждения должен содержать ровно 6 символов",
+        "phoneNumberRequired": "Номер телефона обязателен"
+      },
+      "deleteAccount": {
+        "title": "Удалить мой аккаунт",
+        "emailLabel": "Электронная почта",
+        "emailPlaceholder": "Введите адрес электронной почты",
+        "deleteButton": "Удалить мой аккаунт",
+        "getVerificationCode": "Отправить код подтверждения",
+        "pleaseEnterValidEmail": "Пожалуйста, введите действительный адрес электронной почты",
+        "emailRequired": "Электронная почта обязательна",
+        "passwordRequired": "Пароль обязателен",
+        "passwordPattern": "Пароль должен содержать от 6 до 30 символов",
+        "backToWelcome": "Назад к",
+        "welcomeScreen": "Приветственному экрану",
+        "verificationCodeLabel": "Код подтверждения",
+        "verificationCodePlaceholder": "Введите код подтверждения",
+        "resendCode": "Отправить код еще раз",
+        "type": "Тип аккаунта",
+        "email": "Электронная почта",
+        "phone": "Номер телефона",
+        "phoneInputPlaceholder": "Введите номер телефона",
+        "phoneInputLabel": "Номер телефона",
+        "validPhoneRequired": "Пожалуйста, введите действительный номер телефона",
+        "phoneRequired": "Номер телефона обязателен",
+        "validCodeRequired": "Пожалуйста, введите действительный код подтверждения",
+        "verificationCodeRequired": "Код подтверждения обязателен",
+        "verificationCodeLength": "Код подтверждения должен содержать ровно 6 символов"
+      }
+    },
+    "user": {
+      "areYouSureDeleteAccount": "Вы уверены, что хотите удалить свой аккаунт?",
+      "actionCannotBeUndone": "Это действие необратимо. Все ваши данные будут утеряны",
+      "areYouSureDeactivateAccount": "Вы уверены, что хотите деактивировать свой аккаунт?",
+      "deactivateWarning": "При деактивации аккаунта вы не сможете использовать приложение, а все ваши данные будут скрыты от других пользователей, но не удалятся с сервера",
+      "reactivateInfo": "Вы можете вновь активировать свою учетную запись, войдя в систему",
+      "profile": "Профиль",
+      "pictures": "Фото",
+      "info": "Информация",
+      "preferences": "Предпочтения",
+      "lifestyle": "Образ жизни",
+      "location": "Местоположение",
+      "physicalAttributes": "Физические характеристики",
+      "background": "Происхождение",
+      "familyPreferences": "Семейные предпочтения",
+      "culturalSocialAttributes": "Культурные и социальные атрибуты",
+      "appLanguage": "Язык приложения",
+      "languages": "Языки",
+      "interests": "Интересы",
+      "privacy": "Конфиденциальность",
+      "visibility": "Видимость",
+      "content": "Контент",
+      "interactions": "Взаимодействия",
+      "networking": "Контакты",
+      "account": "Аккаунт",
+      "changePassword": "Изменить пароль",
+      "addNewPassword": "Добавить новый пароль",
+      "changeEmail": "Изменить электронную почту",
+      "addEmail": "Добавить электронную почту",
+      "changePhoneNumber": "Изменить номер телефона",
+      "addPhoneNumber": "Добавить номер телефона",
+      "deactivateAccount": "Деактивировать аккаунт",
+      "deleteAccount": "Удалить аккаунт",
+      "notifications": "Уведомления",
+      "settings": "Настройки",
+      "general": "Общие",
+      "help": "Помощь",
+      "about": "О нас",
+      "logout": "Выйти",
+      "theme": "Тема",
+      "selectTheme": "Выбрать тему",
+      "devices": "Устройства"
+    },
+    "UpdateProfile": {
+      "pictures": "Фото",
+      "info": "Информация",
+      "preferences": "Предпочтения",
+      "lifestyle": "Образ жизни",
+      "location": "Местоположение",
+      "physicalAttributes": "Физические характеристики",
+      "background": "Происхождение",
+      "familyPreferences": "Семейные предпочтения",
+      "culturalSocialAttributes": "Культурные и социальные атрибуты",
+      "languages": "Языки",
+      "interests": "Интересы"
+    },
+    "culturalSocialAttributes": {
+      "religion": "Религия",
+      "zodiacSign": "Знак зодиака",
+      "personalityType": "Тип личности",
+      "updateProfile": "Обновить профиль"
+    },
+    "familyPreferences": {
+      "wantsKids": "Хочет детей",
+      "hasKids": "Есть дети",
+      "updateProfile": "Обновить профиль"
+    },
+    "background": {
+      "education": "Образование",
+      "occupation": "Род занятий",
+      "updateProfile": "Обновить профиль"
+    },
+    "info": {
+      "userName": "Имя пользователя",
+      "userNameRequired": "Имя пользователя обязательно",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "month": "Месяц",
+      "day": "День",
+      "year": "Год",
+      "birthDateError": "Дата рождения обязательна",
+      "monthError": "Месяц обязателен",
+      "dayError": "День обязателен",
+      "yearError": "Год обязателен",
+      "gender": "Пол",
+      "maritalStatus": "Семейное положение",
+      "nationality": "Национальность",
+      "bio": "О себе",
+      "updateProfileButton": "Обновить профиль",
+      "firstNameRequired": "Имя обязательно",
+      "lastNameRequired": "Фамилия обязательна",
+      "monthMustBeNumber": "Месяц должен быть числом",
+      "monthRange": "Месяц должен быть в диапазоне от 1 до 12",
+      "monthRequired": "Месяц обязателен",
+      "dayMustBeNumber": "День должен быть числом",
+      "dayRange": "День должен быть в диапазоне от 1 до 31",
+      "dayRequired": "День обязателен",
+      "yearMustBeNumber": "Год должен быть числом",
+      "yearAfter1900": "Год должен быть после 1900",
+      "yearBeforeOrEqual": "Год должен быть равен или меньше, чем {year}",
+      "yearBeforeCurrent": "Год должен быть раньше текущего",
+      "yearRequired": "Год обязателен",
+      "birthDateRequired": "Дата рождения обязательна",
+      "genderRequired": "Пол обязателен",
+      "maritalStatusRequired": "Семейное положение обязательно"
+    },
+    "interests": {
+      "label": "Интересы",
+      "showLess": "Показать меньше",
+      "showMore": "Показать больше",
+      "updateProfileButton": "Обновить профиль"
+    },
+    "location": {
+      "accessToLocation": "Доступ к местоположению",
+      "address": "Адрес",
+      "city": "Город",
+      "state": "Штат/Область",
+      "country": "Страна",
+      "updateProfileButton": "Обновить профиль"
+    },
+    "languages": {
+      "label": "Языки",
+      "updateProfileButton": "Обновить профиль"
+    },
+    "physicalAttributes": {
+      "height": "Рост",
+      "weight": "Вес",
+      "bodyType": "Тип телосложения",
+      "updateProfileButton": "Обновить профиль"
+    },
+    "preferences": {
+      "preferredGender": "Предпочитаемый пол",
+      "lookingFor": "Ищу",
+      "preferredAgeRange": "Предпочитаемый возрастной диапазон",
+      "minAge": "Минимальный возраст",
+      "maxAge": "Максимальный возраст",
+      "preferredDistance": "Предпочитаемая дистанция",
+      "globe": "Глобально",
+      "preferredCommunication": "Предпочитаемый способ общения",
+      "updateProfileButton": "Обновить профиль",
+      "errors": {
+        "preferredGendersRequired": "Выберите хотя бы один пол",
+        "lookingForRequired": "Выберите хотя бы один вариант поиска",
+        "ageRange": {
+          "rangeLength": "Возрастной диапазон должен содержать два значения",
+          "required": "Возрастной диапазон обязателен",
+          "base": "Введите корректное число",
+          "integer": "Введите целое число",
+          "min": "Минимальный возраст — 18",
+          "max": "Максимальный возраст — 100",
+          "minGreaterThanMax": "Минимальный возраст не может быть больше максимального",
+          "maxLessThanMin": "Максимальный возраст не может быть меньше минимального"
+        }
+      }
+    },
+    "visibilityScreen": {
+      "title": "Настройки конфиденциальности",
+      "items": {
+        "everyone": "Все",
+        "friends": "Друзья",
+        "noOne": "Никто"
+      },
+      "profileInfoDescription": "Информация профиля — это данные, которые будут отображаться в разделе профиля, например: кого вы ищете, курение, предпочтительный способ общения, религия, знак зодиака, тип личности и т.д.",
+      "fields": {
+        "about": "О себе",
+        "images": "Фото",
+        "location": "Местоположение",
+        "email": "Электронная почта",
+        "phoneNumber": "Номер телефона",
+        "fullName": "Полное имя",
+        "gender": "Пол",
+        "age": "Возраст",
+        "nationality": "Национальность",
+        "profileInfo": "Информация профиля"
+      },
+      "saveButton": "Сохранить"
+    },
+    "interactionScreen": {
+      "title": "Настройки взаимодействия",
+      "fields": {
+        "status": "Статус",
+        "readReceipts": "Уведомления о прочтении",
+        "calls": "Звонки",
+        "videoCalls": "Видеозвонки",
+        "messages": "Сообщения",
+        "lastSeen": "Последний раз в сети",
+        "whoCanAddYou": "Кто может вас добавить"
+      },
+      "saveButton": "Сохранить"
+    },
+    "contentScreen": {
+      "title": "Настройки контента",
+      "fields": {
+        "posts": "Публикации",
+        "images": "Фото",
+        "videos": "Видео",
+        "stories": "Истории",
+        "likedPages": "Понравившиеся страницы"
+      },
+      "saveButton": "Сохранить"
+    },
+    "networkScreen": {
+      "title": "Настройки сети",
+      "fields": {
+        "friendsList": "Список друзей",
+        "followers": "Подписчики",
+        "following": "Подписки",
+        "searchVisibility": "Видимость в поиске"
+      },
+      "saveButton": "Сохранить"
+    },
+    "callSettingsScreen": {
+      "title": "Настройки звонков",
+      "items": {
+        "everyone": "Все",
+        "admin": "Администратор",
+        "moderator": "Модератор",
+        "friends": "Друзья",
+        "specific": "Конкретный человек",
+        "noOne": "Только я"
+      },
+      "fields": {
+        "screenShare": "Демонстрация экрана",
+        "recording": "Запись",
+        "callTransfer": "Перевод звонка",
+        "liveStream": "Прямая трансляция"
+      },
+      "saveButton": "Сохранить",
+      "saveSuccess": "Настройки звонков успешно сохранены",
+      "readOnlyInfo": "Эти настройки доступны только для просмотра. Только инициатор звонка может их изменить.",
+      "askAdmin": "Спросить администратора",
+      "adminRequestSent": "Запрос отправлен администратору",
+      "adminRequestPending": "Ожидание одобрения администратора..."
+    },
+    "chatSettingsScreen": {
+      "title": "Настройки чата",
+      "items": {
+        "everyone": "Все",
+        "admin": "Администратор",
+        "moderator": "Модератор",
+        "friends": "Друзья",
+        "specific": "Конкретный человек",
+        "noOne": "Только я"
+      },
+      "fields": {
+        "videoCall": "Видеозвонок",
+        "audioCall": "Аудиозвонок",
+        "canSend": "Кто может отправлять"
+      },
+      "saveButton": "Сохранить",
+      "saveSuccess": "Настройки чата успешно сохранены"
+    },
+    "account": {
+      "devices": {
+        "title": "Устройства"
+      },
+      "phoneScreen": {
+        "title": {
+          "change": "Изменить номер телефона",
+          "add": "Добавить номер телефона"
+        },
+        "input": {
+          "phoneNumber": "Номер телефона",
+          "verificationCode": "Код подтверждения",
+          "verificationCodeLabel": "Введите код подтверждения, отправленный на ваш номер телефона"
+        },
+        "alreadyHaveCode": "У вас уже есть код подтверждения?",
+        "resendCode": "Отправить код еще раз",
+        "changePhoneNumber": "Изменить номер телефона",
+        "buttons": {
+          "verify": "Подтвердить",
+          "changePhoneNumber": "Изменить номер телефона",
+          "addPhoneNumber": "Добавить номер телефона"
+        },
+        "errors": {
+          "phoneNumber": {
+            "required": "Пожалуйста, введите номер телефона",
+            "invalid": "Пожалуйста, введите действительный номер телефона"
+          },
+          "verificationCode": {
+            "required": "Код подтверждения обязателен",
+            "length": "Код подтверждения должен содержать ровно 6 символов"
+          }
+        }
+      },
+      "passwordScreen": {
+        "title": {
+          "change": "Изменить пароль",
+          "add": "Добавить новый пароль"
+        },
+        "input": {
+          "oldPassword": "Старый пароль",
+          "newPassword": "Новый пароль",
+          "confirmPassword": "Подтвердить пароль"
+        },
+        "buttons": {
+          "update": "Обновить"
+        },
+        "errors": {
+          "oldPassword": "Старый пароль обязателен",
+          "newPassword": "Новый пароль обязателен",
+          "confirmPassword": {
+            "mismatch": "Пароли не совпадают",
+            "required": "Пожалуйста, подтвердите пароль"
+          },
+          "pattern": "Пароль должен содержать от 6 до 30 символов"
+        }
+      },
+      "emailScreen": {
+        "title": {
+          "change": "Изменить электронную почту",
+          "add": "Добавить электронную почту"
+        },
+        "input": {
+          "email": "Электронная почта",
+          "verificationCode": "Код подтверждения",
+          "verificationCodeLabel": "Введите код подтверждения, отправленный на вашу электронную почту"
+        },
+        "alreadyHaveCode": "У вас уже есть код подтверждения?",
+        "resendCode": "Отправить код еще раз",
+        "changeEmail": "Изменить электронную почту",
+        "buttons": {
+          "verify": "Подтвердить",
+          "changeEmail": "Изменить электронную почту",
+          "addEmail": "Добавить электронную почту"
+        },
+        "errors": {
+          "email": {
+            "invalid": "Пожалуйста, введите действительный адрес электронной почты",
+            "required": "Электронная почта обязательна"
+          },
+          "verificationCode": {
+            "required": "Код подтверждения обязателен",
+            "length": "Код подтверждения должен содержать ровно 6 символов"
+          }
+        }
+      }
+    },
+    "addFriendScreen": {
+      "apply": "Применить",
+      "navBar": {
+        "listMode": "Список",
+        "gridMode": "Сетка",
+        "cardMode": "Карточка",
+        "filter": "Фильтр",
+        "search": "Поиск"
+      },
+      "filter": {
+        "apply": "Применить",
+        "title": "Поиск друзей",
+        "searchPlaceholder": "Поиск по электронной почте или имени пользователя",
+        "preferredGender": "Пол",
+        "lookingFor": "Ищу",
+        "nationality": "Национальность",
+        "minAge": "Минимальный возраст",
+        "maxAge": "Максимальный возраст",
+        "nearby": "Рядом",
+        "worldwide": "Глобально",
+        "country": "Страна",
+        "distance": "Дистанция",
+        "maritalStatus": "Семейное положение",
+        "smoking": "Курение",
+        "drinking": "Алкоголь",
+        "preferredCommunication": "Предпочитаемый способ общения",
+        "religion": "Религия",
+        "zodiacSign": "Знак зодиака",
+        "personalityType": "Тип личности",
+        "languages": "Языки",
+        "education": "Образование",
+        "interests": "Интересы",
+        "showMore": "Показать больше",
+        "showLess": "Показать меньше",
+        "discoverUsers": "Откройте более +{{usersCount}} пользователей",
+        "discover": "Откройте более",
+        "users": "пользователей",
+        "location": {
+          "label": "Местоположение",
+          "nearby": "Рядом",
+          "worldwide": "Глобально",
+          "country": "Страна"
+        }
+      },
+      "dropdown": {
+        "mostActive": "Наиболее активные",
+        "recentlyJoined": "Недавно присоединились",
+        "alphabetically": "В алфавитном порядке",
+        "nearestFirst": "Сначала ближайшие",
+        "youngest": "Самые молодые",
+        "oldest": "Самые старшие"
+      },
+      "setYourLocation": "Пожалуйста, укажите свое местоположение, прежде чем настраивать предпочитаемую дистанцию."
+    },
+    "header": {
+      "forwardTo": "Переслать...",
+      "searchPlaceholder": "Поиск",
+      "deleteForEveryone": "Удалить для всех",
+      "deleteForMe": "Удалить для меня",
+      "copySuccess": "{{count}} сообщение{{plural}} скопировано",
+      "deleteSuccess": "{{count}} сообщение{{plural}} удалено",
+      "blockUser": "Заблокировать пользователя",
+      "unblockUser": "Разблокировать пользователя",
+      "confirmBlock": "Вы уверены, что хотите заблокировать этого пользователя?",
+      "confirmUnblock": "Вы уверены, что хотите разблокировать этого пользователя?",
+      "clearChat": "Очистить чат",
+      "confirmClearChat": "Вы уверены, что хотите очистить этот чат?",
+      "deleteChat": "Удалить чат",
+      "confirmDeleteChat": "Вы уверены, что хотите удалить этот чат?",
+      "confirmDeleteMessages": "Вы уверены, что хотите удалить?",
+      "viewProfile": "Просмотреть профиль",
+      "addMember": "Добавить участника",
+      "cancel": "Отмена",
+      "typingIndicator": "печатает...",
+      "groupNamePlaceholder": "Название группы",
+      "exitGroup": "Выйти из группы",
+      "groupDetails": "Детали группы",
+      "changeRole": "Изменить роль",
+      "removeMember": "Удалить участника"
+    },
+    "profileScreen": {
+      "activeNow": "Сейчас онлайн",
+      "lastSeen": "Был(а) в сети",
+      "lastSeenLongTimeAgo": "Давно не заходил(а)",
+      "status": "Статус",
+      "lookingFor": "Ищу",
+      "communications": "Общение",
+      "preferredGender": "Пол",
+      "smoking": "Курение",
+      "drinking": "Алкоголь",
+      "height": "Рост",
+      "weight": "Вес",
+      "bodyType": "Телосложение",
+      "education": "Образование",
+      "occupation": "Профессия",
+      "religion": "Религия",
+      "zodiacSign": "Знак зодиака",
+      "personalityType": "Тип личности",
+      "exercise": "Упражнения",
+      "diet": "Диета",
+      "sleepSchedule": "Режим сна",
+      "about": "О {{name}}",
+      "photoCount": "{{count}} фото",
+      "interestsCount": "{{count}} интересов",
+      "languagesCount": "{{count}} языков",
+      "thisUserHasPrivateProfile": "У этого пользователя приватный профиль",
+      "more": "Больше",
+      "notAnswered": "Не ответил",
+      "gender": "Пол",
+      "nationality": "Национальность",
+      "location": "Местоположение",
+      "age": "Возраст"
+    },
+    "userInfo": {
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "month": "Месяц",
+      "day": "День",
+      "year": "Год",
+      "gender": "Пол",
+      "maritalStatus": "Семейное положение",
+      "preferredGender": "Пол",
+      "lookingFor": "Ищу",
+      "generalInfo": "Общая информация",
+      "location": "Местоположение",
+      "interests": "Интересы",
+      "languages": "Языки",
+      "firstNameRequired": "Имя обязательно",
+      "lastNameRequired": "Фамилия обязательна",
+      "monthMustBeNumber": "Месяц должен быть числом",
+      "monthRange": "Месяц должен быть от 1 до 12",
+      "monthRequired": "Месяц обязателен",
+      "dayMustBeNumber": "День должен быть числом",
+      "dayRange": "День должен быть от 1 до 31",
+      "dayRequired": "День обязателен",
+      "yearMustBeNumber": "Год должен быть числом",
+      "yearMin": "Год должен быть после 1900",
+      "yearMax": "Год должен быть {year} или раньше",
+      "yearRequired": "Год обязателен",
+      "birthDateRequired": "Дата рождения обязательна",
+      "genderRequired": "Пол обязателен",
+      "maritalStatusRequired": "Семейное положение обязательно",
+      "preferredGendersRequired": "Нужно выбрать хотя бы один предпочитаемый пол",
+      "lookingForRequired": "Нужно указать, что вы ищете",
+      "skip": "Пропустить",
+      "confirmGoBack": "Вы уверены, что хотите вернуться назад?",
+      "dataLossWarning": "Все внесенные данные будут потеряны"
+    },
+    "lifestyle": {
+      "smoking": "Курение",
+      "drinking": "Алкоголь",
+      "exercise": "Упражнения",
+      "diet": "Диета",
+      "sleepSchedule": "Режим сна",
+      "hasPets": "Есть домашние животные",
+      "updateProfileButton": "Обновить профиль"
+    },
+    "attributes": {
+      "gender": {
+        "male": "Мужской",
+        "female": "Женский",
+        "other": "Другой"
+      },
+      "maritalStatus": {
+        "single": "Холост/Не замужем",
+        "married": "Женат/Замужем",
+        "divorced": "Разведен(а)",
+        "widowed": "Вдовец/Вдова"
+      },
+      "lookingFor": {
+        "friendship": "Дружба",
+        "relationship": "Отношения",
+        "chatting": "Чат",
+        "networking": "Знакомства и контакты",
+        "other": "Другое"
+      },
+      "smoking": {
+        "yes": "Да",
+        "no": "Нет",
+        "sometimes": "Иногда",
+        "tryingToQuit": "Пытаюсь бросить",
+        "inSocialEvents": "За компанию/в обществе"
+      },
+      "drinking": {
+        "yes": "Да",
+        "no": "Нет",
+        "sometimes": "Иногда",
+        "tryingToQuit": "Пытаюсь бросить",
+        "inSocialEvents": "Только по случаю"
+      },
+      "zodiacSign": {
+        "Aries": "Овен",
+        "Taurus": "Телец",
+        "Gemini": "Близнецы",
+        "Cancer": "Рак",
+        "Leo": "Лев",
+        "Virgo": "Дева",
+        "Libra": "Весы",
+        "Scorpio": "Скорпион",
+        "Sagittarius": "Стрелец",
+        "Capricorn": "Козерог",
+        "Aquarius": "Водолей",
+        "Pisces": "Рыбы"
+      },
+      "religion": {
+        "agnostic": "Агностик",
+        "atheist": "Атеист",
+        "buddhist": "Буддист",
+        "christian": "Христианин",
+        "catholic": "Католик",
+        "hindu": "Индуист",
+        "jewish": "Иудей",
+        "muslim": "Мусульманин",
+        "sikh": "Сикх",
+        "other": "Другое"
+      },
+      "politicalViews": {
+        "anarchist": "Анархист",
+        "centrist": "Центрист",
+        "conservative": "Консервативный",
+        "liberal": "Либеральный",
+        "libertarian": "Либертарианский",
+        "moderate": "Модернист",
+        "progressive": "Прогрессивный",
+        "socialist": "Социалистический",
+        "other": "Другое"
+      },
+      "personalityType": {
+        "INTJ": "INTJ",
+        "ENTP": "ENTP",
+        "ISFJ": "ISFJ",
+        "ENFJ": "ENFJ",
+        "ISTP": "ISTP",
+        "ESFP": "ESFP",
+        "ESTJ": "ESTJ",
+        "INFJ": "INFJ",
+        "ISFP": "ISFP",
+        "ESTP": "ESTP",
+        "ENFP": "ENFP",
+        "INTP": "INTP",
+        "ENTJ": "ENTJ",
+        "ISTJ": "ISTJ",
+        "INFP": "INFP",
+        "ESFJ": "ESFJ"
+      },
+      "education": {
+        "noHighSchoolDiploma": "Без аттестата о среднем образовании",
+        "highSchoolDiploma": "Аттестат о среднем образовании",
+        "someCollege": "Некоторое время учился в вузе, без диплома",
+        "associateDegree": "Степень младшего специалиста",
+        "someCollegeNoDegree": "Учился в вузе, без диплома",
+        "bachelorsDegree": "Степень бакалавра",
+        "mastersDegree": "Степень магистра",
+        "doctorateOrHigher": "Докторантура или выше",
+        "other": "Другое"
+      },
+      "preferredCommunications": {
+        "text": "Текст",
+        "voice": "Голос",
+        "video": "Видео",
+        "inPerson": "Личная встреча"
+      },
+      "exercise": {
+        "never": "Никогда",
+        "rarely": "Редко",
+        "sometimes": "Иногда",
+        "daily": "Ежедневно",
+        "weekly": "Еженедельно",
+        "monthly": "Ежемесячно"
+      },
+      "diet": {
+        "anything": "Все подряд",
+        "vegetarian": "Вегетарианство",
+        "vegan": "Веганство",
+        "pescatarian": "Только рыба",
+        "keto": "Кето",
+        "paleo": "Палео",
+        "glutenFree": "Безглютеновая",
+        "halal": "Халяль",
+        "kosher": "Кошер",
+        "other": "Другое"
+      },
+      "sleepSchedule": {
+        "earlyBird": "Ранняя пташка",
+        "nightOwl": "Сова",
+        "varies": "Меняется"
+      },
+      "bodyType": {
+        "slim": "Стройное",
+        "average": "Среднее",
+        "athletic": "Атлетическое",
+        "fullFigured": "Полное",
+        "curvy": "Фигуристое",
+        "muscular": "Мускулистое",
+        "petite": "Миниатюрное",
+        "aLittleExtra": "С небольшим лишним весом",
+        "stocky": "Коренастое",
+        "other": "Другое"
+      }
+    },
+    "notifications": {
+      "title": "Уведомления",
+      "messages": "Сообщения",
+      "calls": "Звонки",
+      "likes": "Лайки",
+      "comments": "Комментарии",
+      "shares": "Поделиться",
+      "tags": "Отметки",
+      "friendRequests": "Запросы в друзья",
+      "groups": "Группы",
+      "events": "События",
+      "live": "Прямой эфир",
+      "reminders": "Напоминания",
+      "birthdays": "Дни рождения",
+      "stories": "Истории",
+      "videoCalls": "Видеозвонки",
+      "nearby": "Рядом"
+    },
+    "about": {
+      "title": "О Linker",
+      "version": "Версия",
+      "description": "Социальное приложение, которое позволяет вам общаться с друзьями, семьей, коллегами и многими другими. Вы можете создавать группы, общаться в чатах с друзьями, делиться фото, видео, историями и многим другим."
+    },
+    "explore": {
+      "explore-map": "Карта",
+      "explore": "Список",
+      "swiper": "Свайпер"
+    },
+    "navigation": {
+      "chats": "Чаты",
+      "explore": "Обзор",
+      "friends": "Друзья",
+      "profile": "Профиль",
+      "users": "Пользователи"
+    },
+    "general": {
+      "pleaseEnterValidPhoneNumber": "Пожалуйста, введите действительный номер телефона",
+      "phoneNumber": "Номер телефона",
+      "user": "Пользователь",
+      "deleteConfirmation": "Вы уверены, что хотите удалить",
+      "theseChats": "эти чаты",
+      "thisChat": "этот чат",
+      "selected": "выбрано",
+      "groupChat": "Групповой чат",
+      "chats": "Чаты",
+      "search": "Поиск",
+      "today": "Сегодня",
+      "yesterday": "Вчера",
+      "invalidRoom": "Недопустимая комната чата.",
+      "loadingRoom": "Открытие чата...",
+      "roomUnavailable": "Этот чат недоступен или не удалось загрузить.",
+      "yes": "Да",
+      "no": "Нет",
+      "skipTheRest": "Хотите пропустить остальные шаги?",
+      "enterGruopName": "Введите название комнаты",
+      "admin": "Администратор",
+      "moderator": "Модератор",
+      "member": "Участник",
+      "owner": "Владелец",
+      "adminDescription": "Полные права на управление группой",
+      "moderatorDescription": "Может управлять участниками",
+      "memberDescription": "Базовые права группы",
+      "ownerDescription": "Создатель группы с высшими правами",
+      "selectNewRole": "Выберите новую роль для",
+      "currentRole": "Текущая роль",
+      "selectRole": "Пожалуйста, выберите роль",
+      "confirm": "Подтвердить",
+      "cancel": "Отмена",
+      "members": "Участники",
+      "settings": "Настройки",
+      "groupDetails": "Детали группы",
+      "changePhoto": "Изменить фото",
+      "changeRoleConfirmation": "Вы уверены, что хотите изменить роль этого пользователя на {{role}}?",
+      "removeMemberConfirmation": "Вы уверены, что хотите удалить этого участника?",
+      "toChangeUserRole": " Нажмите на ",
+      "clickOnUser": " чтобы изменить роль пользователя ",
+      "exitedTheRoom": "вышел(а) из комнаты",
+      "addedToTheRoom": "был(а) добавлен(а) в комнату",
+      "wasBlockedBy": "был(а) заблокирован(а) пользователем",
+      "wasUnblockedBy": "был(а) разблокирован(а) пользователем",
+      "removedFromTheRoom": "удалил(а)",
+      "addedToTheRoom": "добавил(а)",
+      "updatedRoomName": "Название комнаты обновлено",
+      "updatedRoomImage": "Изображение комнаты обновлено",
+      "roleChangedTomember": "изменил(а) роль на участник для",
+      "roleChangedTomoderator": "изменил(а) роль на модератор для",
+      "roleChangedToadmin": "изменил(а) роль на администратор для",
+      "connectionError": "Проверьте свое интернет-соединение",
+      "cannotSend": "Вы не можете отправлять сообщения в этом чате",
+      "noChats": "Нет чатов. Начните с добавления друзей или присоединения к группе",
+      "noFriends": "Нет друзей. Начните с добавления друзей",
+      "friends": "Друзья",
+      "sent": "Отправлено",
+      "received": "Получено",
+      "blocked": "Заблокирован",
+      "selectCategories": "Выберите категории",
+      "dark": "Тёмная",
+      "light": "Светлая",
+      "forwarded": "Переслано",
+      "noUsersFound": "Пользователи не найдены",
+      "clickToGetRecommendedUsers": "Нажмите, чтобы увидеть рекомендуемых пользователей",
+      "clickToAddFriends": "Нажмите, чтобы добавить друзей",
+      "clickToGoToFriendsList": "Нажмите, чтобы перейти к списку друзей",
+      "you": " Вы ",
+      "addPassword": "Добавить пароль",
+      "removePassword": "Удалить пароль",
+      "enterPassword": "Введите пароль",
+      "enterThePasswordToOpenThisChat": "Введите пароль, чтобы открыть этот чат",
+      "enterPasswordToRemove": "Введите пароль, чтобы удалить",
+      "addPasswordToThisChat": "Добавить пароль к этому чату",
+      "passwordIsNotCorrect": "Пароль некорректен",
+      "passwordAddedSuccessfully": "Пароль успешно добавлен",
+      "passwordRemovedSuccessfully": "Пароль успешно удален",
+      "openChat": "Открыть чат",
+      "following": "Следующие",
+      "fans": "Фаны",
+      "visitors": "Посетители"
+    },
+    "select": {
+      "selectDay": "Выберите день",
+      "selectMonth": "Выберите месяц",
+      "selectYear": "Выберите год"
+    }
+  }
+}

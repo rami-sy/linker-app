@@ -1,0 +1,38 @@
+{
+  "cli": {
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://linker.land"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://linker.land"
+      }
+    },
+    "preview3": {
+      "developmentClient": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://linker.land"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "resourceClass": "large",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://linker.land"
+      }
+    }
+  }
+}

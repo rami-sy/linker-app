@@ -1,0 +1,897 @@
+{
+  "translation": {
+    "auth": {
+      "welcome": {
+        "title": "Linker 是一个社交媒体平台，连接你与周围工作、学习和生活的人以及你的朋友。",
+        "description": "Linker 是一个社交平台，可让你以新颖有趣的方式与朋友和同事联系并探索你的社区。通过智能推荐系统和简单的交互，你可以安全、轻松地与拥有共同兴趣的人建立社交和职业联系。",
+        "getStart": "开始",
+        "visitWebsitePrefix": "如需更多信息，请通过此方式联系我们：",
+        "visitWebsiteHighlighted": "电子邮件",
+        "deleteMyAccount": "删除我的账户",
+        "privacy&terms": "隐私与条款",
+        "privacyPolicy": "隐私政策",
+        "termsOfService": "服务条款"
+      },
+      "phoneAuth": {
+        "title": "请输入你的手机号以继续",
+        "phoneInputPlaceholder": "输入手机号",
+        "phoneInputLabel": "手机号",
+        "sendCode": "发送验证码",
+        "loginOrSignup": "使用以下方式登录或注册",
+        "emailAndPassword": "电子邮件",
+        "pleaseEnterPhoneNumber": "请输入手机号"
+      },
+      "login": {
+        "emailPlaceholder": "电子邮件",
+        "passwordPlaceholder": "密码",
+        "loginButton": "登录",
+        "setNewPassword": "设置新密码",
+        "forgotPassword": "忘记密码？",
+        "pressHere": "点击这里",
+        "dontHaveAccount": "还没有账户？",
+        "signup": "注册",
+        "loginWithPhonePrefix": "使用以下方式登录 ",
+        "loginWithPhoneHighlighted": "手机号",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项",
+        "passwordRequired": "密码为必填项",
+        "passwordPattern": "密码长度需在 6 到 30 个字符之间"
+      },
+      "forgetPassword": {
+        "emailPlaceholder": "电子邮件",
+        "sendResetCode": "发送重置码",
+        "resendCode": "重新发送重置码",
+        "backToWelcome": "返回",
+        "welcomeScreen": "欢迎界面",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项"
+      },
+      "resetPassword": {
+        "resetCodeLabel": "重置码",
+        "resetCodePlaceholder": "输入重置码",
+        "newPasswordPlaceholder": "新密码",
+        "confirmPasswordPlaceholder": "确认密码",
+        "resetPasswordButton": "重置密码",
+        "backToForgotPassword": "返回忘记密码",
+        "backToWelcome": "返回",
+        "welcomeScreen": "欢迎界面",
+        "forgotPasswordScreen": "忘记密码界面",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项",
+        "resetCodeRequired": "重置码为必填项",
+        "resetCodeLength": "重置码必须正好是 6 位字符",
+        "passwordPattern": "密码长度需在 6 到 30 个字符之间",
+        "passwordRequired": "密码为必填项",
+        "passwordsDoNotMatch": "密码不一致",
+        "confirmPasswordRequired": "请确认密码"
+      },
+      "signup": {
+        "emailPlaceholder": "电子邮件",
+        "passwordPlaceholder": "密码",
+        "confirmPasswordPlaceholder": "确认密码",
+        "signupButton": "注册",
+        "doYouHaveAccount": "已经有账户了？",
+        "login": "登录",
+        "loginWithPhonePrefix": "使用以下方式登录 ",
+        "loginWithPhoneHighlighted": "手机号",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项",
+        "passwordPattern": "密码长度需在 6 到 30 个字符之间",
+        "passwordRequired": "密码为必填项",
+        "passwordsDoNotMatch": "密码不一致",
+        "confirmPasswordRequired": "请确认密码"
+      },
+      "verifyEmail": {
+        "emailPlaceholder": "电子邮件",
+        "verificationCodeLabel": "验证码",
+        "verificationCodePlaceholder": "输入验证码",
+        "verifyButton": "验证",
+        "resendCode": "重新发送验证码",
+        "backToWelcome": "返回",
+        "welcomeScreen": "欢迎界面",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项",
+        "resetCodeRequired": "验证码为必填项",
+        "resetCodeLength": "验证码必须正好是 6 位字符"
+      },
+      "verifyPhone": {
+        "verificationCodeLabel": "验证码",
+        "verificationCodePlaceholder": "输入验证码",
+        "verifyButton": "验证",
+        "resendCode": "重新发送验证码",
+        "backToWelcome": "返回",
+        "welcomeScreen": "欢迎界面",
+        "resetCodeRequired": "验证码为必填项",
+        "resetCodeLength": "验证码必须正好是 6 位字符",
+        "phoneNumberRequired": "手机号为必填项"
+      },
+      "deleteAccount": {
+        "title": "删除我的账户",
+        "emailLabel": "电子邮件",
+        "emailPlaceholder": "输入电子邮件",
+        "deleteButton": "删除我的账户",
+        "getVerificationCode": "发送验证码",
+        "pleaseEnterValidEmail": "请输入有效的电子邮件地址",
+        "emailRequired": "电子邮件为必填项",
+        "passwordRequired": "密码为必填项",
+        "passwordPattern": "密码长度需在 6 到 30 个字符之间",
+        "backToWelcome": "返回",
+        "welcomeScreen": "欢迎界面",
+        "verificationCodeLabel": "验证码",
+        "verificationCodePlaceholder": "输入验证码",
+        "resendCode": "重新发送验证码",
+        "type": "账户类型",
+        "email": "电子邮件",
+        "phone": "手机号",
+        "phoneInputPlaceholder": "输入手机号",
+        "phoneInputLabel": "手机号",
+        "validPhoneRequired": "请输入有效的手机号",
+        "phoneRequired": "手机号为必填项",
+        "validCodeRequired": "请输入有效的验证码",
+        "verificationCodeRequired": "验证码为必填项",
+        "verificationCodeLength": "验证码必须正好是 6 位字符"
+      }
+    },
+    "user": {
+      "areYouSureDeleteAccount": "你确定要删除账户吗？",
+      "actionCannotBeUndone": "此操作不可撤销，将会丢失所有数据",
+      "areYouSureDeactivateAccount": "你确定要停用账户吗？",
+      "deactivateWarning": "停用账户后，你将无法使用应用，且所有数据对其他用户不可见，但不会从服务器删除",
+      "reactivateInfo": "你可以通过重新登录来重新激活账户",
+      "profile": "个人资料",
+      "pictures": "照片",
+      "info": "信息",
+      "preferences": "偏好",
+      "lifestyle": "生活方式",
+      "location": "位置",
+      "physicalAttributes": "身体特征",
+      "background": "背景",
+      "familyPreferences": "家庭偏好",
+      "culturalSocialAttributes": "文化与社交属性",
+      "appLanguage": "应用语言",
+      "languages": "语言",
+      "interests": "兴趣",
+      "privacy": "隐私",
+      "visibility": "可见性",
+      "content": "内容",
+      "interactions": "互动",
+      "networking": "社交网络",
+      "account": "账户",
+      "changePassword": "更改密码",
+      "addNewPassword": "添加新密码",
+      "changeEmail": "更改电子邮件",
+      "addEmail": "添加电子邮件",
+      "changePhoneNumber": "更改手机号",
+      "addPhoneNumber": "添加手机号",
+      "deactivateAccount": "停用账户",
+      "deleteAccount": "删除账户",
+      "notifications": "通知",
+      "settings": "设置",
+      "general": "通用",
+      "help": "帮助",
+      "about": "关于",
+      "logout": "退出登录",
+      "theme": "主题",
+      "selectTheme": "选择主题",
+      "devices": "设备"
+    },
+    "UpdateProfile": {
+      "pictures": "照片",
+      "info": "信息",
+      "preferences": "偏好",
+      "lifestyle": "生活方式",
+      "location": "位置",
+      "physicalAttributes": "身体特征",
+      "background": "背景",
+      "familyPreferences": "家庭偏好",
+      "culturalSocialAttributes": "文化与社交属性",
+      "languages": "语言",
+      "interests": "兴趣"
+    },
+    "culturalSocialAttributes": {
+      "religion": "宗教",
+      "zodiacSign": "星座",
+      "personalityType": "人格类型",
+      "updateProfile": "更新资料"
+    },
+    "familyPreferences": {
+      "wantsKids": "想要孩子",
+      "hasKids": "有孩子",
+      "updateProfile": "更新资料"
+    },
+    "background": {
+      "education": "教育",
+      "occupation": "职业",
+      "updateProfile": "更新资料"
+    },
+    "info": {
+      "userName": "用户名",
+      "userNameRequired": "用户名为必填项",
+      "firstName": "名",
+      "lastName": "姓",
+      "month": "月",
+      "day": "日",
+      "year": "年",
+      "birthDateError": "出生日期为必填项",
+      "monthError": "月份为必填项",
+      "dayError": "日期为必填项",
+      "yearError": "年份为必填项",
+      "gender": "性别",
+      "maritalStatus": "婚姻状况",
+      "nationality": "国籍",
+      "bio": "个人简介",
+      "updateProfileButton": "更新资料",
+      "firstNameRequired": "名字为必填项",
+      "lastNameRequired": "姓氏为必填项",
+      "monthMustBeNumber": "月份必须是数字",
+      "monthRange": "月份必须在 1 到 12 之间",
+      "monthRequired": "月份为必填项",
+      "dayMustBeNumber": "日期必须是数字",
+      "dayRange": "日期必须在 1 到 31 之间",
+      "dayRequired": "日期为必填项",
+      "yearMustBeNumber": "年份必须是数字",
+      "yearAfter1900": "年份必须大于 1900",
+      "yearBeforeOrEqual": "年份必须小于或等于 {year}",
+      "yearBeforeCurrent": "年份必须早于当前年份",
+      "yearRequired": "年份为必填项",
+      "birthDateRequired": "出生日期为必填项",
+      "genderRequired": "性别为必填项",
+      "maritalStatusRequired": "婚姻状况为必填项"
+    },
+    "interests": {
+      "label": "兴趣",
+      "showLess": "显示更少",
+      "showMore": "显示更多",
+      "updateProfileButton": "更新资料"
+    },
+    "location": {
+      "accessToLocation": "位置访问",
+      "address": "地址",
+      "city": "城市",
+      "state": "州/省",
+      "country": "国家",
+      "updateProfileButton": "更新资料"
+    },
+    "languages": {
+      "label": "语言",
+      "updateProfileButton": "更新资料"
+    },
+    "physicalAttributes": {
+      "height": "身高",
+      "weight": "体重",
+      "bodyType": "体型",
+      "updateProfileButton": "更新资料"
+    },
+    "preferences": {
+      "preferredGender": "偏好性别",
+      "lookingFor": "正在寻找",
+      "preferredAgeRange": "偏好年龄范围",
+      "minAge": "最小年龄",
+      "maxAge": "最大年龄",
+      "preferredDistance": "偏好距离",
+      "globe": "全球",
+      "preferredCommunication": "偏好交流方式",
+      "updateProfileButton": "更新资料",
+      "errors": {
+        "preferredGendersRequired": "请至少选择一个性别",
+        "lookingForRequired": "请至少选择一个寻找选项",
+        "ageRange": {
+          "rangeLength": "年龄范围必须包含两个数值",
+          "required": "年龄范围为必填项",
+          "base": "请输入正确的数字",
+          "integer": "请输入整数",
+          "min": "最小年龄为 18",
+          "max": "最大年龄为 100",
+          "minGreaterThanMax": "最小年龄不能大于最大年龄",
+          "maxLessThanMin": "最大年龄不能小于最小年龄"
+        }
+      }
+    },
+    "visibilityScreen": {
+      "title": "隐私设置",
+      "items": {
+        "everyone": "所有人",
+        "friends": "好友",
+        "noOne": "无人"
+      },
+      "profileInfoDescription": "个人资料信息将显示在资料部分，如：寻找什么、是否吸烟、偏好交流方式、宗教、星座、人格类型等。",
+      "fields": {
+        "about": "个人简介",
+        "images": "照片",
+        "location": "位置",
+        "email": "电子邮件",
+        "phoneNumber": "手机号",
+        "fullName": "全名",
+        "gender": "性别",
+        "age": "年龄",
+        "nationality": "国籍",
+        "profileInfo": "个人资料信息"
+      },
+      "saveButton": "保存"
+    },
+    "interactionScreen": {
+      "title": "互动设置",
+      "fields": {
+        "status": "状态",
+        "readReceipts": "已读回执",
+        "calls": "通话",
+        "videoCalls": "视频通话",
+        "messages": "消息",
+        "lastSeen": "最后上线时间",
+        "whoCanAddYou": "谁可以添加你"
+      },
+      "saveButton": "保存"
+    },
+    "contentScreen": {
+      "title": "内容设置",
+      "fields": {
+        "posts": "帖子",
+        "images": "照片",
+        "videos": "视频",
+        "stories": "动态",
+        "likedPages": "点赞的页面"
+      },
+      "saveButton": "保存"
+    },
+    "networkScreen": {
+      "title": "网络设置",
+      "fields": {
+        "friendsList": "好友列表",
+        "followers": "关注者",
+        "following": "关注中",
+        "searchVisibility": "搜索可见性"
+      },
+      "saveButton": "保存"
+    },
+    "callSettingsScreen": {
+      "title": "通话设置",
+      "items": {
+        "everyone": "所有人",
+        "admin": "管理员",
+        "moderator": "版主",
+        "friends": "朋友",
+        "specific": "特定人员",
+        "noOne": "仅我"
+      },
+      "fields": {
+        "screenShare": "屏幕共享",
+        "recording": "录制",
+        "callTransfer": "通话转移",
+        "liveStream": "直播"
+      },
+      "saveButton": "保存",
+      "saveSuccess": "通话设置已成功保存",
+      "readOnlyInfo": "这些设置是只读的。只有通话发起者可以修改它们。",
+      "askAdmin": "询问管理员",
+      "adminRequestSent": "请求已发送给管理员",
+      "adminRequestPending": "等待管理员批准..."
+    },
+    "chatSettingsScreen": {
+      "title": "聊天设置",
+      "items": {
+        "everyone": "所有人",
+        "admin": "管理员",
+        "moderator": "版主",
+        "friends": "朋友",
+        "specific": "特定人员",
+        "noOne": "仅我"
+      },
+      "fields": {
+        "videoCall": "视频通话",
+        "audioCall": "语音通话",
+        "canSend": "谁可以发送"
+      },
+      "saveButton": "保存",
+      "saveSuccess": "聊天设置已成功保存"
+    },
+    "account": {
+      "devices": {
+        "title": "设备"
+      },
+      "phoneScreen": {
+        "title": {
+          "change": "更改手机号",
+          "add": "添加手机号"
+        },
+        "input": {
+          "phoneNumber": "手机号",
+          "verificationCode": "验证码",
+          "verificationCodeLabel": "请输入发送到你手机号的验证码"
+        },
+        "alreadyHaveCode": "是否已有验证码？",
+        "resendCode": "重新发送验证码",
+        "changePhoneNumber": "更改手机号",
+        "buttons": {
+          "verify": "验证",
+          "changePhoneNumber": "更改手机号",
+          "addPhoneNumber": "添加手机号"
+        },
+        "errors": {
+          "phoneNumber": {
+            "required": "请输入手机号",
+            "invalid": "请输入有效的手机号"
+          },
+          "verificationCode": {
+            "required": "验证码为必填项",
+            "length": "验证码必须正好是 6 位字符"
+          }
+        }
+      },
+      "passwordScreen": {
+        "title": {
+          "change": "更改密码",
+          "add": "添加新密码"
+        },
+        "input": {
+          "oldPassword": "旧密码",
+          "newPassword": "新密码",
+          "confirmPassword": "确认密码"
+        },
+        "buttons": {
+          "update": "更新"
+        },
+        "errors": {
+          "oldPassword": "旧密码为必填项",
+          "newPassword": "新密码为必填项",
+          "confirmPassword": {
+            "mismatch": "两次密码不一致",
+            "required": "请确认密码"
+          },
+          "pattern": "密码长度需在 6 到 30 个字符之间"
+        }
+      },
+      "emailScreen": {
+        "title": {
+          "change": "更改电子邮件",
+          "add": "添加电子邮件"
+        },
+        "input": {
+          "email": "电子邮件",
+          "verificationCode": "验证码",
+          "verificationCodeLabel": "请输入发送到你邮箱的验证码"
+        },
+        "alreadyHaveCode": "是否已有验证码？",
+        "resendCode": "重新发送验证码",
+        "changeEmail": "更改电子邮件",
+        "buttons": {
+          "verify": "验证",
+          "changeEmail": "更改电子邮件",
+          "addEmail": "添加电子邮件"
+        },
+        "errors": {
+          "email": {
+            "invalid": "请输入有效的电子邮件地址",
+            "required": "电子邮件为必填项"
+          },
+          "verificationCode": {
+            "required": "验证码为必填项",
+            "length": "验证码必须正好是 6 位字符"
+          }
+        }
+      }
+    },
+    "addFriendScreen": {
+      "apply": "应用",
+      "navBar": {
+        "listMode": "列表",
+        "gridMode": "网格",
+        "cardMode": "卡片",
+        "filter": "筛选",
+        "search": "搜索"
+      },
+      "filter": {
+        "apply": "应用",
+        "title": "寻找好友",
+        "searchPlaceholder": "通过电子邮件或用户名搜索",
+        "preferredGender": "性别",
+        "lookingFor": "寻找",
+        "nationality": "国籍",
+        "minAge": "最小年龄",
+        "maxAge": "最大年龄",
+        "nearby": "附近",
+        "worldwide": "全球",
+        "country": "国家",
+        "distance": "距离",
+        "maritalStatus": "婚姻状况",
+        "smoking": "吸烟",
+        "drinking": "饮酒",
+        "preferredCommunication": "偏好交流方式",
+        "religion": "宗教",
+        "zodiacSign": "星座",
+        "personalityType": "人格类型",
+        "languages": "语言",
+        "education": "教育",
+        "interests": "兴趣",
+        "showMore": "显示更多",
+        "showLess": "显示更少",
+        "discoverUsers": "发现超过 +{{usersCount}} 位用户",
+        "discover": "发现超过",
+        "users": "位用户",
+        "location": {
+          "label": "位置",
+          "nearby": "附近",
+          "worldwide": "全球",
+          "country": "国家"
+        }
+      },
+      "dropdown": {
+        "mostActive": "最活跃",
+        "recentlyJoined": "新加入",
+        "alphabetically": "按字母顺序",
+        "nearestFirst": "距离最近优先",
+        "youngest": "年龄最小",
+        "oldest": "年龄最大"
+      },
+      "setYourLocation": "在设置偏好距离之前，请先确定你的所在地。"
+    },
+    "header": {
+      "forwardTo": "转发给...",
+      "searchPlaceholder": "搜索",
+      "deleteForEveryone": "为所有人删除",
+      "deleteForMe": "仅为我删除",
+      "copySuccess": "已复制 {{count}} 条消息{{plural}}",
+      "deleteSuccess": "已删除 {{count}} 条消息{{plural}}",
+      "blockUser": "屏蔽用户",
+      "unblockUser": "取消屏蔽",
+      "confirmBlock": "确定要屏蔽此用户吗？",
+      "confirmUnblock": "确定要取消屏蔽此用户吗？",
+      "clearChat": "清空聊天",
+      "confirmClearChat": "确定要清空此聊天吗？",
+      "deleteChat": "删除聊天",
+      "confirmDeleteChat": "确定要删除此聊天吗？",
+      "confirmDeleteMessages": "确定要删除吗？",
+      "viewProfile": "查看资料",
+      "addMember": "添加成员",
+      "cancel": "取消",
+      "typingIndicator": "正在输入...",
+      "groupNamePlaceholder": "群组名称",
+      "exitGroup": "退出群组",
+      "groupDetails": "群组详情",
+      "changeRole": "更改角色",
+      "removeMember": "移除成员"
+    },
+    "profileScreen": {
+      "activeNow": "当前在线",
+      "lastSeen": "上次在线时间",
+      "lastSeenLongTimeAgo": "很久之前在线",
+      "status": "状态",
+      "lookingFor": "正在寻找",
+      "communications": "交流方式",
+      "preferredGender": "性别",
+      "smoking": "吸烟",
+      "drinking": "饮酒",
+      "height": "身高",
+      "weight": "体重",
+      "bodyType": "体型",
+      "education": "教育",
+      "occupation": "职业",
+      "religion": "宗教",
+      "zodiacSign": "星座",
+      "personalityType": "人格类型",
+      "exercise": "运动",
+      "diet": "饮食",
+      "sleepSchedule": "作息时间",
+      "about": "关于 {{name}}",
+      "photoCount": "{{count}} 张照片",
+      "interestsCount": "{{count}} 个兴趣",
+      "languagesCount": "{{count}} 种语言",
+      "thisUserHasPrivateProfile": "该用户的资料是私密的",
+      "more": "更多",
+      "notAnswered": "未回答",
+      "gender": "性别",
+      "nationality": "国籍",
+      "location": "位置",
+      "age": "年龄"
+    },
+    "userInfo": {
+      "firstName": "名",
+      "lastName": "姓",
+      "month": "月",
+      "day": "日",
+      "year": "年",
+      "gender": "性别",
+      "maritalStatus": "婚姻状况",
+      "preferredGender": "偏好性别",
+      "lookingFor": "正在寻找",
+      "generalInfo": "通用信息",
+      "location": "位置",
+      "interests": "兴趣",
+      "languages": "语言",
+      "firstNameRequired": "名字为必填项",
+      "lastNameRequired": "姓氏为必填项",
+      "monthMustBeNumber": "月份必须是数字",
+      "monthRange": "月份需在 1～12 之间",
+      "monthRequired": "月份为必填项",
+      "dayMustBeNumber": "日期必须是数字",
+      "dayRange": "日期需在 1～31 之间",
+      "dayRequired": "日期为必填项",
+      "yearMustBeNumber": "年份必须是数字",
+      "yearMin": "年份必须大于 1900",
+      "yearMax": "年份必须小于或等于 {year}",
+      "yearRequired": "年份为必填项",
+      "birthDateRequired": "出生日期为必填项",
+      "genderRequired": "性别为必填项",
+      "maritalStatusRequired": "婚姻状况为必填项",
+      "preferredGendersRequired": "至少选择一种偏好性别",
+      "lookingForRequired": "请说明你正在寻找什么",
+      "skip": "跳过",
+      "confirmGoBack": "你确定要返回吗？",
+      "dataLossWarning": "你已输入的数据将会丢失"
+    },
+    "lifestyle": {
+      "smoking": "吸烟",
+      "drinking": "饮酒",
+      "exercise": "运动",
+      "diet": "饮食",
+      "sleepSchedule": "作息时间",
+      "hasPets": "有宠物",
+      "updateProfileButton": "更新资料"
+    },
+    "attributes": {
+      "gender": {
+        "male": "男",
+        "female": "女",
+        "other": "其他"
+      },
+      "maritalStatus": {
+        "single": "单身",
+        "married": "已婚",
+        "divorced": "离异",
+        "widowed": "丧偶"
+      },
+      "lookingFor": {
+        "friendship": "交友",
+        "relationship": "恋爱关系",
+        "chatting": "聊天",
+        "networking": "社交拓展",
+        "other": "其他"
+      },
+      "smoking": {
+        "yes": "是",
+        "no": "否",
+        "sometimes": "有时",
+        "tryingToQuit": "正在尝试戒烟",
+        "inSocialEvents": "仅在社交场合"
+      },
+      "drinking": {
+        "yes": "是",
+        "no": "否",
+        "sometimes": "有时",
+        "tryingToQuit": "尝试戒酒",
+        "inSocialEvents": "仅在社交场合"
+      },
+      "zodiacSign": {
+        "Aries": "白羊座",
+        "Taurus": "金牛座",
+        "Gemini": "双子座",
+        "Cancer": "巨蟹座",
+        "Leo": "狮子座",
+        "Virgo": "处女座",
+        "Libra": "天秤座",
+        "Scorpio": "天蝎座",
+        "Sagittarius": "射手座",
+        "Capricorn": "摩羯座",
+        "Aquarius": "水瓶座",
+        "Pisces": "双鱼座"
+      },
+      "religion": {
+        "agnostic": "不可知论者",
+        "atheist": "无神论者",
+        "buddhist": "佛教",
+        "christian": "基督教",
+        "catholic": "天主教",
+        "hindu": "印度教",
+        "jewish": "犹太教",
+        "muslim": "穆斯林",
+        "sikh": "锡克教",
+        "other": "其他"
+      },
+      "politicalViews": {
+        "anarchist": "无政府主义者",
+        "centrist": "中间派",
+        "conservative": "保守派",
+        "liberal": "自由主义者",
+        "libertarian": "自由意志主义者",
+        "moderate": "温和派",
+        "progressive": "进步派",
+        "socialist": "社会主义者",
+        "other": "其他"
+      },
+      "personalityType": {
+        "INTJ": "INTJ",
+        "ENTP": "ENTP",
+        "ISFJ": "ISFJ",
+        "ENFJ": "ENFJ",
+        "ISTP": "ISTP",
+        "ESFP": "ESFP",
+        "ESTJ": "ESTJ",
+        "INFJ": "INFJ",
+        "ISFP": "ISFP",
+        "ESTP": "ESTP",
+        "ENFP": "ENFP",
+        "INTP": "INTP",
+        "ENTJ": "ENTJ",
+        "ISTJ": "ISTJ",
+        "INFP": "INFP",
+        "ESFJ": "ESFJ"
+      },
+      "education": {
+        "noHighSchoolDiploma": "无高中毕业证",
+        "highSchoolDiploma": "高中毕业证",
+        "someCollege": "上过大学, 未毕业",
+        "associateDegree": "大专学历",
+        "someCollegeNoDegree": "曾上大学, 无学位",
+        "bachelorsDegree": "学士学位",
+        "mastersDegree": "硕士学位",
+        "doctorateOrHigher": "博士或更高",
+        "other": "其他"
+      },
+      "preferredCommunications": {
+        "text": "文本",
+        "voice": "语音",
+        "video": "视频",
+        "inPerson": "当面"
+      },
+      "exercise": {
+        "never": "从不",
+        "rarely": "很少",
+        "sometimes": "有时",
+        "daily": "每天",
+        "weekly": "每周",
+        "monthly": "每月"
+      },
+      "diet": {
+        "anything": "不忌口",
+        "vegetarian": "素食",
+        "vegan": "纯素",
+        "pescatarian": "只吃鱼类",
+        "keto": "生酮",
+        "paleo": "古法饮食",
+        "glutenFree": "不含麸质",
+        "halal": "清真",
+        "kosher": "犹太洁食",
+        "other": "其他"
+      },
+      "sleepSchedule": {
+        "earlyBird": "早睡早起",
+        "nightOwl": "夜猫子",
+        "varies": "不固定"
+      },
+      "bodyType": {
+        "slim": "苗条",
+        "average": "普通",
+        "athletic": "健美",
+        "fullFigured": "丰满",
+        "curvy": "曲线丰满",
+        "muscular": "肌肉发达",
+        "petite": "娇小",
+        "aLittleExtra": "略有赘肉",
+        "stocky": "矮壮",
+        "other": "其他"
+      }
+    },
+    "notifications": {
+      "title": "通知",
+      "messages": "消息",
+      "calls": "通话",
+      "likes": "点赞",
+      "comments": "评论",
+      "shares": "分享",
+      "tags": "标记",
+      "friendRequests": "好友请求",
+      "groups": "群组",
+      "events": "活动",
+      "live": "直播",
+      "reminders": "提醒",
+      "birthdays": "生日",
+      "stories": "动态",
+      "videoCalls": "视频通话",
+      "nearby": "附近"
+    },
+    "about": {
+      "title": "关于 Linker",
+      "version": "版本",
+      "description": "这是一款社交应用，可让你与朋友、家人、同事等进行交流。你可以创建群组，与好友聊天，分享照片、视频、动态等更多内容。"
+    },
+    "explore": {
+      "explore-map": "地图",
+      "explore": "列表",
+      "swiper": "滑动"
+    },
+    "navigation": {
+      "chats": "聊天",
+      "explore": "探索",
+      "friends": "好友",
+      "profile": "个人资料",
+      "users": "用户"
+    },
+    "general": {
+      "pleaseEnterValidPhoneNumber": "请输入有效的手机号",
+      "phoneNumber": "手机号",
+      "user": "用户",
+      "deleteConfirmation": "你确定要删除",
+      "theseChats": "这些聊天",
+      "thisChat": "此聊天",
+      "selected": "已选",
+      "groupChat": "群聊",
+      "chats": "聊天",
+      "search": "搜索",
+      "today": "今天",
+      "yesterday": "昨天",
+      "invalidRoom": "无效的聊天房间。",
+      "loadingRoom": "正在打开聊天...",
+      "roomUnavailable": "此聊天不可用或加载失败。",
+      "yes": "是",
+      "no": "否",
+      "skipTheRest": "要跳过剩余的步骤吗？",
+      "enterGruopName": "请输入房间名称",
+      "admin": "管理员",
+      "moderator": "版主",
+      "member": "成员",
+      "owner": "所有者",
+      "adminDescription": "管理群组的完全权限",
+      "moderatorDescription": "可以管理成员",
+      "memberDescription": "基本群组权限",
+      "ownerDescription": "拥有最高权限的群组创建者",
+      "selectNewRole": "为以下用户选择新角色",
+      "currentRole": "当前角色",
+      "selectRole": "请选择角色",
+      "confirm": "确认",
+      "cancel": "取消",
+      "members": "成员",
+      "settings": "设置",
+      "groupDetails": "群组详情",
+      "changePhoto": "更换照片",
+      "changeRoleConfirmation": "确定要将此用户的角色更改为 {{role}} 吗？",
+      "removeMemberConfirmation": "确定要移除此成员吗？",
+      "toChangeUserRole": " 点击 ",
+      "clickOnUser": " 来更改用户角色 ",
+      "exitedTheRoom": "已退出房间",
+      "addedToTheRoom": "已被添加到房间",
+      "wasBlockedBy": "被屏蔽，屏蔽者",
+      "wasUnblockedBy": "被解禁，解禁者",
+      "removedFromTheRoom": "移除了",
+      "addedToTheRoom": "添加了",
+      "updatedRoomName": "房间名称已更新",
+      "updatedRoomImage": "房间图片已更新",
+      "roleChangedTomember": "将角色更改为成员",
+      "roleChangedTomoderator": "将角色更改为版主",
+      "roleChangedToadmin": "将角色更改为管理员",
+      "connectionError": "请检查你的网络连接",
+      "cannotSend": "您无法在此聊天中发送消息",
+      "noChats": "暂无聊天，请先添加好友或加入群组",
+      "noFriends": "暂无好友，请先添加好友",
+      "friends": "好友",
+      "sent": "已发送",
+      "received": "已接收",
+      "blocked": "已屏蔽",
+      "selectCategories": "选择分类",
+      "dark": "深色",
+      "light": "浅色",
+      "forwarded": "已转发",
+      "noUsersFound": "未找到用户",
+      "clickToGetRecommendedUsers": "点击查看推荐用户",
+      "clickToAddFriends": "点击添加好友",
+      "clickToGoToFriendsList": "点击进入好友列表",
+      "you": " 你 ",
+      "addPassword": "添加密码",
+      "removePassword": "移除密码",
+      "enterPassword": "输入密码",
+      "enterThePasswordToOpenThisChat": "输入密码以打开此聊天",
+      "enterPasswordToRemove": "输入密码以移除",
+      "addPasswordToThisChat": "添加密码到此聊天",
+      "passwordIsNotCorrect": "密码不正确",
+      "passwordAddedSuccessfully": "密码添加成功",
+      "passwordRemovedSuccessfully": "密码移除成功",
+      "openChat": "打开聊天",
+      "following": "关注",
+      "fans": "粉丝",
+      "visitors": "访客"
+    },
+    "select": {
+      "selectDay": "选择日期",
+      "selectMonth": "选择月份",
+      "selectYear": "选择年份"
+    }
+  }
+}

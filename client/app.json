@@ -1,0 +1,166 @@
+{
+  "expo": {
+    "name": "Linker: Dating, Chat & Meet",
+    "slug": "linker",
+    "scheme": "linker",
+    "version": "1.1.2",
+    "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "androidStatusBar": {
+      "backgroundColor": "#12141b"
+    },
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#12141b"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ramisweyri.linker",
+      "icon": "./assets/images/icon.png",
+      "infoPlist": {
+        "ExpoLocalization_supportsRTL": true,
+        "ExpoLocalization_forcesRTL": true
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#12141b"
+      },
+      "package": "com.ramisweyri.linker",
+      "googleServicesFile": "./google-services.json",
+      "icon": "./assets/images/icon.png",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.INTERNET",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.VIBRATE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY_HERE"
+        }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "https"
+            },
+            {
+              "scheme": "com.ramisweyri.linker"
+            },
+            {
+              "scheme": "exp+linker"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "config": {
+        "scheme": "https"
+      },
+      "bundler": "metro",
+      "notification": {
+        "vapidPublicKey": "BEl62iUYgUivxIkv69yViEuiBIa40HI0FyHONQvFp0gRgK7jdaEYrU_3u1LwQo2u9j8k2F0QzO-1xSgHswiHtY"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "minSdkVersion": 24,
+            "buildToolsVersion": "36.0.0",
+            "versionCode": 12
+          }
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin"
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera.",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photoPermission": "Allow $(PRODUCT_NAME) to access your photos",
+          "videoPermission": "Allow $(PRODUCT_NAME) to access your videos",
+          "saveToLibraryPermission": "Allow $(PRODUCT_NAME) to save media to your library",
+          "isAccessMediaLocationEnabled": true,
+          "isAccessMediaLocationRequired": true
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification.png",
+          "color": "#f6f8f9",
+          "defaultChannel": "default",
+          "enableBackgroundRemoteNotifications": false
+        }
+      ],
+      "expo-video",
+      "expo-localization",
+      "expo-font",
+      "expo-router",
+      "expo-secure-store",
+      "expo-audio",
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "de1242b0-299a-4878-8de2-59dc48a5d788"
+      },
+      "EXPO_PUBLIC_API_URL": "https://linker.land",
+      "supportsRTL": true,
+      "forcesRTL": false
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/de1242b0-299a-4878-8de2-59dc48a5d788"
+    }
+  }
+}

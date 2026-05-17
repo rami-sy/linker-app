@@ -1,0 +1,520 @@
+{
+  "config": {
+    "configFile": "f:\\my-projects\\linker\\client\\playwright.config.js",
+    "rootDir": "f:/my-projects/linker/client/e2e",
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "f:/my-projects/linker/client/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "f:/my-projects/linker/client/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never",
+          "outputFolder": "playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "call-settings.spec.js",
+      "file": "call-settings.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Call Settings Tests",
+          "file": "call-settings.spec.js",
+          "line": 242,
+          "column": 6,
+          "specs": [
+            {
+              "title": "1. Verify app is running",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2279,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Page title: Linker | Message, Connect, and Share\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:39560) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-01-31T17:11:33.551Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "648e043ebfc28903f40d-a390485d4e1ad73b710a",
+              "file": "call-settings.spec.js",
+              "line": 244,
+              "column": 3
+            },
+            {
+              "title": "2. Owner can login",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14008,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Login] Starting login for noor.sweyri@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] Success for noor.sweyri@gmail.com\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T17:11:35.967Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "648e043ebfc28903f40d-a3c5c91b8307981c7a09",
+              "file": "call-settings.spec.js",
+              "line": 256,
+              "column": 3
+            },
+            {
+              "title": "3. Owner can navigate to group",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17075,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Login] Starting login for noor.sweyri@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] Success for noor.sweyri@gmail.com\n"
+                        },
+                        {
+                          "text": "[Navigate] Going directly to: /chats/694eca8311a890567b2a7f62?from=chats\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T17:11:49.988Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "648e043ebfc28903f40d-7ecf0f42ed84a49f7a4a",
+              "file": "call-settings.spec.js",
+              "line": 263,
+              "column": 3
+            },
+            {
+              "title": "4. Owner can open call settings",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 20148,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at f:\\my-projects\\linker\\client\\e2e\\call-settings.spec.js:290:23",
+                        "location": {
+                          "file": "f:\\my-projects\\linker\\client\\e2e\\call-settings.spec.js",
+                          "column": 23,
+                          "line": 290
+                        },
+                        "snippet": "  288 |     const isVisible = await screenShareText.isVisible({ timeout: 5000 }).catch(() => false);\n  289 |     \n> 290 |     expect(isVisible).toBe(true);\n      |                       ^\n  291 |   });\n  292 |   \n  293 | });"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "f:\\my-projects\\linker\\client\\e2e\\call-settings.spec.js",
+                            "column": 23,
+                            "line": 290
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  288 |     const isVisible = await screenShareText.isVisible({ timeout: 5000 }).catch(() => false);\n  289 |     \n> 290 |     expect(isVisible).toBe(true);\n      |                       ^\n  291 |   });\n  292 |   \n  293 | });\n    at f:\\my-projects\\linker\\client\\e2e\\call-settings.spec.js:290:23"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "[Login] Starting login for noor.sweyri@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] Success for noor.sweyri@gmail.com\n"
+                        },
+                        {
+                          "text": "[Navigate] Going directly to: /chats/694eca8311a890567b2a7f62?from=chats\n"
+                        },
+                        {
+                          "text": "[Settings] Opening call settings...\n"
+                        },
+                        {
+                          "text": "[Settings] Menu candidates: [{\"tag\":\"DIV\",\"className\":\"css-view-g5y9jx\",\"x\":944,\"y\":32,\"width\":24,\"height\":26},{\"tag\":\"DIV\",\"className\":\"css-view-g5y9jx r-cursor-1loqt21 r-touchAction-1ot\",\"x\":944,\"y\":32,\"width\":24,\"height\":26},{\"tag\":\"DIV\",\"className\":\"css-text-146c3p1 r-userSelect-lrvibr\",\"x\":944,\"y\":32,\"width\":24,\"height\":26}]\n"
+                        },
+                        {
+                          "text": "[Settings] Clicking at (944, 32)...\n"
+                        },
+                        {
+                          "text": "[Settings] Looking for Settings option...\n"
+                        },
+                        {
+                          "text": "[Settings] Looking for Call Settings option...\n"
+                        },
+                        {
+                          "text": "[Settings] Waiting for Screen Share text...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-31T17:12:07.072Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "f:\\my-projects\\linker\\client\\test-results\\call-settings-Call-Setting-9ab35-wner-can-open-call-settings-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "f:\\my-projects\\linker\\client\\test-results\\call-settings-Call-Setting-9ab35-wner-can-open-call-settings-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "f:\\my-projects\\linker\\client\\e2e\\call-settings.spec.js",
+                        "column": 23,
+                        "line": 290
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "648e043ebfc28903f40d-fafbeeac125a72c06653",
+              "file": "call-settings.spec.js",
+              "line": 274,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "title": "Multi-User Call Settings",
+          "file": "call-settings.spec.js",
+          "line": 295,
+          "column": 6,
+          "specs": [
+            {
+              "title": "5. Three users can login simultaneously",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 15718,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[Login] Starting login for noor.sweyri@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] Starting login for rami.sweyri@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] Starting login for anter.elbson@gmail.com...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] On welcome page, navigating to /login...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Found 2 inputs\n"
+                        },
+                        {
+                          "text": "[Login] Typing email...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Typing password...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Looking for Login button...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] Found button with role=\"button\", clicking...\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] After submit, URL: http://localhost:8081/chats\n"
+                        },
+                        {
+                          "text": "[Login] Success for rami.sweyri@gmail.com\n"
+                        },
+                        {
+                          "text": "[Login] Success for noor.sweyri@gmail.com\n"
+                        },
+                        {
+                          "text": "[Login] Success for anter.elbson@gmail.com\n"
+                        },
+                        {
+                          "text": "Owner login: true\n"
+                        },
+                        {
+                          "text": "Admin login: true\n"
+                        },
+                        {
+                          "text": "Member login: true\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "(node:39024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2026-01-31T17:12:28.033Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "648e043ebfc28903f40d-a634b61e9755e97e654b",
+              "file": "call-settings.spec.js",
+              "line": 297,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-01-31T17:11:32.533Z",
+    "duration": 71485.783,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

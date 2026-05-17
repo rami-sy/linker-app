@@ -1,0 +1,897 @@
+{
+  "translation": {
+    "auth": {
+      "welcome": {
+        "title": "Linker, insanları arkadaşlarıyla ve çevresinde yaşayan, çalışan ve okuyan diğer insanlarla bir araya getiren bir sosyal medya platformudur.",
+        "description": "Linker, arkadaşlarınız ve meslektaşlarınızla bağlantı kurmanıza ve topluluğunuzu yeni ve eğlenceli yollarla keşfetmenize olanak tanıyan bir sosyal medya platformudur. Akıllı tavsiye sistemi ve kolay etkileşim sayesinde, ilgi alanlarınızı paylaşan insanlarla güvenli ve rahat bir şekilde sosyal ve profesyonel bağlantılar kurabilirsiniz.",
+        "getStart": "Başla",
+        "visitWebsitePrefix": "Daha fazla bilgi için lütfen bizimle şu adresten iletişime geçin: ",
+        "visitWebsiteHighlighted": "e-posta",
+        "deleteMyAccount": "Hesabımı Sil",
+        "privacy&terms": "Gizlilik ve Koşullar",
+        "privacyPolicy": "Gizlilik Politikası",
+        "termsOfService": "Şartlar ve Koşullar"
+      },
+      "phoneAuth": {
+        "title": "Lütfen devam etmek için telefon numaranızı girin",
+        "phoneInputPlaceholder": "Telefon numarasını girin",
+        "phoneInputLabel": "Telefon Numarası",
+        "sendCode": "Kodu Gönder",
+        "loginOrSignup": "Giriş veya Kayıt Ol",
+        "emailAndPassword": "E-posta",
+        "pleaseEnterPhoneNumber": "Lütfen bir telefon numarası giriniz"
+      },
+      "login": {
+        "emailPlaceholder": "E-posta",
+        "passwordPlaceholder": "Şifre",
+        "loginButton": "Giriş Yap",
+        "setNewPassword": "Yeni Şifre Belirle",
+        "forgotPassword": "Şifrenizi mi unuttunuz?",
+        "pressHere": "Buraya tıklayın",
+        "dontHaveAccount": "Hesabınız yok mu?",
+        "signup": "Kayıt Ol",
+        "loginWithPhonePrefix": "Şu numara ile giriş yap ",
+        "loginWithPhoneHighlighted": "Telefon numarası",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli",
+        "passwordRequired": "Şifre gerekli",
+        "passwordPattern": "Şifre 6 ila 30 karakter arasında olmalıdır"
+      },
+      "forgetPassword": {
+        "emailPlaceholder": "E-posta",
+        "sendResetCode": "Sıfırlama Kodunu Gönder",
+        "resendCode": "Kodu Yeniden Gönder",
+        "backToWelcome": "Geri dön",
+        "welcomeScreen": "Karşılama Ekranı",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli"
+      },
+      "resetPassword": {
+        "resetCodeLabel": "Sıfırlama Kodu",
+        "resetCodePlaceholder": "Sıfırlama kodunu girin",
+        "newPasswordPlaceholder": "Yeni Şifre",
+        "confirmPasswordPlaceholder": "Şifreyi Onayla",
+        "resetPasswordButton": "Şifreyi Sıfırla",
+        "backToForgotPassword": "Şifreyi Unuttum'a dön",
+        "backToWelcome": "Geri dön",
+        "welcomeScreen": "Karşılama Ekranı",
+        "forgotPasswordScreen": "Şifreyi Unuttum Ekranı",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli",
+        "resetCodeRequired": "Sıfırlama Kodu Gerekli",
+        "resetCodeLength": "Sıfırlama Kodu tam olarak 6 karakterden oluşmalıdır",
+        "passwordPattern": "Şifre 6 ila 30 karakter arasında olmalıdır",
+        "passwordRequired": "Şifre gerekli",
+        "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+        "confirmPasswordRequired": "Lütfen şifreyi onaylayın"
+      },
+      "signup": {
+        "emailPlaceholder": "E-posta",
+        "passwordPlaceholder": "Şifre",
+        "confirmPasswordPlaceholder": "Şifreyi Onayla",
+        "signupButton": "Kayıt Ol",
+        "doYouHaveAccount": "Zaten bir hesabınız var mı?",
+        "login": "Giriş Yap",
+        "loginWithPhonePrefix": "Şu numara ile giriş yap ",
+        "loginWithPhoneHighlighted": "Telefon numarası",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli",
+        "passwordPattern": "Şifre 6 ila 30 karakter arasında olmalıdır",
+        "passwordRequired": "Şifre gerekli",
+        "passwordsDoNotMatch": "Şifreler eşleşmiyor",
+        "confirmPasswordRequired": "Lütfen şifreyi onaylayın"
+      },
+      "verifyEmail": {
+        "emailPlaceholder": "E-posta",
+        "verificationCodeLabel": "Doğrulama Kodu",
+        "verificationCodePlaceholder": "Doğrulama kodunu girin",
+        "verifyButton": "Doğrula",
+        "resendCode": "Kodu Yeniden Gönder",
+        "backToWelcome": "Geri dön",
+        "welcomeScreen": "Karşılama Ekranı",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli",
+        "resetCodeRequired": "Doğrulama Kodu Gerekli",
+        "resetCodeLength": "Doğrulama Kodu tam olarak 6 karakterden oluşmalıdır"
+      },
+      "verifyPhone": {
+        "verificationCodeLabel": "Doğrulama Kodu",
+        "verificationCodePlaceholder": "Doğrulama kodunu girin",
+        "verifyButton": "Doğrula",
+        "resendCode": "Kodu Yeniden Gönder",
+        "backToWelcome": "Geri dön",
+        "welcomeScreen": "Karşılama Ekranı",
+        "resetCodeRequired": "Doğrulama Kodu Gerekli",
+        "resetCodeLength": "Doğrulama Kodu tam olarak 6 karakterden oluşmalıdır",
+        "phoneNumberRequired": "Telefon numarası gerekli"
+      },
+      "deleteAccount": {
+        "title": "Hesabımı Sil",
+        "emailLabel": "E-posta",
+        "emailPlaceholder": "E-posta adresinizi girin",
+        "deleteButton": "Hesabımı Sil",
+        "getVerificationCode": "Doğrulama Kodunu Gönder",
+        "pleaseEnterValidEmail": "Lütfen geçerli bir e-posta adresi girin",
+        "emailRequired": "E-posta gerekli",
+        "passwordRequired": "Şifre gerekli",
+        "passwordPattern": "Şifre 6 ila 30 karakter arasında olmalıdır.",
+        "backToWelcome": "Geri dön",
+        "welcomeScreen": "Karşılama Ekranı",
+        "verificationCodeLabel": "Doğrulama Kodu",
+        "verificationCodePlaceholder": "Doğrulama kodunu girin",
+        "resendCode": "Kodu Yeniden Gönder",
+        "type": "Hesap Türü",
+        "email": "E-posta",
+        "phone": "Telefon numarası",
+        "phoneInputPlaceholder": "Telefon numarasını girin",
+        "phoneInputLabel": "Telefon Numarası",
+        "validPhoneRequired": "Lütfen geçerli bir telefon numarası girin",
+        "phoneRequired": "Telefon numarası gerekli",
+        "validCodeRequired": "Lütfen geçerli bir doğrulama kodu girin",
+        "verificationCodeRequired": "Doğrulama Kodu Gerekli",
+        "verificationCodeLength": "Doğrulama Kodu tam olarak 6 karakter olmalıdır"
+      }
+    },
+    "user": {
+      "areYouSureDeleteAccount": "Hesabınızı silmek istediğinizden emin misiniz?",
+      "actionCannotBeUndone": "Bu işlem geri alınamaz. Tüm verileriniz kaybolacaktır",
+      "areYouSureDeactivateAccount": "Hesabınızı devre dışı bırakmak istediğinizden emin misiniz?",
+      "deactivateWarning": "Hesabınızı devre dışı bırakarak uygulamayı kullanamazsınız ve tüm verileriniz diğer kullanıcılardan gizlenir, ancak sunucudan silinmez.",
+      "reactivateInfo": "Giriş yaparak hesabınızı yeniden etkinleştirebilirsiniz",
+      "profile": "Profil",
+      "pictures": "Fotoğraflar",
+      "info": "Bilgi",
+      "preferences": "Tercihler",
+      "lifestyle": "Yaşam Tarzı",
+      "location": "Konum",
+      "physicalAttributes": "Fiziksel Özellikler",
+      "background": "Arka Plan",
+      "familyPreferences": "Aile Tercihleri",
+      "culturalSocialAttributes": "Kültürel ve Sosyal Özellikler",
+      "appLanguage": "Uygulama Dili",
+      "languages": "Diller",
+      "interests": "İlgi Alanları",
+      "privacy": "Gizlilik",
+      "visibility": "Görünürlük",
+      "content": "İçerik",
+      "interactions": "Etkileşimler",
+      "networking": "Ağ Kurma",
+      "account": "Hesap",
+      "changePassword": "Şifreyi Değiştir",
+      "addNewPassword": "Yeni Şifre Ekle",
+      "changeEmail": "E-postayı Değiştir",
+      "addEmail": "E-posta Ekle",
+      "changePhoneNumber": "Telefon Numarasını Değiştir",
+      "addPhoneNumber": "Telefon Numarası Ekle",
+      "deactivateAccount": "Hesabı Devre Dışı Bırak",
+      "deleteAccount": "Hesabı Sil",
+      "notifications": "Bildirimler",
+      "settings": "Ayarlar",
+      "general": "Genel",
+      "help": "Yardım",
+      "about": "Hakkında",
+      "logout": "Çıkış Yap",
+      "theme": "Tema",
+      "selectTheme": "Tema Seç",
+      "devices": "Cihazlar"
+    },
+    "UpdateProfile": {
+      "pictures": "Fotoğraflar",
+      "info": "Bilgiler",
+      "preferences": "Tercihler",
+      "lifestyle": "Yaşam Tarzı",
+      "location": "Konum",
+      "physicalAttributes": "Fiziksel Özellikler",
+      "background": "Arka Plan",
+      "familyPreferences": "Aile Tercihleri",
+      "culturalSocialAttributes": "Kültürel ve Sosyal Özellikler",
+      "languages": "Diller",
+      "interests": "İlgi Alanları"
+    },
+    "culturalSocialAttributes": {
+      "religion": "Din",
+      "zodiacSign": "Burç",
+      "personalityType": "Kişilik Tipi",
+      "updateProfile": "Profili Güncelle"
+    },
+    "familyPreferences": {
+      "wantsKids": "Çocuk İstiyor",
+      "hasKids": "Çocuğu Var",
+      "updateProfile": "Profili Güncelle"
+    },
+    "background": {
+      "education": "Eğitim",
+      "occupation": "Meslek",
+      "updateProfile": "Profili Güncelle"
+    },
+    "info": {
+      "userName": "Kullanıcı Adı",
+      "userNameRequired": "Kullanıcı Adı Gerekli",
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "month": "Ay",
+      "day": "Gün",
+      "year": "Yıl",
+      "birthDateError": "Doğum tarihi gerekli",
+      "monthError": "Ay gerekli",
+      "dayError": "Gün gerekli",
+      "yearError": "Yıl gerekli",
+      "gender": "Cinsiyet",
+      "maritalStatus": "Medeni Durum",
+      "nationality": "Uyruk",
+      "bio": "Hakkında",
+      "updateProfileButton": "Profili Güncelle",
+      "firstNameRequired": "Ad gerekli",
+      "lastNameRequired": "Soyad gerekli",
+      "monthMustBeNumber": "Ay bir sayı olmalıdır",
+      "monthRange": "Ay 1 ila 12 arasında olmalıdır",
+      "monthRequired": "Ay gerekli",
+      "dayMustBeNumber": "Gün bir sayı olmalıdır",
+      "dayRange": "Gün 1 ila 31 arasında olmalıdır",
+      "dayRequired": "Gün gerekli",
+      "yearMustBeNumber": "Yıl bir sayı olmalıdır",
+      "yearAfter1900": "Yıl 1900'den sonra olmalıdır",
+      "yearBeforeOrEqual": "Yıl {year} veya daha önce olmalıdır",
+      "yearBeforeCurrent": "Yıl, mevcut yıldan daha az olmalıdır",
+      "yearRequired": "Yıl gerekli",
+      "birthDateRequired": "Doğum tarihi gerekli",
+      "genderRequired": "Cinsiyet gerekli",
+      "maritalStatusRequired": "Medeni Durum gerekli"
+    },
+    "interests": {
+      "label": "İlgi Alanları",
+      "showLess": "Daha Az Göster",
+      "showMore": "Daha Fazla Göster",
+      "updateProfileButton": "Profili Güncelle"
+    },
+    "location": {
+      "accessToLocation": "Konum Erişimi",
+      "address": "Adres",
+      "city": "Şehir",
+      "state": "Eyalet",
+      "country": "Ülke",
+      "updateProfileButton": "Profili Güncelle"
+    },
+    "languages": {
+      "label": "Diller",
+      "updateProfileButton": "Profili Güncelle"
+    },
+    "physicalAttributes": {
+      "height": "Boy",
+      "weight": "Kilo",
+      "bodyType": "Vücut Tipi",
+      "updateProfileButton": "Profili Güncelle"
+    },
+    "preferences": {
+      "preferredGender": "Cinsiyet",
+      "lookingFor": "Aradığı",
+      "preferredAgeRange": "Tercih Edilen Yaş Aralığı",
+      "minAge": "Asgari Yaş",
+      "maxAge": "Azami Yaş",
+      "preferredDistance": "Tercih Edilen Mesafe",
+      "globe": "Küresel",
+      "preferredCommunication": "Tercih Edilen İletişim Yöntemi",
+      "updateProfileButton": "Profili Güncelle",
+      "errors": {
+        "preferredGendersRequired": "Lütfen en az bir cinsiyet seçin",
+        "lookingForRequired": "Lütfen en az bir arama seçeneği belirleyin",
+        "ageRange": {
+          "rangeLength": "Yaş aralığı iki değer içermelidir",
+          "required": "Yaş aralığı gerekli",
+          "base": "Lütfen geçerli bir sayı girin",
+          "integer": "Lütfen bir tam sayı girin",
+          "min": "Asgari yaş 18 olmalıdır",
+          "max": "Azami yaş 100 olmalıdır",
+          "minGreaterThanMax": "Asgari yaş, azami yaştan büyük olamaz",
+          "maxLessThanMin": "Azami yaş, asgari yaştan küçük olamaz"
+        }
+      }
+    },
+    "visibilityScreen": {
+      "title": "Gizlilik Ayarları",
+      "items": {
+        "everyone": "Herkes",
+        "friends": "Arkadaşlar",
+        "noOne": "Kimse"
+      },
+      "profileInfoDescription": "Profil bilgileri, profil bölümünde görüntülenecek bilgilerdir. Örneğin: aradığı, sigara kullanımı, tercih edilen iletişim, din, burç, kişilik tipi vb.",
+      "fields": {
+        "about": "Hakkında",
+        "images": "Fotoğraflar",
+        "location": "Konum",
+        "email": "E-posta",
+        "phoneNumber": "Telefon Numarası",
+        "fullName": "Tam İsim",
+        "gender": "Cinsiyet",
+        "age": "Yaş",
+        "nationality": "Uyruk",
+        "profileInfo": "Profil Bilgileri"
+      },
+      "saveButton": "Kaydet"
+    },
+    "interactionScreen": {
+      "title": "Etkileşim Ayarları",
+      "fields": {
+        "status": "Durum",
+        "readReceipts": "Okundu Bilgisi",
+        "calls": "Aramalar",
+        "videoCalls": "Görüntülü Aramalar",
+        "messages": "Mesajlar",
+        "lastSeen": "Son Görülme",
+        "whoCanAddYou": "Sizi kim ekleyebilir"
+      },
+      "saveButton": "Kaydet"
+    },
+    "contentScreen": {
+      "title": "İçerik Ayarları",
+      "fields": {
+        "posts": "Gönderiler",
+        "images": "Fotoğraflar",
+        "videos": "Videolar",
+        "stories": "Hikayeler",
+        "likedPages": "Beğenilen Sayfalar"
+      },
+      "saveButton": "Kaydet"
+    },
+    "networkScreen": {
+      "title": "Ağ Ayarları",
+      "fields": {
+        "friendsList": "Arkadaş Listesi",
+        "followers": "Takipçiler",
+        "following": "Takip Edilenler",
+        "searchVisibility": "Aramalarda Görünürlük"
+      },
+      "saveButton": "Kaydet"
+    },
+    "callSettingsScreen": {
+      "title": "Arama Ayarları",
+      "items": {
+        "everyone": "Herkes",
+        "admin": "Yönetici",
+        "moderator": "Moderatör",
+        "friends": "Arkadaşlar",
+        "specific": "Belirli Kişi",
+        "noOne": "Sadece Ben"
+      },
+      "fields": {
+        "screenShare": "Ekran Paylaşımı",
+        "recording": "Kayıt",
+        "callTransfer": "Arama Transferi",
+        "liveStream": "Canlı Yayın"
+      },
+      "saveButton": "Kaydet",
+      "saveSuccess": "Arama ayarları başarıyla kaydedildi",
+      "readOnlyInfo": "Bu ayarlar salt okunurdur. Sadece aramayı başlatan kişi bunları değiştirebilir.",
+      "askAdmin": "Yöneticiye Sor",
+      "adminRequestSent": "İstek yöneticiye gönderildi",
+      "adminRequestPending": "Yönetici onayı bekleniyor..."
+    },
+    "chatSettingsScreen": {
+      "title": "Sohbet Ayarları",
+      "items": {
+        "everyone": "Herkes",
+        "admin": "Yönetici",
+        "moderator": "Moderatör",
+        "friends": "Arkadaşlar",
+        "specific": "Belirli Kişi",
+        "noOne": "Sadece Ben"
+      },
+      "fields": {
+        "videoCall": "Görüntülü Arama",
+        "audioCall": "Sesli Arama",
+        "canSend": "Kim Gönderebilir"
+      },
+      "saveButton": "Kaydet",
+      "saveSuccess": "Sohbet ayarları başarıyla kaydedildi"
+    },
+    "account": {
+      "devices": {
+        "title": "Cihazlar"
+      },
+      "phoneScreen": {
+        "title": {
+          "change": "Telefon Numarasını Değiştir",
+          "add": "Telefon Numarası Ekle"
+        },
+        "input": {
+          "phoneNumber": "Telefon Numarası",
+          "verificationCode": "Doğrulama Kodu",
+          "verificationCodeLabel": "Telefon numaranıza gönderilen doğrulama kodunu girin"
+        },
+        "alreadyHaveCode": "Zaten bir doğrulama kodunuz var mı?",
+        "resendCode": "Kodu Yeniden Gönder",
+        "changePhoneNumber": "Telefon Numarasını Değiştir",
+        "buttons": {
+          "verify": "Doğrula",
+          "changePhoneNumber": "Telefon Numarasını Değiştir",
+          "addPhoneNumber": "Telefon Numarası Ekle"
+        },
+        "errors": {
+          "phoneNumber": {
+            "required": "Lütfen telefon numarası girin",
+            "invalid": "Lütfen geçerli bir telefon numarası girin"
+          },
+          "verificationCode": {
+            "required": "Doğrulama Kodu Gerekli",
+            "length": "Doğrulama Kodu tam olarak 6 karakterden oluşmalıdır"
+          }
+        }
+      },
+      "passwordScreen": {
+        "title": {
+          "change": "Şifreyi Değiştir",
+          "add": "Yeni Şifre Ekle"
+        },
+        "input": {
+          "oldPassword": "Eski Şifre",
+          "newPassword": "Yeni Şifre",
+          "confirmPassword": "Şifreyi Onayla"
+        },
+        "buttons": {
+          "update": "Güncelle"
+        },
+        "errors": {
+          "oldPassword": "Eski şifre gerekli",
+          "newPassword": "Yeni şifre gerekli",
+          "confirmPassword": {
+            "mismatch": "Şifreler eşleşmiyor",
+            "required": "Lütfen şifreyi onaylayın"
+          },
+          "pattern": "Şifre 6 ila 30 karakter arasında olmalıdır"
+        }
+      },
+      "emailScreen": {
+        "title": {
+          "change": "E-postayı Değiştir",
+          "add": "E-posta Ekle"
+        },
+        "input": {
+          "email": "E-posta",
+          "verificationCode": "Doğrulama Kodu",
+          "verificationCodeLabel": "E-posta adresinize gönderilen doğrulama kodunu girin"
+        },
+        "alreadyHaveCode": "Zaten bir doğrulama kodunuz var mı?",
+        "resendCode": "Kodu Yeniden Gönder",
+        "changeEmail": "E-postayı Değiştir",
+        "buttons": {
+          "verify": "Doğrula",
+          "changeEmail": "E-postayı Değiştir",
+          "addEmail": "E-posta Ekle"
+        },
+        "errors": {
+          "email": {
+            "invalid": "Lütfen geçerli bir e-posta adresi girin",
+            "required": "E-posta gerekli"
+          },
+          "verificationCode": {
+            "required": "Doğrulama Kodu Gerekli",
+            "length": "Doğrulama Kodu tam olarak 6 karakterden oluşmalıdır"
+          }
+        }
+      }
+    },
+    "addFriendScreen": {
+      "apply": "Uygula",
+      "navBar": {
+        "listMode": "Liste",
+        "gridMode": "Izgara",
+        "cardMode": "Kart",
+        "filter": "Filtrele",
+        "search": "Ara"
+      },
+      "filter": {
+        "apply": "Uygula",
+        "title": "Arkadaş Bul",
+        "searchPlaceholder": "E-posta veya kullanıcı adını arayın",
+        "preferredGender": "Cinsiyet",
+        "lookingFor": "Aradığı",
+        "nationality": "Uyruk",
+        "minAge": "Asgari Yaş",
+        "maxAge": "Azami Yaş",
+        "nearby": "Yakın",
+        "worldwide": "Küresel",
+        "country": "Ülke",
+        "distance": "Mesafe",
+        "maritalStatus": "Medeni Durum",
+        "smoking": "Sigara",
+        "drinking": "İçki",
+        "preferredCommunication": "Tercih Edilen İletişim",
+        "religion": "Din",
+        "zodiacSign": "Burç",
+        "personalityType": "Kişilik Tipi",
+        "languages": "Diller",
+        "education": "Eğitim",
+        "interests": "İlgi Alanları",
+        "showMore": "Daha Fazla Göster",
+        "showLess": "Daha Az Göster",
+        "discoverUsers": "+{{usersCount}} kullanıcıdan daha fazlasını keşfedin",
+        "discover": "Daha fazlasını keşfedin",
+        "users": "kullanıcı",
+        "location": {
+          "label": "Konum",
+          "nearby": "Yakın",
+          "worldwide": "Küresel",
+          "country": "Ülke"
+        }
+      },
+      "dropdown": {
+        "mostActive": "En Aktif",
+        "recentlyJoined": "Yeni Katılanlar",
+        "alphabetically": "Alfabetik",
+        "nearestFirst": "Önce En Yakın",
+        "youngest": "En Küçük",
+        "oldest": "En Yaşlı"
+      },
+      "setYourLocation": "Tercih edilen mesafeyi ayarlamadan önce lütfen konumunuzu belirleyin."
+    },
+    "header": {
+      "forwardTo": "Şuna yönlendir...",
+      "searchPlaceholder": "Ara",
+      "deleteForEveryone": "Herkesten Sil",
+      "deleteForMe": "Benden Sil",
+      "copySuccess": "{{count}} mesaj{{plural}} kopyalandı",
+      "deleteSuccess": "{{count}} mesaj{{plural}} silindi",
+      "blockUser": "Kullanıcıyı Engelle",
+      "unblockUser": "Kullanıcının Engelini Kaldır",
+      "confirmBlock": "Bu kullanıcıyı engellemek istediğinizden emin misiniz?",
+      "confirmUnblock": "Bu kullanıcının engelini kaldırmak istediğinizden emin misiniz?",
+      "clearChat": "Sohbeti Temizle",
+      "confirmClearChat": "Bu sohbeti temizlemek istediğinizden emin misiniz?",
+      "deleteChat": "Sohbeti Sil",
+      "confirmDeleteChat": "Bu sohbeti silmek istediğinizden emin misiniz?",
+      "confirmDeleteMessages": "Silmek istediğinizden emin misiniz?",
+      "viewProfile": "Profili Görüntüle",
+      "addMember": "Üye Ekle",
+      "cancel": "İptal",
+      "typingIndicator": "yazıyor...",
+      "groupNamePlaceholder": "Grup Adı",
+      "exitGroup": "Gruptan Çık",
+      "groupDetails": "Grup Detayları",
+      "changeRole": "Rolü Değiştir",
+      "removeMember": "Üyeyi Kaldır"
+    },
+    "profileScreen": {
+      "activeNow": "Şu anda aktif",
+      "lastSeen": "Son Görülme",
+      "lastSeenLongTimeAgo": "Uzun zaman önce aktifti",
+      "status": "Durum",
+      "lookingFor": "Aradığı",
+      "communications": "İletişim",
+      "preferredGender": "Cinsiyet",
+      "smoking": "Sigara",
+      "drinking": "İçki",
+      "height": "Boy",
+      "weight": "Kilo",
+      "bodyType": "Vücut Tipi",
+      "education": "Eğitim",
+      "occupation": "Meslek",
+      "religion": "Din",
+      "zodiacSign": "Burç",
+      "personalityType": "Kişilik Tipi",
+      "exercise": "Egzersiz",
+      "diet": "Diyet",
+      "sleepSchedule": "Uyku Programı",
+      "about": "{{name}} hakkında",
+      "photoCount": "{{count}} Fotoğraf",
+      "interestsCount": "{{count}} İlgi Alanı",
+      "languagesCount": "{{count}} Dil",
+      "thisUserHasPrivateProfile": "Bu kullanıcının profili özeldir",
+      "more": "Daha Fazla",
+      "notAnswered": "Cevaplanmamış",
+      "gender": "Cinsiyet",
+      "nationality": "Uyruk",
+      "location": "Konum",
+      "age": "Yaş"
+    },
+    "userInfo": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "month": "Ay",
+      "day": "Gün",
+      "year": "Yıl",
+      "gender": "Cinsiyet",
+      "maritalStatus": "Medeni Durum",
+      "preferredGender": "Cinsiyet",
+      "lookingFor": "Aradığı",
+      "generalInfo": "Genel Bilgiler",
+      "location": "Konum",
+      "interests": "İlgi Alanları",
+      "languages": "Diller",
+      "firstNameRequired": "Ad gerekli",
+      "lastNameRequired": "Soyad gerekli",
+      "monthMustBeNumber": "Ay bir sayı olmalıdır",
+      "monthRange": "Ay 1 ile 12 arasında olmalıdır",
+      "monthRequired": "Ay gerekli",
+      "dayMustBeNumber": "Gün bir sayı olmalıdır",
+      "dayRange": "Gün 1 ile 31 arasında olmalıdır",
+      "dayRequired": "Gün gerekli",
+      "yearMustBeNumber": "Yıl bir sayı olmalıdır",
+      "yearMin": "Yıl 1900'den sonra olmalıdır",
+      "yearMax": "Yıl {year} veya daha önce olmalıdır",
+      "yearRequired": "Yıl gerekli",
+      "birthDateRequired": "Doğum tarihi gerekli",
+      "genderRequired": "Cinsiyet gerekli",
+      "maritalStatusRequired": "Medeni Durum gerekli",
+      "preferredGendersRequired": "En az bir tercih edilen cinsiyet seçilmelidir",
+      "lookingForRequired": "Aranan şey gerekli",
+      "skip": "Atla",
+      "confirmGoBack": "Geri dönmek istediğinizden emin misiniz?",
+      "dataLossWarning": "Girdiğiniz tüm veriler kaybolacak"
+    },
+    "lifestyle": {
+      "smoking": "Sigara",
+      "drinking": "İçki",
+      "exercise": "Egzersiz",
+      "diet": "Diyet",
+      "sleepSchedule": "Uyku Programı",
+      "hasPets": "Evcil hayvanları var",
+      "updateProfileButton": "Profili Güncelle"
+    },
+    "attributes": {
+      "gender": {
+        "male": "Erkek",
+        "female": "Kadın",
+        "other": "Diğer"
+      },
+      "maritalStatus": {
+        "single": "Bekar",
+        "married": "Evli",
+        "divorced": "Boşanmış",
+        "widowed": "Dul"
+      },
+      "lookingFor": {
+        "friendship": "Arkadaşlık",
+        "relationship": "İlişki",
+        "chatting": "Sohbet",
+        "networking": "Ağ Kurma",
+        "other": "Diğer"
+      },
+      "smoking": {
+        "yes": "Evet",
+        "no": "Hayır",
+        "sometimes": "Bazen",
+        "tryingToQuit": "Bırakmaya Çalışıyorum",
+        "inSocialEvents": "Sosyal Etkinliklerde"
+      },
+      "drinking": {
+        "yes": "Evet",
+        "no": "Hayır",
+        "sometimes": "Bazen",
+        "tryingToQuit": "Bırakmaya Çalışıyorum",
+        "inSocialEvents": "Sosyal Etkinliklerde"
+      },
+      "zodiacSign": {
+        "Aries": "Koç",
+        "Taurus": "Boğa",
+        "Gemini": "İkizler",
+        "Cancer": "Yengeç",
+        "Leo": "Aslan",
+        "Virgo": "Başak",
+        "Libra": "Terazi",
+        "Scorpio": "Akrep",
+        "Sagittarius": "Yay",
+        "Capricorn": "Oğlak",
+        "Aquarius": "Kova",
+        "Pisces": "Balık"
+      },
+      "religion": {
+        "agnostic": "Agnostik",
+        "atheist": "Ateist",
+        "buddhist": "Budist",
+        "christian": "Hristiyan",
+        "catholic": "Katolik",
+        "hindu": "Hindu",
+        "jewish": "Yahudi",
+        "muslim": "Müslüman",
+        "sikh": "Sih",
+        "other": "Diğer"
+      },
+      "politicalViews": {
+        "anarchist": "Anarşist",
+        "centrist": "Centrist",
+        "conservative": "Konservatif",
+        "liberal": "Liberal",
+        "libertarian": "Libertarian",
+        "moderate": "Moderatör",
+        "progressive": "Progresif",
+        "socialist": "Sosyalist",
+        "other": "Diğer"
+      },
+      "personalityType": {
+        "INTJ": "INTJ",
+        "ENTP": "ENTP",
+        "ISFJ": "ISFJ",
+        "ENFJ": "ENFJ",
+        "ISTP": "ISTP",
+        "ESFP": "ESFP",
+        "ESTJ": "ESTJ",
+        "INFJ": "INFJ",
+        "ISFP": "ISFP",
+        "ESTP": "ESTP",
+        "ENFP": "ENFP",
+        "INTP": "INTP",
+        "ENTJ": "ENTJ",
+        "ISTJ": "ISTJ",
+        "INFP": "INFP",
+        "ESFJ": "ESFJ"
+      },
+      "education": {
+        "noHighSchoolDiploma": "Lise Diploması Yok",
+        "highSchoolDiploma": "Lise Diploması",
+        "someCollege": "Biraz Üniversite, diplomasız",
+        "associateDegree": "Ön Lisans Derecesi",
+        "someCollegeNoDegree": "Üniversite okudu, diplomasız",
+        "bachelorsDegree": "Lisans Derecesi",
+        "mastersDegree": "Yüksek Lisans Derecesi",
+        "doctorateOrHigher": "Doktora veya Üstü",
+        "other": "Diğer"
+      },
+      "preferredCommunications": {
+        "text": "Metin",
+        "voice": "Ses",
+        "video": "Video",
+        "inPerson": "Yüz yüze"
+      },
+      "exercise": {
+        "never": "Hiçbir Zaman",
+        "rarely": "Nadiren",
+        "sometimes": "Bazen",
+        "daily": "Günlük",
+        "weekly": "Haftalık",
+        "monthly": "Aylık"
+      },
+      "diet": {
+        "anything": "Her şey",
+        "vegetarian": "Vejetaryen",
+        "vegan": "Vegan",
+        "pescatarian": "Sadece Balık Tüketen",
+        "keto": "Keto",
+        "paleo": "Paleo",
+        "glutenFree": "Glutensiz",
+        "halal": "Helal",
+        "kosher": "Koşer",
+        "other": "Diğer"
+      },
+      "sleepSchedule": {
+        "earlyBird": "Erken Kalkan",
+        "nightOwl": "Gece Kuşu",
+        "varies": "Değişken"
+      },
+      "bodyType": {
+        "slim": "Zayıf",
+        "average": "Orta",
+        "athletic": "Atletik",
+        "fullFigured": "Dolgun",
+        "curvy": "Kıvrımlı",
+        "muscular": "Kaslı",
+        "petite": "Minyon",
+        "aLittleExtra": "Biraz Fazla Kilolu",
+        "stocky": "Tıknaz",
+        "other": "Diğer"
+      }
+    },
+    "notifications": {
+      "title": "Bildirimler",
+      "messages": "Mesajlar",
+      "calls": "Aramalar",
+      "likes": "Beğeniler",
+      "comments": "Yorumlar",
+      "shares": "Paylaşımlar",
+      "tags": "Etiketler",
+      "friendRequests": "Arkadaşlık İstekleri",
+      "groups": "Gruplar",
+      "events": "Etkinlikler",
+      "live": "Canlı",
+      "reminders": "Hatırlatmalar",
+      "birthdays": "Doğum Günleri",
+      "stories": "Hikayeler",
+      "videoCalls": "Görüntülü Aramalar",
+      "nearby": "Yakın"
+    },
+    "about": {
+      "title": "Linker Hakkında",
+      "version": "Sürüm",
+      "description": "Arkadaşlarınız, aileniz ve meslektaşlarınızla ve daha fazlasıyla iletişim kurmanızı sağlayan bir sosyal medya uygulaması. Gruplar oluşturabilir, arkadaşlarla sohbet edebilir, fotoğraflar, videolar, hikayeler paylaşabilir ve daha fazlasını yapabilirsiniz."
+    },
+    "explore": {
+      "explore-map": "Harita",
+      "explore": "Liste",
+      "swiper": "Sürükle"
+    },
+    "navigation": {
+      "chats": "Sohbetler",
+      "explore": "Keşfet",
+      "friends": "Arkadaşlar",
+      "profile": "Profil",
+      "users": "Kullanıcılar"
+    },
+    "general": {
+      "pleaseEnterValidPhoneNumber": "Lütfen geçerli bir telefon numarası girin",
+      "phoneNumber": "Telefon Numarası",
+      "user": "Kullanıcı",
+      "deleteConfirmation": "Silmek istediğinizden emin misiniz",
+      "theseChats": "bu sohbetleri",
+      "thisChat": "bu sohbeti",
+      "selected": "seçildi",
+      "groupChat": "Grup Sohbeti",
+      "chats": "Sohbetler",
+      "search": "Ara",
+      "today": "Bugun",
+      "yesterday": "Dun",
+      "invalidRoom": "Gecersiz sohbet odasi.",
+      "loadingRoom": "Sohbet aciliyor...",
+      "roomUnavailable": "Bu sohbet kullanilamiyor veya yuklenemedi.",
+      "yes": "Evet",
+      "no": "Hayır",
+      "skipTheRest": "Kalan adımları atlamak istiyor musunuz?",
+      "enterGruopName": "Oda adını girin",
+      "admin": "Yönetici",
+      "moderator": "Moderatör",
+      "member": "Üye",
+      "owner": "Sahip",
+      "adminDescription": "Grubu yönetmek için tam yetkiler",
+      "moderatorDescription": "Üyeleri yönetebilir",
+      "memberDescription": "Temel grup yetkileri",
+      "ownerDescription": "En üst yetkilerle grup oluşturucu",
+      "selectNewRole": "için yeni rol seçin",
+      "currentRole": "Mevcut rol",
+      "selectRole": "Lütfen bir rol seçin",
+      "confirm": "Onayla",
+      "cancel": "İptal",
+      "members": "Üyeler",
+      "settings": "Ayarlar",
+      "groupDetails": "Grup Detayları",
+      "changePhoto": "Fotoğrafı Değiştir",
+      "changeRoleConfirmation": "Bu kullanıcının rolünü değiştirmek istediğinizden emin misiniz? {{role}} olarak",
+      "removeMemberConfirmation": "Bu üyeyi kaldırmak istediğinizden emin misiniz?",
+      "toChangeUserRole": " Kullanıcının rolünü değiştirmek için ",
+      "clickOnUser": " tıklayın ",
+      "exitedTheRoom": "Odadan çıktı",
+      "addedToTheRoom": "Odaya eklendi",
+      "wasBlockedBy": "tarafından engellendi",
+      "wasUnblockedBy": "tarafından engel kaldırıldı",
+      "removedFromTheRoom": "çıkardı",
+      "addedToTheRoom": "ekledi",
+      "updatedRoomName": "Oda adı güncellendi",
+      "updatedRoomImage": "Oda resmi güncellendi",
+      "roleChangedTomember": "rolü üye olarak değiştirdi",
+      "roleChangedTomoderator": "rolü moderatör olarak değiştirdi",
+      "roleChangedToadmin": "rolü yönetici olarak değiştirdi",
+      "connectionError": "Lütfen internet bağlantınızı kontrol edin",
+      "cannotSend": "Bu sohbette mesaj gönderemezsiniz",
+      "noChats": "Herhangi bir sohbet yok, lütfen arkadaş ekleyerek veya bir gruba katılarak başlayın",
+      "noFriends": "Arkadaş yok, lütfen arkadaş eklemeye başlayın",
+      "friends": "Arkadaşlar",
+      "sent": "Gönderildi",
+      "received": "Alındı",
+      "blocked": "Engellendi",
+      "selectCategories": "Kategorileri Seç",
+      "dark": "Koyu",
+      "light": "Açık",
+      "forwarded": "Yönlendirildi",
+      "noUsersFound": "Kullanıcı bulunamadı",
+      "clickToGetRecommendedUsers": "Önerilen kullanıcıları görmek için tıklayın",
+      "clickToAddFriends": "Arkadaş eklemek için tıklayın",
+      "clickToGoToFriendsList": "Arkadaşlar listesine gitmek için tıklayın",
+      "you": " Siz ",
+      "addPassword": "Parola ekle",
+      "removePassword": "Parola kaldır",
+      "enterPassword": "Parola gir",
+      "enterThePasswordToOpenThisChat": "Parola gir, bu sohbeti aç",
+      "enterPasswordToRemove": "Parola gir, kaldır",
+      "addPasswordToThisChat": "Parola ekle, bu sohbete",
+      "passwordIsNotCorrect": "Parola yanlış",
+      "passwordAddedSuccessfully": "Parola başarıyla eklendi",
+      "passwordRemovedSuccessfully": "Parola başarıyla kaldırıldı",
+      "openChat": "Sohbeti aç",
+      "following": "Takip Edilenler",
+      "fans": "Takipçiler",
+      "visitors": "Ziyaretçiler"
+    },
+    "select": {
+      "selectDay": "Gün seç",
+      "selectMonth": "Ay seç",
+      "selectYear": "Yıl seç"
+    }
+  }
+}

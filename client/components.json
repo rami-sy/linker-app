@@ -1,0 +1,9 @@
+{
+  "aliases": {
+    "components": "~/components",
+    "lib": "~/lib",
+    "src": "~/src",
+    "assets": "~/assets",
+    "app": "~/app"
+  }
+}

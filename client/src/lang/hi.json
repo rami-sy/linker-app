@@ -1,0 +1,897 @@
+{
+  "translation": {
+    "auth": {
+      "welcome": {
+        "title": "लिंकर एक सोशल मीडिया प्लेटफ़ॉर्म है जो लोगों को उनके आस-पास रहने, काम करने और पढ़ने वाले लोगों और दोस्तों से जोड़ता है।",
+        "description": "लिंकर एक सोशल मीडिया प्लेटफ़ॉर्म है जो आपको नए और मज़ेदार तरीकों से दोस्तों और सहकर्मियों के साथ जुड़ने और अपने समुदाय को खोजने की सुविधा देता है। बुद्धिमान सुझाव प्रणाली और आसान इंटरैक्शन के माध्यम से, आप उन लोगों से सुरक्षित और सरलता से जुड़ सकते हैं जो आपके समान रुचियाँ रखते हैं, और इस तरह सामाजिक और व्यावसायिक संबंध बना सकते हैं।",
+        "getStart": "शुरू करें",
+        "visitWebsitePrefix": "अधिक जानकारी के लिए, कृपया हमसे इस माध्यम से संपर्क करें: ",
+        "visitWebsiteHighlighted": "ईमेल",
+        "deleteMyAccount": "मेरा खाता हटाएं",
+        "privacy&terms": "गोपनीयता और शर्तें",
+        "privacyPolicy": "गोपनीयता नीति",
+        "termsOfService": "नियम और शर्तें"
+      },
+      "phoneAuth": {
+        "title": "आगे बढ़ने के लिए कृपया अपना फ़ोन नंबर दर्ज करें",
+        "phoneInputPlaceholder": "फ़ोन नंबर दर्ज करें",
+        "phoneInputLabel": "फ़ोन नंबर",
+        "sendCode": "कोड भेजें",
+        "loginOrSignup": "लॉगिन या साइन अप करें",
+        "emailAndPassword": "ईमेल",
+        "pleaseEnterPhoneNumber": "कृपया फ़ोन नंबर दर्ज करें"
+      },
+      "login": {
+        "emailPlaceholder": "ईमेल",
+        "passwordPlaceholder": "पासवर्ड",
+        "loginButton": "लॉगिन",
+        "setNewPassword": "नया पासवर्ड सेट करें",
+        "forgotPassword": "क्या आपने पासवर्ड भूल गए?",
+        "pressHere": "यहाँ दबाएँ",
+        "dontHaveAccount": "क्या आपके पास खाता नहीं है?",
+        "signup": "साइन अप",
+        "loginWithPhonePrefix": "इसके साथ लॉगिन करें ",
+        "loginWithPhoneHighlighted": "फ़ोन नंबर",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है",
+        "passwordRequired": "पासवर्ड अनिवार्य है",
+        "passwordPattern": "पासवर्ड 6 से 30 अक्षरों के बीच होना चाहिए"
+      },
+      "forgetPassword": {
+        "emailPlaceholder": "ईमेल",
+        "sendResetCode": "रीसेट कोड भेजें",
+        "resendCode": "कोड पुनः भेजें",
+        "backToWelcome": "वापस जाएँ",
+        "welcomeScreen": "वेलकम स्क्रीन",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है"
+      },
+      "resetPassword": {
+        "resetCodeLabel": "रीसेट कोड",
+        "resetCodePlaceholder": "रीसेट कोड दर्ज करें",
+        "newPasswordPlaceholder": "नया पासवर्ड",
+        "confirmPasswordPlaceholder": "पासवर्ड की पुष्टि करें",
+        "resetPasswordButton": "पासवर्ड रीसेट करें",
+        "backToForgotPassword": "वापस जाएँ (पासवर्ड भूल गए)",
+        "backToWelcome": "वापस जाएँ",
+        "welcomeScreen": "वेलकम स्क्रीन",
+        "forgotPasswordScreen": "पासवर्ड भूल गए स्क्रीन",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है",
+        "resetCodeRequired": "रीसेट कोड अनिवार्य है",
+        "resetCodeLength": "रीसेट कोड ठीक 6 अक्षरों का होना चाहिए",
+        "passwordPattern": "पासवर्ड 6 से 30 अक्षरों के बीच होना चाहिए",
+        "passwordRequired": "पासवर्ड अनिवार्य है",
+        "passwordsDoNotMatch": "पासवर्ड मेल नहीं खाते",
+        "confirmPasswordRequired": "कृपया पासवर्ड की पुष्टि करें"
+      },
+      "signup": {
+        "emailPlaceholder": "ईमेल",
+        "passwordPlaceholder": "पासवर्ड",
+        "confirmPasswordPlaceholder": "पासवर्ड की पुष्टि करें",
+        "signupButton": "साइन अप",
+        "doYouHaveAccount": "क्या आपका पहले से खाता है?",
+        "login": "लॉगिन",
+        "loginWithPhonePrefix": "इसके साथ लॉगिन करें ",
+        "loginWithPhoneHighlighted": "फ़ोन नंबर",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है",
+        "passwordPattern": "पासवर्ड 6 से 30 अक्षरों के बीच होना चाहिए",
+        "passwordRequired": "पासवर्ड अनिवार्य है",
+        "passwordsDoNotMatch": "पासवर्ड मेल नहीं खाते",
+        "confirmPasswordRequired": "कृपया पासवर्ड की पुष्टि करें"
+      },
+      "verifyEmail": {
+        "emailPlaceholder": "ईमेल",
+        "verificationCodeLabel": "वेरिफ़िकेशन कोड",
+        "verificationCodePlaceholder": "वेरिफ़िकेशन कोड दर्ज करें",
+        "verifyButton": "सत्यापित करें",
+        "resendCode": "कोड पुनः भेजें",
+        "backToWelcome": "वापस जाएँ",
+        "welcomeScreen": "वेलकम स्क्रीन",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है",
+        "resetCodeRequired": "वेरिफ़िकेशन कोड अनिवार्य है",
+        "resetCodeLength": "वेरिफ़िकेशन कोड ठीक 6 अक्षरों का होना चाहिए"
+      },
+      "verifyPhone": {
+        "verificationCodeLabel": "वेरिफ़िकेशन कोड",
+        "verificationCodePlaceholder": "वेरिफ़िकेशन कोड दर्ज करें",
+        "verifyButton": "सत्यापित करें",
+        "resendCode": "कोड पुनः भेजें",
+        "backToWelcome": "वापस जाएँ",
+        "welcomeScreen": "वेलकम स्क्रीन",
+        "resetCodeRequired": "वेरिफ़िकेशन कोड अनिवार्य है",
+        "resetCodeLength": "वेरिफ़िकेशन कोड ठीक 6 अक्षरों का होना चाहिए",
+        "phoneNumberRequired": "फ़ोन नंबर अनिवार्य है"
+      },
+      "deleteAccount": {
+        "title": "मेरा खाता हटाएं",
+        "emailLabel": "ईमेल",
+        "emailPlaceholder": "ईमेल पता दर्ज करें",
+        "deleteButton": "मेरा खाता हटाएं",
+        "getVerificationCode": "वेरिफ़िकेशन कोड भेजें",
+        "pleaseEnterValidEmail": "कृपया मान्य ईमेल पता दर्ज करें",
+        "emailRequired": "ईमेल अनिवार्य है",
+        "passwordRequired": "पासवर्ड अनिवार्य है",
+        "passwordPattern": "पासवर्ड 6 से 30 अक्षरों के बीच होना चाहिए",
+        "backToWelcome": "वापस जाएँ",
+        "welcomeScreen": "वेलकम स्क्रीन",
+        "verificationCodeLabel": "वेरिफ़िकेशन कोड",
+        "verificationCodePlaceholder": "वेरिफ़िकेशन कोड दर्ज करें",
+        "resendCode": "कोड पुनः भेजें",
+        "type": "खाते का प्रकार",
+        "email": "ईमेल",
+        "phone": "फ़ोन नंबर",
+        "phoneInputPlaceholder": "फ़ोन नंबर दर्ज करें",
+        "phoneInputLabel": "फ़ोन नंबर",
+        "validPhoneRequired": "कृपया एक वैध फ़ोन नंबर दर्ज करें",
+        "phoneRequired": "फ़ोन नंबर अनिवार्य है",
+        "validCodeRequired": "कृपया एक वैध वेरिफ़िकेशन कोड दर्ज करें",
+        "verificationCodeRequired": "वेरिफ़िकेशन कोड अनिवार्य है",
+        "verificationCodeLength": "वेरिफ़िकेशन कोड ठीक 6 अक्षरों का होना चाहिए"
+      }
+    },
+    "user": {
+      "areYouSureDeleteAccount": "क्या आप वाकई अपना खाता हटाना चाहते हैं?",
+      "actionCannotBeUndone": "यह कार्रवाई स्थायी है। आपकी सभी जानकारी हट जाएगी",
+      "areYouSureDeactivateAccount": "क्या आप वाकई अपना खाता निष्क्रिय करना चाहते हैं?",
+      "deactivateWarning": "खाता निष्क्रिय करने पर आप ऐप का उपयोग नहीं कर पाएँगे और आपकी सभी जानकारी अन्य उपयोगकर्ताओं से छिपी रहेगी, लेकिन सर्वर से हटाई नहीं जाएगी",
+      "reactivateInfo": "आप लॉगिन करके अपना खाता फिर से सक्रिय कर सकते हैं",
+      "profile": "प्रोफ़ाइल",
+      "pictures": "फ़ोटो",
+      "info": "जानकारी",
+      "preferences": "प्राथमिकताएं",
+      "lifestyle": "जीवनशैली",
+      "location": "स्थान",
+      "physicalAttributes": "शारीरिक विशेषताएँ",
+      "background": "पृष्ठभूमि",
+      "familyPreferences": "परिवारिक प्राथमिकताएं",
+      "culturalSocialAttributes": "सांस्कृतिक और सामाजिक विशेषताएँ",
+      "appLanguage": "ऐप की भाषा",
+      "languages": "भाषाएँ",
+      "interests": "रुचियाँ",
+      "privacy": "गोपनीयता",
+      "visibility": "प्रदर्शन",
+      "content": "सामग्री",
+      "interactions": "प्रतिक्रियाएँ",
+      "networking": "नेटवर्किंग",
+      "account": "खाता",
+      "changePassword": "पासवर्ड बदलें",
+      "addNewPassword": "नया पासवर्ड जोड़ें",
+      "changeEmail": "ईमेल बदलें",
+      "addEmail": "ईमेल जोड़ें",
+      "changePhoneNumber": "फ़ोन नंबर बदलें",
+      "addPhoneNumber": "फ़ोन नंबर जोड़ें",
+      "deactivateAccount": "खाता निष्क्रिय करें",
+      "deleteAccount": "खाता हटाएं",
+      "notifications": "सूचनाएँ",
+      "settings": "सेटिंग्स",
+      "general": "सामान्य",
+      "help": "सहायता",
+      "about": "बारे में",
+      "logout": "लॉगआउट",
+      "theme": "थीम",
+      "selectTheme": "थीम चुनें",
+      "devices": "डिवाइसेस"
+    },
+    "UpdateProfile": {
+      "pictures": "फ़ोटो",
+      "info": "जानकारी",
+      "preferences": "प्राथमिकताएं",
+      "lifestyle": "जीवनशैली",
+      "location": "स्थान",
+      "physicalAttributes": "शारीरिक विशेषताएँ",
+      "background": "पृष्ठभूमि",
+      "familyPreferences": "परिवारिक प्राथमिकताएं",
+      "culturalSocialAttributes": "सांस्कृतिक और सामाजिक विशेषताएँ",
+      "languages": "भाषाएँ",
+      "interests": "रुचियाँ"
+    },
+    "culturalSocialAttributes": {
+      "religion": "धर्म",
+      "zodiacSign": "राशि",
+      "personalityType": "व्यक्तित्व प्रकार",
+      "updateProfile": "प्रोफ़ाइल अपडेट करें"
+    },
+    "familyPreferences": {
+      "wantsKids": "बच्चे चाहिए",
+      "hasKids": "बच्चे हैं",
+      "updateProfile": "प्रोफ़ाइल अपडेट करें"
+    },
+    "background": {
+      "education": "शिक्षा",
+      "occupation": "व्यवसाय",
+      "updateProfile": "प्रोफ़ाइल अपडेट करें"
+    },
+    "info": {
+      "userName": "यूज़रनेम",
+      "userNameRequired": "यूज़रनेम अनिवार्य है",
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "month": "महीना",
+      "day": "दिन",
+      "year": "साल",
+      "birthDateError": "जन्मतिथि अनिवार्य है",
+      "monthError": "महीना अनिवार्य है",
+      "dayError": "दिन अनिवार्य है",
+      "yearError": "साल अनिवार्य है",
+      "gender": "लिंग",
+      "maritalStatus": "वैवाहिक स्थिति",
+      "nationality": "राष्ट्रीयता",
+      "bio": "बायो",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें",
+      "firstNameRequired": "पहला नाम अनिवार्य है",
+      "lastNameRequired": "अंतिम नाम अनिवार्य है",
+      "monthMustBeNumber": "महीना एक संख्या होनी चाहिए",
+      "monthRange": "महीना 1 से 12 के बीच होना चाहिए",
+      "monthRequired": "महीना अनिवार्य है",
+      "dayMustBeNumber": "दिन एक संख्या होनी चाहिए",
+      "dayRange": "दिन 1 से 31 के बीच होना चाहिए",
+      "dayRequired": "दिन अनिवार्य है",
+      "yearMustBeNumber": "साल एक संख्या होनी चाहिए",
+      "yearAfter1900": "साल 1900 के बाद होना चाहिए",
+      "yearBeforeOrEqual": "साल {year} के बराबर या उससे पहले होना चाहिए",
+      "yearBeforeCurrent": "साल वर्तमान साल से कम होना चाहिए",
+      "yearRequired": "साल अनिवार्य है",
+      "birthDateRequired": "जन्मतिथि अनिवार्य है",
+      "genderRequired": "लिंग अनिवार्य है",
+      "maritalStatusRequired": "वैवाहिक स्थिति अनिवार्य है"
+    },
+    "interests": {
+      "label": "रुचियाँ",
+      "showLess": "कम दिखाएँ",
+      "showMore": "और दिखाएँ",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "location": {
+      "accessToLocation": "स्थान तक पहुँच",
+      "address": "पता",
+      "city": "शहर",
+      "state": "राज्य",
+      "country": "देश",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "languages": {
+      "label": "भाषाएँ",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "physicalAttributes": {
+      "height": "कद",
+      "weight": "वज़न",
+      "bodyType": "शारीरिक बनावट",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "preferences": {
+      "preferredGender": "वांछित लिंग",
+      "lookingFor": "खोज रहे हैं",
+      "preferredAgeRange": "वांछित आयु सीमा",
+      "minAge": "न्यूनतम आयु",
+      "maxAge": "अधिकतम आयु",
+      "preferredDistance": "वांछित दूरी",
+      "globe": "वैश्विक",
+      "preferredCommunication": "पसंदीदा संवाद का माध्यम",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें",
+      "errors": {
+        "preferredGendersRequired": "कृपया कम से कम एक लिंग चुनें",
+        "lookingForRequired": "कृपया कम से कम एक तलाश विकल्प चुनें",
+        "ageRange": {
+          "rangeLength": "आयु सीमा में दो मान होने चाहिए",
+          "required": "आयु सीमा अनिवार्य है",
+          "base": "कृपया एक मान्य संख्या दर्ज करें",
+          "integer": "कृपया एक पूर्णांक दर्ज करें",
+          "min": "न्यूनतम आयु 18 होनी चाहिए",
+          "max": "अधिकतम आयु 100 होनी चाहिए",
+          "minGreaterThanMax": "न्यूनतम आयु अधिकतम आयु से अधिक नहीं हो सकती",
+          "maxLessThanMin": "अधिकतम आयु न्यूनतम आयु से कम नहीं हो सकती"
+        }
+      }
+    },
+    "visibilityScreen": {
+      "title": "गोपनीयता सेटिंग्स",
+      "items": {
+        "everyone": "सभी",
+        "friends": "मित्र",
+        "noOne": "कोई नहीं"
+      },
+      "profileInfoDescription": "प्रोफ़ाइल जानकारी वह है जो प्रोफ़ाइल सेक्शन में दिखाई जाएगी, जैसे: आप किसे खोज रहे हैं, धूम्रपान, पसंदीदा संचार माध्यम, धर्म, राशि, व्यक्तित्व प्रकार इत्यादि।",
+      "fields": {
+        "about": "बारे में",
+        "images": "फ़ोटो",
+        "location": "स्थान",
+        "email": "ईमेल",
+        "phoneNumber": "फ़ोन नंबर",
+        "fullName": "पूरा नाम",
+        "gender": "लिंग",
+        "age": "आयु",
+        "nationality": "राष्ट्रीयता",
+        "profileInfo": "प्रोफ़ाइल जानकारी"
+      },
+      "saveButton": "सुरक्षित करें"
+    },
+    "interactionScreen": {
+      "title": "इंटरेक्शन सेटिंग्स",
+      "fields": {
+        "status": "स्थिति",
+        "readReceipts": "रीड रिसीप्ट",
+        "calls": "कॉल",
+        "videoCalls": "वीडियो कॉल",
+        "messages": "संदेश",
+        "lastSeen": "आखिरी बार देखा गया",
+        "whoCanAddYou": "आपको कौन ऐड कर सकता है"
+      },
+      "saveButton": "सुरक्षित करें"
+    },
+    "contentScreen": {
+      "title": "कंटेंट सेटिंग्स",
+      "fields": {
+        "posts": "पोस्ट",
+        "images": "फ़ोटो",
+        "videos": "वीडियो",
+        "stories": "कहानियाँ",
+        "likedPages": "पसंदीदा पेज"
+      },
+      "saveButton": "सुरक्षित करें"
+    },
+    "networkScreen": {
+      "title": "नेटवर्क सेटिंग्स",
+      "fields": {
+        "friendsList": "मित्र सूची",
+        "followers": "फ़ॉलोअर्स",
+        "following": "फ़ॉलोइंग",
+        "searchVisibility": "खोज में दृश्यता"
+      },
+      "saveButton": "सुरक्षित करें"
+    },
+    "callSettingsScreen": {
+      "title": "कॉल सेटिंग्स",
+      "items": {
+        "everyone": "सभी",
+        "admin": "व्यवस्थापक",
+        "moderator": "मॉडरेटर",
+        "friends": "मित्र",
+        "specific": "विशिष्ट व्यक्ति",
+        "noOne": "केवल मैं"
+      },
+      "fields": {
+        "screenShare": "स्क्रीन शेयर",
+        "recording": "रिकॉर्डिंग",
+        "callTransfer": "कॉल ट्रांसफर",
+        "liveStream": "लाइव स्ट्रीम"
+      },
+      "saveButton": "सुरक्षित करें",
+      "saveSuccess": "कॉल सेटिंग्स सफलतापूर्वक सुरक्षित की गईं",
+      "readOnlyInfo": "ये सेटिंग्स केवल पढ़ने के लिए हैं। केवल कॉल शुरू करने वाला व्यक्ति इन्हें संशोधित कर सकता है।",
+      "askAdmin": "व्यवस्थापक से पूछें",
+      "adminRequestSent": "अनुरोध व्यवस्थापक को भेजा गया",
+      "adminRequestPending": "व्यवस्थापक की स्वीकृति की प्रतीक्षा कर रहे हैं..."
+    },
+    "chatSettingsScreen": {
+      "title": "चैट सेटिंग्स",
+      "items": {
+        "everyone": "सभी",
+        "admin": "व्यवस्थापक",
+        "moderator": "मॉडरेटर",
+        "friends": "मित्र",
+        "specific": "विशिष्ट व्यक्ति",
+        "noOne": "केवल मैं"
+      },
+      "fields": {
+        "videoCall": "वीडियो कॉल",
+        "audioCall": "ऑडियो कॉل",
+        "canSend": "कौन भेज सकता है"
+      },
+      "saveButton": "सुरक्षित करें",
+      "saveSuccess": "चैट सेटिंग्स सफलतापूर्वक सुरक्षित की गईं"
+    },
+    "account": {
+      "devices": {
+        "title": "डिवाइसेस"
+      },
+      "phoneScreen": {
+        "title": {
+          "change": "फ़ोन नंबर बदलें",
+          "add": "फ़ोन नंबर जोड़ें"
+        },
+        "input": {
+          "phoneNumber": "फ़ोन नंबर",
+          "verificationCode": "वेरिफ़िकेशन कोड",
+          "verificationCodeLabel": "कृपया अपने फ़ोन नंबर पर भेजे गए वेरिफ़िकेशन कोड को दर्ज करें"
+        },
+        "alreadyHaveCode": "क्या आपके पास पहले से वेरिफ़िकेशन कोड है?",
+        "resendCode": "कोड पुनः भेजें",
+        "changePhoneNumber": "फ़ोन नंबर बदलें",
+        "buttons": {
+          "verify": "सत्यापित करें",
+          "changePhoneNumber": "फ़ोन नंबर बदलें",
+          "addPhoneNumber": "फ़ोन नंबर जोड़ें"
+        },
+        "errors": {
+          "phoneNumber": {
+            "required": "कृपया फ़ोन नंबर दर्ज करें",
+            "invalid": "कृपया एक वैध फ़ोन नंबर दर्ज करें"
+          },
+          "verificationCode": {
+            "required": "वेरिफ़िकेशन कोड अनिवार्य है",
+            "length": "वेरिफ़िकेशन कोड ठीक 6 अक्षरों का होना चाहिए"
+          }
+        }
+      },
+      "passwordScreen": {
+        "title": {
+          "change": "पासवर्ड बदलें",
+          "add": "नया पासवर्ड जोड़ें"
+        },
+        "input": {
+          "oldPassword": "पुराना पासवर्ड",
+          "newPassword": "नया पासवर्ड",
+          "confirmPassword": "पासवर्ड की पुष्टि करें"
+        },
+        "buttons": {
+          "update": "अपडेट करें"
+        },
+        "errors": {
+          "oldPassword": "पुराना पासवर्ड अनिवार्य है",
+          "newPassword": "नया पासवर्ड अनिवार्य है",
+          "confirmPassword": {
+            "mismatch": "पासवर्ड मेल नहीं खाते",
+            "required": "कृपया पासवर्ड की पुष्टि करें"
+          },
+          "pattern": "पासवर्ड 6 से 30 अक्षरों के बीच होना चाहिए"
+        }
+      },
+      "emailScreen": {
+        "title": {
+          "change": "ईमेल बदलें",
+          "add": "ईमेल जोड़ें"
+        },
+        "input": {
+          "email": "ईमेल",
+          "verificationCode": "वेरिफ़िकेशन कोड",
+          "verificationCodeLabel": "कृपया आपके ईमेल पर भेजा गया वेरिफ़िकेशन कोड दर्ज करें"
+        },
+        "alreadyHaveCode": "क्या आपके पास पहले से वेरिफ़िकेशन कोड है?",
+        "resendCode": "कोड पुनः भेजें",
+        "changeEmail": "ईमेल बदलें",
+        "buttons": {
+          "verify": "सत्यापित करें",
+          "changeEmail": "ईमेल बदलें",
+          "addEmail": "ईमेल जोड़ें"
+        },
+        "errors": {
+          "email": {
+            "invalid": "कृपया एक वैध ईमेल पता दर्ज करें",
+            "required": "ईमेल अनिवार्य है"
+          },
+          "verificationCode": {
+            "required": "वेरिफ़िकेशन कोड अनिवार्य है",
+            "length": "वेरिफ़िकेशन कोड ठीक 6 अक्षरों का होना चाहिए"
+          }
+        }
+      }
+    },
+    "addFriendScreen": {
+      "apply": "लागू करें",
+      "navBar": {
+        "listMode": "सूची",
+        "gridMode": "ग्रिड",
+        "cardMode": "कार्ड",
+        "filter": "फ़िल्टर",
+        "search": "खोज"
+      },
+      "filter": {
+        "apply": "लागू करें",
+        "title": "दोस्तों को खोजें",
+        "searchPlaceholder": "ईमेल या यूज़रनेम से खोजें",
+        "preferredGender": "लिंग",
+        "lookingFor": "तलाश",
+        "nationality": "राष्ट्रीयता",
+        "minAge": "न्यूनतम आयु",
+        "maxAge": "अधिकतम आयु",
+        "nearby": "आस-पास",
+        "worldwide": "दुनिया भर",
+        "country": "देश",
+        "distance": "दूरी",
+        "maritalStatus": "वैवाहिक स्थिति",
+        "smoking": "धूम्रपान",
+        "drinking": "शराब",
+        "preferredCommunication": "पसंदीदा संवाद",
+        "religion": "धर्म",
+        "zodiacSign": "राशि",
+        "personalityType": "व्यक्तित्व प्रकार",
+        "languages": "भाषाएँ",
+        "education": "शिक्षा",
+        "interests": "रुचियाँ",
+        "showMore": "और दिखाएँ",
+        "showLess": "कम दिखाएँ",
+        "discoverUsers": "+{{usersCount}} उपयोगकर्ताओं से अधिक खोजें",
+        "discover": "अधिक खोजें",
+        "users": "उपयोगकर्ता",
+        "location": {
+          "label": "स्थान",
+          "nearby": "आस-पास",
+          "worldwide": "दुनिया भर",
+          "country": "देश"
+        }
+      },
+      "dropdown": {
+        "mostActive": "सबसे सक्रिय",
+        "recentlyJoined": "हाल ही में जुड़े",
+        "alphabetically": "वर्णानुक्रम में",
+        "nearestFirst": "सबसे पास पहले",
+        "youngest": "सबसे कम उम्र",
+        "oldest": "सबसे अधिक उम्र"
+      },
+      "setYourLocation": "पसंदीदा दूरी सेट करने से पहले कृपया अपना स्थान निर्धारित करें।"
+    },
+    "header": {
+      "forwardTo": "इसको अग्रेषित करें...",
+      "searchPlaceholder": "खोज",
+      "deleteForEveryone": "सभी के लिए हटाएँ",
+      "deleteForMe": "केवल मेरे लिए हटाएँ",
+      "copySuccess": "{{count}} संदेश{{plural}} कॉपी किया गया",
+      "deleteSuccess": "{{count}} संदेश{{plural}} हटाया गया",
+      "blockUser": "उपयोगकर्ता को ब्लॉक करें",
+      "unblockUser": "उपयोगकर्ता को अनब्लॉक करें",
+      "confirmBlock": "क्या आप वाकई इस उपयोगकर्ता को ब्लॉक करना चाहते हैं?",
+      "confirmUnblock": "क्या आप वाकई इस उपयोगकर्ता को अनब्लॉक करना चाहते हैं?",
+      "clearChat": "चैट साफ़ करें",
+      "confirmClearChat": "क्या आप वाकई इस चैट को साफ़ करना चाहते हैं?",
+      "deleteChat": "चैट हटाएँ",
+      "confirmDeleteChat": "क्या आप वाकई इस चैट को हटाना चाहते हैं?",
+      "confirmDeleteMessages": "क्या आप वाकई हटाना चाहते हैं?",
+      "viewProfile": "प्रोफ़ाइल देखें",
+      "addMember": "सदस्य जोड़ें",
+      "cancel": "रद्द करें",
+      "typingIndicator": "टाइप कर रहे हैं...",
+      "groupNamePlaceholder": "समूह का नाम",
+      "exitGroup": "समूह से बाहर निकलें",
+      "groupDetails": "समूह विवरण",
+      "changeRole": "भूमिका बदलें",
+      "removeMember": "सदस्य हटाएं"
+    },
+    "profileScreen": {
+      "activeNow": "अभी सक्रिय",
+      "lastSeen": "अंतिम बार देखा गया",
+      "lastSeenLongTimeAgo": "बहुत समय पहले सक्रिय थे",
+      "status": "स्थिति",
+      "lookingFor": "तलाश",
+      "communications": "संचार",
+      "preferredGender": "लिंग",
+      "smoking": "धूम्रपान",
+      "drinking": "शराब",
+      "height": "कद",
+      "weight": "वज़न",
+      "bodyType": "बनावट",
+      "education": "शिक्षा",
+      "occupation": "व्यवसाय",
+      "religion": "धर्म",
+      "zodiacSign": "राशि",
+      "personalityType": "व्यक्तित्व प्रकार",
+      "exercise": "व्यायाम",
+      "diet": "आहार",
+      "sleepSchedule": "सोने-जागने का समय",
+      "about": "{{name}} के बारे में",
+      "photoCount": "{{count}} फ़ोटो",
+      "interestsCount": "{{count}} रुचियाँ",
+      "languagesCount": "{{count}} भाषाएँ",
+      "thisUserHasPrivateProfile": "इस उपयोगकर्ता की प्रोफ़ाइल निजी है",
+      "more": "अधिक",
+      "notAnswered": "उत्तर नहीं दिया",
+      "gender": "लिंग",
+      "nationality": "राष्ट्रीयता",
+      "location": "स्थान",
+      "age": "आयु"
+    },
+    "userInfo": {
+      "firstName": "पहला नाम",
+      "lastName": "अंतिम नाम",
+      "month": "महीना",
+      "day": "दिन",
+      "year": "साल",
+      "gender": "लिंग",
+      "maritalStatus": "वैवाहिक स्थिति",
+      "preferredGender": "वांछित लिंग",
+      "lookingFor": "तलाश",
+      "generalInfo": "सामान्य जानकारी",
+      "location": "स्थान",
+      "interests": "रुचियाँ",
+      "languages": "भाषाएँ",
+      "firstNameRequired": "पहला नाम अनिवार्य है",
+      "lastNameRequired": "अंतिम नाम अनिवार्य है",
+      "monthMustBeNumber": "महीना एक संख्या होनी चाहिए",
+      "monthRange": "महीना 1 से 12 के बीच होना चाहिए",
+      "monthRequired": "महीना अनिवार्य है",
+      "dayMustBeNumber": "दिन एक संख्या होनी चाहिए",
+      "dayRange": "दिन 1 से 31 के बीच होना चाहिए",
+      "dayRequired": "दिन अनिवार्य है",
+      "yearMustBeNumber": "साल एक संख्या होनी चाहिए",
+      "yearMin": "साल 1900 के बाद होना चाहिए",
+      "yearMax": "साल {year} या उससे पहले होना चाहिए",
+      "yearRequired": "साल अनिवार्य है",
+      "birthDateRequired": "जन्मतिथि अनिवार्य है",
+      "genderRequired": "लिंग अनिवार्य है",
+      "maritalStatusRequired": "वैवाहिक स्थिति अनिवार्य है",
+      "preferredGendersRequired": "कम से कम एक पसंदीदा लिंग चुनना अनिवार्य है",
+      "lookingForRequired": "आप क्या खोज रहे हैं, यह अनिवार्य है",
+      "skip": "स्किप",
+      "confirmGoBack": "क्या आप वाकई वापस जाना चाहते हैं?",
+      "dataLossWarning": "आपकी दर्ज की गई सभी जानकारी खो जाएगी"
+    },
+    "lifestyle": {
+      "smoking": "धूम्रपान",
+      "drinking": "शराब",
+      "exercise": "व्यायाम",
+      "diet": "आहार",
+      "sleepSchedule": "सोने-जागने का समय",
+      "hasPets": "पालतू जानवर हैं",
+      "updateProfileButton": "प्रोफ़ाइल अपडेट करें"
+    },
+    "attributes": {
+      "gender": {
+        "male": "पुरुष",
+        "female": "महिला",
+        "other": "अन्य"
+      },
+      "maritalStatus": {
+        "single": "अविवाहित",
+        "married": "विवाहित",
+        "divorced": "तलाकशुदा",
+        "widowed": "विधवा/विधुर"
+      },
+      "lookingFor": {
+        "friendship": "दोस्ती",
+        "relationship": "रिलेशनशिप",
+        "chatting": "चैट",
+        "networking": "नेटवर्किंग",
+        "other": "अन्य"
+      },
+      "smoking": {
+        "yes": "हाँ",
+        "no": "नहीं",
+        "sometimes": "कभी-कभी",
+        "tryingToQuit": "छोड़ने की कोशिश कर रहे हैं",
+        "inSocialEvents": "सामाजिक मौकों पर"
+      },
+      "drinking": {
+        "yes": "हाँ",
+        "no": "नहीं",
+        "sometimes": "कभी-कभी",
+        "tryingToQuit": "छोड़ने की कोशिश कर रहे हैं",
+        "inSocialEvents": "सामाजिक मौकों पर"
+      },
+      "zodiacSign": {
+        "Aries": "मेष",
+        "Taurus": "वृषभ",
+        "Gemini": "मिथुन",
+        "Cancer": "कर्क",
+        "Leo": "सिंह",
+        "Virgo": "कन्या",
+        "Libra": "तुला",
+        "Scorpio": "वृश्चिक",
+        "Sagittarius": "धनु",
+        "Capricorn": "मकर",
+        "Aquarius": "कुम्भ",
+        "Pisces": "मीन"
+      },
+      "religion": {
+        "agnostic": "अज्ञेयवादी",
+        "atheist": "नास्तिक",
+        "buddhist": "बौद्ध",
+        "christian": "ईसाई",
+        "catholic": "कैथोलिक",
+        "hindu": "हिंदू",
+        "jewish": "यहूदी",
+        "muslim": "मुस्लिम",
+        "sikh": "सिख",
+        "other": "अन्य"
+      },
+      "politicalViews": {
+        "anarchist": "अनार्किस्ट",
+        "centrist": "सेंट्रिस्ट",
+        "conservative": "कंसर्वेटिव",
+        "liberal": "लिबरल",
+        "libertarian": "लिबर्टेरियन",
+        "moderate": "मोडरेट",
+        "progressive": "प्रोग्रेसिव",
+        "socialist": "सोसियलिस्ट",
+        "other": "अन्य"
+      },
+      "personalityType": {
+        "INTJ": "INTJ",
+        "ENTP": "ENTP",
+        "ISFJ": "ISFJ",
+        "ENFJ": "ENFJ",
+        "ISTP": "ISTP",
+        "ESFP": "ESFP",
+        "ESTJ": "ESTJ",
+        "INFJ": "INFJ",
+        "ISFP": "ISFP",
+        "ESTP": "ESTP",
+        "ENFP": "ENFP",
+        "INTP": "INTP",
+        "ENTJ": "ENTJ",
+        "ISTJ": "ISTJ",
+        "INFP": "INFP",
+        "ESFJ": "ESFJ"
+      },
+      "education": {
+        "noHighSchoolDiploma": "हाई स्कूल डिप्लोमा नहीं",
+        "highSchoolDiploma": "हाई स्कूल डिप्लोमा",
+        "someCollege": "कुछ कॉलेज, लेकिन डिग्री नहीं",
+        "associateDegree": "एसोसिएट डिग्री",
+        "someCollegeNoDegree": "कॉलेज में पढ़े, डिग्री नहीं",
+        "bachelorsDegree": "स्नातक डिग्री",
+        "mastersDegree": "परास्नातक डिग्री",
+        "doctorateOrHigher": "डॉक्टरेट या उससे ऊपर",
+        "other": "अन्य"
+      },
+      "preferredCommunications": {
+        "text": "टेक्स्ट",
+        "voice": "वॉयस",
+        "video": "वीडियो",
+        "inPerson": "आमने-सामने"
+      },
+      "exercise": {
+        "never": "कभी नहीं",
+        "rarely": "कभी-कभार",
+        "sometimes": "कभी-कभी",
+        "daily": "रोज़ाना",
+        "weekly": "साप्ताहिक",
+        "monthly": "मासिक"
+      },
+      "diet": {
+        "anything": "कुछ भी",
+        "vegetarian": "शाकाहारी",
+        "vegan": "शुद्ध शाकाहारी (वीगन)",
+        "pescatarian": "केवल मछली",
+        "keto": "कीटो",
+        "paleo": "पैलियो",
+        "glutenFree": "ग्लूटेन-फ्री",
+        "halal": "हलाल",
+        "kosher": "कोशर",
+        "other": "अन्य"
+      },
+      "sleepSchedule": {
+        "earlyBird": "जल्दी सोना-उठना",
+        "nightOwl": "रात में जागने वाले",
+        "varies": "बदला-बदली"
+      },
+      "bodyType": {
+        "slim": "पतला",
+        "average": "सामान्य",
+        "athletic": "ऐथलेटिक",
+        "fullFigured": "भरा हुआ शरीर",
+        "curvy": "कर्वी",
+        "muscular": "मस्कुलर",
+        "petite": "छोटा कद",
+        "aLittleExtra": "थोड़ा अतिरिक्त वजन",
+        "stocky": "मज़बूत कद-काठी",
+        "other": "अन्य"
+      }
+    },
+    "notifications": {
+      "title": "सूचनाएँ",
+      "messages": "संदेश",
+      "calls": "कॉल",
+      "likes": "लाइक्स",
+      "comments": "टिप्पणियाँ",
+      "shares": "शेयर",
+      "tags": "टैग",
+      "friendRequests": "मित्र अनुरोध",
+      "groups": "समूह",
+      "events": "ईवेंट्स",
+      "live": "लाइव",
+      "reminders": "अनुस्मारक",
+      "birthdays": "जन्मदिन",
+      "stories": "कहानियाँ",
+      "videoCalls": "वीडियो कॉल",
+      "nearby": "नज़दीक"
+    },
+    "about": {
+      "title": "लिंकर के बारे में",
+      "version": "संस्करण",
+      "description": "एक सोशल मीडिया ऐप जिसमें आप दोस्तों, परिवार और सहकर्मियों आदि से जुड़ सकते हैं। आप समूह बना सकते हैं, दोस्तों से चैट कर सकते हैं, फ़ोटो, वीडियो, कहानियाँ साझा कर सकते हैं और बहुत कुछ कर सकते हैं।"
+    },
+    "explore": {
+      "explore-map": "मानचित्र",
+      "explore": "सूची",
+      "swiper": "स्वाइपर"
+    },
+    "navigation": {
+      "chats": "चैट",
+      "explore": "खोजें",
+      "friends": "मित्र",
+      "profile": "प्रोफ़ाइल",
+      "users": "उपयोगकर्ता"
+    },
+    "general": {
+      "pleaseEnterValidPhoneNumber": "कृपया एक वैध फ़ोन नंबर दर्ज करें",
+      "phoneNumber": "फ़ोन नंबर",
+      "user": "उपयोगकर्ता",
+      "deleteConfirmation": "क्या आप वाकई हटाना चाहते हैं",
+      "theseChats": "इन चैट्स को",
+      "thisChat": "इस चैट को",
+      "selected": "चुना गया",
+      "groupChat": "समूह चैट",
+      "chats": "चैट्स",
+      "search": "खोज",
+      "today": "आज",
+      "yesterday": "कल",
+      "invalidRoom": "अमान्य चैट रूम।",
+      "loadingRoom": "चैट खोली जा रही है...",
+      "roomUnavailable": "यह चैट उपलब्ध नहीं है या लोड नहीं हो सकी।",
+      "yes": "हाँ",
+      "no": "नहीं",
+      "skipTheRest": "क्या आप बाकी चरणों को छोड़ना चाहेंगे?",
+      "enterGruopName": "कमरे का नाम दर्ज करें",
+      "admin": "व्यवस्थापक",
+      "moderator": "मॉडरेटर",
+      "member": "सदस्य",
+      "owner": "मालिक",
+      "adminDescription": "समूह प्रबंधित करने की पूर्ण अनुमति",
+      "moderatorDescription": "सदस्यों को प्रबंधित कर सकते हैं",
+      "memberDescription": "बुनियादी समूह अनुमतियां",
+      "ownerDescription": "सर्वोच्च अनुमतियों के साथ समूह निर्माता",
+      "selectNewRole": "के लिए नई भूमिका चुनें",
+      "currentRole": "वर्तमान भूमिका",
+      "selectRole": "कृपया एक भूमिका चुनें",
+      "confirm": "पुष्टि करें",
+      "cancel": "रद्द करें",
+      "members": "सदस्य",
+      "settings": "सेटिंग्स",
+      "groupDetails": "समूह विवरण",
+      "changePhoto": "फोटो बदलें",
+      "changeRoleConfirmation": "क्या आप वाकई इस उपयोगकर्ता की भूमिका {{role}} में बदलना चाहते हैं?",
+      "removeMemberConfirmation": "क्या आप वाकई इस सदस्य को हटाना चाहते हैं?",
+      "toChangeUserRole": " उपयोगकर्ता की भूमिका बदलने के लिए ",
+      "clickOnUser": " पर क्लिक करें ",
+      "exitedTheRoom": "कमरे से बाहर निकल गए",
+      "addedToTheRoom": "कमरे में जोड़ा गया",
+      "wasBlockedBy": "ब्लॉक किया गया द्वारा",
+      "wasUnblockedBy": "अनब्लॉक किया गया द्वारा",
+      "removedFromTheRoom": "हटाया",
+      "addedToTheRoom": "जोड़ा",
+      "updatedRoomName": "कमरे का नाम अपडेट किया गया",
+      "updatedRoomImage": "कमरे की छवि अपडेट की गई",
+      "roleChangedTomember": "भूमिका सदस्य में बदली",
+      "roleChangedTomoderator": "भूमिका मॉडरेटर में बदली",
+      "roleChangedToadmin": "भूमिका व्यवस्थापक में बदली",
+      "connectionError": "कृपया अपने इंटरनेट कनेक्शन की जाँच करें",
+      "cannotSend": "आप इस चैट में संदेश नहीं भेज सकते",
+      "noChats": "कोई चैट नहीं है, कृपया मित्र जोड़ें या समूह में शामिल हों",
+      "noFriends": "कोई मित्र नहीं है, कृपया मित्र जोड़ें",
+      "friends": "मित्र",
+      "sent": "भेजा गया",
+      "received": "प्राप्त हुआ",
+      "blocked": "ब्लॉक किया गया",
+      "selectCategories": "श्रेणियाँ चुनें",
+      "dark": "डार्क",
+      "light": "लाइट",
+      "forwarded": "फ़ॉरवर्ड किया गया",
+      "noUsersFound": "कोई उपयोगकर्ता नहीं मिला",
+      "clickToGetRecommendedUsers": "अनुशंसित उपयोगकर्ताओं को देखने के लिए क्लिक करें",
+      "clickToAddFriends": "मित्र जोड़ने के लिए क्लिक करें",
+      "clickToGoToFriendsList": "मित्र सूची पर जाने के लिए क्लिक करें",
+      "you": " आप ",
+      "addPassword": "एड पासवर्ड",
+      "removePassword": "रिमोव पासवर्ड",
+      "enterPassword": "एंटर पासवर्ड",
+      "enterThePasswordToOpenThisChat": "एंटर पासवर्ड टो ऑपन इस चैट",
+      "enterPasswordToRemove": "एंटर पासवर्ड टो रिमोव",
+      "addPasswordToThisChat": "एड पासवर्ड टो इस चैट",
+      "passwordIsNotCorrect": "पासवर्ड गलत है",
+      "passwordAddedSuccessfully": "पासवर्ड सफलतापूर्वक जोड़ा गया",
+      "passwordRemovedSuccessfully": "पासवर्ड सफलतापूर्वक हटाया गया",
+      "openChat": "चैट खोलें",
+      "following": "फ़ॉलोइंग",
+      "fans": "फ़ैन्स",
+      "visitors": "विजिटर्स"
+    },
+    "select": {
+      "selectDay": "दिन चुनें",
+      "selectMonth": "महीना चुनें",
+      "selectYear": "साल चुनें"
+    }
+  }
+}

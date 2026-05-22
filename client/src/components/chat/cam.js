@@ -248,8 +248,8 @@ const Cam = ({
           flashMode={flash}
           zoom={cameraZoom}
           mode={cameraMode}
-          onCameraReady={() => console.log("camera is ready")}
-          onPictureSaved={(photo) => console.log({ photo })}
+          onCameraReady={() => {}}
+          onPictureSaved={() => {}}
         >
           {isImageCaptured && (
             <Spinner

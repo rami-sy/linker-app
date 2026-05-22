@@ -291,7 +291,7 @@ const Footer = ({
           setMarker={setMarker}
         />
       )}
-      {uri && <FilePicker uri={uri} setUri={setUri} />}
+      {!!uri && <FilePicker uri={uri} setUri={setUri} />}
 
       <ChatInput
         message={message}

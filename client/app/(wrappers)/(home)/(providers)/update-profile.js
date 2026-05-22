@@ -130,7 +130,7 @@ const UpdateProfileScreen = () => {
         />
       </Head>
       <Layout
-        className="items-stretch flex-1 relative w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="items-stretch flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
         back
         onBack={() => router.back()}
         pb="pb-4"

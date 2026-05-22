@@ -223,7 +223,7 @@ export default function LiveStreamViewerScreen() {
     return (
       <Layout
         pb="pb-0"
-        className={`flex-1 w-full md:w-1/2 lg:w-1/2 ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"} flex-1 items-center justify-center px-6`}
+        className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"} flex-1 items-center justify-center px-6`}
       >
         <View
           className={`items-center justify-center w-24 h-24 rounded-full ${isDarkColorScheme ? "bg-red-500/20" : "bg-red-100"} mb-6`}

@@ -10,5 +10,7 @@ if (!jwtSecret && !isTestEnv && requireJwtSecret) {
 
 module.exports = {
   secret: jwtSecret || "test-only-secret",
-  expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  expiresIn: process.env.JWT_EXPIRES_IN || "1h",
+  refreshSecret: process.env.JWT_REFRESH_SECRET || "test-only-refresh-secret",
+  refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "30d",
 };

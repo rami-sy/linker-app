@@ -52,7 +52,7 @@ import { ProfileUserCard, UserDisplay } from "~/src/components/user";
 import { useColorScheme } from "~/lib/useColorScheme";
 
 const RenderList = ({ activeTab }) => {
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const {
     user,
     friends,
@@ -458,7 +458,7 @@ const RenderList = ({ activeTab }) => {
               imageSize="h-12 w-12"
               imageBorder="border-0"
               onAvatarPress={async () => {
-                const res = await socket.emitWithAck("getOneUser", {
+                const res = await emitWithAck("getOneUser", {
                   targetUserId: item?._id,
                 });
                 dispatch(setUserProfile(res.data));
@@ -725,7 +725,7 @@ const UsersScreen = () => {
         />
       </Head>
       <Layout
-        className="items-center justify-between flex-1 relative w-full md:w-1/2 lg:w-1/2 p-0 bg-[#dee4e6] dark:bg-[#10131a]"
+        className="items-center justify-between flex-1 relative w-full linker-w p-0 bg-[#dee4e6] dark:bg-[#10131a]"
         back
         onBack={() => router.back()}
         pb="pb-4"

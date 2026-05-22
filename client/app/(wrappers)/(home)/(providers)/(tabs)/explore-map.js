@@ -30,7 +30,7 @@ import useExploreMapData from "../../../../../src/hooks/useExploreMapData";
 
 const AddFriendMap = () => {
   const { user } = useSelector((state) => state.users);
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const screenWidth = Dimensions.get("window").width;
 
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const AddFriendMap = () => {
 
   const openUserCard = async (targetUserId) => {
     if (!socket || !targetUserId) return;
-    const res = await socket.emitWithAck("getOneUser", {
+    const res = await emitWithAck("getOneUser", {
       targetUserId,
     });
     if (res?.data) {
@@ -251,7 +251,7 @@ const AddFriendMap = () => {
         />
       </Popup>
       <View
-        className="flex-1 w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="flex-1 w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       >
         <ExploreModeTabs
           isDarkColorScheme={isDarkColorScheme}

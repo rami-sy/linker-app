@@ -34,7 +34,8 @@ const WelcomeComponent = () => {
 
     void (async () => {
       // Drop session immediately so root layout does not "re-login" redirect (avoids flash)
-      await removeItem("token");
+      await removeItem("accessToken");
+      await removeItem("refreshToken");
       await removeItem("persist:root");
       dispatch(removeMe());
       dispatch(resetForm());
@@ -71,7 +72,7 @@ const WelcomeComponent = () => {
         />
       </Head>
       <View
-        className="items-center justify-between flex-1 relative w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="items-center justify-between flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       >
         <WelcomeTool />
         <Logo />

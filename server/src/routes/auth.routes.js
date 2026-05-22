@@ -54,4 +54,6 @@ router.post("/send-verification-code", controller.sendDeleteVerificationCode);
 router.post("/delete-my-account", controller.deleteMyAccount);
 router.post("/google-signin", controller.googleSignIn);
 
+router.post("/refresh", controller.refreshToken);
+
 module.exports = router;

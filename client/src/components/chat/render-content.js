@@ -31,6 +31,7 @@ import CachedImage from "../cached-image";
 import Constants from "expo-constants";
 import { useSelector } from "react-redux";
 import { useColorScheme } from "../../../lib/useColorScheme";
+import logger from "../../utils/logger";
 const apiUrl =
   process.env.EXPO_PUBLIC_API_URL ||
   Constants.expoConfig.extra.EXPO_PUBLIC_API_URL;
@@ -60,7 +61,12 @@ const Render = ({
   setShowImages = () => {},
   onVotePoll = null,
 }) => {
-  console.log("message", message);
+  // Avoid render-path console spam; keep optional debug via logger.
+  logger.debug("renderContent", {
+    type: message?.type,
+    hasContent: Boolean(message?.content),
+    id: message?._id || message?.uuId,
+  });
 
   const content = safeParseContent(message?.content);
 
@@ -241,7 +247,10 @@ const Render = ({
     case "image": {
       const cachedImageUri = resolveMediaUri(content.path); // URI الخاص بالصورة
 
-      console.log("cachedImageUri", cachedImageUri);
+      logger.debug("renderContent.cachedImageUri", {
+        id: message?._id || message?.uuId,
+        cachedImageUri,
+      });
       return (
         <>
           <TouchableOpacity

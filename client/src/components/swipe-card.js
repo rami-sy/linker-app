@@ -60,7 +60,7 @@ const SwipeableCard = forwardRef(
     ref
   ) => {
     const { isDarkColorScheme } = useColorScheme();
-    const { socket } = useContext(SocketContext);
+    const { socket, emitWithAck } = useContext(SocketContext);
     const { exploreUsersSwiper } = useSelector((state) => state.explore);
     const lastSwipedUser = useMemo(() => {
       if (!Array.isArray(exploreUsersSwiper) || exploreUsersSwiper.length === 0) {
@@ -430,7 +430,7 @@ const SwipeableCard = forwardRef(
                       );
 
                       // Undo the like/dislike action on the server
-                      await socket.emitWithAck("undoLikeOrDislike", {
+                      await emitWithAck("undoLikeOrDislike", {
                         target: lastSwipedUser?._id,
                       });
                     }

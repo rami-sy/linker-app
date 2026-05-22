@@ -46,7 +46,7 @@ import Bowser from "bowser";
 export const WebRTCContext = createContext();
 
 export const WebRTCProvider = ({ children }) => {
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const { user } = useSelector((state) => state.users);
   const device = useRef(null);
   const { localStream } = useSelector((state) => state.calls);
@@ -87,9 +87,9 @@ export const WebRTCProvider = ({ children }) => {
     }
   };
 
-  const createPerducerTransport = (socket, device) =>
+  const createPerducerTransport = (emitWithAck, device) =>
     new Promise(async (resolve, reject) => {
-      const producerTransportParams = await socket.emitWithAck(
+      const producerTransportParams = await emitWithAck(
         "requestTransport",
         {
           type: "producer",
@@ -105,7 +105,7 @@ export const WebRTCProvider = ({ children }) => {
         async ({ dtlsParameters }, callback, errback) => {
           console.log("producerTransport connected");
 
-          const connectResp = await socket.emitWithAck("connectTransport", {
+          const connectResp = await emitWithAck("connectTransport", {
             dtlsParameters,
             type: "producer",
           });
@@ -123,7 +123,7 @@ export const WebRTCProvider = ({ children }) => {
       producerTransport.on("produce", async (params, callback, errorback) => {
         console.log("producerTransport produce", params);
         const { kind, rtpParameters } = params;
-        const startProducingResp = await socket.emitWithAck("startProducing", {
+        const startProducingResp = await emitWithAck("startProducing", {
           kind,
           rtpParameters,
         });
@@ -179,7 +179,7 @@ export const WebRTCProvider = ({ children }) => {
     dispatch(setCallStatus("calling"));
     dispatch(setRoom(startRoom));
 
-    const joinRoomResp = await socket.emitWithAck("joinRoom", {
+    const joinRoomResp = await emitWithAck("joinRoom", {
       roomId: startRoom._id,
       userId: user._id,
       isVideoCall,
@@ -231,7 +231,7 @@ export const WebRTCProvider = ({ children }) => {
     const stream = await startMedia(isVideoCall);
     await dispatch(setLocalStream(stream));
 
-    perducerTransport.current = await createPerducerTransport(socket, device);
+    perducerTransport.current = await createPerducerTransport(emitWithAck, device);
     console.log({ localStream, stream });
 
     const producer = await createProducer(stream, perducerTransport.current);

@@ -392,7 +392,7 @@ export default function LiveStreamsScreen() {
 
   if (loading && streams.length === 0) {
     return (
-      <View className={`flex-1 w-full md:w-1/2 lg:w-1/2 items-center justify-center ${isDarkColorScheme ? 'bg-[#12141b]' : 'bg-white'}`}>
+      <View className={`flex-1 w-full linker-w items-center justify-center ${isDarkColorScheme ? 'bg-[#12141b]' : 'bg-white'}`}>
         <ActivityIndicator size="large" color={isDarkColorScheme ? '#3b82f6' : '#2563eb'} />
         <Text className={`mt-4 text-base ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}>
           Loading live streams...
@@ -403,7 +403,7 @@ export default function LiveStreamsScreen() {
 
   if (error && streams.length === 0) {
     return (
-      <View className={`flex-1 w-full md:w-1/2 lg:w-1/2 items-center justify-center px-4 ${isDarkColorScheme ? 'bg-[#12141b]' : 'bg-white'}`}>
+      <View className={`flex-1 w-full linker-w items-center justify-center px-4 ${isDarkColorScheme ? 'bg-[#12141b]' : 'bg-white'}`}>
         <FeIcon 
           name="alert-circle" 
           size={48} 
@@ -427,7 +427,7 @@ export default function LiveStreamsScreen() {
 
   return (
     <View
-    className={`flex-1 w-full md:w-1/2 lg:w-1/2 ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
+    className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
   >
       {/* Header */}
       <View className={`px-4 py-2 border-b ${isDarkColorScheme ? 'border-slate-800' : 'border-gray-200'}`}>

@@ -1,6 +1,15 @@
-import { getItem, setItem } from "../utils/localStorage";
+import { getItem, removeItem, setItem } from "../utils/localStorage";
 import Axios from "../../axiosInstance";
 import * as DeviceInfo from "expo-device";
+
+const saveTokens = async (data) => {
+  if (data?.accessToken) {
+    await setItem("accessToken", data.accessToken);
+  }
+  if (data?.refreshToken) {
+    await setItem("refreshToken", data.refreshToken);
+  }
+};
 
 const auth = async (data, method) => {
   try {
@@ -9,9 +18,7 @@ const auth = async (data, method) => {
     }); // Create the Axios instance
     const res = await axios.post(`auth/${method}`, data); // Use the relative URL
 
-    if (res?.data?.data?.token) {
-      await setItem("token", res.data.data.token);
-    }
+    await saveTokens(res?.data?.data);
 
     return res.data;
   } catch (e) {
@@ -26,9 +33,7 @@ const signin = async (data) => {
       ContentType: "application/json",
     }); // Create the Axios instance
     const res = await axios.post("auth/signin", { ...data, deviceId }); // Use the relative URL
-    if (res?.data?.data?.token) {
-      await setItem("token", res.data.data.token);
-    }
+    await saveTokens(res?.data?.data);
     return res.data;
   } catch (e) {
     return (
@@ -99,9 +104,7 @@ const phoneVerify = async (data, method) => {
     }); // Create the Axios instance
     const res = await axios.post(`auth/phone-verify`, { ...data, deviceId }); // Use the relative URL
 
-    if (res?.data?.data?.token) {
-      await setItem("token", res.data.data.token);
-    }
+    await saveTokens(res?.data?.data);
     return res.data;
   } catch (e) {
     return e.response.data;
@@ -127,7 +130,35 @@ const getMe = async () => {
     setItem("daysRemaining", res?.data?.data?.daysRemaining ?? 0);
     return res.data;
   } catch (e) {
-    return e.response?.data ?? { type: "error", message: e.message };
+    const status = e?.response?.status;
+    const payload =
+      e?.response?.data && typeof e.response.data === "object"
+        ? e.response.data
+        : null;
+    const message = payload?.message || e?.message || "Request failed";
+
+    // Switching between prod/local invalidates the JWT (different secret).
+    // Treat it as a forced logout so we don't get stuck in cached/offline loops.
+    if (status === 401 || status === 403 || status === 406) {
+      await removeItem("accessToken");
+      await removeItem("refreshToken");
+      await removeItem("daysRemaining");
+      await removeItem("lastSyncTime");
+      return {
+        type: "error",
+        message,
+        forceLogout: true,
+        status,
+        ...(payload || {}),
+      };
+    }
+
+    return {
+      type: payload?.type || "error",
+      message,
+      status,
+      ...(payload || {}),
+    };
   }
 };
 
@@ -151,9 +182,7 @@ const googleSignin = async (data) => {
       ContentType: "application/json",
     }); // Create the Axios instance
     const res = await axios.post("auth/google-signin", { ...data, deviceId }); // Use the relative URL
-    if (res?.data?.data?.token) {
-      await setItem("token", res.data.data.token);
-    }
+    await saveTokens(res?.data?.data);
     return res.data;
   } catch (e) {
     return e.response.data;

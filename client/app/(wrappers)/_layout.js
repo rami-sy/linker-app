@@ -206,7 +206,7 @@ export default function AppLayout() {
       const isOnline = netState.isConnected && netState.isInternetReachable;
 
       const deviceId = await getItem("deviceId");
-      const token = await getItem("token");
+      const token = await getItem("accessToken");
       const daysRemaining = await getItem("daysRemaining");
 
       // Set device ID if not exists
@@ -316,7 +316,7 @@ export default function AppLayout() {
       // Small delay for persist rehydration before reading token
       await new Promise((resolve) => setTimeout(resolve, 150));
 
-      const token = await getItem("token");
+      const token = await getItem("accessToken");
       const hasToken = Boolean(token);
 
       // Root resolved to (home): only guests go to welcome; logged-in users run session check
@@ -334,6 +334,15 @@ export default function AppLayout() {
       }
 
       if (segments[1] === "(home)") {
+        // If token is missing but we are still in (home) due to persisted state,
+        // force redirect to auth to prevent infinite loading/offline conflicts.
+        if (!hasToken) {
+          console.log("🔒 Missing token in home section, redirecting to auth...");
+          dispatch(removeMe());
+          setLoading(false);
+          router.replace("/welcome");
+          return;
+        }
         console.log("✅ Already in home section");
         setLoading(false);
         return;
@@ -378,7 +387,7 @@ export default function AppLayout() {
     const timer = setTimeout(async () => {
       if (cancelled) return;
       if (isForceLogoutInUrl()) return;
-      const token = await getItem("token");
+      const token = await getItem("accessToken");
       if (!token || cancelled) return;
       if (!user?._id) return;
       if (globalCheckLoginLock) return;

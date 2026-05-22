@@ -51,7 +51,7 @@ const DeviceSettings = ({
         animationType="slide"
       >
         <View
-          className="w-11/12 md:w-1/2 lg:w-1/2 rounded-2xl pt-4 px-4 pb-4 bg-[#dee4e6] dark:bg-main"
+          className="w-11/12 linker-w rounded-2xl pt-4 px-4 pb-4 bg-[#dee4e6] dark:bg-main"
           style={
             Platform.OS === "web"
               ? {

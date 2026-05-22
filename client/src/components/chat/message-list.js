@@ -1,5 +1,12 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ActivityIndicator,
+  Platform,
+} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import MessageItem from "./message-item";
 import { SocketContext } from "../../contexts/socket.context";
@@ -160,6 +167,7 @@ const MessageList = ({
   showUnreadDivider,
   onOpenThread,
 }) => {
+  const isWeb = Platform.OS === "web";
   const { roomId } = useSelector((state) => state.chats);
   const { user } = useSelector((state) => state.users);
   const room = useSelectedRoom();
@@ -269,6 +277,13 @@ const MessageList = ({
 
   const unreadLabel =
     t("chat.newMessagesDivider") || "New messages";
+
+  const needsWebBottomSpacer = useMemo(() => {
+    if (!isWeb) return false;
+    // Only needed for very short conversations; for longer histories this can create
+    // confusing blank space when combined with inversion + virtualization.
+    return filteredMessages.length > 0 && filteredMessages.length < 12;
+  }, [filteredMessages.length, isWeb]);
 
   // هنا توضع دالة memoizedRenderItem بعد المتغيرات الأخرى
   const memoizedRenderItem = useMemo(
@@ -464,20 +479,31 @@ const MessageList = ({
         keyExtractor={keyExtractor}
         accessibilityRole="list"
         accessibilityLabel={t("chat.a11y.conversationMessages")}
+        style={{ flex: 1 }}
+        // On web, FlatList inversion/layout quirks can leave short conversations pinned to the top.
+        // This flexible header spacer forces messages to sit at the bottom when content is short.
+        ListHeaderComponent={needsWebBottomSpacer ? <View style={{ flexGrow: 1 }} /> : null}
+        ListHeaderComponentStyle={needsWebBottomSpacer ? { flexGrow: 1 } : null}
         contentContainerStyle={{
+          flexGrow: 1,
+          // Keep short conversations pinned to the bottom area.
+          justifyContent: "flex-end",
           paddingTop: 16,
           // paddingLeft: 8,
           // paddingRight: 8,
-          paddingBottom: 50,
+          paddingBottom: 12,
         }}
         onEndReached={handleLoadMore}
-        onEndReachedThreshold={1} // Add this line
+        // Avoid eager pagination triggers that can cause scroll jumps on web.
+        onEndReachedThreshold={isWeb ? 0.25 : 1}
         inverted
-        removeClippedSubviews={true}
-        maxToRenderPerBatch={5}
-        updateCellsBatchingPeriod={50}
-        windowSize={10}
-        initialNumToRender={25}
+        removeClippedSubviews={!isWeb}
+        // Web: be less aggressive with virtualization to avoid blank gaps.
+        maxToRenderPerBatch={isWeb ? 25 : 5}
+        updateCellsBatchingPeriod={isWeb ? 16 : 50}
+        windowSize={isWeb ? 21 : 10}
+        initialNumToRender={isWeb ? 50 : 25}
+        keyboardShouldPersistTaps="handled"
         onScroll={handleScroll}
         scrollEventThrottle={16}
         onScrollToIndexFailed={(info) => {

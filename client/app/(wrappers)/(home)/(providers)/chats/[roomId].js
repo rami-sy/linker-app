@@ -523,6 +523,9 @@ const ChatScreen = ({}) => {
   }, [roomId, socket]);
 
   const [toggleCamera, setToggleCamera] = useState(false);
+  const [footerHeight, setFooterHeight] = useState(92);
+  const footerHeightRef = useRef(92);
+  footerHeightRef.current = footerHeight;
   const youBlockedUser = user?.blockedUsers?.includes(room?.members?.[0]?._id);
   const userBlockedYou = room?.members?.[0]?.blockedUsers?.includes(user?._id);
 
@@ -681,7 +684,7 @@ const ChatScreen = ({}) => {
         />
       </Head>
       <View
-        className="flex-1 w-full h-screen overflow-y-auto bg-chatBgLight dark:bg-chatBgDark md:max-w-4xl md:mx-auto lg:max-w-5xl"
+        className="flex-1 w-full h-screen overflow-hidden bg-chatBgLight dark:bg-chatBgDark linker-w"
         // make background image
       >
         {/* <VideoCallScreen socket={socket} user={user} room={room} /> */}
@@ -744,51 +747,182 @@ const ChatScreen = ({}) => {
             <ImageBackground
               // source={image}
               resizeMode="cover"
-              className="flex-1 w-full h-screen bg-chatBgLight dark:bg-chatBgDark"
+              className="flex-1 w-full bg-chatBgLight dark:bg-chatBgDark"
             >
-              <View className="flex-1 w-full px-1.5 pt-1">
-              {!threadPanelRoot && (
-                <PinnedMessagesBar
-                  room={room}
-                  onJumpToMessageKey={(key) => jumpToMessageRef.current?.(key)}
-                />
-              )}
-              {threadPanelRoot ? (
-                <ThreadMessagesPanel
-                  rootMessage={threadPanelRoot}
-                  onClose={() => setThreadPanelRoot(null)}
-                  setSelectedMessage={setSelectedMessage}
-                  selectedMessage={selectedMessage}
-                  selectedMessages={selectedMessages}
-                  setSelectedMessages={setSelectedMessages}
-                  msgToReply={msgToReply}
-                  setMsgToReply={setMsgToReply}
-                  setShowImages={setShowImages}
-                  onJumpToMessageReady={(fn) => {
-                    threadJumpRef.current = fn;
-                  }}
-                />
+              {Platform.OS === "web" ? (
+                <View className="flex-1 w-full" style={{ position: "relative" }}>
+                  <View
+                    className="w-full px-1.5 pt-1"
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      bottom: footerHeight,
+                    }}
+                  >
+                    {!threadPanelRoot && (
+                      <PinnedMessagesBar
+                        room={room}
+                        onJumpToMessageKey={(key) =>
+                          jumpToMessageRef.current?.(key)
+                        }
+                      />
+                    )}
+                    {threadPanelRoot ? (
+                      <ThreadMessagesPanel
+                        rootMessage={threadPanelRoot}
+                        onClose={() => setThreadPanelRoot(null)}
+                        setSelectedMessage={setSelectedMessage}
+                        selectedMessage={selectedMessage}
+                        selectedMessages={selectedMessages}
+                        setSelectedMessages={setSelectedMessages}
+                        msgToReply={msgToReply}
+                        setMsgToReply={setMsgToReply}
+                        setShowImages={setShowImages}
+                        onJumpToMessageReady={(fn) => {
+                          threadJumpRef.current = fn;
+                        }}
+                      />
+                    ) : (
+                      <MessageList
+                        scrollViewRef={scrollViewRef}
+                        setSelectedMessage={setSelectedMessage}
+                        selectedMessage={selectedMessage}
+                        selectedMessages={selectedMessages}
+                        setSelectedMessages={setSelectedMessages}
+                        msgToReply={msgToReply}
+                        setMsgToReply={setMsgToReply}
+                        setShowImages={setShowImages}
+                        onLatestPositionChange={setIsScrollAtBottom}
+                        onJumpToMessageReady={(fn) => {
+                          jumpToMessageRef.current = fn;
+                        }}
+                        showUnreadDivider={showUnreadDivider}
+                        onOpenThread={
+                          chatFlags.threadsEnabled ? setThreadPanelRoot : undefined
+                        }
+                      />
+                    )}
+                  </View>
+
+                  <View
+                    className="w-full"
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      zIndex: 20,
+                    }}
+                    onLayout={(e) => {
+                      const h = e?.nativeEvent?.layout?.height;
+                      if (
+                        typeof h === "number" &&
+                        h > 0 &&
+                        Math.abs(h - footerHeightRef.current) > 0.5
+                      ) {
+                        setFooterHeight(h);
+                      }
+                    }}
+                  >
+                    <Footer
+                      setToggleCamera={setToggleCamera}
+                      toggleCamera={toggleCamera}
+                      setSelectedMessage={setSelectedMessage}
+                      message={message}
+                      setMessage={setMessageAndDraft}
+                      handleTextChange={handleTextChange}
+                      msgToReply={msgToReply}
+                      setMsgToReply={setMsgToReply}
+                      scrollToEnd={scrollToEnd}
+                      onJumpToQuotedMessage={(key) =>
+                        threadPanelRoot
+                          ? threadJumpRef.current?.(key)
+                          : jumpToMessageRef.current?.(key)
+                      }
+                      activeThreadRootId={
+                        threadPanelRoot
+                          ? String(
+                              threadPanelRoot.threadRoot || threadPanelRoot._id
+                            )
+                          : null
+                      }
+                    />
+                  </View>
+                </View>
               ) : (
-                <MessageList
-                  scrollViewRef={scrollViewRef}
-                  setSelectedMessage={setSelectedMessage}
-                  selectedMessage={selectedMessage}
-                  selectedMessages={selectedMessages}
-                  setSelectedMessages={setSelectedMessages}
-                  msgToReply={msgToReply}
-                  setMsgToReply={setMsgToReply}
-                  setShowImages={setShowImages}
-                  onLatestPositionChange={setIsScrollAtBottom}
-                  onJumpToMessageReady={(fn) => {
-                    jumpToMessageRef.current = fn;
-                  }}
-                  showUnreadDivider={showUnreadDivider}
-                  onOpenThread={
-                    chatFlags.threadsEnabled ? setThreadPanelRoot : undefined
-                  }
-                />
+                <View className="flex-1 w-full">
+                  <View className="flex-1 w-full px-1.5 pt-1">
+                    {!threadPanelRoot && (
+                      <PinnedMessagesBar
+                        room={room}
+                        onJumpToMessageKey={(key) =>
+                          jumpToMessageRef.current?.(key)
+                        }
+                      />
+                    )}
+                    {threadPanelRoot ? (
+                      <ThreadMessagesPanel
+                        rootMessage={threadPanelRoot}
+                        onClose={() => setThreadPanelRoot(null)}
+                        setSelectedMessage={setSelectedMessage}
+                        selectedMessage={selectedMessage}
+                        selectedMessages={selectedMessages}
+                        setSelectedMessages={setSelectedMessages}
+                        msgToReply={msgToReply}
+                        setMsgToReply={setMsgToReply}
+                        setShowImages={setShowImages}
+                        onJumpToMessageReady={(fn) => {
+                          threadJumpRef.current = fn;
+                        }}
+                      />
+                    ) : (
+                      <MessageList
+                        scrollViewRef={scrollViewRef}
+                        setSelectedMessage={setSelectedMessage}
+                        selectedMessage={selectedMessage}
+                        selectedMessages={selectedMessages}
+                        setSelectedMessages={setSelectedMessages}
+                        msgToReply={msgToReply}
+                        setMsgToReply={setMsgToReply}
+                        setShowImages={setShowImages}
+                        onLatestPositionChange={setIsScrollAtBottom}
+                        onJumpToMessageReady={(fn) => {
+                          jumpToMessageRef.current = fn;
+                        }}
+                        showUnreadDivider={showUnreadDivider}
+                        onOpenThread={
+                          chatFlags.threadsEnabled ? setThreadPanelRoot : undefined
+                        }
+                      />
+                    )}
+                  </View>
+                  <Footer
+                    setToggleCamera={setToggleCamera}
+                    toggleCamera={toggleCamera}
+                    setSelectedMessage={setSelectedMessage}
+                    message={message}
+                    setMessage={setMessageAndDraft}
+                    handleTextChange={handleTextChange}
+                    msgToReply={msgToReply}
+                    setMsgToReply={setMsgToReply}
+                    scrollToEnd={scrollToEnd}
+                    onJumpToQuotedMessage={(key) =>
+                      threadPanelRoot
+                        ? threadJumpRef.current?.(key)
+                        : jumpToMessageRef.current?.(key)
+                    }
+                    activeThreadRootId={
+                      threadPanelRoot
+                        ? String(
+                            threadPanelRoot.threadRoot || threadPanelRoot._id
+                          )
+                        : null
+                    }
+                  />
+                </View>
               )}
-              </View>
 
               {!threadPanelRoot &&
                 !isScrollAtBottom &&
@@ -797,7 +931,7 @@ const ChatScreen = ({}) => {
                   style={{
                     position: "absolute",
                     right: 12,
-                    bottom: 74,
+                    bottom: (Platform.OS === "web" ? footerHeight : 92) + 12,
                     zIndex: 15,
                   }}
                 >
@@ -836,29 +970,6 @@ const ChatScreen = ({}) => {
                 </View>
               )}
 
-              <Footer
-                setToggleCamera={setToggleCamera}
-                toggleCamera={toggleCamera}
-                setSelectedMessage={setSelectedMessage}
-                message={message}
-                setMessage={setMessageAndDraft}
-                handleTextChange={handleTextChange}
-                msgToReply={msgToReply}
-                setMsgToReply={setMsgToReply}
-                scrollToEnd={scrollToEnd}
-                onJumpToQuotedMessage={(key) =>
-                  threadPanelRoot
-                    ? threadJumpRef.current?.(key)
-                    : jumpToMessageRef.current?.(key)
-                }
-                activeThreadRootId={
-                  threadPanelRoot
-                    ? String(
-                        threadPanelRoot.threadRoot || threadPanelRoot._id
-                      )
-                    : null
-                }
-              />
             </ImageBackground>
           </>
         )}

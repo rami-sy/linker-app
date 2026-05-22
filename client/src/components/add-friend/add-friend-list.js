@@ -42,7 +42,7 @@ const AddFriendList = ({
   const { user, senderReactions } = useSelector((state) => state.users);
 
   const { isDarkColorScheme } = useColorScheme();
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const {
     exploreUsers,
     page,
@@ -199,7 +199,7 @@ const AddFriendList = ({
             imageBorder="border-0"
             onPress={() => handleCreateRoom(item)}
             onAvatarPress={async () => {
-              const res = await socket.emitWithAck("getOneUser", {
+              const res = await emitWithAck("getOneUser", {
                 targetUserId: item?._id,
               });
               dispatch(setUserProfile(res.data));

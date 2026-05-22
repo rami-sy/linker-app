@@ -397,7 +397,6 @@ const CallScreen = () => {
         {remoteUsers?.length > 0 &&
           remoteUsers.map(
             ({ stream, user: remoteUser, cameraOff, isFrontCamera }, index) => {
-              console.log("Stream URL:", stream?.toURL, remoteUser);
               return (
                 <View key={remoteUser?._id || index}>
                   {cameraOff && callStatus === "connected" ? (

@@ -185,8 +185,13 @@ const MessageItem = memo(
       return null;
     }, [currentMessageMeta, message?.callEvent, message?.type]);
     const displayMessageText = useMemo(() => {
+      if (message?.e2eeDecryptFailed) {
+        return t("chat.e2eeDecryptFailed", {
+          defaultValue: "Could not decrypt this message",
+        });
+      }
       if (message?.e2ee?.ciphertext && !message?.text) {
-        return "…";
+        return t("chat.e2eeDecrypting", { defaultValue: "Decrypting…" });
       }
       if (!message?.text) {
         return message?.text;
@@ -195,7 +200,13 @@ const MessageItem = memo(
         return message?.text;
       }
       return message.text.replace(/^💬\s*/, "");
-    }, [message?.text, message?.type, message?.e2ee?.ciphertext]);
+    }, [
+      message?.text,
+      message?.type,
+      message?.e2ee?.ciphertext,
+      message?.e2eeDecryptFailed,
+      t,
+    ]);
 
     const messageAccessibilityLabel = useMemo(() => {
       const mine = message?.user === user?._id;
@@ -1107,7 +1118,7 @@ const MessageItem = memo(
                           : "rounded-2xl"
                       }
                     />
-                    {displayMessageText && (
+                    {!!displayMessageText && (
                       <>
                         {message?.type === "text" &&
                         (message?.mentions?.length > 0 ||

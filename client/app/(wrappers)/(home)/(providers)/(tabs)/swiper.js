@@ -59,7 +59,7 @@ const Swiper = () => {
   const navPalette = getNavPalette(isDarkColorScheme);
   const [showLoactionRedirection, setShowLoactionRedirection] = useState(false);
   const dispatch = useDispatch();
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const segments = useSegments();
   const [userReaction, setUserReaction] = useState({
     type: null,
@@ -141,7 +141,7 @@ const Swiper = () => {
       dispatch(setPageSwiper(page));
       dispatch(setFirstLoadSwiper(false));
       if (socket) {
-        const res = await socket.emitWithAck("searchUsers", {
+        const res = await emitWithAck("searchUsers", {
           searchQuery: {
             ...formData,
           },
@@ -153,7 +153,7 @@ const Swiper = () => {
         handleSearchUsers(res, index, page);
       }
     },
-    [user?._id, socket, exploreUsersSwiper]
+    [user?._id, socket, emitWithAck, exploreUsersSwiper]
   );
 
   const handleSearchUsers = (res, index, requestedPage = 1) => {
@@ -245,7 +245,7 @@ const Swiper = () => {
 
   const likeUser = async (item) => {
     try {
-      const res = await socket.emitWithAck("likeUser", {
+      const res = await emitWithAck("likeUser", {
         target: item?.target,
       });
       console.log({ res });
@@ -259,7 +259,7 @@ const Swiper = () => {
 
   const dislikeUser = async (item) => {
     try {
-      const res = await socket.emitWithAck("dislikeUser", {
+      const res = await emitWithAck("dislikeUser", {
         target: item?.target,
       });
       console.log({ res });
@@ -350,7 +350,7 @@ const Swiper = () => {
       </Popup>
 
       <View
-        className="flex-1 w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="flex-1 w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       >
         <ExploreModeTabs
           isDarkColorScheme={isDarkColorScheme}

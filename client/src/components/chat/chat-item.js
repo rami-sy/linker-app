@@ -131,11 +131,27 @@ const ChatItem = ({
           keys
         );
         if (!cancelled) {
-          startTransition(() => setE2eeLastPreview(dm?.text || "🔒"));
+          if (dm?.e2eeDecryptFailed) {
+            startTransition(() =>
+              setE2eeLastPreview(
+                t("chat.e2eeDecryptFailed", {
+                  defaultValue: "Could not decrypt",
+                })
+              )
+            );
+          } else {
+            startTransition(() => setE2eeLastPreview(dm?.text || "🔒"));
+          }
         }
       } catch {
         if (!cancelled) {
-          startTransition(() => setE2eeLastPreview("🔒"));
+          startTransition(() =>
+            setE2eeLastPreview(
+              t("chat.e2eeDecryptFailed", {
+                defaultValue: "Could not decrypt",
+              })
+            )
+          );
         }
       }
     })();
@@ -150,6 +166,7 @@ const ChatItem = ({
     room?.e2ee?.keyVersion,
     socket,
     user?._id,
+    t,
   ]);
 
   // const youBlockedUser = user?.blockedUsers?.includes(room?.members?.[0]?._id);
@@ -441,7 +458,10 @@ const ChatItem = ({
                   >
                     {trimMessage(
                       lastMessage?.e2ee?.ciphertext
-                        ? e2eeLastPreview ?? "🔒"
+                        ? e2eeLastPreview ??
+                            t("chat.e2eeDecrypting", {
+                              defaultValue: "Decrypting…",
+                            })
                         : lastMessage.text,
                       10
                     )}

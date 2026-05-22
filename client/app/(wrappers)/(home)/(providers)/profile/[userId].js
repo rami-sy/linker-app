@@ -37,7 +37,7 @@ const apiUrl =
 
 const ProfileScreen = ({ userId, onClose }) => {
   const [active, setActive] = React.useState("more");
-  const { socket } = useContext(SocketContext);
+  const { emitWithAck } = useContext(SocketContext);
   const { userProfile } = useSelector((state) => state.users);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [profileError, setProfileError] = useState("");
@@ -55,7 +55,7 @@ const ProfileScreen = ({ userId, onClose }) => {
       try {
         setLoadingProfile(true);
         setProfileError("");
-        const res = await socket.emitWithAck("getOneUser", {
+        const res = await emitWithAck("getOneUser", {
           targetUserId: userIdParam || userId,
         });
         if (res?.type === "success" && res?.data) {
@@ -83,7 +83,7 @@ const ProfileScreen = ({ userId, onClose }) => {
     return () => {
       dispatch(setUserProfile(null));
     };
-  }, [userId, userIdParam, socket, dispatch, t]);
+  }, [userId, userIdParam, emitWithAck, dispatch, t]);
 
   const { isDarkColorScheme } = useColorScheme();
   const navPalette = getNavPalette(isDarkColorScheme);
@@ -125,7 +125,7 @@ const ProfileScreen = ({ userId, onClose }) => {
               setLoadingProfile(true);
               setProfileError("");
               try {
-                const res = await socket.emitWithAck("getOneUser", {
+                const res = await emitWithAck("getOneUser", {
                   targetUserId: userIdParam || userId,
                 });
                 if (res?.type === "success" && res?.data) {
@@ -158,7 +158,7 @@ const ProfileScreen = ({ userId, onClose }) => {
 
   return (
     <View
-      className="w-full flex-1 flex-col items-stretch justify-center bg-[#dee4e6] dark:bg-[#12141b] md:w-1/2 lg:w-1/2"
+      className="w-full flex-1 flex-col items-stretch justify-center bg-[#dee4e6] dark:bg-[#12141b] linker-w"
     >
     <View
       className="absolute top-0 left-0 z-10 items-center justify-center flex-1 w-full h-full bg-[#f6f8f9] dark:bg-main"

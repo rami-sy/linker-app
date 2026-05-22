@@ -11,7 +11,7 @@ const verifyToken = (req, res, next) => {
   jwt.verify(token, config.secret, (err, decoded) => {
     // console.log({ decoded, token, config: config.secret, err });
     if (err) {
-      return res.status(406).send({ message: "Unauthorized!" });
+      return res.status(401).send({ type: "error", message: "Unauthorized!" });
     }
 
     // حساب عدد الأيام المتبقية لانتهاء صلاحية التوكن

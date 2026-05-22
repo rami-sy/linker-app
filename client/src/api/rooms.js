@@ -15,7 +15,7 @@ const getRoom = async ({ _id }) => {
 };
 
 const getMyRooms = async () => {
-  const token = JSON.parse(await getItem("token"));
+  const token = JSON.parse(await getItem("accessToken"));
 
   try {
     const axios = await Axios({

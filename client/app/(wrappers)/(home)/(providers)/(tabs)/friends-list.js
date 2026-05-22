@@ -254,7 +254,7 @@ const FriendsListScreen = () => {
         // back
         // onBack={() => {
         // }}
-        className={`flex-1 w-full md:w-1/2 lg:w-1/2 ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
+        className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
         navBar={
           // <View className={`flex-row items-center justify-between w-full`}>
           <>

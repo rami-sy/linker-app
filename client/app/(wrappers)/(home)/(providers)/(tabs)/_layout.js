@@ -42,7 +42,7 @@ const TabsLayout = () => {
   const { activeTab } = useSelector((state) => state.explore);
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
-  const { socket } = useContext(SocketContext);
+  const { emitWithAck } = useContext(SocketContext);
 
   const chatsUnreadTotal = useMemo(
     () =>
@@ -97,7 +97,7 @@ const TabsLayout = () => {
       <Slot />
       <View className="absolute bottom-2 left-0 right-0 z-20 items-center px-3 pb-1">
         <View
-          className="h-16 w-full flex-row items-center justify-between rounded-[28px] px-1.5 md:w-1/2 lg:w-1/2"
+          className="h-16 w-full flex-row items-center justify-between rounded-[28px] px-1.5 linker-w"
           style={{
             backgroundColor: palette.shellBg,
             ...getShellShadowStyle(isDarkColorScheme, 10),
@@ -137,12 +137,14 @@ const TabsLayout = () => {
               handlePress();
               dispatch(setUserProfile(null));
 
-              const res = await socket.emitWithAck("getOneUser", {
+              const res = await emitWithAck("getOneUser", {
                 targetUserId: user?._id,
               });
 
-              dispatch(setUserProfile(res.data));
-              router.push({ pathname: "/user" });
+              if (res?.type === "success" && res?.data) {
+                dispatch(setUserProfile(res.data));
+                router.push({ pathname: "/user" });
+              }
             }}
           >
             <View

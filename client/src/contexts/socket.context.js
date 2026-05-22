@@ -18,7 +18,7 @@ import {
   updateMessage,
   updateRooms,
 } from "../redux/chatSlice";
-import { getItem } from "../utils/localStorage";
+import { getItem, removeItem } from "../utils/localStorage";
 import {
   changeUserLastSeen,
   changeUserStatus,
@@ -32,7 +32,7 @@ import getFullName from "../utils/getFullName";
 import Constants from "expo-constants";
 import useSelectedRoom from "../hooks/use-selected-room";
 import { router, usePathname, useSegments } from "expo-router";
-import { removeDevice, setDevices } from "../redux/appSlice";
+import { removeDevice, setDevices, clearSessionExpired } from "../redux/appSlice";
 import { addAlert } from "../redux/alertSlice";
 import useInAppNotifications from "../hooks/useInAppNotifications";
 import RoomStateSync from "../utils/roomStateSync"; // ✅ Room State Sync
@@ -92,6 +92,7 @@ export const SocketContext = React.createContext({
   socketConnected: false,
   isReconnecting: false,
   queuedOperations: 0,
+  emitWithAck: async () => ({ type: "error", message: "Socket unavailable" }),
 });
 
 export const SocketContextProvider = ({ children }) => {
@@ -104,6 +105,7 @@ export const SocketContextProvider = ({ children }) => {
   const { user } = useSelector((state) => state.users);
   const { rooms } = useSelector((state) => state.chats);
   const reduxChatsRoomId = useSelector((state) => state.chats?.roomId);
+  const sessionExpired = useSelector((state) => state.app.sessionExpired);
   const currentRoom = useSelectedRoom();
   const pathname = usePathname();
   const segments = useSegments();
@@ -188,6 +190,50 @@ export const SocketContextProvider = ({ children }) => {
   useEffect(() => {
     roomsRef.current = rooms;
   }, [rooms]);
+
+  const forceLogoutNow = useCallback(
+    async (reason = "unknown") => {
+      try {
+        await removeItem("accessToken");
+        await removeItem("refreshToken");
+        await removeItem("daysRemaining");
+        await removeItem("lastSyncTime");
+      } catch (_) {}
+      try {
+        await offlineQueue.clearQueue?.();
+      } catch (_) {}
+      try {
+        currentSocket?.emit?.("userDisconnected", {}, () => {
+          try {
+            currentSocket?.disconnect?.();
+          } catch (_) {}
+        });
+      } catch (_) {
+        try {
+          currentSocket?.disconnect?.();
+        } catch (_) {}
+      }
+      setSocketConnected(false);
+      setIsReconnecting(false);
+      setCurrentSocket(null);
+      router.push({
+        pathname: "/welcome",
+        params: {
+          forceLogout: true,
+          reason,
+        },
+      });
+    },
+    [currentSocket]
+  );
+
+  // When axiosInstance fails to refresh the access token it sets sessionExpired.
+  // React to that here and perform a full forced logout.
+  useEffect(() => {
+    if (!sessionExpired) return;
+    dispatch(clearSessionExpired());
+    void forceLogoutNow("session_expired");
+  }, [sessionExpired]);
 
   useEffect(() => {
     const REMINDER_WINDOW_MS = 5 * 60 * 1000;
@@ -284,20 +330,16 @@ export const SocketContextProvider = ({ children }) => {
   }, [expoPushToken]);
   const userNotFound = (data, socket) => {
     logger.info("userNotFound", data);
-    socket.disconnect();
-    router.push({
-      pathname: "/welcome",
-      params: {
-        forceLogout: true,
-      },
-    });
-    setCurrentSocket(null);
+    try {
+      socket?.disconnect?.();
+    } catch (_) {}
+    void forceLogoutNow("userNotFound");
   };
   const connectSocket = async (force = false) => {
     if (!currentSocket || force) {
       let token = null;
       try {
-        const rawToken = await getItem("token");
+        const rawToken = await getItem("accessToken");
         token = rawToken ? JSON.parse(rawToken) : null;
       } catch (error) {
         logger.error("Failed to parse auth token for socket connection", error);
@@ -315,13 +357,16 @@ export const SocketContextProvider = ({ children }) => {
           token: token,
         },
       });
+      // Provide the socket instance immediately so UI handlers can safely
+      // no-op/queue while the connection is still being established.
+      setCurrentSocket(socket);
       socket.on("connect", async (data) => {
         logger.info("Socket connected.");
         setSocketConnected(true);
         setIsReconnecting(false);
 
         const device = await getDeviceInfo();
-        logger.info({ device });
+        logger.debug("socket.deviceInfo", device);
         setCurrentSocket(socket);
         registerDeviceKeysOnServer(socket).then((reg) => {
           if (reg?.ok && reg.keys) {
@@ -351,6 +396,15 @@ export const SocketContextProvider = ({ children }) => {
         setSocketConnected(false);
         setIsReconnecting(true);
         setCurrentSocket(null);
+        const msg = String(error?.message || "");
+        const isAuthError =
+          msg.includes("Invalid token") ||
+          msg.toLowerCase().includes("authentication error") ||
+          msg.toLowerCase().includes("unauthorized");
+        if (isAuthError) {
+          void forceLogoutNow("socket_auth_error");
+          return;
+        }
         try {
           socket.disconnect();
         } catch (_) {}
@@ -578,6 +632,24 @@ export const SocketContextProvider = ({ children }) => {
       // ✅ Listen for socket connection state changes to sync offline queue
       const handleConnect = () => {
         logger.info("Socket connected, syncing offline queue...");
+        try {
+          // Before replaying queued operations, fetch authoritative room state for any rooms touched.
+          const roomStateSync = roomStateSyncRef.current;
+          const queued = offlineQueue.getQueue?.() || [];
+          const roomIds = new Set();
+          for (const op of queued) {
+            const rid =
+              op?.type === "sendMessage"
+                ? op?.data?.message?.room
+                : op?.data?.room;
+            if (rid) roomIds.add(String(rid));
+          }
+          if (roomStateSync && typeof roomStateSync.fetchLatestState === "function") {
+            for (const rid of roomIds) {
+              roomStateSync.fetchLatestState(rid);
+            }
+          }
+        } catch (_) {}
         offlineQueue.processQueue();
       };
 
@@ -846,9 +918,9 @@ export const SocketContextProvider = ({ children }) => {
 
   const getOneRoom = (data) => {
     if (__DEV__) {
-      console.log("getOneRoom", {
-        update: data?.update,
-        roomId: data?.room?._id,
+      logger.debug("socket.getOneRoom", {
+        update: Boolean(data?.update),
+        roomId: data?.room?._id ? String(data.room._id) : null,
       });
     }
     if (data?.update) {
@@ -869,7 +941,11 @@ export const SocketContextProvider = ({ children }) => {
         }));
       }
     } else {
-      if (__DEV__) console.log("getOneRoomsss", data?.room);
+      if (__DEV__) {
+        logger.debug("socket.getOneRoom.unshift", {
+          roomId: data?.room?._id ? String(data.room._id) : null,
+        });
+      }
       requestedRooms?.current?.delete(data?.room?._id);
 
       // ✅ إضافة skipAddIfNotExists لمنع إنشاء room جديد للمشاهدين
@@ -896,7 +972,15 @@ export const SocketContextProvider = ({ children }) => {
     room,
     override,
   }) => {
-    console.log("getMessages", messages);
+    if (__DEV__) {
+      logger.debug("socket.getMessages", {
+        roomId: room ? String(room) : null,
+        count: Array.isArray(messages) ? messages.length : 0,
+        override: Boolean(override),
+        currentPage,
+        hasMore,
+      });
+    }
     const roomMeta = roomsRef.current?.find(
       (r) =>
         String(normalizeMongoId(r?._id)) === String(normalizeMongoId(room))
@@ -1038,36 +1122,20 @@ export const SocketContextProvider = ({ children }) => {
   );
 
   const getDevices = async (data) => {
-    console.log("getDevices", data);
+    logger.debug("devices.list", { count: Array.isArray(data) ? data.length : 0 });
     const deviceId = await fetchDeviceId();
     const device = data.find((d) => d.deviceId === deviceId);
     dispatch(setDevices(data));
 
     if (device && device.forceLogout) {
-      currentSocket.emit("userDisconnected", {}, () => {
-        currentSocket.disconnect();
-      });
-      router.push({
-        pathname: "/welcome",
-        params: {
-          forceLogout: true,
-        },
-      });
+      void forceLogoutNow("device_force_logout");
     }
   };
   const deviceDisconnected = (data) => {
-    console.log("deviceDisconnected", data);
+    logger.info("deviceDisconnected", data);
     // dispatch(removeDevice(data.deviceId));
     dispatch(removeDevice(data._id));
-    currentSocket.emit("userDisconnected", {}, () => {
-      currentSocket.disconnect();
-    });
-    router.push({
-      pathname: "/welcome",
-      params: {
-        forceLogout: true,
-      },
-    });
+    void forceLogoutNow("device_disconnected");
   };
 
   const [deviceId, setDeviceId] = useState(null);
@@ -1138,7 +1206,7 @@ export const SocketContextProvider = ({ children }) => {
   }, [currentSocket, dispatch]);
 
   const otherUserStatusChanged = (res) => {
-    console.log("otherUserStatusChanged", res);
+    logger.debug("socket.otherUserStatusChanged", { userId: res?.userId });
 
     dispatch(
       changeMemberStatus({
@@ -1155,7 +1223,7 @@ export const SocketContextProvider = ({ children }) => {
   };
 
   const otherUserLastSeenChanged = (res) => {
-    console.log("otherUserLastSeenChanged", res);
+    logger.debug("socket.otherUserLastSeenChanged", { userId: res?.userId });
     dispatch(
       changeMemberLastSeen({
         userId: res.userId,
@@ -1171,7 +1239,7 @@ export const SocketContextProvider = ({ children }) => {
   };
 
   const updateRoom = (data) => {
-    console.log("updateRoom", data);
+    logger.debug("socket.updateRoom", { roomId: data?._id });
     const roomExists = rooms.find((r) => String(r._id) === String(data?._id));
     if (roomExists) {
       dispatch(
@@ -1183,18 +1251,18 @@ export const SocketContextProvider = ({ children }) => {
     } else {
       // ✅ إذا كان skipAddIfNotExists === true، لا نضيف room جديداً (للمشاهدين)
       if (data?.skipAddIfNotExists === true) {
-        console.log("Skipping room addition (skipAddIfNotExists)", data?._id);
+        logger.debug("socket.skipRoomAdd", { roomId: data?._id, reason: "skipAddIfNotExists" });
         return;
       }
       
       // ✅ أيضاً، إذا لم يكن هناك members، لا نضيف room جديداً (للمشاهدين)
       const hasMembers = data?.members && Array.isArray(data.members) && data.members.length > 0;
       if (!hasMembers) {
-        console.log("Skipping room addition (no members)", data?._id);
+        logger.debug("socket.skipRoomAdd", { roomId: data?._id, reason: "noMembers" });
         return;
       }
       
-      console.log("unShiftRoomSSS", data);
+      logger.debug("socket.unshiftRoom", { roomId: data?._id });
       dispatch(
         unShiftRoom({
           ...data,
@@ -1230,7 +1298,7 @@ export const SocketContextProvider = ({ children }) => {
   };
 
   const removeRoom = (data) => {
-    console.log("removeRoom", data);
+    logger.debug("socket.removeRoom", { roomId: data?.room });
     dispatch(deleteRoom(data.room));
     currentSocket.emit("leaveRoom", { room: data.room });
     setTimeout(() => {
@@ -1255,7 +1323,7 @@ export const SocketContextProvider = ({ children }) => {
   }, [currentSocket, currentRoom, rooms, applyIncomingToRedux]);
 
   const fetchUpdatedRoom = (data) => {
-    console.log("fetchUpdatedRoom", data);
+    logger.debug("socket.fetchUpdatedRoom", { roomId: data?.room });
     currentSocket.emit("getOneRoom", { room: data.room, update: true });
   };
 
@@ -1353,23 +1421,16 @@ export const SocketContextProvider = ({ children }) => {
       // ✅ Listen for chat settings updates (always active, not just when modal is open)
       // This handler updates Room.chatSettings when settings are changed
       const handleChatSettingsUpdated = ({ roomId, chatSettings, updatedBy }) => {
-        console.log("📥 [SocketContext] Received chatSettingsUpdated event:", {
+        logger.debug("socket.chatSettingsUpdated", {
           roomId,
-          chatSettings,
           updatedBy,
-          currentUserId: user?._id,
-          timestamp: new Date().toISOString(),
         });
 
         // Find the room and update its chatSettings
         const targetRoom = rooms.find(r => r._id?.toString() === roomId?.toString() || r._id === roomId);
         
         if (targetRoom) {
-          console.log("✅ [SocketContext] Updating room chatSettings:", {
-            roomId,
-            oldSettings: targetRoom.chatSettings,
-            newSettings: chatSettings,
-          });
+          logger.debug("socket.chatSettingsApplied", { roomId });
           
           // Update the room with the new chatSettings
           dispatch(updateRoomAction({
@@ -1377,7 +1438,7 @@ export const SocketContextProvider = ({ children }) => {
                   chatSettings,
           }));
         } else {
-          console.log("⚠️ [SocketContext] Room not found for chatSettings update:", roomId);
+          logger.warn("socket.chatSettingsRoomMissing", { roomId });
         }
       };
 
@@ -1677,13 +1738,14 @@ export const SocketContextProvider = ({ children }) => {
       return { type: "queued", uuId: targetuuId };
     }
 
-    console.log("📤 [Socket] Sending message:", {
-      text: messagePayload.text?.substring?.(0, 30),
-      type,
-      room: targetRoom,
-      callId,
-      e2ee: !!messagePayload.e2ee,
-    });
+    if (__DEV__) {
+      logger.debug("socket.sendMessage", {
+        type,
+        room: targetRoom ? String(targetRoom) : null,
+        callId: callId ? String(callId) : null,
+        e2ee: Boolean(messagePayload?.e2ee),
+      });
+    }
 
     const ack = await emitWithAck("sendMessage", {
       message: messagePayload,

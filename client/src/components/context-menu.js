@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { View, TouchableOpacity, I18nManager, Text, ScrollView, Pressable, Dimensions } from 'react-native';
+import React, { useRef, useState, useCallback } from 'react';
+import { View, TouchableOpacity, I18nManager, Text, ScrollView, Pressable, Dimensions, Platform } from 'react-native';
 import Modal from './modal';
 import { useColorScheme } from '~/lib/useColorScheme';
 import FeIcon from 'react-native-vector-icons/Feather';
@@ -47,25 +47,48 @@ const ContextMenu = ({
     return { screenWidth, screenHeight };
   };
 
-  const open = () => {
-    if (disabled) return; // ✅ Don't open if disabled
-    if (!ref.current) return;
-    // measureInWindow works better on web/native
-    if (ref.current.measureInWindow) {
-      ref.current.measureInWindow((x, y, w, h) => {
-        setCoords({ x, y, w, h });
-        setVisible(true);
-        setActiveSubmenu(null); // Reset submenu when opening main menu
-        onOpen?.();
-      });
-    } else {
-      ref.current.measure((x, y, w, h, pageX, pageY) => {
-        setCoords({ x: pageX, y: pageY, w, h });
-        setVisible(true);
-        setActiveSubmenu(null); // Reset submenu when opening main menu
-        onOpen?.();
-      });
+  const showAtCoords = useCallback((x, y, w, h) => {
+    setCoords({ x, y, w, h });
+    setVisible(true);
+    setActiveSubmenu(null);
+    onOpen?.();
+  }, [onOpen]);
+
+  const measureTrigger = useCallback((done) => {
+    const node = ref.current;
+    if (!node) return;
+    if (Platform.OS === 'web') {
+      const dom = node;
+      if (typeof dom.getBoundingClientRect === 'function') {
+        const rect = dom.getBoundingClientRect();
+        done(rect.left, rect.top, rect.width, rect.height);
+        return;
+      }
     }
+    if (node.measureInWindow) {
+      node.measureInWindow(done);
+    } else if (node.measure) {
+      node.measure((x, y, w, h, pageX, pageY) => done(pageX, pageY, w, h));
+    }
+  }, []);
+
+  const open = () => {
+    if (disabled) return;
+    if (!ref.current) return;
+    measureTrigger((x, y, w, h) => {
+      const valid =
+        Number.isFinite(x) &&
+        Number.isFinite(y) &&
+        w > 0 &&
+        h > 0;
+      if (!valid && Platform.OS === 'web') {
+        requestAnimationFrame(() => {
+          measureTrigger((x2, y2, w2, h2) => showAtCoords(x2, y2, w2, h2));
+        });
+        return;
+      }
+      showAtCoords(x, y, w, h);
+    });
   };
 
   React.useEffect(() => {
@@ -190,9 +213,11 @@ const ContextMenu = ({
 
   return (
     <View>
-      <Pressable 
+      <Pressable
         ref={ref}
         onPress={open}
+        collapsable={false}
+        accessibilityRole="button"
       >
         {children}
       </Pressable>

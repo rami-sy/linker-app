@@ -100,7 +100,7 @@ const CallSettingsScreen = () => {
       onBack={() => router.push("/user")}
       pb="pb-4"
       h="h-auto"
-      className="items-stretch flex-1 relative w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+      className="items-stretch flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       navBar={
         <View className="flex-row flex-1 items-center justify-end w-full gap-x-3">
           <ContextMenu options={menuOptions} placement="bottom" width={260} menuClassName="rounded-2xl shadow-lg">

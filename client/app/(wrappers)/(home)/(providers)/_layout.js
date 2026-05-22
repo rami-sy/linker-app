@@ -16,16 +16,18 @@ export const unstable_settings = {
 
 const ProvidersLayout = () => {
   const dispatch = useDispatch();
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const [appState, setAppState] = useState(AppState.currentState);
 
   const getSenderReactions = async () => {
     try {
-      const res = await socket.emitWithAck("getSenderReactions", {
+      const res = await emitWithAck("getSenderReactions", {
         targetModel: "User",
       });
 
-      dispatch(setSenderReactions(res.data));
+      if (res?.type === "success" && res?.data) {
+        dispatch(setSenderReactions(res.data));
+      }
     } catch (error) {
       console.log({ error });
     }
@@ -46,7 +48,7 @@ const ProvidersLayout = () => {
         console.log("📌 التطبيق تم تصغيره إلى الخلفية!");
         const deviceId = await fetchDeviceId();
 
-        socket.emit(
+        socket?.emit?.(
           "userChangeStatus",
           {
             status: "offline",
@@ -62,7 +64,7 @@ const ProvidersLayout = () => {
       if (nextAppState === "active") {
         console.log("✅ التطبيق عاد إلى الواجهة!");
 
-        socket.emit(
+        socket?.emit?.(
           "userChangeStatus",
           {
             status: "online",

@@ -2565,7 +2565,7 @@ const MediasoupCall = ({
         <View
           className={`flex-1 justify-center items-center ${
             isDarkColorScheme ? "bg-main" : "bg-[#f6f8f9]"
-          } w-full md:max-w-4xl md:mx-auto lg:max-w-5xl`}
+          } w-full linker-w`}
         >
           {connectingDelayed && (
             <View className="absolute top-3 right-3 bg-black/60 rounded-2xl px-2.5 py-1.5 flex-row items-center gap-x-1.5">
@@ -2585,7 +2585,7 @@ const MediasoupCall = ({
     const showDuration = !!callStartedAt;
 
     return (
-      <View className="w-full md:w-1/2 lg:w-1/2 self-center px-3 pt-2 pb-1">
+      <View className="w-full linker-w self-center px-3 pt-2 pb-1">
         <View
           className="w-full rounded-2xl px-3 py-2 shadow-lg"
           style={{
@@ -2704,7 +2704,7 @@ const MediasoupCall = ({
       style={{ flex: 1, zIndex: 1600, elevation: 1600 }}
     >
       <View
-        className={`flex-1 flex justify-center items-center w-full md:max-w-4xl md:mx-auto lg:max-w-5xl relative ${
+        className={`flex-1 flex justify-center items-center w-full linker-w relative ${
           isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"
         }`}
       >
@@ -4665,7 +4665,7 @@ const MediasoupCall = ({
 
           return (
         <Animated.View
-          className="w-full md:max-w-4xl md:mx-auto lg:max-w-5xl"
+          className="w-full linker-w"
           style={[
             {
               transform: [
@@ -5586,7 +5586,7 @@ const MediasoupCall = ({
           animationType="slide"
         >
           <View
-            className={`w-11/12 md:w-1/2 lg:w-1/2 rounded-2xl pt-4 px-4 pb-4 ${
+            className={`w-11/12 linker-w rounded-2xl pt-4 px-4 pb-4 ${
               isDarkColorScheme ? "bg-main" : "bg-[#dee4e6]"
             }`}
             style={

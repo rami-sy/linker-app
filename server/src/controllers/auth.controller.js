@@ -1,6 +1,7 @@
 const config = require("../config/auth.config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 const User = require("../models/user.model");
 const twilio = require("twilio");
 const nodemailer = require("nodemailer");
@@ -19,32 +20,59 @@ const client = new OAuth2Client(
 
 // Email transporter configuration using environment variables
 // ⚠️ SECURITY: All credentials must be provided via environment variables
-if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-  logger.error("SMTP credentials are missing. Please set SMTP_USER and SMTP_PASS in environment variables.");
+const smtpConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
+if (!smtpConfigured) {
+  logger.error(
+    "SMTP credentials are missing. Please set SMTP_USER and SMTP_PASS in environment variables."
+  );
 }
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: parseInt(process.env.SMTP_PORT) || 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS, // Must be provided via environment variable
-  },
-  // Add connection timeout and retry options
-  connectionTimeout: 10000, // 10 seconds
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-  // Retry configuration
-  pool: true,
-  maxConnections: 1,
-  maxMessages: 3,
-});
+const transporter = smtpConfigured
+  ? nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: parseInt(process.env.SMTP_PORT) || 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS, // Must be provided via environment variable
+      },
+      // Add connection timeout and retry options
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
+      // Retry configuration
+      pool: true,
+      maxConnections: 1,
+      maxMessages: 3,
+    })
+  : null;
+
+const DEV_MAGIC_OTP = process.env.DEV_MAGIC_OTP || "123456";
+const isNonProd = process.env.NODE_ENV !== "production";
+const exposeDevOtp = process.env.NODE_ENV === "development";
 
 const sendEmail = async (
-  { responseMessage, from, to, subject, text, html },
+  { responseMessage, from, to, subject, text, html, devCode },
   res
 ) => {
+  if (!transporter) {
+    logger.warn("SMTP not configured; skipping email send", { to, subject });
+    if (!isNonProd) {
+      return res.status(500).json({
+        message:
+          "Email service is not configured. Please set SMTP_USER and SMTP_PASS.",
+        type: "error",
+      });
+    }
+    return res.status(200).json({
+      message: responseMessage || "Email skipped (SMTP not configured).",
+      type: "success",
+      ...(exposeDevOtp && devCode
+        ? { data: { devCode, note: "Dev mode: use this code to verify." } }
+        : {}),
+    });
+  }
+
   const mailOptions = {
     from: from,
     to: to,
@@ -53,45 +81,43 @@ const sendEmail = async (
     html: html,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    try {
-      if (error) {
-        logger.error("Error sending email", error);
-        
-        // Check for specific Gmail authentication errors
-        if (error.code === 'EAUTH' || error.responseCode === 534) {
-          logger.error("Gmail authentication error - Please check your App Password settings", {
-            message: error.message,
-            response: error.response,
-          });
-          res.status(500).json({
-            message: "Email service authentication failed. Please check email configuration.",
-            type: "error",
-            error: process.env.NODE_ENV === 'development' ? error.message : undefined,
-          });
-        } else {
-          res.status(500).json({
-            message: "Internal server error",
-            type: "error",
-            error: process.env.NODE_ENV === 'development' ? error.message : undefined,
-          });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    logger.debug("Email sent successfully", {
+      to,
+      subject,
+      messageId: info?.messageId,
+    });
+    return res.status(200).json({
+      message: responseMessage,
+      type: "success",
+    });
+  } catch (error) {
+    logger.error("Error sending email", error);
+
+    // Check for specific Gmail authentication errors
+    if (error?.code === "EAUTH" || error?.responseCode === 534) {
+      logger.error(
+        "Gmail authentication error - Please check your App Password settings",
+        {
+          message: error?.message,
+          response: error?.response,
         }
-      } else {
-        logger.debug("Email sent successfully", { to, subject, messageId: info.messageId });
-        res.status(200).json({
-          message: responseMessage,
-          type: "success",
-        });
-      }
-    } catch (error) {
-      logger.error("Error sending email", error);
-      res.status(500).json({
-        message: "Internal server error",
+      );
+      return res.status(500).json({
+        message:
+          "Email service authentication failed. Please check email configuration.",
         type: "error",
-        error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+        error: process.env.NODE_ENV === "development" ? error?.message : undefined,
       });
     }
-  });
+
+    return res.status(500).json({
+      message: "Internal server error",
+      type: "error",
+      error: process.env.NODE_ENV === "development" ? error?.message : undefined,
+    });
+  }
 };
 // Vonage configuration with environment variables
 // ⚠️ SECURITY: All API keys must be provided via environment variables
@@ -111,8 +137,19 @@ const vonage = process.env.VONAGE_API_KEY && process.env.VONAGE_API_SECRET
 async function sendVerificationCode(phoneNumber, verifyCode) {
   try {
     if (!vonage) {
-      logger.error("Cannot send SMS: VONAGE API credentials are not configured", { phoneNumber });
-      throw new Error("SMS service is not configured. Please set VONAGE_API_KEY and VONAGE_API_SECRET in environment variables.");
+      if (isNonProd) {
+        logger.warn("DEV: SMS skipped (VONAGE not configured)", {
+          phoneNumber,
+          devCode: String(verifyCode),
+        });
+        return;
+      }
+      logger.error("Cannot send SMS: VONAGE API credentials are not configured", {
+        phoneNumber,
+      });
+      throw new Error(
+        "SMS service is not configured. Please set VONAGE_API_KEY and VONAGE_API_SECRET in environment variables."
+      );
     }
 
     // const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -145,16 +182,19 @@ async function sendVerificationCode(phoneNumber, verifyCode) {
 }
 
 const generateAuthToken = (user) => {
-  // here just add the user id, user email, user name, user image
-  let payload = {
-    _id: user._id,
-  };
+  const payload = { _id: user._id };
+  return jwt.sign(payload, config.secret, { expiresIn: config.expiresIn });
+};
 
-  const options = {
-    expiresIn: "30d",
-  };
-
-  return jwt.sign(payload, config.secret, options);
+const generateRefreshToken = (user) => {
+  const payload = { _id: user._id };
+  const token = jwt.sign(payload, config.refreshSecret, {
+    expiresIn: config.refreshExpiresIn,
+  });
+  const hash = crypto.createHash("sha256").update(token).digest("hex");
+  const decoded = jwt.decode(token);
+  const expiresAt = new Date(decoded.exp * 1000);
+  return { token, hash, expiresAt };
 };
 
 exports.signup = async (req, res) => {
@@ -191,24 +231,41 @@ exports.signup = async (req, res) => {
 
     await user.save();
 
-    const emailDetails = {
-      responseMessage: "User registered successfully, please verify your email",
-      from: {
-        name: "Linker",
-        address: "rami@linker.land",
-      },
-      to: [email],
-      subject: "Email Verification Code",
-      text: `Your verification code is ${newVerifyCode}. Do not share it with anyone.`,
-      html: `<div style="font-family: Arial, sans-serif; color: #d6d3d1; background-color: #1c202a; padding: 20px; border-radius: 8px;">
-      <div style="border-bottom: 1px solid #2e3440; padding-bottom: 10px; margin-bottom: 20px;">
-      <h1 style="color:#d6d3d1">Email Verification</h1>
-      </div>
-      <p style="font-size: 16px; color:#d6d3d1">Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
-      </div>`,
-    };
+    // Signup should succeed even if email is not configured or delivery fails.
+    // The client redirects to login on success; sign-in does not currently require email verification.
+    let emailSent = false;
+    const devData = exposeDevOtp ? { devCode: newVerifyCode } : null;
+    if (transporter) {
+      try {
+        await transporter.sendMail({
+          from: { name: "Linker", address: "rami@linker.land" },
+          to: [email],
+          subject: "Email Verification Code",
+          text: `Your verification code is ${newVerifyCode}. Do not share it with anyone.`,
+          html: `<div style="font-family: Arial, sans-serif; color: #d6d3d1; background-color: #1c202a; padding: 20px; border-radius: 8px;">
+            <div style="border-bottom: 1px solid #2e3440; padding-bottom: 10px; margin-bottom: 20px;">
+              <h1 style="color:#d6d3d1">Email Verification</h1>
+            </div>
+            <p style="font-size: 16px; color:#d6d3d1">Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
+          </div>`,
+        });
+        emailSent = true;
+      } catch (error) {
+        logger.error("Signup verification email failed to send", error);
+      }
+    } else {
+      logger.warn("SMTP is not configured; skipping signup verification email", {
+        email,
+      });
+    }
 
-    await sendEmail(emailDetails, res);
+    return res.status(200).json({
+      message: emailSent
+        ? "User registered successfully, please verify your email"
+        : "User registered successfully",
+      type: "success",
+      data: { emailSent, ...(devData || {}) },
+    });
   } catch (err) {
     logger.error("Error in auth controller", err);
     res.status(500).send({ message: err.message, type: "error" });
@@ -255,6 +312,7 @@ exports.resendEmailVerificationCode = async (req, res) => {
       </div>
       <p style="font-size: 16px; color:#d6d3d1">Your new verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
       </div>`,
+      devCode: newVerifyCode,
     };
 
     // Send the new verification code via email
@@ -345,20 +403,26 @@ exports.signin = async (req, res) => {
       delete filteredUser.friends;
       delete filteredUser.privacy;
 
-      const token = generateAuthToken(filteredUser);
+      const accessToken = generateAuthToken(filteredUser);
+      const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+        generateRefreshToken(filteredUser);
 
-      const device = await Device.findOne({ user: user._id, deviceId });
-      if (device) {
-        device.forceLogout = false;
-        device.lastLogin = Date.now();
-        await device.save();
-      }
+      await Device.findOneAndUpdate(
+        { user: user._id, deviceId },
+        {
+          forceLogout: false,
+          lastLogin: new Date(),
+          refreshTokenHash: refreshHash,
+          refreshTokenExpiresAt: refreshExpiry,
+        },
+        { upsert: true, new: true }
+      );
 
       res.status(200).send({
         message: "User was logged in successfully!",
-
         data: {
-          token: token,
+          accessToken,
+          refreshToken,
         },
         type: "success",
       });
@@ -472,20 +536,16 @@ exports.verifyPhone = async (req, res) => {
       return res.status(400).json({ message: "User not found", type: "error" });
     }
 
-    if (
-      user.phoneVerification.code !== normalizedVerificationCode &&
-      process.env.NODE_ENV !== "development"
-    ) {
+    const bypass =
+      isNonProd && String(normalizedVerificationCode) === DEV_MAGIC_OTP;
+    if (user.phoneVerification.code !== normalizedVerificationCode && !bypass) {
       return res.status(400).json({
         message: "Invalid verification code",
         type: "error",
       });
     }
 
-    if (
-      user.phoneVerification.expires < Date.now() &&
-      process.env.NODE_ENV !== "development"
-    ) {
+    if (user.phoneVerification.expires < Date.now() && !bypass) {
       return res.status(400).json({
         message: "Verification code has expired",
         type: "error",
@@ -504,14 +564,20 @@ exports.verifyPhone = async (req, res) => {
     delete filteredUser.phoneVerification;
     delete filteredUser.emailVerification;
 
-    const token = generateAuthToken(filteredUser);
+    const accessToken = generateAuthToken(filteredUser);
+    const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+      generateRefreshToken(filteredUser);
 
-    const device = await Device.findOne({ user: user._id, deviceId });
-    if (device) {
-      device.forceLogout = false;
-      device.lastLogin = Date.now();
-      await device.save();
-    }
+    await Device.findOneAndUpdate(
+      { user: user._id, deviceId },
+      {
+        forceLogout: false,
+        lastLogin: new Date(),
+        refreshTokenHash: refreshHash,
+        refreshTokenExpiresAt: refreshExpiry,
+      },
+      { upsert: true, new: true }
+    );
 
     // Updating the verification status directly within the findOneAndUpdate for atomicity
     await User.findOneAndUpdate(
@@ -522,7 +588,8 @@ exports.verifyPhone = async (req, res) => {
     return res.status(200).json({
       message: "Phone number verified successfully",
       data: {
-        token: token,
+        accessToken,
+        refreshToken,
       },
       type: "success",
     });
@@ -564,13 +631,14 @@ exports.verifyEmail = async (req, res) => {
         .json({ message: "Email already verified", type: "success" });
     }
 
-    if (code !== verificationCode && process.env.NODE_ENV !== "development") {
+    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
+    if (code !== verificationCode && !bypass) {
       return res
         .status(400)
         .json({ message: "Invalid verification code", type: "error" });
     }
 
-    if (expires < Date.now() && process.env.NODE_ENV !== "development") {
+    if (expires < Date.now() && !bypass) {
       return res
         .status(400)
         .json({ message: "Verification code has expired", type: "error" });
@@ -948,7 +1016,7 @@ exports.changePassword = async (req, res) => {
     } else {
       const auth =
         (await bcrypt.compare(oldPassword, user.password)) ||
-        process.env.NODE_ENV === "development";
+        (isNonProd && String(oldPassword) === DEV_MAGIC_OTP);
       if (auth) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(newPassword, salt);
@@ -1001,6 +1069,7 @@ exports.forgotPassword = async (req, res) => {
       subject: "Forgot Password Verification Code",
       text: `Your verification code is ${newVerifyCode}. Do not share it with anyone.`,
       html: `<div><h1>Forgot Password</h1><p>Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p></div>`,
+      devCode: newVerifyCode,
     };
 
     await sendEmail(emailDetails, res);
@@ -1038,13 +1107,14 @@ exports.resetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found", type: "error" });
     }
 
+    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
     // Check verification code validity and expiration
-    if (user.resetPassword.code !== verificationCode) {
+    if (user.resetPassword.code !== verificationCode && !bypass) {
       return res
         .status(400)
         .json({ message: "Invalid verification code", type: "error" });
     }
-    if (user.resetPassword.expires < Date.now()) {
+    if (user.resetPassword.expires < Date.now() && !bypass) {
       return res
         .status(400)
         .json({ message: "Verification code has expired", type: "error" });
@@ -1173,12 +1243,15 @@ exports.sendDeleteVerificationCode = async (req, res) => {
       await user.save();
 
       const emailDetails = {
+        responseMessage: "Verification code sent successfully",
         from: "no-reply@linker.com",
-        to: user.email,
+        to: [user.email],
         subject: "Account Deletion Verification Code",
         text: `Your verification code is ${verifyCode}`,
+        devCode: verifyCode,
       };
-      sendEmail(emailDetails, res);
+      await sendEmail(emailDetails, res);
+      return;
     } else {
       user = await User.findOne({ phoneNumber: contact });
       if (!user)
@@ -1284,20 +1357,26 @@ exports.googleSignIn = async (req, res) => {
       await user.save();
     }
 
-    // إنشاء التوكن JWT للمستخدم
-    const jwtToken = generateAuthToken(user);
+    const accessToken = generateAuthToken(user);
+    const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+      generateRefreshToken(user);
 
-    const device = await Device.findOne({ user: user._id, deviceId });
-    if (device) {
-      device.forceLogout = false;
-      device.lastLogin = Date.now();
-      await device.save();
-    }
+    await Device.findOneAndUpdate(
+      { user: user._id, deviceId },
+      {
+        forceLogout: false,
+        lastLogin: new Date(),
+        refreshTokenHash: refreshHash,
+        refreshTokenExpiresAt: refreshExpiry,
+      },
+      { upsert: true, new: true }
+    );
 
     res.status(200).json({
       message: "User signed in successfully",
       data: {
-        token: jwtToken,
+        accessToken,
+        refreshToken,
       },
       type: "success",
     });
@@ -1307,5 +1386,85 @@ exports.googleSignIn = async (req, res) => {
       message: "Invalid Google token",
       type: "error",
     });
+  }
+};
+
+exports.refreshToken = async (req, res) => {
+  const { refreshToken, deviceId } = req.body;
+
+  if (!refreshToken || !deviceId) {
+    return res.status(400).json({
+      message: "refreshToken and deviceId are required",
+      type: "error",
+    });
+  }
+
+  try {
+    let decoded;
+    try {
+      decoded = jwt.verify(refreshToken, config.refreshSecret);
+    } catch (err) {
+      return res.status(401).json({
+        message: "Invalid or expired refresh token",
+        type: "error",
+      });
+    }
+
+    const user = await User.findById(decoded._id);
+    if (!user) {
+      return res.status(401).json({ message: "User not found", type: "error" });
+    }
+
+    const incomingHash = crypto
+      .createHash("sha256")
+      .update(refreshToken)
+      .digest("hex");
+
+    const device = await Device.findOne({ user: decoded._id, deviceId });
+
+    if (!device || device.refreshTokenHash !== incomingHash) {
+      return res.status(401).json({
+        message: "Refresh token is invalid or has already been used",
+        type: "error",
+      });
+    }
+
+    if (device.refreshTokenExpiresAt && device.refreshTokenExpiresAt < new Date()) {
+      return res.status(401).json({
+        message: "Refresh token has expired",
+        type: "error",
+      });
+    }
+
+    if (device.forceLogout) {
+      return res.status(401).json({
+        message: "Session revoked",
+        type: "error",
+      });
+    }
+
+    const newAccessToken = generateAuthToken(user);
+    const {
+      token: newRefreshToken,
+      hash: newHash,
+      expiresAt: newExpiry,
+    } = generateRefreshToken(user);
+
+    device.refreshTokenHash = newHash;
+    device.refreshTokenExpiresAt = newExpiry;
+    device.lastLogin = new Date();
+    await device.save();
+
+    return res.status(200).json({
+      message: "Tokens refreshed successfully",
+      data: {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+      },
+      type: "success",
+    });
+  } catch (err) {
+    logger.error("Error in refreshToken endpoint", err);
+    res.status(500).json({ message: err.message, type: "error" });
   }
 };

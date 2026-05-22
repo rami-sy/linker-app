@@ -79,7 +79,7 @@ const DevicesScreen = () => {
       back
       onBack={() => router.push("/user")}
       pb="pb-4"
-      className="items-stretch flex-1 relative w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+      className="items-stretch flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       navBar={
         <View className="flex-row flex-1 items-center justify-end w-full gap-x-3">
           <ContextMenu
@@ -206,9 +206,9 @@ const DevicesScreen = () => {
                     dispatch(removeDevice(device._id));
 
                     if (device.deviceId === deviceId) {
-                      socket.emit("userDisconnected", {}, () => {
-                        socket.disconnect();
-                      });
+                    socket?.emit?.("userDisconnected", {}, () => {
+                      socket?.disconnect?.();
+                    });
                       router.push({
                         pathname: "/welcome",
                         params: {

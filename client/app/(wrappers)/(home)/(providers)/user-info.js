@@ -519,7 +519,7 @@ const UserInfo = () => {
       </Popup>
       <Layout
         pb="pb-0"
-        className="flex-1 w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="flex-1 w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
         navBar={
           <View
             className={`flex-row items-center justify-between w-full gap-x-3`}
@@ -563,7 +563,8 @@ const UserInfo = () => {
           onClick={async () => {
             try {
               dispatch(removeMe());
-              await removeItem("token");
+              await removeItem("accessToken");
+              await removeItem("refreshToken");
               await removeItem("persist:root");
               console.log("✅ User logged out from user-info");
 

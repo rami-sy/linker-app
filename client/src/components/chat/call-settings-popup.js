@@ -21,6 +21,7 @@ import useSelectedRoom from "../../hooks/use-selected-room";
 import getFullName from "../../utils/getFullName";
 import UserImage from "../user-image";
 import { isRoomOwner } from "../../utils/permissions";
+import logger from "../../utils/logger";
 
 /**
  * Call Settings Popup - For configuring DEFAULT call settings
@@ -141,10 +142,9 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
             });
 
             setCallSettingsData(convertedSettings);
-            console.log(
-              "📥 [CallSettings] Loaded from active call:",
-              convertedSettings
-            );
+            logger.debug("callSettings.loadedFromActiveCall", {
+              callId: effectiveCallId,
+            });
           }
         });
       }
@@ -251,7 +251,10 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
   const emitCallSettingsUpdate = useCallback(
     (updatedSettings) => {
       if (!currentUser || !currentSocket) {
-        console.warn("Cannot update call settings: missing required data");
+        logger.warn("callSettings.updateSkipped", {
+          reason: "missing_required_data",
+          roomId: room?._id ? String(room._id) : null,
+        });
         return;
       }
 
@@ -291,7 +294,7 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
           });
         }
       } catch (error) {
-        console.error("Error emitting call settings update:", error);
+        logger.error("callSettings.emitFailed", error);
         setCallSettingsData(callSettingsData);
         dispatch(
           setMe({
@@ -321,12 +324,19 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
   // Update default call settings
   const updateCallSettings = useCallback((setting, value, allowedUsers = null) => {
     if (!canModify) {
-      console.warn("Cannot update call settings: user is not authorized");
+      logger.warn("callSettings.updateSkipped", {
+        reason: "unauthorized",
+        roomId: room?._id ? String(room._id) : null,
+        userId: currentUser?._id ? String(currentUser._id) : null,
+      });
       return;
     }
 
     if (!currentUser || !currentSocket) {
-      console.warn("Cannot update call settings: missing required data");
+      logger.warn("callSettings.updateSkipped", {
+        reason: "missing_required_data",
+        roomId: room?._id ? String(room._id) : null,
+      });
       return;
     }
 
@@ -424,11 +434,9 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
     const handleCallSettingsUpdated = ({ callId: updatedCallId, callSettings, updatedBy }) => {
       const normalizedIncomingCallId = String(updatedCallId ?? "");
       const normalizedCurrentCallId = String(callId || roomActiveCallId || "");
-      console.log("📥 [CallSettings] Received callSettingsUpdated event:", {
+      logger.debug("callSettings.updated", {
         callId: updatedCallId,
-        callSettings,
         updatedBy,
-        currentCallId: callId,
       });
 
       // Update local state if it's for the current call
@@ -700,7 +708,7 @@ const CallSettingsPopup = ({ showModal, setShowModal }) => {
       animationType="slide"
     >
       <View
-        className={`w-11/12 md:w-1/2 lg:w-1/2 rounded-2xl pt-4 px-4 pb-4 ${
+        className={`w-11/12 linker-w rounded-2xl pt-4 px-4 pb-4 ${
           isDarkColorScheme ? "bg-main" : "bg-[#dee4e6]"
         }`}
         style={

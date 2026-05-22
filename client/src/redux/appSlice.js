@@ -7,6 +7,7 @@ export const appSlice = createSlice({
     theme: null, // Will be synced with NativeWind colorScheme
     devices: [],
     isAuthenticated: false,
+    sessionExpired: false,
   },
   reducers: {
     setPrevScreen: (state, action) => {
@@ -33,6 +34,12 @@ export const appSlice = createSlice({
     setIsAuthenticated: (state, action) => {
       state.isAuthenticated = action.payload;
     },
+    setSessionExpired: (state) => {
+      state.sessionExpired = true;
+    },
+    clearSessionExpired: (state) => {
+      state.sessionExpired = false;
+    },
   },
 });
 
@@ -43,6 +50,8 @@ export const {
   setDevices,
   removeDevice,
   setIsAuthenticated,
+  setSessionExpired,
+  clearSessionExpired,
 } = appSlice.actions;
 
 export const selectApp = (state) => state.app;

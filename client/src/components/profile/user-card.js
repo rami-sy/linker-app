@@ -43,7 +43,7 @@ import { EXPLORE_PROFILE_POPUP_CONTEXTS } from "../../hooks/useExploreSayHi";
 
 const UserCard = ({
   onImagePress,
-  w = "w-full md:w-1/2 lg:w-1/2",
+  w = "w-full linker-w",
   onCancel,
   backIconName = null,
   viewProfile = false,
@@ -63,7 +63,7 @@ const UserCard = ({
   const { userProfile, user, senderReactions } = useSelector(
     (state) => state.users
   );
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const { rooms, roomId } = useSelector((state) => state.chats);
   const { t } = useTranslation();
   const { from } = useLocalSearchParams();
@@ -74,6 +74,7 @@ const UserCard = ({
   const [lockModal, setLockModal] = useState(null);
   const [password, setPassword] = useState("");
   const handleMsg = async (item) => {
+    if (!socket) return;
     await dispatch(clearRoom());
 
     socket.emit(
@@ -109,7 +110,7 @@ const UserCard = ({
 
   const handleReaction = async (item, reaction = "like") => {
     try {
-      const res = await socket.emitWithAck("reactToUser", {
+      const res = await emitWithAck("reactToUser", {
         target: item?._id,
         reaction: reaction,
         targetModel: "User",

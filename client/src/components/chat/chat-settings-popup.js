@@ -28,6 +28,7 @@ import getFullName from "../../utils/getFullName";
 import UserImage from "../user-image";
 import { isRoomAdmin, canModifyRoomChatSettings, isRoomOwner } from "../../utils/permissions";
 import { enableE2eeForRoom } from "../../crypto/e2eeRoom";
+import logger from "../../utils/logger";
 import {
   registerDeviceKeysOnServer,
   loadOrCreateDeviceKeys,
@@ -190,16 +191,18 @@ const ChatSettingsPopup = ({ showModal, setShowModal }) => {
     
     // Update via Socket.IO only
     if (!currentSocket || !room?._id) {
-      console.warn("⚠️ [ChatSettings] Cannot update: missing socket or room");
+      logger.warn("chatSettings.updateSkipped", {
+        reason: "missing_socket_or_room",
+        roomId: room?._id ? String(room._id) : null,
+      });
       return;
     }
     
     try {
-      console.log("📤 [ChatSettings] Emitting updateChatSettings via Socket.IO:", {
-        roomId: room._id,
-        userId: currentUser._id,
+      logger.chatEvent("chatSettings.emitUpdate", {
+        roomId: String(room._id),
+        userId: String(currentUser._id),
         setting,
-        updatedSettings,
       });
       
       // ✅ Now updates Room.chatSettings
@@ -209,7 +212,7 @@ const ChatSettingsPopup = ({ showModal, setShowModal }) => {
         userId: currentUser._id,
       });
     } catch (error) {
-      console.error("❌ [ChatSettings] Error emitting updateChatSettings:", error);
+      logger.error("chatSettings.emitFailed", error);
       setChatSettingsData(chatSettingsData);
     }
   }, [chatSettingsData, currentUser, currentSocket, room, canModify]);
@@ -219,11 +222,10 @@ const ChatSettingsPopup = ({ showModal, setShowModal }) => {
     if (!currentSocket || !room?._id) return;
 
     const handleChatSettingsUpdated = ({ roomId, chatSettings, updatedBy }) => {
-      console.log("📥 [ChatSettings] Received chatSettingsUpdated event:", {
-        roomId,
-        chatSettings,
-        updatedBy,
-        currentRoomId: room?._id,
+      logger.chatEvent("chatSettings.updated", {
+        roomId: roomId ? String(roomId) : null,
+        updatedBy: updatedBy ? String(updatedBy) : null,
+        currentRoomId: room?._id ? String(room._id) : null,
       });
 
       // Update local state if it's for the current room
@@ -455,7 +457,7 @@ const ChatSettingsPopup = ({ showModal, setShowModal }) => {
       animationType="slide"
     >
       <View
-        className={`w-11/12 md:w-1/2 lg:w-1/2 rounded-2xl pt-4 px-4 pb-4 ${
+        className={`w-11/12 linker-w rounded-2xl pt-4 px-4 pb-4 ${
           isDarkColorScheme ? "bg-main" : "bg-[#dee4e6]"
         }`}
         style={

@@ -360,7 +360,7 @@ export default function RecordingsScreen() {
   if (loading && recordings.length === 0) {
     return (
       <Layout
-        className={`flex-1 w-full md:w-1/2 lg:w-1/2 ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
+        className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
       >
         <View className="flex-1 items-center justify-center">
           <ActivityIndicator size="large" color={isDarkColorScheme ? '#3b82f6' : '#2563eb'} />
@@ -376,7 +376,7 @@ export default function RecordingsScreen() {
 
   return (
     <Layout
-      className={`flex-1 w-full md:w-1/2 lg:w-1/2 ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
+      className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
       navBar={
         <View className="flex-row items-center justify-between w-full px-4">
           <View className="flex-1">

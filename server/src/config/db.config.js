@@ -1,12 +1,5 @@
 const mongoose = require("mongoose");
-const seedInterests = require("../seed/seedInterests");
-const seedLanguages = require("../seed/seedLanguage");
-const seedUsers = require("../seed/seedUsers");
-const seedImages = require("../seed/seeImages");
-const seedPosts = require("../seed/seedPosts");
 const User = require("../models/user.model");
-const Room = require("../models/room.model");
-const { faker } = require("@faker-js/faker");
 const UserProfile = require("../models/user-profile.model");
 console.log("Node Environment:", process.env.NODE_ENV);
 
@@ -22,7 +15,18 @@ const connectDB = async () => {
     .then(async () => {
       console.log("Successfully connect to MongoDB.");
       // await User.updateMany({}, { $unset: { privacy: "" } });
-      // seedUsers(1000);
+
+      // Seeding is dev-only and opt-in to avoid pulling dev dependencies in production.
+      // Usage:
+      //   NODE_ENV=development SEED_DB=true node app.js
+      if (process.env.NODE_ENV !== "production" && process.env.SEED_DB === "true") {
+        try {
+          const seedUsers = require("../seed/seedUsers");
+          await seedUsers(1000);
+        } catch (err) {
+          console.error("Seed failed:", err);
+        }
+      }
       async function migrateProfilesToUsers() {
         try {
           console.log("🔄 بدء عملية النقل...");

@@ -220,24 +220,18 @@ class SocketEventCoordinator {
       return Promise.reject(new Error('Socket emitWithAck not available'));
     }
 
-    return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        reject(new Error(`Event ${eventName} timeout`));
-      }, timeout);
+    const ackPromise = Promise.resolve().then(() =>
+      this.socket.emitWithAck(eventName, data)
+    );
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error(`Event ${eventName} timeout`)), timeout);
+    });
 
-      try {
-        this.socket.emitWithAck(eventName, data, (response) => {
-          clearTimeout(timer);
-          if (response && response.success !== false) {
-            resolve(response);
-          } else {
-            reject(new Error(response?.error || `Event ${eventName} failed`));
-          }
-        });
-      } catch (error) {
-        clearTimeout(timer);
-        reject(error);
+    return Promise.race([ackPromise, timeoutPromise]).then((response) => {
+      if (response && response.success !== false) {
+        return response;
       }
+      throw new Error(response?.error || `Event ${eventName} failed`);
     });
   }
 

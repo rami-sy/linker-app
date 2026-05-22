@@ -697,7 +697,7 @@ const ChatList = ({}) => {
         />
       )}
       <Layout
-        className="flex-1 w-full md:w-1/2 lg:w-1/2 bg-chatBgLight dark:bg-chatBgDark"
+        className="flex-1 w-full linker-w bg-chatBgLight dark:bg-chatBgDark"
         navBar={
           <>
             {selectedRooms.length ? (

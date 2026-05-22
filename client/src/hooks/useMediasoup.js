@@ -121,7 +121,14 @@ const ICE_SERVERS = parseIceServersFromExpoPublicEnv();
  * Hook رئيسي لإدارة MediaSoup
  */
 export const useMediasoup = () => {
-  const { socket } = useContext(SocketContext);
+  const { socket: socketFromContext } = useContext(SocketContext);
+  const socket =
+    socketFromContext || {
+      emit: () => {},
+      on: () => {},
+      off: () => {},
+      emitWithAck: async () => ({ type: "error", message: "Socket unavailable" }),
+    };
   const { user: currentUser } = useSelector((state) => state.users);
   const rooms = useSelector((state) => state.chats.rooms);
   const dispatch = useDispatch(); // ✅ Added for Call-Chat integration

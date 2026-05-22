@@ -1,3 +1,21 @@
+// Minimal ESLint flat config to ensure JSX parses in `.js` files.
+// This project currently uses ESLint primarily for syntax validation on a small set of files.
+export default [
+  {
+    files: ["**/*.{js,jsx}"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    rules: {},
+  },
+];
+
 module.exports = [
   {
     files: [

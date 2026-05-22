@@ -3,7 +3,7 @@ import { getItem } from "../utils/localStorage";
 import Axios from "../../axiosInstance";
 
 const getUsers = async () => {
-  const token = JSON.parse(await getItem("token"));
+  const token = JSON.parse(await getItem("accessToken"));
 
   try {
     const res = await axios({

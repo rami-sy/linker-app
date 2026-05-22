@@ -25,6 +25,33 @@ class OfflineQueue {
   }
 
   /**
+   * ✅ Remove invalid / expired operations (best-effort safety)
+   */
+  async pruneQueue({ ttlMs = 7 * 24 * 60 * 60 * 1000 } = {}) {
+    const before = this.queue.length;
+    const now = Date.now();
+    this.queue = (this.queue || []).filter((op) => {
+      if (!op || !op.id || !op.type) return false;
+      if (typeof op.timestamp === 'number' && now - op.timestamp > ttlMs) return false;
+      // Domain-specific validation (chat operations only for now).
+      if (op.type === 'sendMessage') {
+        const msg = op?.data?.message;
+        if (!msg) return false;
+        if (!msg.room) return false;
+        if (!msg.uuId && !msg._id) return false;
+      }
+      return true;
+    });
+    const after = this.queue.length;
+    if (after !== before) {
+      try {
+        await this.saveQueue();
+      } catch (_) {}
+      logger.info('Offline queue pruned', { before, after });
+    }
+  }
+
+  /**
    * ✅ Initialize offline queue
    */
   async initialize() {
@@ -119,6 +146,9 @@ class OfflineQueue {
     logger.info('Processing offline queue', { queueSize: this.queue.length });
 
     try {
+      // Drop obviously invalid/expired ops before attempting to sync.
+      await this.pruneQueue();
+
       const operationsToProcess = [...this.queue];
       const successfulOps = [];
       const failedOps = [];

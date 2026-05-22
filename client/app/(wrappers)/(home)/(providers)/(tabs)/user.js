@@ -65,7 +65,7 @@ const User = () => {
   const { user, userProfile } = useSelector((state) => state.users);
   const { prevScreens } = useSelector((state) => state.app);
   const [showImageModal, setShowImageModal] = useState(false);
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const [showDeleteAccount, setShowDeleteAccount] = useState(false);
   const [showDeActiveAccount, setShowDeActiveAccount] = useState(false);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
@@ -79,7 +79,7 @@ const User = () => {
   const dispatch = useDispatch();
   const loadUserProfile = async () => {
     if (user?._id && !userProfile?._id) {
-      const res = await socket.emitWithAck("getOneUser", {
+      const res = await emitWithAck("getOneUser", {
         targetUserId: user?._id,
       });
       dispatch(setUserProfile(res.data));
@@ -138,7 +138,7 @@ const User = () => {
         )}
       </SuspenseWrapper>
       <View
-        className="h-screen w-full flex-1 flex-col items-stretch overflow-y-auto p-4 pb-20 pt-6 md:w-1/2 lg:w-1/2"
+        className="h-screen w-full flex-1 flex-col items-stretch overflow-y-auto p-4 pb-20 pt-6 linker-w"
         style={{
           backgroundColor: isDarkColorScheme ? "#12141b" : "#dee4e6",
         }}
@@ -262,13 +262,13 @@ const User = () => {
               {...ICON_TONES.rose}
               onPress={async () => {
                 const deviceId = await fetchDeviceId();
-                socket.emit(
+                socket?.emit?.(
                   "userDisconnected",
                   {
                     deviceId: deviceId,
                   },
                   () => {
-                    socket.disconnect();
+                    socket?.disconnect?.();
                   }
                 );
                 router.push({

@@ -2,6 +2,7 @@ const passport = require("passport");
 const User = require("../models/user.model");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const jwt = require("jsonwebtoken");
+const config = require("./auth.config");
 
 passport.use(
   new GoogleStrategy(
@@ -31,7 +32,7 @@ passport.use(
 
         // Generate token
         const payload = { id: user.id, email: user.email };
-        const token = jwt.sign(payload, config.secret, { expiresIn: "24h" });
+        const token = jwt.sign(payload, config.secret, { expiresIn: config.expiresIn });
 
         done(null, user, token); // Pass the user and token to the done callback
       } catch (error) {

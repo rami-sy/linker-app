@@ -15,6 +15,9 @@ Redis-x64-5.0.14.1.msi
 OTS_VPN/
 OTS_VPN
 
+# Local backups (e.g., moving nested .git dirs here)
+.repo-backup/
+
 # Firebase / mobile config (secrets)
 **/google-services.json
 **/GoogleService-Info.plist

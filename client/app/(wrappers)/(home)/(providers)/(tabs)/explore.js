@@ -85,7 +85,7 @@ const Explore = () => {
     loading,
     changeFilter,
   } = useSelector((state) => state.explore);
-  const { socket } = useContext(SocketContext);
+  const { socket, emitWithAck } = useContext(SocketContext);
   const isRTL = I18nManager.isRTL; // || getLocales()[0].textDirection === "rtl";
 
   const [showFilter, setShowFilter] = useState(false);
@@ -102,7 +102,7 @@ const Explore = () => {
         dispatch(setLoading(true));
       }
       if (socket) {
-        const res = await socket.emitWithAck("searchUsers", {
+        const res = await emitWithAck("searchUsers", {
           searchQuery: {
             ...formData,
           },
@@ -113,7 +113,7 @@ const Explore = () => {
         console.log("res", res);
       }
     },
-    [user?._id, socket]
+    [user?._id, socket, emitWithAck]
   );
 
   const debouncedSearch = useMemo(
@@ -261,7 +261,7 @@ const Explore = () => {
   const handleReaction = async (item, reaction = "like") => {
     if (!socket) return;
     try {
-      const res = await socket.emitWithAck("reactToUser", {
+      const res = await emitWithAck("reactToUser", {
         target: item?._id,
         reaction: reaction,
         targetModel: "User",
@@ -618,7 +618,7 @@ const Explore = () => {
       </Popup>
 
       <View
-        className="flex-1 w-full md:w-1/2 lg:w-1/2 bg-[#dee4e6] dark:bg-[#12141b]"
+        className="flex-1 w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
       >
         <ExploreModeTabs
           isDarkColorScheme={isDarkColorScheme}

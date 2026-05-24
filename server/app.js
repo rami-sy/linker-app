@@ -174,6 +174,7 @@ app.use(helmet({
     },
   },
   crossOriginEmbedderPolicy: false, // Disable for MediaSoup compatibility
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }, // Allow Google OAuth popup postMessage
 }));
 
 connectDB();

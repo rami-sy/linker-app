@@ -49,7 +49,10 @@ const WebGoogleButton = ({ onToken, onError, isLoading, isDarkColorScheme }) => 
           <ActivityIndicator size="small" color={isDarkColorScheme ? "#2D2D37" : "#dee4e6"} />
         </View>
       ) : (
-        <Image source={typeof GoogleLogo === "string" ? { uri: GoogleLogo } : GoogleLogo} style={{ width: 40, height: 40 }} />
+        // Use native <img> on web to avoid RN Image rendering issues in production builds
+        Platform.OS === "web"
+          ? <img src={typeof GoogleLogo === "string" ? GoogleLogo : undefined} width={40} height={40} alt="Google" style={{ objectFit: "contain" }} />
+          : <Image source={GoogleLogo} style={{ width: 40, height: 40 }} />
       )}
     </TouchableOpacity>
   );

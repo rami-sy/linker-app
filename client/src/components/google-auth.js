@@ -17,10 +17,43 @@ import {
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import { useColorScheme } from "~/lib/useColorScheme";
 
 const WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
+
+const WebGoogleButton = ({ onToken, onError, isLoading, isDarkColorScheme }) => {
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => onToken(tokenResponse.id_token),
+    onError: () => onError?.("Google sign-in failed"),
+    scope: "openid email profile",
+  });
+
+  return (
+    <TouchableOpacity
+      disabled={isLoading}
+      onPress={() => login()}
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        marginVertical: 12,
+        padding: 8,
+        borderRadius: 999,
+        marginBottom: 24,
+        backgroundColor: isDarkColorScheme ? "#dee4e6" : "#2D2D37",
+        opacity: isLoading ? 0.6 : 1,
+      }}
+    >
+      {isLoading ? (
+        <View style={{ width: 40, height: 40, alignItems: "center", justifyContent: "center" }}>
+          <ActivityIndicator size="small" color={isDarkColorScheme ? "#2D2D37" : "#dee4e6"} />
+        </View>
+      ) : (
+        <Image source={GoogleLogo} style={{ width: 40, height: 40 }} />
+      )}
+    </TouchableOpacity>
+  );
+};
 
 const GoogleAuth = ({ onError }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -80,34 +113,14 @@ const GoogleAuth = ({ onError }) => {
 
   if (Platform.OS === "web") {
     return (
-      <View style={{ position: "relative", alignItems: "center", justifyContent: "center" }}>
-        <GoogleOAuthProvider clientId={WEB_CLIENT_ID}>
-          <View style={{ opacity: isLoading ? 0.5 : 1, pointerEvents: isLoading ? "none" : "auto" }}>
-            <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                sendTokenToServer(credentialResponse.credential);
-              }}
-              onError={() => {
-                onError?.("Google sign-in failed");
-              }}
-              shape="circle"
-              type="icon"
-              size="large"
-            />
-          </View>
-        </GoogleOAuthProvider>
-        {isLoading && (
-          <View
-            style={{
-              position: "absolute",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <ActivityIndicator size="small" color="#0a97b9" />
-          </View>
-        )}
-      </View>
+      <GoogleOAuthProvider clientId={WEB_CLIENT_ID}>
+        <WebGoogleButton
+          onToken={sendTokenToServer}
+          onError={onError}
+          isLoading={isLoading}
+          isDarkColorScheme={isDarkColorScheme}
+        />
+      </GoogleOAuthProvider>
     );
   }
 

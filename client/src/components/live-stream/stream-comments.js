@@ -3,7 +3,7 @@ import { View, Text, FlatList, TextInput, TouchableOpacity, Image, KeyboardAvoid
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import { SocketContext } from '../../contexts/socket.context';
-import FeIcon from 'react-native-vector-icons/Feather';
+import FeIcon from '@expo/vector-icons/Feather';
 import UserImage from '../user-image';
 import moment from 'moment';
 import logger from '../../utils/logger';

@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useEffect } from "react";
 import { View, TouchableOpacity, Text, useWindowDimensions, Animated } from "react-native";
 import Modal from "./modal";
 import { useTranslation } from "react-i18next";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "~/lib/useColorScheme";
 
 export const ActionButton = ({ label, color, onPress, variant = "default", disabled = false }) => {

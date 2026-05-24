@@ -10,7 +10,13 @@
         "deleteMyAccount": "Delete My Account",
         "privacy&terms": "Privacy & Terms",
         "privacyPolicy": "Privacy Policy",
-        "termsOfService": "Terms of Service"
+        "termsOfService": "Terms of Service",
+        "feature1Title": "Start a chat",
+        "feature1Desc": "Text, voice & video calls with end-to-end encryption",
+        "feature2Title": "Privacy controls",
+        "feature2Desc": "Decide who sees your profile, status, and activity",
+        "feature3Title": "Connect & explore",
+        "feature3Desc": "Discover people who share your interests"
       },
       "phoneAuth": {
         "title": "Please enter your phone number to continue",
@@ -22,6 +28,9 @@
         "pleaseEnterPhoneNumber": "Please enter your phone number"
       },
       "login": {
+        "welcomeBack": "Welcome back",
+        "signInToContinue": "Sign in to continue",
+        "login": "Login",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
         "loginButton": "Login",
@@ -35,9 +44,10 @@
         "pleaseEnterValidEmail": "Please enter a valid email",
         "emailRequired": "Email is required",
         "passwordRequired": "Password is required",
-        "passwordPattern": "Password must be between 6 and 30 characters"
+        "passwordPattern": "Password must be at least 6 characters"
       },
       "forgetPassword": {
+        "subtitle": "Enter your email and we'll send you a reset code.",
         "emailPlaceholder": "Email",
         "sendResetCode": "Send Reset Code",
         "resendCode": "Resend Code",
@@ -47,6 +57,7 @@
         "emailRequired": "Email is required"
       },
       "resetPassword": {
+        "subtitle": "Enter the code from your email and choose a new password.",
         "resetCodeLabel": "Reset Code",
         "resetCodePlaceholder": "Reset Code",
         "newPasswordPlaceholder": "New Password",
@@ -60,12 +71,14 @@
         "emailRequired": "Email is required",
         "resetCodeRequired": "Reset code is required",
         "resetCodeLength": "Reset code must be exactly 6 characters",
-        "passwordPattern": "Password must be between 6 and 30 characters",
+        "passwordPattern": "Password must be at least 6 characters",
         "passwordRequired": "Password is required",
         "passwordsDoNotMatch": "Passwords do not match",
         "confirmPasswordRequired": "Please confirm your password"
       },
       "signup": {
+        "createAccount": "Create your account",
+        "joinLinker": "Join Linker today — it's free",
         "emailPlaceholder": "Email",
         "passwordPlaceholder": "Password",
         "confirmPasswordPlaceholder": "Confirm Password",
@@ -76,12 +89,14 @@
         "loginWithPhoneHighlighted": "Phone Number",
         "pleaseEnterValidEmail": "Please enter a valid email",
         "emailRequired": "Email is required",
-        "passwordPattern": "Password must be between 6 and 30 characters",
+        "passwordPattern": "Password must be at least 6 characters",
         "passwordRequired": "Password is required",
         "passwordsDoNotMatch": "Passwords do not match",
         "confirmPasswordRequired": "Please confirm your password"
       },
       "verifyEmail": {
+        "subtitle": "We sent a 6-digit code to your email. Enter it below to verify your account.",
+        "emailLabel": "Email",
         "emailPlaceholder": "Email",
         "verificationCodeLabel": "Verification Code",
         "verificationCodePlaceholder": "Enter Verification Code",
@@ -92,7 +107,9 @@
         "pleaseEnterValidEmail": "Please enter a valid email",
         "emailRequired": "Email is required",
         "resetCodeRequired": "Verification code is required",
-        "resetCodeLength": "Verification code must be exactly 6 characters"
+        "resetCodeLength": "Verification code must be exactly 6 characters",
+        "resendSuccess": "Code resent successfully",
+        "resendError": "Failed to resend code. Please try again."
       },
       "verifyPhone": {
         "verificationCodeLabel": "Verification Code",
@@ -114,7 +131,7 @@
         "pleaseEnterValidEmail": "Please enter a valid email",
         "emailRequired": "Email is required",
         "passwordRequired": "Password is required",
-        "passwordPattern": "Password must be between 6 and 30 characters",
+        "passwordPattern": "Password must be at least 6 characters",
         "backToWelcome": "Back to",
         "welcomeScreen": "Welcome Screen",
         "verificationCodeLabel": "Verification Code",
@@ -463,7 +480,7 @@
             "mismatch": "Passwords do not match",
             "required": "Please confirm your password"
           },
-          "pattern": "Password must be between 6 and 30 characters"
+          "pattern": "Password must be at least 6 characters"
         }
       },
       "emailScreen": {
@@ -1031,6 +1048,8 @@
       "roomUnavailable": "This chat is unavailable or failed to load.",
       "yes": "Yes",
       "no": "No",
+      "language": "Language",
+      "selectLanguage": "Choose your preferred language",
       "skipTheRest": "Do you want to skip the remaining steps?",
       "enterGruopName": "Enter group name",
       "admin": "Admin",
@@ -1409,6 +1428,9 @@
       "selectDay": "Select day",
       "selectMonth": "Select month",
       "selectYear": "Select year"
+    },
+    "common": {
+      "somethingWentWrong": "Something went wrong. Please try again."
     }
   }
 }

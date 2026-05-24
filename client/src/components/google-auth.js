@@ -1,12 +1,17 @@
-import { TouchableOpacity, Image, Platform, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import {
+  TouchableOpacity,
+  Image,
+  Platform,
+  View,
+  ActivityIndicator,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import GoogleLogo from "../../assets/google-icon.png";
 import { getMe, googleSignin } from "../api/me";
 import { setMe } from "../redux/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { router } from "expo-router";
 
-// Android
 import {
   GoogleSignin,
   statusCodes,
@@ -15,12 +20,17 @@ import {
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useColorScheme } from "~/lib/useColorScheme";
 
-const GoogleAuth = () => {
+const WEB_CLIENT_ID =
+  "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com";
+
+const GoogleAuth = ({ onError }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { isDarkColorScheme } = useColorScheme();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     GoogleSignin.configure({
-      scopes: ["https://www.googleapis.com/auth/drive.readonly"],
-      webClientId:
-        "291973193159-2blim9hhevst8r5p074lujhb47qvo391.apps.googleusercontent.com",
+      webClientId: WEB_CLIENT_ID,
       offlineAccess: true,
       forceCodeForRefreshToken: true,
       profileImageSize: 120,
@@ -28,28 +38,25 @@ const GoogleAuth = () => {
     });
   }, []);
 
-  const { isDarkColorScheme } = useColorScheme();
-
-  const dispatch = useDispatch();
-
   const sendTokenToServer = async (token) => {
+    setIsLoading(true);
     try {
-      const response = await googleSignin({
-        token: token,
-      });
+      const response = await googleSignin({ token });
       if (response?.type === "success") {
         const userResponse = await getMe();
         dispatch(setMe(userResponse.data));
         if (userResponse.data.isCompleted) {
-          // ✅ Use replace to clear auth stack after successful login
           router.replace("/chats");
         } else {
-          // ✅ Use replace to clear auth stack
           router.replace("/user-info");
         }
+      } else if (response?.message) {
+        onError?.(response.message);
       }
     } catch (error) {
-      console.log(error);
+      onError?.(error?.message || "Google sign-in failed");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -59,43 +66,75 @@ const GoogleAuth = () => {
       const userInfo = await GoogleSignin.signIn();
       await sendTokenToServer(userInfo?.data?.idToken);
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log("User cancelled the login process");
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log("Sign in in progress");
+      if (
+        error.code === statusCodes.SIGN_IN_CANCELLED ||
+        error.code === statusCodes.IN_PROGRESS
+      ) {
+        // User dismissed — no error to show
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log("Play services not available");
+        onError?.("Google Play Services not available");
       } else {
-        console.error("Google Sign-In error", error);
+        onError?.(error?.message || "Google sign-in failed");
       }
     }
   };
-  return Platform.OS === "web" ? (
-    <View className="flex-row items-center justify-center my-3">
-      <GoogleOAuthProvider clientId="291973193159-2blim9hhevst8r5p074lujhb47qvo391.apps.googleusercontent.com">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            sendTokenToServer(credentialResponse.credential);
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-          shape="circle"
-          type="icon"
-          size="larg"
-        />
-      </GoogleOAuthProvider>
-    </View>
-  ) : (
+
+  if (Platform.OS === "web") {
+    return (
+      <View style={{ position: "relative", alignItems: "center", justifyContent: "center" }}>
+        <GoogleOAuthProvider clientId={WEB_CLIENT_ID}>
+          <View style={{ opacity: isLoading ? 0.5 : 1, pointerEvents: isLoading ? "none" : "auto" }}>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                sendTokenToServer(credentialResponse.credential);
+              }}
+              onError={() => {
+                onError?.("Google sign-in failed");
+              }}
+              shape="circle"
+              type="icon"
+              size="large"
+            />
+          </View>
+        </GoogleOAuthProvider>
+        {isLoading && (
+          <View
+            style={{
+              position: "absolute",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <ActivityIndicator size="small" color="#0a97b9" />
+          </View>
+        )}
+      </View>
+    );
+  }
+
+  return (
     <TouchableOpacity
-      className={`items-center justify-center my-3 p-2 rounded-full mb-6 ${
-        isDarkColorScheme ? "bg-[#dee4e6]" : "bg-[#2D2D37]"
-      }`}
-      onPress={() => {
-        signInWithGoogle();
+      disabled={isLoading}
+      onPress={signInWithGoogle}
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        marginVertical: 12,
+        padding: 8,
+        borderRadius: 999,
+        marginBottom: 24,
+        backgroundColor: isDarkColorScheme ? "#dee4e6" : "#2D2D37",
+        opacity: isLoading ? 0.6 : 1,
+        position: "relative",
       }}
     >
-      <Image source={GoogleLogo} className="w-10 h-10" />
+      {isLoading ? (
+        <View style={{ width: 40, height: 40, alignItems: "center", justifyContent: "center" }}>
+          <ActivityIndicator size="small" color={isDarkColorScheme ? "#2D2D37" : "#dee4e6"} />
+        </View>
+      ) : (
+        <Image source={GoogleLogo} style={{ width: 40, height: 40 }} />
+      )}
     </TouchableOpacity>
   );
 };

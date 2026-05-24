@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TextInput, TouchableOpacity, Platform } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "@expo/vector-icons/Ionicons";
 import { useColorScheme } from "~/lib/useColorScheme";
 
 /**

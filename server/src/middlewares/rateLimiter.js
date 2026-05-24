@@ -62,6 +62,25 @@ const authLimiter = rateLimit({
   }
 });
 
+// OTP / verification code rate limiting
+const otpLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: parseInt(process.env.OTP_RATE_LIMIT_MAX, 10) || 10,
+  message: {
+    message: 'Too many verification attempts, please try again later.',
+    type: 'error'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    res.status(429).json({
+      message: 'Too many verification attempts, please try again later.',
+      type: 'error',
+      retryAfter: Math.round(req.rateLimit.resetTime / 1000)
+    });
+  }
+});
+
 // Password reset rate limiting
 const passwordResetLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -81,9 +100,30 @@ const passwordResetLimiter = rateLimit({
   }
 });
 
+// Delete-account rate limiting
+const deleteAccountLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: parseInt(process.env.DELETE_ACCOUNT_RATE_LIMIT_MAX, 10) || 5,
+  message: {
+    message: 'Too many delete account attempts, please try again later.',
+    type: 'error'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    res.status(429).json({
+      message: 'Too many delete account attempts, please try again later.',
+      type: 'error',
+      retryAfter: Math.round(req.rateLimit.resetTime / 1000)
+    });
+  }
+});
+
 module.exports = {
   generalLimiter,
   callLimiter,
   authLimiter,
-  passwordResetLimiter
+  otpLimiter,
+  passwordResetLimiter,
+  deleteAccountLimiter
 };

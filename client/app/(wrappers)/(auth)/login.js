@@ -6,7 +6,6 @@ import { getMe, signin } from "../../../src/api/me";
 import { setMe } from "../../../src/redux/userSlice";
 import Input from "../../../src/components/input";
 import Button from "../../../src/components/button";
-
 import { useTranslation } from "react-i18next";
 import { useColorScheme } from "~/lib/useColorScheme";
 import WelcomeTool from "../../../src/components/welcome-tool";
@@ -14,27 +13,25 @@ import Logo from "../../../src/components/logo";
 import useKeyboardVisibility from "../../../src/hooks/use-keyboard-visibility";
 import { Link, router, useLocalSearchParams } from "expo-router";
 import GoogleAuth from "../../../src/components/google-auth";
-import { getLocales } from "expo-localization";
+import FacebookAuth from "../../../src/components/facebook-auth";
 import Head from "expo-router/head";
 
 const LoginScreen = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [serverError, setServerError] = useState("");
+  const [openSetPassword, setOpenSetPassword] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const isRTL = I18nManager.isRTL; // || getLocales()[0].textDirection === "rtl";
+  const isRTL = I18nManager.isRTL;
   const { email } = useLocalSearchParams();
-  const [openSetPassword, setOpenSetPassword] = useState(false);
+  const { isDarkColorScheme } = useColorScheme();
+  const keyboardVisible = useKeyboardVisibility();
 
   useEffect(() => {
-    setFormData({
-      email: email || "",
-      password: "",
-    });
+    setFormData({ email: email || "", password: "" });
   }, [email]);
 
   const schema = Joi.object({
@@ -46,7 +43,6 @@ const LoginScreen = () => {
         "any.required": t("auth.login.emailRequired"),
         "string.empty": t("auth.login.emailRequired"),
       }),
-    // Login: server validates hash; allow symbols (client signup may be stricter)
     password: Joi.string().min(6).max(128).required().messages({
       "string.min": t("auth.login.passwordPattern"),
       "any.required": t("auth.login.passwordRequired"),
@@ -55,20 +51,13 @@ const LoginScreen = () => {
   });
 
   const handleInputChange = (name, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    // Validate the entire form data
-    const { error } = schema.validate(
-      { ...formData, [name]: value },
-      { abortEarly: false }
-    );
+    if (!hasInteracted) setHasInteracted(true);
+    if (serverError) setServerError("");
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { error } = schema.validate({ ...formData, [name]: value }, { abortEarly: false });
     if (error) {
       const errorData = {};
-      error.details.forEach((item) => {
-        errorData[item.path[0]] = item.message;
-      });
+      error.details.forEach((item) => { errorData[item.path[0]] = item.message; });
       setErrors(errorData);
     } else {
       setErrors({});
@@ -79,78 +68,76 @@ const LoginScreen = () => {
     const { error } = schema.validate(formData, { abortEarly: false });
     if (error) {
       const errorData = {};
-      error.details.forEach((item) => {
-        errorData[item.path[0]] = item.message;
-      });
+      error.details.forEach((item) => { errorData[item.path[0]] = item.message; });
       setErrors(errorData);
       return;
-    } else {
-      setErrors({});
     }
-
+    setErrors({});
     setIsLoading(true);
-
     try {
-      // co
       const response = await signin(formData);
       if (response.type === "success") {
         const userResponse = await getMe();
         dispatch(setMe(userResponse.data));
         if (!userResponse.data?.emailVerification?.verified) {
-          // ✅ Use replace to prevent going back to login after verification
-          router.replace({
-            pathname: "/verify-email",
-            params: { email: formData.email },
-          });
+          router.replace({ pathname: "/verify-email", params: { email: formData.email } });
+        } else if (userResponse.data?.isCompleted) {
+          router.replace("/chats");
         } else {
-          if (userResponse.data?.isCompleted) {
-            // ✅ Use replace to clear auth stack
-            router.replace("/chats");
-          } else {
-            // ✅ Use replace to clear auth stack
-            router.replace("/user-info");
-          }
+          router.replace("/user-info");
+        }
+      } else {
+        if (response.data?.openSetPassword) {
+          setOpenSetPassword(true);
+        } else {
+          setServerError(response.message || t("common.somethingWentWrong"));
         }
       }
       setIsLoading(false);
-
-      if (response.type === "error" && response.data.openSetPassword) {
-        setOpenSetPassword(true);
-      }
-    } catch (error) {
-      console.log({ error });
+    } catch {
       setIsLoading(false);
+      setServerError(t("common.somethingWentWrong"));
     }
   };
-  const { isDarkColorScheme } = useColorScheme();
-  const keyboardVisible = useKeyboardVisibility();
 
   return (
     <>
       <Head>
         <title>Login | Linker</title>
-        <meta
-          name="description"
-          content="Login to Linker to access all features. Enter your email and password to complete the process."
-        />
+        <meta name="description" content="Login to Linker to access all features." />
       </Head>
-      <View
-        className="items-center justify-between flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]"
-      >
+      <View className="items-center justify-between flex-1 relative w-full linker-w bg-[#dee4e6] dark:bg-[#12141b]">
         {!keyboardVisible && (
           <>
             <WelcomeTool />
-            <Logo />
+            <Logo my="mb-2 mt-9" />
           </>
         )}
-        <View className="items-center justify-center flex-1 w-full">
+
+        {/* Form card */}
+        <View
+          className={`items-center w-full flex-1 ${keyboardVisible ? "mt-10 justify-start" : "justify-start"}`}
+        >
           <View
-            className={`items-center justify-start flex-1 w-full ${
-              keyboardVisible ? "mt-12" : ""
-            }`}
+            className="w-11/12 rounded-3xl pb-4"
+            style={{
+              backgroundColor: isDarkColorScheme ? "rgba(26,30,42,0.9)" : "rgba(240,247,249,0.9)",
+              overflow: "hidden",
+            }}
           >
+            {/* Teal accent bar at top */}
+            <View style={{ height: 3, backgroundColor: "#0a97b9", borderTopLeftRadius: 24, borderTopRightRadius: 24 }} />
+            <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+            {/* Page title */}
+            <Text className="text-xl font-bold text-placehoder dark:text-papaya mb-1">
+              {t("auth.login.welcomeBack") || "Welcome back"}
+            </Text>
+            <Text className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+              {t("auth.login.signInToContinue") || "Sign in to continue"}
+            </Text>
+
             <Input
-              containerStyle="mb-4 w-4/5"
+              containerStyle="mb-3 w-full"
               placeholder={t("auth.login.emailPlaceholder")}
               name="email"
               value={formData.email}
@@ -161,7 +148,7 @@ const LoginScreen = () => {
             {!openSetPassword ? (
               <>
                 <Input
-                  containerStyle="mb-4 w-4/5"
+                  containerStyle="mb-3 w-full"
                   placeholder={t("auth.login.passwordPlaceholder")}
                   type="password"
                   name="password"
@@ -172,64 +159,57 @@ const LoginScreen = () => {
                   secureTextEntry={true}
                   textAlign={isRTL ? "right" : "left"}
                 />
+
+                {/* Forgot password link — right-aligned */}
+                <View className="w-full items-end mb-3">
+                  <Link href="/forgot-password" className="text-sm text-primary font-semibold">
+                    {t("auth.login.forgotPassword") || "Forgot password?"}
+                  </Link>
+                </View>
+
                 <Button
                   label={t("auth.login.loginButton")}
-                  disabled={isLoading}
+                  disabled={!hasInteracted || Object.keys(errors).length > 0 || isLoading}
                   onPress={handlePress}
                   isLoading={isLoading}
                   mb="mb-0"
+                  w="w-full"
                 />
+                {!!serverError && (
+                  <Text className="text-red-500 text-sm mt-2 text-center">{serverError}</Text>
+                )}
               </>
             ) : (
               <Button
                 label={t("auth.login.setNewPassword")}
-                onPress={() => {
-                  router.push({
-                    pathname: "/forgot-password",
-                    params: {
-                      email: formData.email,
-                      autoSetPassword: true,
-                    },
-                  });
-                }}
+                onPress={() => router.push({ pathname: "/forgot-password", params: { email: formData.email, autoSetPassword: true } })}
                 isLoading={isLoading}
                 mb="mb-0"
+                w="w-full"
               />
             )}
-            <GoogleAuth />
 
-            {!openSetPassword && (
-              <Link
-                href="/forgot-password"
-                className="text-base text-center mt-3 text-placehoder dark:text-papaya"
-              >
-                {t("auth.login.forgotPassword")}{" "}
-                <Text className="text-placehoder dark:text-papaya font-semibold">
-                  {t("auth.login.pressHere")}
+            {/* OR divider */}
+            <View className="flex-row items-center my-4">
+              <View className="flex-1 bg-slate-300 dark:bg-slate-700" style={{ height: 1 }} />
+              <Text className="mx-3 text-sm text-slate-400">OR</Text>
+              <View className="flex-1 bg-slate-300 dark:bg-slate-700" style={{ height: 1 }} />
+            </View>
+
+            <View className="flex-row items-center justify-center gap-4">
+              <GoogleAuth onError={setServerError} />
+              <FacebookAuth onError={setServerError} />
+            </View>
+
+            {/* Sign up link */}
+            <View className="items-center mt-3">
+              <Link href="/signup" className="text-sm text-center text-placehoder dark:text-papaya">
+                {t("auth.login.dontHaveAccount") || "Don't have an account?"}{" "}
+                <Text className="text-primary font-semibold">
+                  {t("auth.login.signup") || "Sign up"}
                 </Text>
               </Link>
-            )}
-            <Link
-              href="/signup"
-              className="mt-4 text-base text-center text-placehoder dark:text-papaya"
-            >
-              {t("auth.login.dontHaveAccount")}{" "}
-              <Text className="text-placehoder dark:text-papaya font-semibold">
-                {t("auth.login.signup")}
-              </Text>
-            </Link>
-
-            <View className={`absolute bottom-9`}>
-              {/* <Link
-              className="mt-4 text-base text-center text-placehoder dark:text-papaya"
-              href="/phone-auth"
-            >
-              {t("auth.login.loginWithPhonePrefix")}
-              <Text className="text-placehoder dark:text-papaya font-semibold"
-              >
-                {t("auth.login.loginWithPhoneHighlighted")}
-              </Text>
-            </Link> */}
+            </View>
             </View>
           </View>
         </View>

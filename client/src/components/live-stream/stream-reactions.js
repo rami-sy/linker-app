@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { useContext } from 'react';
 import { SocketContext } from '../../contexts/socket.context';
-import FeIcon from 'react-native-vector-icons/Feather';
+import FeIcon from '@expo/vector-icons/Feather';
 import logger from '../../utils/logger';
 import { useColorScheme } from '../../../lib/useColorScheme';
 

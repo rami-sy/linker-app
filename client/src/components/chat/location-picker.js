@@ -3,10 +3,10 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import * as Location from "expo-location";
 
 import { CustomMap, CustomMarker } from "../../lib/web-google-maps";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import Geocoder from "react-native-geocoding";
 import IconButton from "../icon-button";
-import MDIcon from "react-native-vector-icons/MaterialIcons";
+import MDIcon from "@expo/vector-icons/MaterialIcons";
 import { useColorScheme } from "../../../lib/useColorScheme";
 
 const LocationPicker = ({ setShowLocationPicker, marker, setMarker }) => {

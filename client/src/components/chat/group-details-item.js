@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import React, { useContext } from "react";
 
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useSelector, useDispatch } from "react-redux";
 import { router } from "expo-router";
 import { useColorScheme } from "../../../lib/useColorScheme";

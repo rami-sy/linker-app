@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "../../lib/useColorScheme";
 
 const AlertBox = ({

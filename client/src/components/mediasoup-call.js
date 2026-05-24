@@ -25,10 +25,10 @@ import {
 } from "react-native";
 import { RTCView } from "../components/chat/web-rtc";
 import { useSelector } from "react-redux";
-import FeIcon from "react-native-vector-icons/Feather";
-import MdIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import Icon from "react-native-vector-icons/Ionicons";
-import OIcon from "react-native-vector-icons/Octicons";
+import FeIcon from "@expo/vector-icons/Feather";
+import MdIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "@expo/vector-icons/Ionicons";
+import OIcon from "@expo/vector-icons/Octicons";
 import { MediasoupContext } from "../contexts/mediasoup.context";
 import DeviceSettings from "./call/DeviceSettings";
 import DeviceErrorHandler from "./call/DeviceErrorHandler";

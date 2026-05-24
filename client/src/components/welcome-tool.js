@@ -1,16 +1,20 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { lazy, useState } from "react";
 import i18n from "../lang/i18n";
 import FeIcon from "react-native-vector-icons/Feather";
 import SuspenseWrapper from "../hoc/suspense-wrapper";
 import { useColorScheme } from "~/lib/useColorScheme";
 
+const COUNTRY_CODES = { en: "gb", ar: "sa", tr: "tr", fr: "fr", es: "es", ru: "ru", zh: "cn", hi: "in" };
+
 const ChangeLanguagePopup = lazy(() => import("./user/change-language-popup"));
 const WelcomeTool = () => {
   const [showLanguageModal, setShowLanguageModal] = useState(false);
   const { colorScheme, toggleColorScheme } = useColorScheme();
   const isDark = colorScheme === "dark";
-  
+  const lang = i18n.language?.split("-")[0] || "en";
+  const countryCode = COUNTRY_CODES[lang] || "gb";
+
   return (
     <>
       <SuspenseWrapper>
@@ -26,9 +30,11 @@ const WelcomeTool = () => {
           className={`bg-[#ef233c] h-12 w-12 flex items-center justify-center rounded-full`}
           onPress={() => setShowLanguageModal(true)}
         >
-          <Text className={`text-papaya text-lg font-semibold uppercase`}>
-            {i18n.language.split("-")[0]}
-          </Text>
+          <Image
+            source={{ uri: `https://flagcdn.com/w80/${countryCode}.png` }}
+            style={{ width: 28, height: 19, borderRadius: 3 }}
+            resizeMode="cover"
+          />
         </TouchableOpacity>
         <TouchableOpacity
           className={`${

@@ -1,7 +1,7 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useExploreSayHi } from "../../hooks/useExploreSayHi";
 
 /**

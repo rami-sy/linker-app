@@ -7,6 +7,7 @@ const twilio = require("twilio");
 const nodemailer = require("nodemailer");
 const validator = require("validator");
 const generateVerifyCode = require("../utils/generate-code");
+const { buildEmailHtml, buildEmailText } = require("../utils/email-template");
 const Color = require("../models/color.model");
 const { OAuth2Client } = require("google-auth-library");
 const { Vonage } = require("@vonage/server-sdk");
@@ -15,7 +16,7 @@ const { default: mongoose } = require("mongoose");
 const logger = require("../utils/logger");
 
 const client = new OAuth2Client(
-  "291973193159-2blim9hhevst8r5p074lujhb47qvo391.apps.googleusercontent.com"
+  "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
 );
 
 // Email transporter configuration using environment variables
@@ -26,6 +27,8 @@ if (!smtpConfigured) {
     "SMTP credentials are missing. Please set SMTP_USER and SMTP_PASS in environment variables."
   );
 }
+
+const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
 
 const transporter = smtpConfigured
   ? nodemailer.createTransport({
@@ -238,16 +241,24 @@ exports.signup = async (req, res) => {
     if (transporter) {
       try {
         await transporter.sendMail({
-          from: { name: "Linker", address: "rami@linker.land" },
-          to: [email],
-          subject: "Email Verification Code",
-          text: `Your verification code is ${newVerifyCode}. Do not share it with anyone.`,
-          html: `<div style="font-family: Arial, sans-serif; color: #d6d3d1; background-color: #1c202a; padding: 20px; border-radius: 8px;">
-            <div style="border-bottom: 1px solid #2e3440; padding-bottom: 10px; margin-bottom: 20px;">
-              <h1 style="color:#d6d3d1">Email Verification</h1>
-            </div>
-            <p style="font-size: 16px; color:#d6d3d1">Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
-          </div>`,
+          from: { name: "Linker", address: SMTP_FROM },
+          to: email,
+          subject: "Verify your Linker email",
+          text: buildEmailText({
+            title: "Email Verification",
+            body: `Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.`,
+          }),
+          html: buildEmailHtml({
+            title: "Verify your email",
+            body: `<p>Welcome to Linker! Use the code below to verify your email address.</p>
+                   <div style="margin:24px 0;text-align:center;">
+                     <span style="display:inline-block;background:#f1f5f9;border:2px dashed #0a97b9;
+                                  border-radius:12px;padding:14px 40px;font-size:32px;font-weight:700;
+                                  letter-spacing:10px;color:#0a97b9;">${newVerifyCode}</span>
+                   </div>
+                   <p style="color:#64748b;font-size:14px;">This code expires in <strong>10 minutes</strong>.</p>`,
+            footer: "If you did not create a Linker account, you can safely ignore this email.",
+          }),
         });
         emailSent = true;
       } catch (error) {
@@ -301,17 +312,25 @@ exports.resendEmailVerificationCode = async (req, res) => {
 
     // Setup email details
     const emailDetails = {
-      from: { name: "Linker", address: "rami@linker.land" },
+      from: { name: "Linker", address: SMTP_FROM },
       to: [user.email],
       responseMessage: "Verification code resent successfully",
-      subject: "Resend Email Verification Code",
-      text: `Your new verification code is ${newVerifyCode}. It will expire in 10 minutes. Do not share it with anyone.`,
-      html: `<div style="font-family: Arial, sans-serif; color: #d6d3d1; background-color: #1c202a; padding: 20px; border-radius: 8px;">
-      <div style="border-bottom: 1px solid #2e3440; padding-bottom: 10px; margin-bottom: 20px;">
-      <h1 style="color:#d6d3d1">Email Verification</h1>
-      </div>
-      <p style="font-size: 16px; color:#d6d3d1">Your new verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
-      </div>`,
+      subject: "Your new Linker verification code",
+      text: buildEmailText({
+        title: "Email Verification",
+        body: `Your new verification code is ${newVerifyCode}. It will expire in 10 minutes. Do not share it with anyone.`,
+      }),
+      html: buildEmailHtml({
+        title: "Resend verification code",
+        body: `<p>Here is your new email verification code:</p>
+               <div style="margin:24px 0;text-align:center;">
+                 <span style="display:inline-block;background:#f1f5f9;border:2px dashed #0a97b9;
+                              border-radius:12px;padding:14px 40px;font-size:32px;font-weight:700;
+                              letter-spacing:10px;color:#0a97b9;">${newVerifyCode}</span>
+               </div>
+               <p style="color:#64748b;font-size:14px;">This code expires in <strong>10 minutes</strong>.</p>`,
+        footer: "If you did not request this, you can safely ignore this email.",
+      }),
       devCode: newVerifyCode,
     };
 
@@ -373,22 +392,29 @@ exports.signin = async (req, res) => {
       .exec();
       logger.debug('Signin attempt', { email, deviceId });
     if (!user) {
-      res.status(404);
-      throw new Error("User not found");
+      return res.status(404).json({ message: "User not found", type: "error" });
     }
     if (!user.password) {
       logger.debug('User without password', { userId: user._id });
-      if (user.identifiers.googleId) {
+      const hasGoogle = !!user.identifiers?.googleId;
+      const hasFacebook = !!user.identifiers?.facebookId;
+
+      if (hasGoogle || hasFacebook) {
         return res.status(400).json({
-          message: "User does not have a password, please sign in with google",
+          message: hasGoogle
+            ? "Please sign in with Google or set a password"
+            : "Please sign in with Facebook or set a password",
           type: "error",
-          data: {
-            openSetPassword: true,
-          },
+          data: { openSetPassword: true },
         });
       }
-      res.status(400);
-      throw new Error("User does not have a password");
+      return res.status(400).json({ message: "User does not have a password", type: "error" });
+    }
+    if (user.accountStatus === "suspended" || user.accountStatus === "banned") {
+      return res.status(403).json({ message: `Account is ${user.accountStatus}`, type: "error" });
+    }
+    if (user.accountStatus === "deactivated") {
+      return res.status(403).json({ message: "Account is deactivated. Please reactivate your account.", type: "error" });
     }
     // ⚠️ SECURITY: Always verify password, no development bypass
     const auth = await bcrypt.compare(password, user.password);
@@ -427,8 +453,7 @@ exports.signin = async (req, res) => {
         type: "success",
       });
     } else {
-      res.status(401);
-      throw new Error("Invalid Password!");
+      return res.status(401).json({ message: "Invalid Password!", type: "error" });
     }
   } catch (err) {
     logger.error("Error in auth controller", err);
@@ -603,12 +628,15 @@ exports.verifyPhone = async (req, res) => {
 };
 
 exports.verifyEmail = async (req, res) => {
-  const { email, verificationCode } = req.body;
+  const { email, verificationCode, deviceId } = req.body;
 
   try {
-    let user = await User.findOne({ email }).select(
-      "+emailVerification.code +emailVerification.expires"
-    );
+    let user = await User.findOne({ email })
+      .select(
+        "+emailVerification.code +emailVerification.expires +incomingFriendRequests +friends +outgoingFriendRequests +blockedUsers +colors +images"
+      )
+      .populate("colors images")
+      .exec();
 
     if (!user) {
       return res.status(404).json({ message: "User not found", type: "error" });
@@ -616,22 +644,42 @@ exports.verifyEmail = async (req, res) => {
 
     const { code, expires, verified } = user.emailVerification || {};
 
+    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
+
     if (verified) {
-      await User.findOneAndUpdate(
-        { email },
-        {
-          $set: {
-            "emailVerification.code": null,
-            "emailVerification.expires": null,
-          },
-        }
-      );
-      return res
-        .status(200)
-        .json({ message: "Email already verified", type: "success" });
+      // Already verified — still issue tokens so the client can proceed
+      const filteredUser = user.toObject();
+      delete filteredUser.password;
+      delete filteredUser.__v;
+      delete filteredUser.incomingFriendRequests;
+      delete filteredUser.outgoingFriendRequests;
+      delete filteredUser.blockedUsers;
+      delete filteredUser.colors;
+      delete filteredUser.friends;
+      delete filteredUser.privacy;
+      delete filteredUser.emailVerification;
+
+      const accessToken = generateAuthToken(filteredUser);
+      const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+        generateRefreshToken(filteredUser);
+
+      if (deviceId) {
+        await Device.findOneAndUpdate(
+          { user: user._id, deviceId },
+          { forceLogout: false, lastLogin: new Date(), refreshTokenHash: refreshHash, refreshTokenExpiresAt: refreshExpiry },
+          { upsert: true, new: true }
+        );
+      }
+
+      await User.findOneAndUpdate({ email }, { $set: { "emailVerification.code": null, "emailVerification.expires": null } });
+
+      return res.status(200).json({
+        message: "Email already verified",
+        type: "success",
+        data: { accessToken, refreshToken },
+      });
     }
 
-    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
     if (code !== verificationCode && !bypass) {
       return res
         .status(400)
@@ -646,16 +694,37 @@ exports.verifyEmail = async (req, res) => {
 
     await User.findOneAndUpdate(
       { email },
-      {
-        $set: {
-          "emailVerification.verified": true,
-        },
-      }
+      { $set: { "emailVerification.verified": true, "emailVerification.code": null, "emailVerification.expires": null } }
     );
 
-    return res
-      .status(200)
-      .json({ message: "Email verified successfully", type: "success" });
+    const filteredUser = user.toObject();
+    delete filteredUser.password;
+    delete filteredUser.__v;
+    delete filteredUser.incomingFriendRequests;
+    delete filteredUser.outgoingFriendRequests;
+    delete filteredUser.blockedUsers;
+    delete filteredUser.colors;
+    delete filteredUser.friends;
+    delete filteredUser.privacy;
+    delete filteredUser.emailVerification;
+
+    const accessToken = generateAuthToken(filteredUser);
+    const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+      generateRefreshToken(filteredUser);
+
+    if (deviceId) {
+      await Device.findOneAndUpdate(
+        { user: user._id, deviceId },
+        { forceLogout: false, lastLogin: new Date(), refreshTokenHash: refreshHash, refreshTokenExpiresAt: refreshExpiry },
+        { upsert: true, new: true }
+      );
+    }
+
+    return res.status(200).json({
+      message: "Email verified successfully",
+      type: "success",
+      data: { accessToken, refreshToken },
+    });
   } catch (error) {
     logger.error("Error verifying email", error);
     res.status(500).json({ message: "Internal server error", type: "error" });
@@ -922,17 +991,25 @@ exports.changeEmail = async (req, res) => {
 
       // Setup email details
       const emailDetails = {
-        from: { name: "Linker", address: "rami@linker.land" },
+        from: { name: "Linker", address: SMTP_FROM },
         to: [email],
         responseMessage: "Verification code resent successfully",
-        subject: "Resend Email Verification Code",
-        text: `Your new verification code is ${newVerifyCode}. It will expire in 10 minutes. Do not share it with anyone.`,
-        html: `<div style="font-family: Arial, sans-serif; color: #d6d3d1; background-color: #1c202a; padding: 20px; border-radius: 8px;">
-      <div style="border-bottom: 1px solid #2e3440; padding-bottom: 10px; margin-bottom: 20px;">
-      <h1 style="color:#d6d3d1">Email Verification</h1>
-      </div>
-      <p style="font-size: 16px; color:#d6d3d1">Your new verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p>
-      </div>`,
+        subject: "Verify your new Linker email address",
+        text: buildEmailText({
+          title: "Verify your new email",
+          body: `Your verification code is ${newVerifyCode}. It will expire in 10 minutes.`,
+        }),
+        html: buildEmailHtml({
+          title: "Verify your new email",
+          body: `<p>Use the code below to verify your new email address on Linker.</p>
+                 <div style="margin:24px 0;text-align:center;">
+                   <span style="display:inline-block;background:#f1f5f9;border:2px dashed #0a97b9;
+                                border-radius:12px;padding:14px 40px;font-size:32px;font-weight:700;
+                                letter-spacing:10px;color:#0a97b9;">${newVerifyCode}</span>
+                 </div>
+                 <p style="color:#64748b;font-size:14px;">This code expires in <strong>10 minutes</strong>.</p>`,
+          footer: "If you did not request this change, please secure your account immediately.",
+        }),
       };
 
       // Send the new verification code via email
@@ -1064,11 +1141,25 @@ exports.forgotPassword = async (req, res) => {
     // Send the verification code via email
     const emailDetails = {
       responseMessage: "Verification code sent successfully",
-      from: { name: "Linker", address: "rami@linker.land" },
+      from: { name: "Linker", address: SMTP_FROM },
       to: [email],
-      subject: "Forgot Password Verification Code",
-      text: `Your verification code is ${newVerifyCode}. Do not share it with anyone.`,
-      html: `<div><h1>Forgot Password</h1><p>Your verification code is <strong>${newVerifyCode}</strong>. It will expire in 10 minutes. Do not share it with anyone.</p></div>`,
+      subject: "Reset your Linker password",
+      text: buildEmailText({
+        title: "Reset your password",
+        body: `Your password reset code is ${newVerifyCode}. It will expire in 10 minutes. Do not share it with anyone.`,
+        footer: "If you did not request this, you can safely ignore this email.",
+      }),
+      html: buildEmailHtml({
+        title: "Reset your password",
+        body: `<p>We received a request to reset your Linker password. Use the code below:</p>
+               <div style="margin:24px 0;text-align:center;">
+                 <span style="display:inline-block;background:#f1f5f9;border:2px dashed #0a97b9;
+                              border-radius:12px;padding:14px 40px;font-size:32px;font-weight:700;
+                              letter-spacing:10px;color:#0a97b9;">${newVerifyCode}</span>
+               </div>
+               <p style="color:#64748b;font-size:14px;">This code expires in <strong>10 minutes</strong>.</p>`,
+        footer: "If you did not request a password reset, you can safely ignore this email.",
+      }),
       devCode: newVerifyCode,
     };
 
@@ -1124,17 +1215,9 @@ exports.resetPassword = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     user.password = hashedPassword;
-
-    // Mark the email as verified if it wasn't already
-    if (!user.resetPassword.verified) {
-      user.resetPassword.verified = true;
-      // Additional actions can be triggered here, e.g., sending a welcome email or enabling user features
-
-      // Send a welcome email
-      //   const emailDetails = {
-      //     responseMessage: "Password has been reset successfully",
-      //     from: { name: "Linker", address:
-    }
+    user.resetPassword.code = null;
+    user.resetPassword.expires = null;
+    user.resetPassword.verified = true;
 
     // Save the updated user information
     await user.save();
@@ -1244,10 +1327,25 @@ exports.sendDeleteVerificationCode = async (req, res) => {
 
       const emailDetails = {
         responseMessage: "Verification code sent successfully",
-        from: "no-reply@linker.com",
+        from: { name: "Linker", address: SMTP_FROM },
         to: [user.email],
-        subject: "Account Deletion Verification Code",
-        text: `Your verification code is ${verifyCode}`,
+        subject: "Linker account deletion — verification code",
+        text: buildEmailText({
+          title: "Account Deletion",
+          body: `Your account deletion code is ${verifyCode}. It will expire in 10 minutes. Do not share it with anyone.`,
+          footer: "If you did not request this, please secure your account immediately.",
+        }),
+        html: buildEmailHtml({
+          title: "Account deletion request",
+          body: `<p>We received a request to permanently delete your Linker account. Use the code below to confirm:</p>
+                 <div style="margin:24px 0;text-align:center;">
+                   <span style="display:inline-block;background:#fef2f2;border:2px dashed #ef4444;
+                                border-radius:12px;padding:14px 40px;font-size:32px;font-weight:700;
+                                letter-spacing:10px;color:#ef4444;">${verifyCode}</span>
+                 </div>
+                 <p style="color:#64748b;font-size:14px;">This code expires in <strong>10 minutes</strong>.</p>`,
+          footer: "⚠️ If you did not request account deletion, please secure your account immediately.",
+        }),
         devCode: verifyCode,
       };
       await sendEmail(emailDetails, res);
@@ -1337,8 +1435,6 @@ exports.googleSignIn = async (req, res) => {
     // تحقق مما إذا كان المستخدم موجودًا بالفعل
     let user = await User.findOne({ email: payload.email });
     if (!user) {
-      // Note: User image is saved via the user model update above
-      // const image = await saveImageToDatabase(payload.picture);
       user = new User({
         email: payload.email,
         firstName: payload.given_name,
@@ -1349,11 +1445,11 @@ exports.googleSignIn = async (req, res) => {
         identifiers: {
           googleId: payload.sub,
         },
-        // images: [
-        //    payload.picture,
-        // ],
       });
-
+      await user.save();
+    } else if (!user.identifiers?.googleId) {
+      // First time linking Google to an existing account — persist the googleId
+      user.identifiers = { ...(user.identifiers?.toObject?.() || {}), googleId: payload.sub };
       await user.save();
     }
 
@@ -1384,6 +1480,82 @@ exports.googleSignIn = async (req, res) => {
     logger.error("Error verifying Google token", error);
     res.status(401).json({
       message: "Invalid Google token",
+      type: "error",
+    });
+  }
+};
+
+exports.facebookSignIn = async (req, res) => {
+  const { token, deviceId } = req.body;
+  logger.debug("Facebook token received");
+
+  if (!token) {
+    return res
+      .status(400)
+      .json({ message: "Facebook access token is required", type: "error" });
+  }
+
+  try {
+    const graphUrl = `https://graph.facebook.com/me?fields=id,email,first_name,last_name&access_token=${encodeURIComponent(token)}`;
+    const fbResponse = await fetch(graphUrl);
+    const fbData = await fbResponse.json();
+
+    if (fbData.error) {
+      logger.warn("Facebook token verification failed", fbData.error);
+      return res.status(401).json({
+        message: "Invalid Facebook token",
+        type: "error",
+      });
+    }
+
+    const { id: facebookId, email, first_name, last_name } = fbData;
+    logger.debug("Facebook token verified", { facebookId });
+
+    // Look up user by facebookId first, then fall back to email
+    let user = await User.findOne({ "identifiers.facebookId": facebookId });
+
+    if (!user && email) {
+      user = await User.findOne({ email });
+    }
+
+    if (!user) {
+      user = new User({
+        ...(email ? { email } : {}),
+        firstName: first_name,
+        lastName: last_name,
+        ...(email ? { emailVerification: { verified: true } } : {}),
+        identifiers: { facebookId },
+      });
+      await user.save();
+    } else if (!user.identifiers?.facebookId) {
+      user.identifiers = { ...(user.identifiers?.toObject?.() || {}), facebookId };
+      await user.save();
+    }
+
+    const accessToken = generateAuthToken(user);
+    const { token: refreshToken, hash: refreshHash, expiresAt: refreshExpiry } =
+      generateRefreshToken(user);
+
+    await Device.findOneAndUpdate(
+      { user: user._id, deviceId },
+      {
+        forceLogout: false,
+        lastLogin: new Date(),
+        refreshTokenHash: refreshHash,
+        refreshTokenExpiresAt: refreshExpiry,
+      },
+      { upsert: true, new: true }
+    );
+
+    res.status(200).json({
+      message: "User signed in successfully",
+      data: { accessToken, refreshToken },
+      type: "success",
+    });
+  } catch (error) {
+    logger.error("Error verifying Facebook token", error);
+    res.status(500).json({
+      message: "Internal server error",
       type: "error",
     });
   }

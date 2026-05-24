@@ -20,8 +20,8 @@ import {
   selectFormErrors,
   selectIsLoading,
 } from "../../redux/formSlice";
-import MDCIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import FeIcon from "react-native-vector-icons/Feather";
+import MDCIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import FeIcon from "@expo/vector-icons/Feather";
 import { postFile } from "../../api/files";
 import * as ImagePicker from "expo-image-picker";
 import { setMe } from "../../redux/userSlice";

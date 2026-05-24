@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useAudioPlayer } from "expo-audio";
 import logger from "../utils/logger";
-import Icon from "react-native-vector-icons/Ionicons";
-import FeIcon from "react-native-vector-icons/Feather";
+import Icon from "@expo/vector-icons/Ionicons";
+import FeIcon from "@expo/vector-icons/Feather";
 import Slider from "@react-native-community/slider";
 import { useColorScheme } from "~/lib/useColorScheme";
 

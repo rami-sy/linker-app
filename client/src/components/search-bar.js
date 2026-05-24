@@ -9,7 +9,7 @@ import {
 import React, { useState, useRef } from "react";
 import SearchIcon from "../../assets/icons/search-icon.js";
 import { useDispatch } from "react-redux";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "@expo/vector-icons/Ionicons";
 import { setFriends } from "../redux/userSlice.js";
 import { getLocales } from "expo-localization";
 import { useColorScheme } from "~/lib/useColorScheme";

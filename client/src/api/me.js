@@ -49,12 +49,12 @@ const signup = async (data) => {
   try {
     const axios = await Axios({
       ContentType: "application/json",
-    }); // Create the Axios instance
-    const res = await axios.post("auth/signup", data); // Use the relative URL
+    });
+    const res = await axios.post("auth/signup", data);
 
     return res.data;
   } catch (e) {
-    return e.response.data;
+    return e.response?.data ?? { type: "error", message: e.message };
   }
 };
 
@@ -72,14 +72,16 @@ const phoneAuth = async (data) => {
 
 const emailVerify = async (data) => {
   try {
+    const deviceId = await fetchDeviceId();
     const axios = await Axios({
       ContentType: "application/json",
-    }); // Create the Axios instance
-    const res = await axios.post(`auth/email-verify`, data); // Use the relative URL
+    });
+    const res = await axios.post(`auth/email-verify`, { ...data, deviceId });
 
+    await saveTokens(res?.data?.data);
     return res.data;
   } catch (e) {
-    return e.response.data;
+    return e.response?.data ?? { type: "error", message: e.message };
   }
 };
 
@@ -186,6 +188,20 @@ const googleSignin = async (data) => {
     return res.data;
   } catch (e) {
     return e.response.data;
+  }
+};
+
+const facebookSignin = async (data) => {
+  try {
+    const deviceId = await fetchDeviceId();
+    const axios = await Axios({
+      ContentType: "application/json",
+    });
+    const res = await axios.post("auth/facebook-signin", { ...data, deviceId });
+    await saveTokens(res?.data?.data);
+    return res.data;
+  } catch (e) {
+    return e.response?.data ?? { type: "error", message: e.message };
   }
 };
 
@@ -384,6 +400,7 @@ export {
   sendVerificationCode,
   deleteMyAccount,
   googleSignin,
+  facebookSignin,
   fetchDeviceId,
   createReport,
   getDeviceInfo,

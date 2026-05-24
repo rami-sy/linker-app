@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import { useContext } from 'react';
 import { MediasoupContext } from '../../contexts/mediasoup.context';
 import logger from '../../../utils/logger';
-import FeIcon from 'react-native-vector-icons/Feather';
+import FeIcon from '@expo/vector-icons/Feather';
 import { useColorScheme } from '../../../lib/useColorScheme';
 
 export const StopLiveButton = ({ roomId, onStop, onError }) => {

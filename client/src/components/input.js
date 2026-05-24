@@ -1,6 +1,6 @@
 import { TextInput, View, Text, TouchableOpacity } from "react-native";
 import React, { forwardRef } from "react";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "~/lib/useColorScheme";
 import { getProfileFormChrome } from "./profile-edit/profile-form-theme";
 

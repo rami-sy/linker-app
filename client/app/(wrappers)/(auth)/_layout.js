@@ -10,7 +10,7 @@ export const unstable_settings = {
 
 const AuthLayout = () => {
   return (
-    <View style={{ flex: 1, alignItems: "center", backgroundColor: "#262a36" }}>
+    <View style={{ flex: 1, alignItems: "center", backgroundColor: "#12141b" }}>
       <Slot />
     </View>
   );

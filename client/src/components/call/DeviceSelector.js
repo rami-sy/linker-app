@@ -5,8 +5,8 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, ActivityIndicator, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import FeIcon from 'react-native-vector-icons/Feather';
+import Icon from '@expo/vector-icons/Ionicons';
+import FeIcon from '@expo/vector-icons/Feather';
 import { MediasoupContext } from '../../contexts/mediasoup.context';
 import Modal from '../modal';
 import { useColorScheme } from '../../../lib/useColorScheme';

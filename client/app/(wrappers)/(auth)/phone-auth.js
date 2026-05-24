@@ -16,10 +16,12 @@ const PhoneAuthScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
   const { t } = useTranslation();
 
   const handlePress = async () => {
     setIsLoading(true);
+    setServerError("");
     if (!phoneNumber) {
       setErrors((prevData) => ({
         ...prevData,
@@ -32,16 +34,17 @@ const PhoneAuthScreen = () => {
     try {
       const response = await phoneAuth({ phoneNumber });
       if (response.type === "success") {
-        // ✅ Use push here - user might want to go back to change phone number
         router.push({
           pathname: "/verify-phone",
           params: { phoneNumber: phoneNumber },
         });
+      } else {
+        setServerError(response.message || t("common.somethingWentWrong"));
       }
       setIsLoading(false);
-    } catch (error) {
-      console.log({ error });
+    } catch {
       setIsLoading(false);
+      setServerError(t("common.somethingWentWrong"));
     }
   };
   const { isDarkColorScheme } = useColorScheme();
@@ -88,6 +91,9 @@ const PhoneAuthScreen = () => {
             isLoading={isLoading}
             mb="mb-0"
           />
+          {!!serverError && (
+            <Text className="text-red-500 text-sm mt-2 text-center">{serverError}</Text>
+          )}
 
           <Link
             href="/login"

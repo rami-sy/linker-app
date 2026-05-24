@@ -1,5 +1,5 @@
 import React from "react";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import {
   Bell,
   Camera,

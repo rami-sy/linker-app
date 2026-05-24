@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useVideoPlayer, VideoView } from "expo-video";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import IconButton from "./icon-button";
 import Slider from "@react-native-community/slider";
 import { useColorScheme } from "~/lib/useColorScheme";

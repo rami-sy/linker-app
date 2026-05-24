@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Platform, Linking } from "react-native";
 import React, { useMemo, useState } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import UserImage from "../user-image";
 import ImagePlaceholder from "../image-placeholder";
 import UserName from "../user-name";

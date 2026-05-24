@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import MDCIcon from "react-native-vector-icons/MaterialCommunityIcons";
-import SIIcon from "react-native-vector-icons/SimpleLineIcons";
-import FeIcon from "react-native-vector-icons/Feather";
+import MDCIcon from "@expo/vector-icons/MaterialCommunityIcons";
+import SIIcon from "@expo/vector-icons/SimpleLineIcons";
+import FeIcon from "@expo/vector-icons/Feather";
 
 const Control = ({
   speed,

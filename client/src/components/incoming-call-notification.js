@@ -16,8 +16,8 @@ import {
 } from "react-native";
 import { MediasoupContext } from "../contexts/mediasoup.context";
 import { useSelector, useDispatch } from "react-redux";
-import FeIcon from "react-native-vector-icons/Feather";
-import Icon from "react-native-vector-icons/Ionicons";
+import FeIcon from "@expo/vector-icons/Feather";
+import Icon from "@expo/vector-icons/Ionicons";
 import { ChatMemberCard, UserImage, UserName } from "./user";
 import ImagePlaceholder from "./image-placeholder";
 import getFullName from "../utils/getFullName";

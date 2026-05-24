@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React from "react";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 
 import UserImage from "../user-image";
 import { UserDisplay } from "../user";

@@ -5,8 +5,8 @@
 
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Switch, Platform, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import FeIcon from 'react-native-vector-icons/Feather';
+import Icon from '@expo/vector-icons/Ionicons';
+import FeIcon from '@expo/vector-icons/Feather';
 import DeviceSelector from './DeviceSelector';
 import Modal from '../modal';
 import { useTranslation } from 'react-i18next';

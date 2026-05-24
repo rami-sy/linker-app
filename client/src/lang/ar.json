@@ -10,7 +10,13 @@
         "deleteMyAccount": "حذف حسابي",
         "privacy&terms": "الخصوصية والشروط",
         "privacyPolicy": "سياسة الخصوصية",
-        "termsOfService": "الشروط والأحكام"
+        "termsOfService": "الشروط والأحكام",
+        "feature1Title": "ابدأ محادثة",
+        "feature1Desc": "رسائل نصية ومكالمات صوتية ومرئية بتشفير كامل",
+        "feature2Title": "إعدادات الخصوصية",
+        "feature2Desc": "حدد من يرى ملفك الشخصي وحالتك ونشاطك",
+        "feature3Title": "تواصل واستكشف",
+        "feature3Desc": "اكتشف أشخاصاً يشاركونك اهتماماتك"
       },
       "phoneAuth": {
         "title": "يرجى إدخال رقم الهاتف للمتابعة",
@@ -22,6 +28,9 @@
         "pleaseEnterPhoneNumber": "يرجى إدخال رقم الهاتف"
       },
       "login": {
+        "welcomeBack": "مرحباً بعودتك",
+        "signInToContinue": "سجّل دخولك للمتابعة",
+        "login": "تسجيل الدخول",
         "emailPlaceholder": "البريد الإلكتروني",
         "passwordPlaceholder": "كلمة المرور",
         "loginButton": "تسجيل الدخول",
@@ -35,9 +44,10 @@
         "pleaseEnterValidEmail": "يرجى إدخال بريد إلكتروني صالح",
         "emailRequired": "البريد الإلكتروني مطلوب",
         "passwordRequired": "كلمة المرور مطلوبة",
-        "passwordPattern": "يجب أن تتراوح كلمة المرور بين 6 و 30 حرفاً"
+        "passwordPattern": "يجب أن تكون كلمة المرور 6 أحرف على الأقل"
       },
       "forgetPassword": {
+        "subtitle": "أدخل بريدك الإلكتروني وسنرسل لك رمز إعادة التعيين.",
         "emailPlaceholder": "البريد الإلكتروني",
         "sendResetCode": "إرسال رمز إعادة التعيين",
         "resendCode": "إعادة إرسال الرمز",
@@ -47,6 +57,7 @@
         "emailRequired": "البريد الإلكتروني مطلوب"
       },
       "resetPassword": {
+        "subtitle": "أدخل الرمز الذي وصلك على بريدك واختر كلمة مرور جديدة.",
         "resetCodeLabel": "رمز إعادة التعيين",
         "resetCodePlaceholder": "رمز إعادة التعيين",
         "newPasswordPlaceholder": "كلمة المرور الجديدة",
@@ -60,12 +71,14 @@
         "emailRequired": "البريد الإلكتروني مطلوب",
         "resetCodeRequired": "رمز إعادة التعيين مطلوب",
         "resetCodeLength": "يجب أن يكون رمز إعادة التعيين مكونًا من 6 أحرف بالضبط",
-        "passwordPattern": "يجب أن تتراوح كلمة المرور بين 6 و 30 حرفًا",
+        "passwordPattern": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
         "passwordRequired": "كلمة المرور مطلوبة",
         "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
         "confirmPasswordRequired": "يرجى تأكيد كلمة المرور"
       },
       "signup": {
+        "createAccount": "أنشئ حسابك",
+        "joinLinker": "انضم إلى لينكر اليوم — مجاناً",
         "emailPlaceholder": "البريد الإلكتروني",
         "passwordPlaceholder": "كلمة المرور",
         "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
@@ -76,12 +89,14 @@
         "loginWithPhoneHighlighted": "رقم الهاتف",
         "pleaseEnterValidEmail": "يرجى إدخال بريد إلكتروني صالح",
         "emailRequired": "البريد الإلكتروني مطلوب",
-        "passwordPattern": "يجب أن تتراوح كلمة المرور بين 6 و 30 حرفاً",
+        "passwordPattern": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
         "passwordRequired": "كلمة المرور مطلوبة",
         "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
         "confirmPasswordRequired": "يرجى تأكيد كلمة المرور"
       },
       "verifyEmail": {
+        "subtitle": "أرسلنا رمزاً مكوناً من 6 أرقام إلى بريدك الإلكتروني. أدخله أدناه للتحقق من حسابك.",
+        "emailLabel": "البريد الإلكتروني",
         "emailPlaceholder": "البريد الإلكتروني",
         "verificationCodeLabel": "رمز التحقق",
         "verificationCodePlaceholder": "أدخل رمز التحقق",
@@ -92,7 +107,9 @@
         "pleaseEnterValidEmail": "يرجى إدخال بريد إلكتروني صالح",
         "emailRequired": "البريد الإلكتروني مطلوب",
         "resetCodeRequired": "رمز التحقق مطلوب",
-        "resetCodeLength": "يجب أن يكون رمز التحقق مكونًا من 6 أحرف بالضبط"
+        "resetCodeLength": "يجب أن يكون رمز التحقق مكونًا من 6 أحرف بالضبط",
+        "resendSuccess": "تم إعادة إرسال الرمز بنجاح",
+        "resendError": "فشل إعادة إرسال الرمز. يرجى المحاولة مرة أخرى."
       },
       "verifyPhone": {
         "verificationCodeLabel": "رمز التحقق",
@@ -114,7 +131,7 @@
         "pleaseEnterValidEmail": "يرجى إدخال بريد إلكتروني صالح",
         "emailRequired": "البريد الإلكتروني مطلوب",
         "passwordRequired": "كلمة المرور مطلوبة",
-        "passwordPattern": "يجب أن تتراوح كلمة المرور بين 6 و 30 حرفاً",
+        "passwordPattern": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
         "backToWelcome": "العودة إلى",
         "welcomeScreen": "شاشة الترحيب",
         "verificationCodeLabel": "رمز التحقق",
@@ -548,7 +565,8 @@
         "youngest": "الأصغر سناً",
         "oldest": "الأكبر سناً"
       },
-      "setYourLocation": "يرجى تحديد موقعك قبل ضبط المسافة المفضلة."
+      "setYourLocation": "يرجى تحديد موقعك قبل ضبط المسافة المفضلة.",
+      "apply": "تطبيق"
     },
     "header": {
       "forwardTo": "إعادة توجيه إلى...",
@@ -1124,7 +1142,9 @@
       "menuBlockedUsers": "المستخدمون المحظورون",
       "menuFans": "من أعجبوا بي",
       "menuFollowing": "من أعجبت بهم",
-      "menuVisitors": "زوار الملف الشخصي"
+      "menuVisitors": "زوار الملف الشخصي",
+      "language": "اللغة",
+      "selectLanguage": "اختر لغتك المفضلة"
     },
     "call": {
       "calling": "يتصل",
@@ -1407,6 +1427,9 @@
       "selectDay": "اختر اليوم",
       "selectMonth": "اختر الشهر",
       "selectYear": "اختر السنة"
+    },
+    "common": {
+      "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
     }
   }
 }

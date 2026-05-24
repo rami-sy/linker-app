@@ -1,6 +1,6 @@
 import { View, TouchableOpacity, Text, I18nManager } from "react-native";
 import React from "react";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { router, useSegments } from "expo-router";
 import { getLocales } from "expo-localization";
 import { useColorScheme } from "~/lib/useColorScheme";

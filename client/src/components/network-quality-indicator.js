@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { View, Text, Platform, Animated, TouchableOpacity } from 'react-native';
-import FeIcon from 'react-native-vector-icons/Feather';
+import FeIcon from '@expo/vector-icons/Feather';
 import { MediasoupContext } from '../contexts/mediasoup.context';
 import MediasoupCallDuration from './mediasoup-call-duration';
 import Tooltip from './tooltip';

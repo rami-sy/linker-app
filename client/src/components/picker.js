@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "~/lib/useColorScheme";
 import DropDownPicker from "react-native-dropdown-picker";
 import { getProfileFormChrome } from "./profile-edit/profile-form-theme";

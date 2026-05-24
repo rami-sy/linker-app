@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controller = require("../controllers/auth.controller");
 const verifyToken = require("../middlewares/verify-token");
-const { authLimiter, passwordResetLimiter } = require("../middlewares/rateLimiter");
+const { authLimiter, passwordResetLimiter, otpLimiter, deleteAccountLimiter } = require("../middlewares/rateLimiter");
 
 router.post("/signup", authLimiter, controller.signup);
 
@@ -13,13 +13,15 @@ router.post("/phone-auth", authLimiter, controller.phoneAuth);
 
 router.post("/phone-verify", authLimiter, controller.verifyPhone);
 
-router.post("/email-verify", controller.verifyEmail);
+router.post("/email-verify", otpLimiter, controller.verifyEmail);
 router.post(
   "/resend-email-verification-code",
+  otpLimiter,
   controller.resendEmailVerificationCode
 );
 router.post(
   "/resend-phone-verification-code",
+  otpLimiter,
   controller.resendPhoneVerificationCode
 );
 
@@ -50,10 +52,11 @@ router.post("/delete-account", [verifyToken], controller.deleteAccount);
 
 router.post("/deactive-account", [verifyToken], controller.deActiveAccount);
 
-router.post("/send-verification-code", controller.sendDeleteVerificationCode);
-router.post("/delete-my-account", controller.deleteMyAccount);
+router.post("/send-verification-code", deleteAccountLimiter, controller.sendDeleteVerificationCode);
+router.post("/delete-my-account", deleteAccountLimiter, controller.deleteMyAccount);
 router.post("/google-signin", controller.googleSignIn);
+router.post("/facebook-signin", controller.facebookSignIn);
 
-router.post("/refresh", controller.refreshToken);
+router.post("/refresh", otpLimiter, controller.refreshToken);
 
 module.exports = router;

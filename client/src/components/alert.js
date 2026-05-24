@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { View, Text, TouchableOpacity, Animated } from "react-native";
 import { useDispatch } from "react-redux";
 import { deleteAlert } from "../redux/alertSlice";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "~/lib/useColorScheme";
 import { router } from "expo-router";
 import { NotificationTypes } from "../utils/notificationContract";

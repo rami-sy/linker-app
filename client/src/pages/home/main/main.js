@@ -12,7 +12,7 @@ import { SocketContext } from "../../../contexts/socket.context";
 import Layout from "../../../components/layout";
 import UserImage from "../../../components/user-image";
 import TimeAgo from "../../../components/time-ago";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import UserName from "../../../components/user-name";
 import { debounce } from "lodash";
 import { useSelector } from "react-redux";

@@ -6,7 +6,7 @@ import {
   I18nManager,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import Popup from "../popup";
 import Input from "../input";
 import { useColorScheme } from "~/lib/useColorScheme";

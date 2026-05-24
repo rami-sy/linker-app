@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Image, ActivityIndicator } from "react-native";
 
-import FeIcon from "react-native-vector-icons/Feather";
-import MDIcon from "react-native-vector-icons/MaterialIcons";
+import FeIcon from "@expo/vector-icons/Feather";
+import MDIcon from "@expo/vector-icons/MaterialIcons";
 import { useVideoPlayer, VideoView } from "expo-video";
 import IconButton from "../icon-button";
 import { useSelector } from "react-redux";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { upperFirst } from "lodash";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useTranslation } from "react-i18next";
 import { useColorScheme } from "~/lib/useColorScheme";
 

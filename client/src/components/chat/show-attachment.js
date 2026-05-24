@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import LocationIcon from "../../../assets/icons/location-icon";
 import Modal from "../modal";
 import { useColorScheme } from "../../../lib/useColorScheme";

@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import UserIcon from "../../../assets/icons/user-icon";
-import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import MCIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useColorScheme } from "../../../lib/useColorScheme";
 
 const UserInteractiveIcon = ({

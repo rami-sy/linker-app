@@ -12,7 +12,7 @@ import {
 
 import Popup from "../popup";
 import Button from "../button";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import ImagePlaceholder from "../image-placeholder";
 import UserImage from "../user-image";
 import Input from "../input";

@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { upperFirst } from "lodash";
-import FeIcon from "react-native-vector-icons/Feather";
+import FeIcon from "@expo/vector-icons/Feather";
 import { useColorScheme } from "~/lib/useColorScheme";
 import { PROFILE_BRAND, getProfileFormChrome } from "./profile-edit/profile-form-theme";
 

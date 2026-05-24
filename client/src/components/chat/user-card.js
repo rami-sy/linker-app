@@ -3,8 +3,8 @@ import React from "react";
 import UserImage from "../user-image";
 import UserName from "../user-name";
 
-import FeIcon from "react-native-vector-icons/Feather";
-import Icon from "react-native-vector-icons/Ionicons";
+import FeIcon from "@expo/vector-icons/Feather";
+import Icon from "@expo/vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 import { router } from "expo-router";
 import { useColorScheme } from "../../../lib/useColorScheme";

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { useTranslation } from "react-i18next";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "@expo/vector-icons/Ionicons";
 import { useColorScheme } from "../../../lib/useColorScheme";
 import Popup from "../popup";
 import { UserDisplay } from "../user";

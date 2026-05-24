@@ -5,8 +5,8 @@
 
 import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import FeIcon from 'react-native-vector-icons/Feather';
+import Icon from '@expo/vector-icons/Ionicons';
+import FeIcon from '@expo/vector-icons/Feather';
 import logger from '../../utils/logger';
 import { useColorScheme } from '../../../lib/useColorScheme';
 import { useTranslation } from 'react-i18next';

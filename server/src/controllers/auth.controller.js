@@ -1422,7 +1422,7 @@ exports.googleSignIn = async (req, res) => {
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience:
-        "291973193159-2blim9hhevst8r5p074lujhb47qvo391.apps.googleusercontent.com",
+        "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com",
     });
     const payload = ticket.getPayload();
     if (!payload.email_verified) {

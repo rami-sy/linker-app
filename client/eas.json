@@ -10,7 +10,8 @@
     "preview": {
       "distribution": "internal",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://linker.land"
+        "EXPO_PUBLIC_API_URL": "https://linker.land",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
       }
     },
     "preview2": {
@@ -18,20 +19,23 @@
         "gradleCommand": ":app:assembleRelease"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://linker.land"
+        "EXPO_PUBLIC_API_URL": "https://linker.land",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
       }
     },
     "preview3": {
       "developmentClient": true,
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://linker.land"
+        "EXPO_PUBLIC_API_URL": "https://linker.land",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
       }
     },
     "production": {
       "autoIncrement": true,
       "resourceClass": "large",
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://linker.land"
+        "EXPO_PUBLIC_API_URL": "https://linker.land",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
       }
     }
   }

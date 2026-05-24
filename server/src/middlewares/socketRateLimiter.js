@@ -3,7 +3,6 @@
  * Dynamic rate limiting based on user tier + Redis support
  */
 
-require('dotenv').config();
 const logger = require('../utils/logger');
 const { withRedisRetry } = require('../utils/redisRetry');
 

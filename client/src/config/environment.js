@@ -29,8 +29,8 @@ const ENV = {
     ENABLE_LOGGING: true,
   },
   prod: {
-    API_URL: 'https://linker.land',
-    SOCKET_URL: 'https://linker.land',
+    API_URL: process.env.EXPO_PUBLIC_API_URL || 'https://linker.land',
+    SOCKET_URL: process.env.EXPO_PUBLIC_API_URL || 'https://linker.land',
     ENV_NAME: 'production',
     ENABLE_LOGGING: false,
   }

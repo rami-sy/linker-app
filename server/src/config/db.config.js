@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
 const User = require("../models/user.model");
 const UserProfile = require("../models/user-profile.model");
-console.log("Node Environment:", process.env.NODE_ENV);
 
 const connectDB = async () => {
-  console.log("MONGO_URI", process.env.MONGO_URI);
   mongoose
     .connect(process.env.MONGO_URI, {
       useNewUrlParser: true,

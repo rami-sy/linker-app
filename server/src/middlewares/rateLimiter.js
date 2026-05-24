@@ -1,5 +1,4 @@
 const rateLimit = require('express-rate-limit');
-require('dotenv').config();
 
 // General API rate limiting
 const generalLimiter = rateLimit({

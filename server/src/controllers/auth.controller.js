@@ -15,9 +15,8 @@ const Device = require("../models/device.model");
 const { default: mongoose } = require("mongoose");
 const logger = require("../utils/logger");
 
-const client = new OAuth2Client(
-  "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com"
-);
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 // Email transporter configuration using environment variables
 // ⚠️ SECURITY: All credentials must be provided via environment variables
@@ -1421,8 +1420,7 @@ exports.googleSignIn = async (req, res) => {
     //   // تحقق من الـ token مع جوجل
     const ticket = await client.verifyIdToken({
       idToken: token,
-      audience:
-        "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com",
+      audience: GOOGLE_CLIENT_ID,
     });
     const payload = ticket.getPayload();
     if (!payload.email_verified) {

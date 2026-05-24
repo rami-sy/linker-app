@@ -20,8 +20,7 @@ import {
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useColorScheme } from "~/lib/useColorScheme";
 
-const WEB_CLIENT_ID =
-  "294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com";
+const WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
 
 const GoogleAuth = ({ onError }) => {
   const [isLoading, setIsLoading] = useState(false);

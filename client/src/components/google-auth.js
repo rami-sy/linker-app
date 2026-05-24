@@ -49,7 +49,7 @@ const WebGoogleButton = ({ onToken, onError, isLoading, isDarkColorScheme }) => 
           <ActivityIndicator size="small" color={isDarkColorScheme ? "#2D2D37" : "#dee4e6"} />
         </View>
       ) : (
-        <Image source={GoogleLogo} style={{ width: 40, height: 40 }} />
+        <Image source={typeof GoogleLogo === "string" ? { uri: GoogleLogo } : GoogleLogo} style={{ width: 40, height: 40 }} />
       )}
     </TouchableOpacity>
   );

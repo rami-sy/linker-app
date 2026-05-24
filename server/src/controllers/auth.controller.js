@@ -1417,13 +1417,29 @@ exports.googleSignIn = async (req, res) => {
   logger.debug("Google token received");
 
   try {
-    //   // تحقق من الـ token مع جوجل
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: GOOGLE_CLIENT_ID,
-    });
-    const payload = ticket.getPayload();
-    if (!payload.email_verified) {
+    let payload;
+
+    // id_token is a JWT (3 dot-separated Base64 parts); access_token is opaque
+    const isIdToken = typeof token === "string" && token.split(".").length === 3;
+
+    if (isIdToken) {
+      const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: GOOGLE_CLIENT_ID,
+      });
+      payload = ticket.getPayload();
+    } else {
+      // access_token from web implicit flow — fetch user profile from Google
+      const infoRes = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const info = await infoRes.json();
+      if (!infoRes.ok || info.error) {
+        return res.status(401).json({ message: "Invalid Google token", type: "error" });
+      }
+      payload = info;
+    }
+    if (payload.email_verified !== true && payload.email_verified !== "true") {
       return res.status(400).json({
         message: "Google Email is not verified please verify it first",
         type: "error",

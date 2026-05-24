@@ -1416,11 +1416,15 @@ exports.googleSignIn = async (req, res) => {
   const { token, deviceId } = req.body;
   logger.debug("Google token received");
 
+  if (!token || typeof token !== "string") {
+    return res.status(400).json({ message: "Token is required", type: "error" });
+  }
+
   try {
     let payload;
 
     // id_token is a JWT (3 dot-separated Base64 parts); access_token is opaque
-    const isIdToken = typeof token === "string" && token.split(".").length === 3;
+    const isIdToken = token.split(".").length === 3;
 
     if (isIdToken) {
       const ticket = await client.verifyIdToken({

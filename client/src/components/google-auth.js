@@ -24,7 +24,7 @@ const WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
 
 const WebGoogleButton = ({ onToken, onError, isLoading, isDarkColorScheme }) => {
   const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => onToken(tokenResponse.id_token),
+    onSuccess: (tokenResponse) => onToken(tokenResponse.access_token),
     onError: () => onError?.("Google sign-in failed"),
     scope: "openid email profile",
   });

@@ -750,6 +750,7 @@ exports.me = async (req, res) => {
       const color = await saveColorForUser(user._id);
       user.colors.push(color._id);
       await user.save();
+      await user.populate("colors");
     }
 
     user.status = "online";

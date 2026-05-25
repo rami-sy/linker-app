@@ -156,27 +156,31 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://accounts.google.com"],
       scriptSrc: [
         "'self'",
-        "https://accounts.google.com",        // Google Identity Services (OAuth button)
+        "https://accounts.google.com",
         "https://apis.google.com",
       ],
-      imgSrc: ["'self'", "data:", "https:"],
+      workerSrc: ["'self'", "blob:"],
+      imgSrc: ["'self'", "data:", "https:", "blob:"],
       connectSrc: [
         "'self'",
         "ws:", "wss:",
-        "https://oauth2.googleapis.com",       // Google token exchange
+        "blob:",
+        "https://oauth2.googleapis.com",
         "https://accounts.google.com",
         "https://www.googleapis.com",
+        "https://api.ipify.org",
+        "https://xcarpentier.github.io",
       ],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       objectSrc: ["'none'"],
-      mediaSrc: ["'self'"],
+      mediaSrc: ["'self'", "blob:"],
       frameSrc: [
-        "https://accounts.google.com",         // Google OAuth popup/iframe
+        "https://accounts.google.com",
       ],
     },
   },
-  crossOriginEmbedderPolicy: false, // Disable for MediaSoup compatibility
-  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }, // Allow Google OAuth popup postMessage
+  crossOriginEmbedderPolicy: false,
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
 }));
 
 connectDB();

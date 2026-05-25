@@ -42,39 +42,13 @@ import CountryPicker, { DARK_THEME } from "react-native-country-picker-modal";
 import isoCountryToEnglish from "~/src/lib/isoCountryToEnglish";
 import { useColorScheme } from "~/lib/useColorScheme";
 
-const Info = ({ formData, errors, handleInputChange }) => {
+const InfoBasic = ({ formData, errors, handleInputChange }) => {
   const { t } = useTranslation();
-  const [showNationality, setShowNationality] = useState(false);
-  const dispatch = useDispatch();
-
-  const {
-    gender,
-    lookingFor,
-    maritalStatus,
-    days,
-    months,
-    years,
-    preferredCommunications,
-  } = useTranslatedAttributes();
-
-  const { isDarkColorScheme } = useColorScheme();
-  const isRTL = I18nManager.isRTL; // || getLocales()[0].textDirection === "rtl";
-
-  const onSelect = (country) => {
-    dispatch(
-      setFormData({
-        ...formData,
-        nationality: isoCountryToEnglish[country.cca2],
-      })
-    );
-    setShowNationality(!showNationality);
-  };
+  const { gender } = useTranslatedAttributes();
 
   return (
     <ScrollView
-      contentContainerStyle={{
-        marginBottom: 8,
-      }}
+      contentContainerStyle={{ marginBottom: 8 }}
       className={`mb-6`}
     >
       <Pictures withLabel />
@@ -100,23 +74,43 @@ const Info = ({ formData, errors, handleInputChange }) => {
           />
         </View>
       </View>
+      <CategoryPicker
+        label={t("userInfo.gender")}
+        items={gender}
+        value={formData?.gender}
+        onChange={(value) => handleInputChange("gender", value)}
+        name="gender"
+        error={errors.gender}
+      />
+    </ScrollView>
+  );
+};
+
+const InfoDetails = ({ formData, errors, handleInputChange }) => {
+  const { t } = useTranslation();
+  const [showNationality, setShowNationality] = useState(false);
+  const dispatch = useDispatch();
+  const { maritalStatus, days, months, years, preferredCommunications } = useTranslatedAttributes();
+  const isRTL = I18nManager.isRTL;
+
+  const onSelect = (country) => {
+    dispatch(setFormData({ ...formData, nationality: isoCountryToEnglish[country.cca2] }));
+    setShowNationality(false);
+  };
+
+  return (
+    <ScrollView
+      contentContainerStyle={{ marginBottom: 8 }}
+      className={`mb-6`}
+    >
       <View className={`flex items-start w-full mb-6 z-10`}>
-        <View
-          className={`${
-            isRTL ? "flex-row-reverse" : "flex-row"
-          } justify-between w-full`}
-        >
+        <View className={`${isRTL ? "flex-row-reverse" : "flex-row"} justify-between w-full`}>
           <Picker
             containerStyle="flex-1 mr-2 mb-0"
             label={t("userInfo.month")}
             placeholder={t("select.selectMonth")}
             value={formData?.birthDate?.month}
-            onChange={(state) => {
-              handleInputChange("birthDate", {
-                ...formData.birthDate,
-                month: state(),
-              });
-            }}
+            onChange={(state) => handleInputChange("birthDate", { ...formData.birthDate, month: state() })}
             error={errors.birthDate}
             options={months}
           />
@@ -125,56 +119,31 @@ const Info = ({ formData, errors, handleInputChange }) => {
             label={t("userInfo.day")}
             placeholder={t("select.selectDay")}
             value={formData?.birthDate?.day}
-            onChange={(state) => {
-              handleInputChange("birthDate", {
-                ...formData.birthDate,
-                day: state(),
-              });
-            }}
+            onChange={(state) => handleInputChange("birthDate", { ...formData.birthDate, day: state() })}
             error={errors.birthDate}
             options={days}
           />
-
           <Picker
             containerStyle="flex-1 ml-2 mb-0"
             label={t("userInfo.year")}
             placeholder={t("select.selectYear")}
             value={formData?.birthDate?.year}
-            onChange={(state) => {
-              handleInputChange("birthDate", {
-                ...formData.birthDate,
-                year: state(),
-              });
-            }}
+            onChange={(state) => handleInputChange("birthDate", { ...formData.birthDate, year: state() })}
             error={errors.birthDate}
             options={years}
           />
         </View>
         {errors.birthDate && (
-          <Text className={`mb-1 ml-2 text-base text-[#f56800]`}>
-            {errors.birthDate}
-          </Text>
+          <Text className={`mb-1 ml-2 text-base text-[#f56800]`}>{errors.birthDate}</Text>
         )}
       </View>
-      <CategoryPicker
-        label={t("userInfo.gender")}
-        items={gender}
-        value={formData?.gender}
-        onChange={(value) => {
-          handleInputChange("gender", value);
-        }}
-        name="gender"
-        error={errors.gender}
-      />
 
       <Input
         containerStyle="w-full"
         inputStyle="h-12"
         placeholder={t("info.nationality")}
         value={formData?.nationality}
-        onPress={() => {
-          setShowNationality(!showNationality);
-        }}
+        onPress={() => setShowNationality(!showNationality)}
         autoCapitalize="none"
         type={"number"}
       />
@@ -192,9 +161,7 @@ const Info = ({ formData, errors, handleInputChange }) => {
         label={t("userInfo.maritalStatus")}
         items={maritalStatus}
         value={formData?.maritalStatus}
-        onChange={(value) => {
-          handleInputChange("maritalStatus", value);
-        }}
+        onChange={(value) => handleInputChange("maritalStatus", value)}
         name="maritalStatus"
       />
 
@@ -203,47 +170,14 @@ const Info = ({ formData, errors, handleInputChange }) => {
         items={preferredCommunications}
         value={formData?.preferredCommunications}
         onChange={(value) => {
-          const updatedPreferredCommunications =
-            formData?.preferredCommunications?.includes(value)
-              ? formData?.preferredCommunications?.filter(
-                  (item) => item !== value
-                )
-              : [...formData?.preferredCommunications, value];
-
-          const updatedFormData = {
-            ...formData,
-            preferredCommunications: updatedPreferredCommunications,
-          };
-
-          // تحديث البيانات في الحالة العالمية
-          dispatch(setFormData(updatedFormData));
+          const updatedPreferredCommunications = formData?.preferredCommunications?.includes(value)
+            ? formData?.preferredCommunications?.filter((item) => item !== value)
+            : [...formData?.preferredCommunications, value];
+          dispatch(setFormData({ ...formData, preferredCommunications: updatedPreferredCommunications }));
         }}
         name="preferredCommunications"
         multiple={true}
       />
-
-      {/* <CategoryPicker
-        label={t("userInfo.preferredGender")}
-        items={gender}
-        formData={formData}
-        onChange={(value) => {
-          handleInputChange("preferredGenders", value);
-        }}
-        name="preferredGenders"
-        multiple={true}
-        error={errors.preferredGenders}
-      /> */}
-      {/* <CategoryPicker
-        label={t("userInfo.lookingFor")}
-        items={lookingFor}
-        value={formData?.lookingFor}
-        onChange={(value) => {
-          handleInputChange("lookingFor", value);
-        }}
-        name="lookingFor"
-        multiple={true}
-        error={errors.lookingFor}
-      /> */}
     </ScrollView>
   );
 };
@@ -464,21 +398,29 @@ const UserInfo = () => {
     switch (swipeDirection) {
       case 0:
         return (
-          <Info
+          <InfoBasic
             formData={formData}
             errors={errors}
             handleInputChange={handleInputChange}
           />
         );
       case 1:
-        return <Location />;
+        return (
+          <InfoDetails
+            formData={formData}
+            errors={errors}
+            handleInputChange={handleInputChange}
+          />
+        );
       case 2:
-        return <Interests />;
+        return <Location />;
       case 3:
+        return <Interests />;
+      case 4:
         return <Languages />;
       default:
         return (
-          <Info
+          <InfoBasic
             formData={formData}
             errors={errors}
             handleInputChange={handleInputChange}
@@ -507,7 +449,6 @@ const UserInfo = () => {
         }}
           onClick={() => {
             setShowModal(false);
-            // ✅ Use replace instead of push for cleaner navigation
             router.replace("/chats");
           }}
       >
@@ -527,18 +468,16 @@ const UserInfo = () => {
             <Text
               className={`px-3 py-2 text-base bg-papaya text-slate-600 rounded-2xl`}
             >
-              {swipeDirection === 0
+              {swipeDirection <= 1
                 ? t("userInfo.generalInfo")
-                : swipeDirection === 1
-                ? t("userInfo.location")
                 : swipeDirection === 2
-                ? t("userInfo.interests")
+                ? t("userInfo.location")
                 : swipeDirection === 3
-                ? t("userInfo.languages")
-                : t("userInfo.generalInfo")}
+                ? t("userInfo.interests")
+                : t("userInfo.languages")}
             </Text>
             <Text className="px-3 py-2 text-sm text-slate-100 bg-sec rounded-2xl">
-              Step {Math.min(swipeDirection + 1, 4)} / 4
+              Step {swipeDirection + 1} / 5
             </Text>
 
             <Text
@@ -548,7 +487,6 @@ const UserInfo = () => {
               onPress={() => {
                 if (swipeDirection === 0) return;
                 handleSave();
-                // ✅ Use replace for cleaner navigation
                 router.replace("/chats");
               }}
             >
@@ -636,7 +574,9 @@ const UserInfo = () => {
                 setSwipeDirection(3);
               }
               if (swipeDirection === 3) {
-                // ✅ Use replace for cleaner navigation
+                setSwipeDirection(4);
+              }
+              if (swipeDirection === 4) {
                 router.replace("/chats");
               }
             }}

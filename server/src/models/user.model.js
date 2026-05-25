@@ -616,12 +616,12 @@ const userSchema = new mongoose.Schema(
         email: {
           type: String,
           enum: ["everyone", "friends", "noOne"],
-          default: "noOne",
+          default: "everyone",
         },
         phoneNumber: {
           type: String,
           enum: ["everyone", "friends", "noOne"],
-          default: "noOne",
+          default: "everyone",
         },
         location: {
           type: String,

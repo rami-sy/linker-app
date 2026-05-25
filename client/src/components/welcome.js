@@ -122,7 +122,7 @@ const WelcomeComponent = () => {
 
           <View className="flex-row items-center justify-center gap-4">
             <GoogleAuth />
-            {/* <FacebookAuth /> */}
+            <FacebookAuth />
           </View>
 
           <Link

@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const User = require("../models/user.model");
 const twilio = require("twilio");
-const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 const validator = require("validator");
 const generateVerifyCode = require("../utils/generate-code");
 const { buildEmailHtml, buildEmailText } = require("../utils/email-template");
@@ -18,7 +18,7 @@ const logger = require("../utils/logger");
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
-// Email transporter configuration using Gmail OAuth2 (no SMTP ports needed)
+// Email via Gmail REST API (HTTPS port 443 — no SMTP ports needed)
 const gmailOAuthConfigured = !!(
   process.env.SMTP_USER &&
   process.env.GMAIL_CLIENT_ID &&
@@ -28,24 +28,48 @@ const gmailOAuthConfigured = !!(
 
 if (!gmailOAuthConfigured) {
   logger.error(
-    "Gmail OAuth2 credentials are missing. Please set SMTP_USER, GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN in environment variables."
+    "Gmail OAuth2 credentials are missing. Please set SMTP_USER, GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN."
   );
 }
 
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
 
-const transporter = gmailOAuthConfigured
-  ? nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        user: process.env.SMTP_USER,
-        clientId: process.env.GMAIL_CLIENT_ID,
-        clientSecret: process.env.GMAIL_CLIENT_SECRET,
-        refreshToken: process.env.GMAIL_REFRESH_TOKEN,
-      },
-    })
+const gmailOAuth2Client = gmailOAuthConfigured
+  ? new google.auth.OAuth2(
+      process.env.GMAIL_CLIENT_ID,
+      process.env.GMAIL_CLIENT_SECRET,
+      "https://developers.google.com/oauthplayground"
+    )
   : null;
+
+if (gmailOAuth2Client) {
+  gmailOAuth2Client.setCredentials({ refresh_token: process.env.GMAIL_REFRESH_TOKEN });
+}
+
+async function sendGmailApiEmail({ from, to, subject, text, html }) {
+  const gmail = google.gmail({ version: "v1", auth: gmailOAuth2Client });
+  const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString("base64")}?=`;
+  const messageParts = [
+    `From: ${from}`,
+    `To: ${to}`,
+    `Content-Type: text/html; charset=utf-8`,
+    `MIME-Version: 1.0`,
+    `Subject: ${utf8Subject}`,
+    "",
+    html || text,
+  ];
+  const message = messageParts.join("\n");
+  const encodedMessage = Buffer.from(message)
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+  const res = await gmail.users.messages.send({
+    userId: "me",
+    requestBody: { raw: encodedMessage },
+  });
+  return res.data;
+}
 
 const DEV_MAGIC_OTP = process.env.DEV_MAGIC_OTP || "123456";
 const isNonProd = process.env.NODE_ENV !== "production";
@@ -61,17 +85,16 @@ const sendEmail = async (
   { responseMessage, from, to, subject, text, html, devCode },
   res
 ) => {
-  if (!transporter) {
-    logger.warn("SMTP not configured; skipping email send", { to, subject });
+  if (!gmailOAuthConfigured) {
+    logger.warn("Gmail OAuth2 not configured; skipping email send", { to, subject });
     if (!isNonProd) {
       return res.status(500).json({
-        message:
-          "Email service is not configured. Please set SMTP_USER and SMTP_PASS.",
+        message: "Email service is not configured.",
         type: "error",
       });
     }
     return res.status(200).json({
-      message: responseMessage || "Email skipped (SMTP not configured).",
+      message: responseMessage || "Email skipped (Gmail not configured).",
       type: "success",
       ...(exposeDevOtp && devCode
         ? { data: { devCode, note: "Dev mode: use this code to verify." } }
@@ -79,44 +102,15 @@ const sendEmail = async (
     });
   }
 
-  const mailOptions = {
-    from: from,
-    to: to,
-    subject: subject,
-    text: text,
-    html: html,
-  };
-
   try {
-    const info = await transporter.sendMail(mailOptions);
-    logger.debug("Email sent successfully", {
-      to,
-      subject,
-      messageId: info?.messageId,
-    });
+    const info = await sendGmailApiEmail({ from: from || SMTP_FROM, to, subject, text, html });
+    logger.debug("Email sent successfully", { to, subject, messageId: info?.id });
     return res.status(200).json({
       message: responseMessage,
       type: "success",
     });
   } catch (error) {
     logger.error("Error sending email", error);
-
-    // Check for specific Gmail authentication errors
-    if (error?.code === "EAUTH" || error?.responseCode === 534) {
-      logger.error(
-        "Gmail authentication error - Please check your App Password settings",
-        {
-          message: error?.message,
-          response: error?.response,
-        }
-      );
-      return res.status(500).json({
-        message:
-          "Email service authentication failed. Please check email configuration.",
-        type: "error",
-        error: process.env.NODE_ENV === "development" ? error?.message : undefined,
-      });
-    }
 
     return res.status(500).json({
       message: "Internal server error",

@@ -18,40 +18,44 @@ const logger = require("../utils/logger");
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
-// Email transporter configuration using environment variables
-// ⚠️ SECURITY: All credentials must be provided via environment variables
-const smtpConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
-if (!smtpConfigured) {
+// Email transporter configuration using Gmail OAuth2 (no SMTP ports needed)
+const gmailOAuthConfigured = !!(
+  process.env.SMTP_USER &&
+  process.env.GMAIL_CLIENT_ID &&
+  process.env.GMAIL_CLIENT_SECRET &&
+  process.env.GMAIL_REFRESH_TOKEN
+);
+
+if (!gmailOAuthConfigured) {
   logger.error(
-    "SMTP credentials are missing. Please set SMTP_USER and SMTP_PASS in environment variables."
+    "Gmail OAuth2 credentials are missing. Please set SMTP_USER, GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN in environment variables."
   );
 }
 
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
 
-const transporter = smtpConfigured
+const transporter = gmailOAuthConfigured
   ? nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: parseInt(process.env.SMTP_PORT) || 587,
-      secure: false, // true for 465, false for other ports
+      service: "gmail",
       auth: {
+        type: "OAuth2",
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS, // Must be provided via environment variable
+        clientId: process.env.GMAIL_CLIENT_ID,
+        clientSecret: process.env.GMAIL_CLIENT_SECRET,
+        refreshToken: process.env.GMAIL_REFRESH_TOKEN,
       },
-      // Add connection timeout and retry options
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 10000,
-      socketTimeout: 10000,
-      // Retry configuration
-      pool: true,
-      maxConnections: 1,
-      maxMessages: 3,
     })
   : null;
 
 const DEV_MAGIC_OTP = process.env.DEV_MAGIC_OTP || "123456";
 const isNonProd = process.env.NODE_ENV !== "production";
+const isDevOtpAllowed =
+  process.env.ALLOW_DEV_OTP === "true" && process.env.NODE_ENV !== "production";
 const exposeDevOtp = process.env.NODE_ENV === "development";
+
+function isDevOtpBypass(code) {
+  return isDevOtpAllowed && String(code) === DEV_MAGIC_OTP;
+}
 
 const sendEmail = async (
   { responseMessage, from, to, subject, text, html, devCode },
@@ -560,8 +564,7 @@ exports.verifyPhone = async (req, res) => {
       return res.status(400).json({ message: "User not found", type: "error" });
     }
 
-    const bypass =
-      isNonProd && String(normalizedVerificationCode) === DEV_MAGIC_OTP;
+    const bypass = isDevOtpBypass(normalizedVerificationCode);
     if (user.phoneVerification.code !== normalizedVerificationCode && !bypass) {
       return res.status(400).json({
         message: "Invalid verification code",
@@ -643,7 +646,7 @@ exports.verifyEmail = async (req, res) => {
 
     const { code, expires, verified } = user.emailVerification || {};
 
-    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
+    const bypass = isDevOtpBypass(verificationCode);
 
     if (verified) {
       // Already verified — still issue tokens so the client can proceed
@@ -1093,7 +1096,7 @@ exports.changePassword = async (req, res) => {
     } else {
       const auth =
         (await bcrypt.compare(oldPassword, user.password)) ||
-        (isNonProd && String(oldPassword) === DEV_MAGIC_OTP);
+        isDevOtpBypass(oldPassword);
       if (auth) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(newPassword, salt);
@@ -1198,7 +1201,7 @@ exports.resetPassword = async (req, res) => {
       return res.status(404).json({ message: "User not found", type: "error" });
     }
 
-    const bypass = isNonProd && String(verificationCode) === DEV_MAGIC_OTP;
+    const bypass = isDevOtpBypass(verificationCode);
     // Check verification code validity and expiration
     if (user.resetPassword.code !== verificationCode && !bypass) {
       return res

@@ -85,6 +85,9 @@ npm ci --prefix client
 log "Write client build env (.env)"
 cat > "${REPO_DIR}/client/.env" <<ENVEOF
 EXPO_PUBLIC_API_URL=${API_ORIGIN}
+EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=${EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID:-294472116144-bgcqhr85smtcs7cck4roergenedchocd.apps.googleusercontent.com}
+EXPO_PUBLIC_FACEBOOK_APP_ID=${EXPO_PUBLIC_FACEBOOK_APP_ID:-1366405595301808}
+EXPO_PUBLIC_GOOGLE_MAPS_API_KEY=${EXPO_PUBLIC_GOOGLE_MAPS_API_KEY:-AIzaSyB-10rZy3Bd9idrctZsjknHsq9sdwrxf8U}
 ENVEOF
 
 log "Build client web -> server/dist"

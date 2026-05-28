@@ -125,8 +125,7 @@ const LoginScreen = () => {
               overflow: "hidden",
             }}
           >
-            {/* Teal accent bar at top */}
-            <View style={{ height: 3, backgroundColor: "#0a97b9", borderTopLeftRadius: 24, borderTopRightRadius: 24 }} />
+            
             <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
             {/* Page title */}
             <Text className="text-xl font-bold text-placehoder dark:text-papaya mb-1">

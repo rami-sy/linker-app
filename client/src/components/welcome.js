@@ -23,7 +23,6 @@ import { Feather } from "@expo/vector-icons";
 
 const FeatureCard = ({ icon, title, desc }) => (
   <View
-    style={{ borderLeftWidth: 3, borderLeftColor: "#0a97b9" }}
     className="bg-[#f0f7f9] dark:bg-[#1a1e2a] rounded-2xl p-4 mb-3 flex-row items-center w-10/12"
   >
     <View
@@ -88,12 +87,11 @@ const WelcomeComponent = () => {
         {/* Header */}
         <View className="items-center w-full">
           <Logo />
-          {/* Accent rule below logo */}
-          <View
-            className="rounded-full mb-2"
-            style={{ width: 48, height: 3, backgroundColor: "#0a97b9" }}
-          />
-          <Text className="text-sm text-slate-500 dark:text-slate-400 mb-2">
+          
+          <Text
+            className="w-10/12 text-sm text-center text-slate-500 dark:text-slate-400 mb-2"
+            style={{ maxWidth: 760 }}
+          >
             {t("auth.welcome.title")}
           </Text>
         </View>

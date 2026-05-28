@@ -158,6 +158,7 @@ app.use(helmet({
         "'self'",
         "https://accounts.google.com",
         "https://apis.google.com",
+        "https://connect.facebook.net",
       ],
       workerSrc: ["'self'", "blob:"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],

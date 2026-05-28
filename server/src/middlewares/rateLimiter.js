@@ -2,7 +2,7 @@ const rateLimit = require('express-rate-limit');
 
 const defaultMaxRequests =
   parseInt(process.env.RATE_LIMIT_MAX_REQUESTS, 10) ||
-  (process.env.NODE_ENV === "production" ? 100 : 1000);
+  (process.env.NODE_ENV === "production" ? 500 : 1000);
 
 // General API rate limiting
 const generalLimiter = rateLimit({

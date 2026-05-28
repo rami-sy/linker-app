@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const User = require("../models/user.model");
 const twilio = require("twilio");
-const { google } = require("googleapis");
 const validator = require("validator");
 const generateVerifyCode = require("../utils/generate-code");
 const { buildEmailHtml, buildEmailText } = require("../utils/email-template");
@@ -35,7 +34,7 @@ if (!gmailOAuthConfigured) {
 const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
 
 const gmailOAuth2Client = gmailOAuthConfigured
-  ? new google.auth.OAuth2(
+  ? new OAuth2Client(
       process.env.GMAIL_CLIENT_ID,
       process.env.GMAIL_CLIENT_SECRET,
       "https://developers.google.com/oauthplayground"
@@ -47,7 +46,6 @@ if (gmailOAuth2Client) {
 }
 
 async function sendGmailApiEmail({ from, to, subject, text, html }) {
-  const gmail = google.gmail({ version: "v1", auth: gmailOAuth2Client });
   const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString("base64")}?=`;
   const messageParts = [
     `From: ${from}`,
@@ -64,9 +62,10 @@ async function sendGmailApiEmail({ from, to, subject, text, html }) {
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
     .replace(/=+$/, "");
-  const res = await gmail.users.messages.send({
-    userId: "me",
-    requestBody: { raw: encodedMessage },
+  const res = await gmailOAuth2Client.request({
+    method: "POST",
+    url: "https://gmail.googleapis.com/gmail/v1/users/me/messages/send",
+    data: { raw: encodedMessage },
   });
   return res.data;
 }

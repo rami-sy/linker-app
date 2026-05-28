@@ -7,9 +7,15 @@
  * 3. تصنيف الأخطاء
  */
 
+const {
+  SHARED_ERROR_CODES,
+  SHARED_ERROR_MESSAGES,
+  formatSharedError,
+  formatSharedSuccess,
+} = require("../../../shared/errorCodes");
+
 const ERROR_CODES = {
-  // Room Errors
-  ROOM_NOT_FOUND: 'ROOM_NOT_FOUND',
+  ...SHARED_ERROR_CODES,
   ROOM_ALREADY_EXISTS: 'ROOM_ALREADY_EXISTS',
   ROOM_FULL: 'ROOM_FULL',
   
@@ -52,7 +58,7 @@ const ERROR_CODES = {
 };
 
 const ERROR_MESSAGES = {
-  [ERROR_CODES.ROOM_NOT_FOUND]: 'Room not found',
+  ...SHARED_ERROR_MESSAGES,
   [ERROR_CODES.ROOM_ALREADY_EXISTS]: 'Room already exists',
   [ERROR_CODES.ROOM_FULL]: 'Room is full',
   
@@ -117,9 +123,11 @@ const formatErrorForCallback = (error, context = {}) => {
   const code = error?.code || ERROR_CODES.UNKNOWN_ERROR;
   
   return {
-    success: false,
+    ...formatSharedError({
+      message: sanitizedResponse.error,
+      code,
+    }),
     error: sanitizedResponse.error,
-    code: code,
     ...(process.env.NODE_ENV === 'development' && sanitizedResponse.sanitizedDetails ? {
       sanitizedDetails: sanitizedResponse.sanitizedDetails,
     } : {}),
@@ -130,7 +138,9 @@ module.exports = {
   ERROR_CODES,
   ERROR_MESSAGES,
   createError,
-  formatErrorForCallback
+  formatErrorForCallback,
+  formatSharedError,
+  formatSharedSuccess
 };
 
 

@@ -1,0 +1,29 @@
+npm Audit Evidence — Linker Mobile App (React Native/Expo)
+Date: Mon May 25 13:57:42 UTC 2026
+Tool: npm audit (Node.js package vulnerability scanner)
+Scope: /opt/linker/client (React Native / Expo mobile app)
+
+SUMMARY:
+- Critical vulnerabilities: 0 ✓
+- High vulnerabilities: 0 ✓ (resolved from 10 via npm audit fix)
+- Moderate vulnerabilities: 20
+- Low vulnerabilities: 0
+
+MODERATE SEVERITY FINDINGS (20):
+All 20 moderate findings are in indirect/transitive dependencies within
+the React Native / Expo ecosystem. These packages do not process or
+transmit Meta Platform Data (gender, birthday) directly. They are
+presentation-layer and tooling dependencies.
+
+STATEMENT:
+No Critical or High severity vulnerabilities exist in the mobile app.
+All remaining moderate vulnerabilities do not present a risk of
+unauthorized access to Meta Platform Data.
+
+Remediation plan:
+- Moderate vulnerabilities will be resolved as upstream Expo SDK and
+  React Native packages release patches, expected in the next SDK update.
+
+Confirmed by: Rami Sweyri — Sole Developer
+Linker App (linker.land)
+May 25, 2026

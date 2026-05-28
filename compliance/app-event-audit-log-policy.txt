@@ -1,0 +1,47 @@
+Application Event Audit Log Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+OVERVIEW:
+The Linker backend API (Node.js/Express, hosted on DigitalOcean Ubuntu 24.04 LTS)
+collects application event audit logs for all API activity involving Platform Data.
+
+REQUIRED FIELDS IN APPLICATION EVENT AUDIT LOGS:
+
+[1] Meta User ID (when shared with us)
+    When a user authenticates via Facebook Login, the Meta user ID (FBID)
+    provided by Meta is recorded in the application log entry associated with
+    that authentication event. This ID is logged at the time of the API call
+    to /api/auth/facebook-signin.
+
+[2] Event Type
+    Each log entry includes the type of event, such as:
+    - Authentication attempt (login / register via Facebook)
+    - Input validation failure (invalid token, missing fields)
+    - Access control failure (unauthorized access attempt)
+    - Application error (unhandled exception, DB connection error)
+
+[3] Date and Time
+    All log entries include a precise UTC timestamp, recorded automatically
+    by PM2 (process manager) and Nginx at the time of the event.
+    Format example: 2026-05-25T13:33:41.000Z
+
+[4] Success or Failure Indicator
+    Each event log entry includes the HTTP response status code, which
+    indicates success or failure:
+    - 2xx: Success
+    - 4xx: Client error / authentication failure / validation failure
+    - 5xx: Server error
+    Example: POST /api/auth/facebook-signin 401 — authentication failure
+
+LOG STORAGE:
+- PM2 application logs: /root/.pm2/logs/linker-server-out.log
+- PM2 error logs: /root/.pm2/logs/linker-server-error.log
+- Nginx access logs: /var/log/nginx/access.log
+- Nginx error logs: /var/log/nginx/error.log
+
+RETENTION:
+Logs are retained on the server for a minimum of 30 days.
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

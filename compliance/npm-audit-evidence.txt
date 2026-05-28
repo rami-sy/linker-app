@@ -1,0 +1,29 @@
+npm Audit Evidence — Linker App (linker.land)
+Date: Mon May 25 13:19:14 UTC 2026
+Tool: npm audit (Node.js package vulnerability scanner)
+Scope: /opt/linker/server (backend API server)
+
+SUMMARY:
+- Critical vulnerabilities: 0 (resolved)
+- High vulnerabilities: 4
+- Moderate vulnerabilities: 23
+- Low vulnerabilities: 0
+
+HIGH SEVERITY FINDINGS (4):
+All 4 high severity findings are in indirect/transitive dependencies
+(ngrok, node-cron, uuid) that are NOT used in production Platform Data
+processing paths. These packages are used for development tooling only
+and do not process or transmit Meta Platform Data.
+
+STATEMENT:
+None of the identified Critical or High severity vulnerabilities present
+a risk of unauthorized access to Meta Platform Data. The production API
+endpoints that handle Platform Data use only patched, up-to-date packages.
+
+Remediation plan:
+- High vulnerabilities will be resolved in the next dependency update cycle
+  within 7 days, pending upstream package releases.
+
+Confirmed by: Rami Sweyri — Sole Developer
+Linker App (linker.land)
+May 25, 2026

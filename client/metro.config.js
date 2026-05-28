@@ -19,10 +19,39 @@ function nobleCjsMap(projectRoot) {
   };
 }
 
+function eventTargetShimMap(projectRoot) {
+  const fs = require("fs");
+  const candidates = [
+    path.join(
+      projectRoot,
+      "node_modules/react-native-webrtc/node_modules/event-target-shim/index.js"
+    ),
+    path.join(projectRoot, "node_modules/event-target-shim/index.js"),
+  ];
+  const filePath = candidates.find((p) => fs.existsSync(p));
+  if (!filePath) return {};
+  return { "event-target-shim/index": filePath };
+}
+
 module.exports = (() => {
   const projectRoot = __dirname;
+  const monorepoRoot = path.resolve(projectRoot, "..");
+  const sharedRoot = path.join(monorepoRoot, "shared");
   const config = getDefaultConfig(projectRoot);
   const nobleMap = nobleCjsMap(projectRoot);
+  const shimMap = eventTargetShimMap(projectRoot);
+
+  config.watchFolders = [...(config.watchFolders || []), sharedRoot];
+  const escapePath = (p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const blockedRoots = [
+    path.join(projectRoot, "client"), // legacy nested Expo project
+    path.join(projectRoot, "dist"),
+    path.join(projectRoot, "dist-ci"),
+    path.join(projectRoot, "coverage"),
+    path.join(projectRoot, "test-results"),
+    path.join(monorepoRoot, "server", "coverage"),
+    path.join(monorepoRoot, "server", "dist"),
+  ];
 
   const { transformer, resolver } = config;
 
@@ -36,14 +65,18 @@ module.exports = (() => {
   // تعديل إعدادات resolver لإضافة svg
   config.resolver = {
     ...resolver,
+    blockList: blockedRoots.map(
+      (blockedPath) => new RegExp(`^${escapePath(blockedPath)}.*`)
+    ),
     assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
     sourceExts: [...resolver.sourceExts, "svg"],
     extraNodeModules: {
       ...resolver.extraNodeModules,
       events: require.resolve("events"),
+      "@linker/shared": sharedRoot,
     },
     resolveRequest(context, moduleName, platform) {
-      const filePath = nobleMap[moduleName];
+      const filePath = nobleMap[moduleName] || shimMap[moduleName];
       if (filePath) {
         return { type: "sourceFile", filePath };
       }

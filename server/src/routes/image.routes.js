@@ -5,6 +5,10 @@ const router = express.Router();
 const verifyToken = require("../middlewares/verify-token");
 const path = require("path");
 
+const uploadMaxFileSizeMb =
+  Number.parseInt(process.env.UPLOAD_MAX_FILE_SIZE_MB, 10) || 100;
+const uploadMaxFileSizeBytes = uploadMaxFileSizeMb * 1024 * 1024;
+
 const sanitizeFileName = (name) => {
   return name.toLowerCase().replace(/[^a-z0-9-_]/g, ""); // Remove dots
 };
@@ -50,14 +54,14 @@ const upload = multer({
   limits: {
     fieldNameSize: 1000, // زيادة حجم الاسم إلى 500 بايت
     fieldSize: 50 * 1024 * 1024, // زيادة حجم القيمة إلى 50MB
-    fileSize: 500 * 1024 * 1024, // زيادة حجم الملف إلى 500MB
+    fileSize: uploadMaxFileSizeBytes,
   },
   fileFilter: function (_req, file, cb) {
     checkFileType(_req, file, cb);
   },
 });
 
-router.get("/:filename", getImage);
+router.get("/:filename", verifyToken, getImage);
 router.post("/", [verifyToken, upload.single("file")], postImage);
 
 module.exports = router;

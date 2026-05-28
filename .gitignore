@@ -31,6 +31,7 @@ client/env.*.test
 **/*.key
 **/*.crt
 **/*.cer
+**/*.der
 **/*.p12
 **/*.pfx
 **/*.jks

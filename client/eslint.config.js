@@ -1,26 +1,12 @@
-// Minimal ESLint flat config to ensure JSX parses in `.js` files.
-// This project currently uses ESLint primarily for syntax validation on a small set of files.
+// ESLint flat config for targeted syntax validation and import guardrails.
 export default [
-  {
-    files: ["**/*.{js,jsx}"],
-    languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "module",
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-      },
-    },
-    rules: {},
-  },
-];
-
-module.exports = [
   {
     files: [
       "src/contexts/socket.context.js",
       "src/utils/offlineQueue.js",
+      "src/utils/facebookSdk.js",
+      "src/components/facebook-auth.js",
+      "src/components/facebook-auth.web.js",
       "src/components/chat/chat-input.js",
       "src/components/chat/show-attachment.js",
       "src/components/chat/message-list.js",
@@ -49,6 +35,7 @@ module.exports = [
       globals: {
         __DEV__: "readonly",
         window: "readonly",
+        document: "readonly",
         Notification: "readonly",
         URLSearchParams: "readonly",
         requestAnimationFrame: "readonly",
@@ -59,6 +46,7 @@ module.exports = [
         clearTimeout: "readonly",
         console: "readonly",
         process: "readonly",
+        require: "readonly",
       },
     },
     rules: {

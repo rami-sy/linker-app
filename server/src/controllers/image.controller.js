@@ -1,5 +1,7 @@
 const path = require("path");
 const Image = require("../models/image.model");
+const logger = require("../utils/logger");
+const { formatSharedError, formatSharedSuccess } = require("../utils/errorCodes");
 
 exports.postImage = async (req, res, next) => {
   if (req.fileValidationError) {
@@ -19,8 +21,6 @@ exports.postImage = async (req, res, next) => {
     });
   }
   try {
-    console.log({ file2: JSON.stringify( req.file ), 
-    });
     const image = new Image({
       filename: file?.filename,
       originalname: file?.originalname,
@@ -31,21 +31,13 @@ exports.postImage = async (req, res, next) => {
     });
 
     const savedImage = await image.save();
-    console.log({savedImage});
-    res.status(201).send({
+    res.status(201).send(formatSharedSuccess({
       message: "File created successfully!",
-
       data: savedImage,
-      type: "success",
-    });
+    }));
   } catch (error) {
-    console.log({error});
-    res.status(500).send({
-      message: "Something went wrong",
-
-      data: error,
-      type: "error",
-    });
+    logger.error("Failed to upload file", error);
+    res.status(500).send(formatSharedError({ message: "Something went wrong" }));
   }
 };
 
@@ -81,8 +73,30 @@ exports.deleteImage = async (req, res, next) => {
   }
 };
 
-exports.getImage = (req, res) => {
+exports.getImage = async (req, res) => {
   const { filename } = req.params;
+  const safeName = path.basename(filename);
 
-  res.sendFile(path.join(__dirname, "../../images", filename));
+  if (!safeName || safeName === "." || safeName === "..") {
+    return res.status(400).send(formatSharedError({ message: "Invalid filename" }));
+  }
+
+  const userId = String(req.user._id);
+  const ownerPrefix = `${userId}-`;
+
+  if (!safeName.startsWith(ownerPrefix)) {
+    const image = await Image.findOne({ filename: safeName })
+      .select("userId")
+      .lean();
+    if (!image || String(image.userId) !== userId) {
+      return res.status(403).send(formatSharedError({ message: "Forbidden" }));
+    }
+  }
+
+  const filePath = path.join(__dirname, "../../uploads", safeName);
+  return res.sendFile(filePath, (err) => {
+    if (err && !res.headersSent) {
+      res.status(404).send(formatSharedError({ message: "File not found" }));
+    }
+  });
 };

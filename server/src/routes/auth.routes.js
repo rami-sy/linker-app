@@ -31,6 +31,7 @@ router.put("/me", [verifyToken], controller.updateProfile);
 
 router.post(
   "/validate-user-name-and-Email",
+  authLimiter,
   controller.validateUserNameAndEmail
 );
 
@@ -54,8 +55,8 @@ router.post("/deactive-account", [verifyToken], controller.deActiveAccount);
 
 router.post("/send-verification-code", deleteAccountLimiter, controller.sendDeleteVerificationCode);
 router.post("/delete-my-account", deleteAccountLimiter, controller.deleteMyAccount);
-router.post("/google-signin", controller.googleSignIn);
-router.post("/facebook-signin", controller.facebookSignIn);
+router.post("/google-signin", authLimiter, controller.googleSignIn);
+router.post("/facebook-signin", authLimiter, controller.facebookSignIn);
 
 router.post("/refresh", otpLimiter, controller.refreshToken);
 

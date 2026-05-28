@@ -29,6 +29,8 @@ import getFullName from "../utils/getFullName"; // ✅ For formatting user names
 import { useTranslation } from "react-i18next"; // ✅ For translations
 import CallChatIntegration from "../utils/callChatIntegration"; // ✅ Call-Chat Integration
 import StreamChatIntegration from "../utils/streamChatIntegration"; // ✅ Stream-Chat Integration
+import { createRecordingSocketHandlers } from "./mediasoup/recordingSocketHandlers";
+import { createLiveStreamSocketHandlers } from "./mediasoup/liveStreamSocketHandlers";
 import RoomStateSync from "../utils/roomStateSync"; // ✅ Room State Sync
 import screenShareOptimizer from "../utils/screenShareOptimizer"; // ✅ Screen Share Optimizer
 import {
@@ -5324,6 +5326,15 @@ export const useMediasoup = () => {
 
     // حفظ handler functions في refs لضمان cleanup صحيح
     const handlers = {
+      ...createRecordingSocketHandlers({
+        callId,
+        dispatch,
+        addAlert,
+        t,
+        logger,
+        setIsRecording,
+        setRecordingId,
+      }),
       callError: (payload) => {
         logger.error("callError from server:", payload);
         // معالجة خطأ المكالمة: يتم عرض الخطأ عبر setMediaError
@@ -6649,102 +6660,6 @@ export const useMediasoup = () => {
           }
         }
       },
-      callRecordingStopped: ({
-        callId: recordingCallId,
-        recordingId: stoppedRecordingId,
-        status,
-      }) => {
-        logger.callEvent("Call recording stopped notification received", {
-          callId: recordingCallId,
-          recordingId: stoppedRecordingId,
-          status,
-        });
-        // إذا كانت المكالمة المسجلة هي المكالمة الحالية
-        if (recordingCallId === callId) {
-          setIsRecording(false);
-          setRecordingId(null);
-          logger.callEvent("Recording stopped for current call", {
-            callId: recordingCallId,
-            recordingId: stoppedRecordingId,
-          });
-
-          // ✅ إشعار المستخدم أن التسجيل في حالة معالجة
-          if (status === "processing") {
-            dispatch(
-              addAlert({
-                type: "info",
-                message:
-                  "Recording is being processed. You will be notified when it's ready.",
-              })
-            );
-          } else {
-            dispatch(
-              addAlert({
-                type: "info",
-                message: "Call recording has stopped.",
-              })
-            );
-          }
-        }
-      },
-      // ✅ إشعار عند اكتمال معالجة التسجيل
-      callRecordingCompleted: ({
-        callId: recordingCallId,
-        recordingId,
-        recording,
-      }) => {
-        logger.callEvent("Call recording completed notification received", {
-          callId: recordingCallId,
-          recordingId,
-          fileUrl: recording?.fileUrl,
-          status: recording?.status,
-        });
-
-        // إذا كانت المكالمة المسجلة هي المكالمة الحالية
-        if (recordingCallId === callId) {
-          logger.callEvent("Recording completed for current call", {
-            callId: recordingCallId,
-            recordingId,
-            fileUrl: recording?.fileUrl,
-          });
-
-          // ✅ إشعار المستخدم أن التسجيل جاهز
-          const duration = recording?.duration || 0;
-          const mins = Math.floor(duration / 60);
-          const secs = duration % 60;
-          const durationText = `${mins}:${secs.toString().padStart(2, "0")}`;
-
-          dispatch(
-            addAlert({
-              type: "success",
-              message: `Recording completed! Duration: ${durationText}. Tap to download.`,
-            })
-          );
-        }
-      },
-      // ✅ إشعار عند معالجة التسجيل
-      callRecordingProcessing: ({
-        callId: recordingCallId,
-        recordingId,
-        status,
-        message,
-      }) => {
-        logger.callEvent("Call recording processing notification received", {
-          callId: recordingCallId,
-          recordingId,
-          status,
-          message,
-        });
-
-        if (recordingCallId === callId) {
-          dispatch(
-            addAlert({
-              type: "info",
-              message: message || "Recording is being processed...",
-            })
-          );
-        }
-      },
       // ✅ إشعار طلب Screen Share
       screenShareRequested: ({
         callId: requestCallId,
@@ -7050,65 +6965,10 @@ export const useMediasoup = () => {
           }
         }
       },
-      // ✅ Live Stream Started event
-      liveStreamStarted: ({
-        roomId,
-        callId,
-        broadcaster,
-        broadcasters,
-        settings,
-      }) => {
-        logger.streamEvent("Live stream started event received", {
-          roomId,
-          callId,
-          broadcaster,
-          broadcasters,
-        });
-
-        // ✅ إضافة الستريم إلى activeStreams Map
-        if (roomId) {
-          try {
-            const streamChatIntegration = streamChatIntegrationRef.current;
-            // ✅ استخدام broadcaster (مفرد) أو أول broadcaster من broadcasters (جمع)
-            const broadcasterData =
-              broadcaster || (broadcasters && broadcasters[0]) || null;
-            streamChatIntegration.handleStreamStarted({
-              roomId,
-              streamId: callId || roomId,
-              broadcasterId: broadcasterData?._id,
-              broadcasterData: broadcasterData,
-              settings: settings || {},
-              startedAt: new Date().toISOString(),
-            });
-            logger.streamEvent("Stream added to activeStreams", { roomId });
-          } catch (error) {
-            logger.error("Error handling liveStreamStarted:", error);
-          }
-        }
-      },
-      // ✅ Live Stream Ended event
-      liveStreamEnded: ({ roomId, callId }) => {
-        logger.streamEvent("Live stream ended event received", {
-          roomId,
-          callId,
-        });
-
-        // ✅ تحديث Redux state
-        if (roomId) {
-          try {
-            const streamChatIntegration = streamChatIntegrationRef.current;
-            streamChatIntegration.handleStreamEnded({
-              roomId,
-              streamId: callId || roomId,
-              duration: null,
-              endedBy: null,
-            });
-            logger.streamEvent("Stream removed from activeStreams", { roomId });
-          } catch (error) {
-            logger.error("Error handling liveStreamEnded:", error);
-          }
-        }
-      },
+      ...createLiveStreamSocketHandlers({
+        streamChatIntegrationRef,
+        logger,
+      }),
     };
 
     // إضافة socket connection state listeners

@@ -148,7 +148,8 @@
       "expo-router",
       "expo-secure-store",
       "expo-audio",
-      "expo-asset"
+      "expo-asset",
+      "expo-web-browser"
     ],
     "extra": {
       "eas": {

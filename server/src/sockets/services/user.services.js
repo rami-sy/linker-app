@@ -218,6 +218,18 @@ async function emitAndMaybePushNotification({
   );
 }
 
+function mapProfileImageFields(image) {
+  if (!image) return null;
+  const mapped = {
+    _id: image._id,
+    path: image.path,
+  };
+  if (typeof image.index === "number") {
+    mapped.index = image.index;
+  }
+  return mapped;
+}
+
 function applyPrivacySettings(userData, isFriend) {
   const privacy = userData.privacySettings || {};
   const visibility = privacy.visibility || {};
@@ -278,10 +290,9 @@ function applyPrivacySettings(userData, isFriend) {
     visibility.images === "everyone" ||
     (visibility.images === "friends" && isFriend)
   ) {
-    sanitizedData.images = (userData.images || []).map((image) => ({
-      _id: image._id,
-      path: image.path,
-    }));
+    sanitizedData.images = (userData.images || [])
+      .map(mapProfileImageFields)
+      .filter(Boolean);
   } else {
     sanitizedData.images = [];
   }
@@ -666,6 +677,7 @@ const getMyConnections = async function ({ args, socket }, callback) {
                   in: {
                     _id: "$$image._id",
                     path: "$$image.path",
+                    index: "$$image.index",
                   },
                 },
               },
@@ -1033,6 +1045,7 @@ const getFriendsNRecentChats = async ({ args, socket }, callback) => {
                   in: {
                     _id: "$$image._id",
                     path: "$$image.path",
+                    index: "$$image.index",
                   },
                 },
               },
@@ -1669,6 +1682,7 @@ const buildSearchAggregationPipeline = (
               in: {
                 _id: "$$image._id",
                 path: "$$image.path",
+                index: "$$image.index",
               },
             },
           },
@@ -2344,6 +2358,7 @@ const searchUsersByMap = async function ({ args, socket }, callback) {
                   in: {
                     _id: "$$image._id",
                     path: "$$image.path",
+                    index: "$$image.index",
                   },
                 },
               },
@@ -3955,6 +3970,19 @@ const getOneUser = async function ({ args, socket, redisClient }, callback) {
     }
 
     await visitUser({ args: { target: result[0]._id }, socket, redisClient });
+
+    // Preserve profile image order from the user's images array ($lookup does not).
+    const userImageOrder = await User.findById(targetUserId)
+      .select("images")
+      .lean();
+    if (result[0].images?.length && userImageOrder?.images?.length) {
+      const imagesById = new Map(
+        result[0].images.map((img) => [String(img._id), img])
+      );
+      result[0].images = userImageOrder.images
+        .map((id) => imagesById.get(String(id)))
+        .filter(Boolean);
+    }
 
     const fans = await Like.find({
       targetModel: "User",

@@ -14,8 +14,11 @@ import Popup from '../../../../../src/components/popup';
 import { MediasoupContext } from '../../../../../src/contexts/mediasoup.context';
 import { SocketContext } from '../../../../../src/contexts/socket.context';
 import { useColorScheme } from '~/lib/useColorScheme';
+import { useTranslation } from 'react-i18next';
+import { subscribeLiveStreamEvents } from '../../../../../src/utils/liveStreamSocketEvents';
 
 export default function LiveStreamsScreen() {
+  const { t } = useTranslation();
   const { getLiveStreams, stopLiveStream } = useContext(MediasoupContext);
   const { socket } = useContext(SocketContext);
   const dispatch = useDispatch();
@@ -72,13 +75,10 @@ export default function LiveStreamsScreen() {
       await loadStreams();
     };
 
-    socket.on('liveStreamStarted', handleStreamStarted);
-    socket.on('liveStreamEnded', handleStreamEnded);
-
-    return () => {
-      socket.off('liveStreamStarted', handleStreamStarted);
-      socket.off('liveStreamEnded', handleStreamEnded);
-    };
+    return subscribeLiveStreamEvents(socket, {
+      onStarted: handleStreamStarted,
+      onEnded: handleStreamEnded,
+    });
   }, [socket, loadStreams]);
 
   const handleRefresh = async () => {
@@ -281,7 +281,7 @@ export default function LiveStreamsScreen() {
             {/* Live Indicator */}
             <View className="absolute -top-1 -right-1 bg-red-500 rounded-full px-2 py-0.5 flex-row items-center">
               <View className="w-2 h-2 bg-white rounded-full mr-1" />
-              <Text className="text-white text-xs font-bold">LIVE</Text>
+              <Text className="text-white text-xs font-bold">{t('liveStreams.liveBadge')}</Text>
             </View>
           </View>
 
@@ -289,12 +289,12 @@ export default function LiveStreamsScreen() {
           <View className="ml-4 flex-1">
             <View className="flex-row items-center">
               <Text className={`font-bold text-lg ${isDarkColorScheme ? 'text-white' : 'text-black'}`} numberOfLines={1}>
-                {broadcaster?.userName || broadcaster?.firstName || 'Unknown'}
+                {broadcaster?.userName || broadcaster?.firstName || t('liveStreams.unknownUser')}
               </Text>
               {isOwner && (
                 <View className={`ml-2 px-2 py-0.5 rounded-full ${isDarkColorScheme ? 'bg-blue-900' : 'bg-blue-100'}`}>
                   <Text className={`text-xs font-semibold ${isDarkColorScheme ? 'text-blue-300' : 'text-blue-700'}`}>
-                    You
+                    {t('liveStreams.you')}
                   </Text>
                 </View>
               )}
@@ -306,7 +306,7 @@ export default function LiveStreamsScreen() {
                 color={isDarkColorScheme ? '#94a3b8' : '#64748b'} 
               />
               <Text className={`text-sm ml-1 ${isDarkColorScheme ? 'text-gray-400' : 'text-gray-600'}`}>
-                {viewersCount} {viewersCount === 1 ? 'viewer' : 'viewers'}
+                {viewersCount} {viewersCount === 1 ? t('liveStreams.viewerOne') : t('liveStreams.viewerMany')}
               </Text>
               {duration && (
                 <>
@@ -336,7 +336,7 @@ export default function LiveStreamsScreen() {
                 itemClassName="rounded-xl"
                 options={[
                   {
-                    name: 'Stop Stream',
+                    name: t('liveStreams.stopStream'),
                     onPress: () => {
                       logger.callEvent('Stop Stream option pressed', { streamId: item._id });
                       handleStopStream(item);
@@ -344,7 +344,7 @@ export default function LiveStreamsScreen() {
                     icon: <FeIcon name="square" size={16} color={isDarkColorScheme ? '#ef4444' : '#dc2626'} />,
                   },
                   {
-                    name: 'View Stream',
+                    name: t('liveStreams.viewStream'),
                     onPress: () => {
                       logger.callEvent('View Stream option pressed', { streamId: item._id });
                       handleStreamPress(item);
@@ -395,7 +395,7 @@ export default function LiveStreamsScreen() {
       <View className={`flex-1 w-full linker-w items-center justify-center ${isDarkColorScheme ? 'bg-[#12141b]' : 'bg-white'}`}>
         <ActivityIndicator size="large" color={isDarkColorScheme ? '#3b82f6' : '#2563eb'} />
         <Text className={`mt-4 text-base ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}>
-          Loading live streams...
+          {t('liveStreams.loading')}
         </Text>
       </View>
     );
@@ -410,7 +410,7 @@ export default function LiveStreamsScreen() {
           color={isDarkColorScheme ? '#ef4444' : '#dc2626'} 
         />
         <Text className={`mt-4 text-lg font-semibold text-center ${isDarkColorScheme ? 'text-red-400' : 'text-red-600'}`}>
-          Error
+          {t('liveStreams.errorTitle')}
         </Text>
         <Text className={`mt-2 text-base text-center ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}>
           {error}
@@ -419,7 +419,7 @@ export default function LiveStreamsScreen() {
           onPress={loadStreams}
           className={`mt-6 px-6 py-3 rounded-full ${isDarkColorScheme ? 'bg-blue-600' : 'bg-blue-500'}`}
         >
-          <Text className="text-white font-semibold">Retry</Text>
+          <Text className="text-white font-semibold">{t('liveStreams.retry')}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -432,10 +432,10 @@ export default function LiveStreamsScreen() {
       {/* Header */}
       <View className={`px-4 py-2 border-b ${isDarkColorScheme ? 'border-slate-800' : 'border-gray-200'}`}>
         <Text className={`text-xl font-bold ${isDarkColorScheme ? 'text-white' : 'text-black'}`}>
-          Live Streams
+          {t('liveStreams.title')}
         </Text>
         <Text className={`text-xs mt-0.5 ${isDarkColorScheme ? 'text-slate-400' : 'text-gray-600'}`}>
-          Watch live broadcasts from your network
+          {t('liveStreams.subtitle')}
         </Text>
       </View>
 
@@ -444,7 +444,7 @@ export default function LiveStreamsScreen() {
         <View className="flex-1">
           <TextInput
             className={`w-full h-10 text-base px-3 rounded-lg ${isDarkColorScheme ? 'bg-slate-800 text-white' : 'bg-gray-100 text-black'}`}
-            placeholder="Search streams..."
+            placeholder={t('liveStreams.searchPlaceholder')}
             placeholderTextColor={isDarkColorScheme ? '#94a3b8' : '#64748b'}
             value={searchQuery}
             onChangeText={setSearchQuery}
@@ -467,7 +467,9 @@ export default function LiveStreamsScreen() {
       {/* ✅ Sort Controls */}
       <View className={`px-4 py-2 flex-row items-center justify-between border-b ${isDarkColorScheme ? 'border-slate-800' : 'border-gray-200'}`}>
         <Text className={`text-sm ${isDarkColorScheme ? 'text-slate-400' : 'text-gray-600'}`}>
-          {filteredAndSortedStreams.length} {filteredAndSortedStreams.length === 1 ? 'stream' : 'streams'}
+          {filteredAndSortedStreams.length === 1
+            ? t('liveStreams.streamCountOne', { count: filteredAndSortedStreams.length })
+            : t('liveStreams.streamCountMany', { count: filteredAndSortedStreams.length })}
         </Text>
         <View className="flex-row items-center gap-x-2">
           <ContextMenu
@@ -547,7 +549,11 @@ export default function LiveStreamsScreen() {
                 color={isDarkColorScheme ? '#94a3b8' : '#64748b'} 
               />
               <Text className={`text-sm font-medium ${isDarkColorScheme ? 'text-slate-300' : 'text-gray-700'}`}>
-                {sortBy === 'viewers' ? 'Viewers' : sortBy === 'date' ? 'Date' : 'Name'}
+                {sortBy === 'viewers'
+                  ? t('liveStreams.sortViewers')
+                  : sortBy === 'date'
+                    ? t('liveStreams.sortDate')
+                    : t('liveStreams.sortName')}
               </Text>
               <FeIcon 
                 name="chevron-down" 
@@ -582,10 +588,10 @@ export default function LiveStreamsScreen() {
                   color={isDarkColorScheme ? '#475569' : '#94a3b8'} 
                 />
                 <Text className={`text-lg font-semibold mt-4 ${isDarkColorScheme ? 'text-slate-300' : 'text-slate-700'}`}>
-                  No streams found
+                  {t('liveStreams.searchEmptyTitle')}
                 </Text>
                 <Text className={`text-base text-center mt-2 ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Try adjusting your search query
+                  {t('liveStreams.searchEmptySubtitle')}
                 </Text>
               </>
             ) : (
@@ -596,10 +602,10 @@ export default function LiveStreamsScreen() {
                   color={isDarkColorScheme ? '#475569' : '#94a3b8'} 
                 />
                 <Text className={`text-lg font-semibold mt-4 ${isDarkColorScheme ? 'text-slate-300' : 'text-slate-700'}`}>
-                  No live streams available
+                  {t('liveStreams.emptyTitle')}
                 </Text>
                 <Text className={`text-base text-center mt-2 ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}>
-                  Check back later for live broadcasts
+                  {t('liveStreams.emptySubtitle')}
                 </Text>
               </>
             )}

@@ -7,9 +7,16 @@
  * 3. تصنيف الأخطاء
  */
 
+const {
+  SHARED_ERROR_CODES,
+  SHARED_ERROR_MESSAGES,
+  formatSharedError,
+  formatSharedSuccess,
+} = require("@linker/shared/errorCodes");
+
 export const ERROR_CODES = {
-  // Device Errors
-  DEVICE_NOT_FOUND: 'DEVICE_NOT_FOUND',
+  ...SHARED_ERROR_CODES,
+  DEVICE_NOT_FOUND: "DEVICE_NOT_FOUND",
   DEVICE_PERMISSION_DENIED: 'DEVICE_PERMISSION_DENIED',
   DEVICE_IN_USE: 'DEVICE_IN_USE',
   DEVICE_NOT_SUPPORTED: 'DEVICE_NOT_SUPPORTED',
@@ -57,6 +64,7 @@ export const ERROR_CODES = {
 };
 
 export const ERROR_MESSAGES = {
+  ...SHARED_ERROR_MESSAGES,
   [ERROR_CODES.DEVICE_NOT_FOUND]: 'No audio or video devices found. Please connect a microphone or camera and grant permissions.',
   [ERROR_CODES.DEVICE_PERMISSION_DENIED]: 'Permission denied. Please grant camera and microphone permissions.',
   [ERROR_CODES.DEVICE_IN_USE]: 'Device is already in use by another application.',
@@ -320,11 +328,15 @@ export const createError = (code, message = null) => {
   return error;
 };
 
+export { formatSharedError, formatSharedSuccess };
+
 export default {
   ERROR_CODES,
   ERROR_MESSAGES,
   ERROR_CATEGORIES,
   ERROR_CATEGORY_MAP,
   normalizeError,
-  createError
+  createError,
+  formatSharedError,
+  formatSharedSuccess
 };

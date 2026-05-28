@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 import ImagePlaceholder from "./image-placeholder";
 import Constants from "expo-constants";
 import { useColorScheme } from "~/lib/useColorScheme";
+import {
+  getOrderedProfileImages,
+  getPrimaryProfileImagePath,
+} from "../utils/profileImage";
 
 const apiUrl =
   process.env.EXPO_PUBLIC_API_URL ||
@@ -43,28 +47,10 @@ const UserImage = memo(
       : null;
     const validColor = isValidHex6(userColor) ? userColor : null;
     
-    // ✅ Check if user has valid images (with path)
-    const hasValidImages = targetUser?.images?.length > 0 && 
-                           targetUser.images.some(img => img?.path);
-    const firstImagePath = targetUser?.images?.find(img => img?.path)?.path || 
-                          targetUser?.images?.[0]?.path;
-    
-    // ✅ Debug log for stream chat overlay
-    if (__DEV__ && targetUser) {
-      console.log("🎨 [UserImage] Data:", {
-        userId: targetUser._id || targetUser.userId,
-        userName: targetUser.userName || targetUser.firstName,
-        hasColors: !!targetUser.colors,
-        colorsLength: targetUser.colors?.length || 0,
-        firstColorCode: targetUser.colors?.[0]?.code,
-        validColor,
-        hasImages: !!targetUser.images,
-        imagesLength: targetUser.images?.length || 0,
-        hasValidImages,
-        firstImagePath,
-        allImages: targetUser.images,
-      });
-    }
+    const orderedImages = getOrderedProfileImages(targetUser?.images);
+    const hasValidImages = orderedImages.length > 0;
+    const firstImagePath = getPrimaryProfileImagePath(targetUser?.images);
+
     return hasValidImages ? (
       <View>
         <Container

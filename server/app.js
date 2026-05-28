@@ -365,6 +365,7 @@ app.use("/api/files", require("./src/routes/image.routes"));
 app.use("/api/users", require("./src/routes/user.routes"));
 app.use("/api/reports", require("./src/routes/report.routes"));
 app.use("/api/calls", require("./src/routes/call.routes"));
+app.use("/api/call-schedules", require("./src/routes/call-schedule.routes"));
 if (process.env.NODE_ENV !== "production") {
   app.post("/api/test", async (req, res) => {
     console.log({ body: JSON.stringify(req.body) });

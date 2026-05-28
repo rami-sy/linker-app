@@ -1,9 +1,13 @@
 const rateLimit = require('express-rate-limit');
 
+const defaultMaxRequests =
+  parseInt(process.env.RATE_LIMIT_MAX_REQUESTS, 10) ||
+  (process.env.NODE_ENV === "production" ? 100 : 1000);
+
 // General API rate limiting
 const generalLimiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 1000, // limit each IP to 100 requests per windowMs
+  max: defaultMaxRequests,
   message: {
     message: 'Too many requests from this IP, please try again later.',
     type: 'error'

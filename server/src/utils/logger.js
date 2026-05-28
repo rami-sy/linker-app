@@ -10,6 +10,12 @@ const LOG_LEVELS = {
   ERROR: 3,
 };
 
+function parseLogLevel(value, fallback) {
+  if (!value) return fallback;
+  const key = String(value).trim().toUpperCase();
+  return LOG_LEVELS[key] ?? fallback;
+}
+
 class Logger {
   constructor() {
     // Enable debug logging in development or when explicitly set
@@ -17,7 +23,10 @@ class Logger {
                        process.env.MEDIASOUP_DEBUG === 'true';
     
     // Default log level
-    this.logLevel = this.debugEnabled ? LOG_LEVELS.DEBUG : LOG_LEVELS.INFO;
+    this.logLevel = parseLogLevel(
+      process.env.LOG_LEVEL,
+      this.debugEnabled ? LOG_LEVELS.DEBUG : LOG_LEVELS.INFO
+    );
     this.jsonMode = process.env.LOG_FORMAT === "json";
   }
 

@@ -6,11 +6,14 @@
 - ✅ نقل جميع API keys إلى متغيرات البيئة
 - ✅ إنشاء ملفات `.env.example` للتوثيق
 - ✅ إضافة `.env` إلى `.gitignore`
+- ⚠️ أي قيمة تبدأ بـ `EXPO_PUBLIC_` تعتبر عامة وقابلة للاستخراج من bundle
+- ⚠️ فعّل `ALLOW_DEV_OTP=true` محلياً فقط عند الحاجة، ولا تفعّله في production
+- ⚠️ دوّر `EXPO_PUBLIC_GOOGLE_MAPS_API_KEY` إذا تم كشفه وقيّده بالـ domains وbundle IDs
 
 ### 2. **Rate Limiting**
-- ✅ Rate limiting عام للتطبيق (100 طلب/15 دقيقة)
-- ✅ Rate limiting للمكالمات (10 مكالمات/15 دقيقة)
-- ✅ Rate limiting للمصادقة (5 محاولات/15 دقيقة)
+- ✅ Rate limiting عام للتطبيق (100 طلب/15 دقيقة في production، 1000 في development)
+- ✅ Rate limiting للمكالمات (10 مكالمات/15 دقيقة) — `/api/calls`, `/api/call-schedules`
+- ✅ Rate limiting للمصادقة (30 محاولة/15 دقيقة) — يشمل OAuth وvalidate email
 - ✅ Rate limiting لإعادة تعيين كلمة المرور (3 محاولات/ساعة)
 - ✅ Rate limiting للرسائل (30 رسالة/دقيقة)
 
@@ -66,6 +69,9 @@ RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
 CALL_RATE_LIMIT_MAX=10
 CALL_RATE_LIMIT_WINDOW_MS=900000
+ALLOW_DEV_OTP=false
+MEDIASOUP_WORKERS=
+UPLOAD_MAX_FILE_SIZE_MB=100
 ```
 
 ### 2. **SSL/TLS Configuration**

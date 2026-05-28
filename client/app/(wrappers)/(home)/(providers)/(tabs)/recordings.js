@@ -62,10 +62,10 @@ export default function RecordingsScreen() {
       setRecordings(allRecordings);
     } catch (err) {
       logger.error('Error loading recordings:', err);
-      setError(err.message || 'Failed to load recordings');
+      setError(err.message || t('call.recording.loadError'));
       dispatch(addAlert({
         type: 'error',
-        message: err.message || 'Failed to load recordings',
+        message: err.message || t('call.recording.loadError'),
       }));
     } finally {
       setLoading(false);
@@ -97,14 +97,14 @@ export default function RecordingsScreen() {
         dispatch(addAlert({
           type: 'success',
           message: Platform.OS === 'web' 
-            ? 'Recording download started' 
-            : 'Recording saved to gallery',
+            ? t('call.recording.downloadStarted')
+            : t('call.recording.savedToGallery'),
         }));
       } catch (error) {
         logger.error('Error downloading recording:', error);
         dispatch(addAlert({
           type: 'error',
-          message: error.message || 'Failed to download recording',
+          message: error.message || t('call.recording.downloadFailed'),
         }));
       }
     } else if (recording.status === 'processing') {
@@ -347,7 +347,9 @@ export default function RecordingsScreen() {
                 <Text
                   className={`text-xs font-semibold ${isDarkColorScheme ? 'text-green-400' : 'text-green-600'}`}
                 >
-                  {Platform.OS === 'web' ? 'Download' : 'Save'}
+                  {Platform.OS === "web"
+                    ? t("call.recording.download")
+                    : t("call.recording.save")}
                 </Text>
               </TouchableOpacity>
             )}
@@ -374,6 +376,40 @@ export default function RecordingsScreen() {
     );
   }
 
+  if (error && recordings.length === 0) {
+    return (
+      <Layout
+        className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
+      >
+        <View className="flex-1 items-center justify-center px-4">
+          <FeIcon
+            name="alert-circle"
+            size={48}
+            color={isDarkColorScheme ? '#ef4444' : '#dc2626'}
+          />
+          <Text
+            className={`mt-4 text-lg font-semibold text-center ${isDarkColorScheme ? 'text-red-400' : 'text-red-600'}`}
+          >
+            {t('call.recording.error')}
+          </Text>
+          <Text
+            className={`mt-2 text-base text-center ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}
+          >
+            {error}
+          </Text>
+          <TouchableOpacity
+            onPress={loadRecordings}
+            className={`mt-6 px-6 py-3 rounded-full ${isDarkColorScheme ? 'bg-blue-600' : 'bg-blue-500'}`}
+          >
+            <Text className="text-white font-semibold">
+              {t('liveStreams.retry')}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </Layout>
+    );
+  }
+
   return (
     <Layout
       className={`flex-1 w-full linker-w ${isDarkColorScheme ? "bg-[#12141b]" : "bg-[#dee4e6]"}`}
@@ -388,7 +424,9 @@ export default function RecordingsScreen() {
             <Text
               className={`text-xs mt-0.5 ${isDarkColorScheme ? 'text-slate-400' : 'text-slate-600'}`}
             >
-              {recordings.length} {recordings.length === 1 ? 'recording' : 'recordings'}
+              {recordings.length === 1
+                ? t("call.recording.countOne", { count: recordings.length })
+                : t("call.recording.countMany", { count: recordings.length })}
             </Text>
           </View>
           

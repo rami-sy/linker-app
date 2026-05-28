@@ -1,0 +1,42 @@
+Weekly Application Event Audit Log Review Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+POLICY:
+The system administrator reviews application event audit logs for the Linker
+backend environment (linker.land) at least once every 7 days to identify
+indicators of unauthorized access to Platform Data.
+
+REVIEW PROCEDURE (Weekly):
+Every 7 days, the administrator manually reviews the following logs:
+
+1. Nginx Access Log — /var/log/nginx/access.log
+   Reviewed for:
+   [✓] Unauthorized or anomalous authentication activity (repeated 401/403)
+   [✓] Access control failures or privilege escalation attempts
+   [✓] Unusual data access or extraction patterns (bulk GET requests)
+   Command: tail -500 /var/log/nginx/access.log | grep -E "401|403|404"
+
+2. PM2 Application Error Log — /root/.pm2/logs/linker-error.log
+   Reviewed for:
+   [✓] Application exploitation or abuse attempts
+   [✓] Unexpected server errors that may indicate attack patterns
+   Command: tail -200 /root/.pm2/logs/linker-error.log
+
+3. Admin Audit Log Review — /var/log/auth.log
+   Reviewed weekly for indicators of compromised or misused admin accounts:
+   [✓] Unusual admin login patterns (new locations, unusual hours, failed attempts)
+       → grep "Failed\|Invalid\|Accepted" /var/log/auth.log | tail -50
+   [✓] Changes to access controls that could expose Platform Data to unauthorized users
+       → grep "sudo\|useradd\|usermod\|passwd" /var/log/auth.log | tail -20
+   [✓] New admin accounts or privilege escalations that were not expected
+       → grep "useradd\|usermod\|visudo" /var/log/auth.log | tail -20
+   [✓] Modifications to logging, monitoring, or security configurations
+       → journalctl -u ssh -u nginx --since "7 days ago" | grep -i "config\|reload\|restart"
+
+RESPONSIBLE PARTY:
+Rami Sweyri — Sole Developer & System Administrator
+Reviews are conducted manually every 7 days or sooner if alerts arise.
+
+Confirmed by: Rami Sweyri
+Linker App (linker.land)
+May 25, 2026

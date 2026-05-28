@@ -1,0 +1,20 @@
+Data Storage Policy — Linker App
+Date: May 2026
+
+Policy Statement:
+No person associated with the Linker application (linker.land) is permitted to store Meta Platform Data on any organizational or personal device under any circumstances.
+
+This includes but is not limited to:
+- Laptops (personal or work-issued)
+- Mobile phones or tablets
+- USB drives or removable storage
+- Personal cloud storage services (e.g., Dropbox, Google Drive)
+
+All Meta Platform Data must be stored exclusively on the designated backend server infrastructure (DigitalOcean Droplet) and must never be copied, downloaded, or cached on any personal or organizational endpoint device.
+
+This policy applies to all individuals involved in the development, maintenance, or operation of the Linker application.
+
+Acknowledged and confirmed by:
+Rami Sweyri — Sole Developer and Owner
+Linker App (linker.land)
+May 2026

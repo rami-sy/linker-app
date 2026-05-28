@@ -1,0 +1,38 @@
+Audit Log Protection Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+OVERVIEW:
+The Linker backend environment implements the following controls to prevent
+unauthorized access to and tampering with audit logs.
+
+1. ACCESS CONTROL — SSH Key-Only Authentication
+   All administrative access to the server (and therefore to log files)
+   requires a private SSH key. Password-based authentication is disabled.
+   - Log file access requires: valid SSH private key + server account
+   - Verified setting: pubkeyauthentication yes / passwordauthentication no
+   - Log files are owned by root and not accessible to unprivileged users.
+
+2. RESTRICTED USER ACCOUNTS
+   The server has a single administrative account (root).
+   There are no shared accounts or guest accounts with log access.
+   Application processes (Node.js/PM2, Nginx) run with minimal required
+   permissions and cannot modify system logs.
+
+3. LOG FILE PERMISSIONS
+   System logs (/var/log/auth.log, /var/log/nginx/) are owned by root
+   or the syslog system user and are not world-writable.
+   Application logs (/root/.pm2/logs/) are accessible only to root.
+
+4. NO REMOTE LOG DELETION
+   Logs are stored locally on the DigitalOcean Droplet. Remote deletion
+   requires authenticated SSH access (key-based only), providing an
+   auditable trail of any such action via auth.log itself.
+
+5. INFRASTRUCTURE SECURITY
+   The server is hosted on DigitalOcean, which holds SOC 2 Type II and
+   ISO 27001 certifications, providing physical and infrastructure-level
+   protection against tampering.
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

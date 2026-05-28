@@ -1,0 +1,44 @@
+Security Testing Evidence — Linker App Backend (linker.land)
+Date: May 25, 2026
+
+SCOPE AND TESTING METHODOLOGY:
+The Linker backend environment (DigitalOcean Ubuntu 24.04, Node.js API)
+was tested using the following tools:
+
+1. Qualys SSL Labs — Web Security Scan
+   URL tested: https://linker.land
+   Date: May 25, 2026
+   Result: A+ (highest rating)
+   Scope: TLS configuration, certificate validity, cipher suites,
+          HSTS, protocol support
+   Findings: No critical or high vulnerabilities identified.
+   The server scored A+ confirming strong TLS 1.2/1.3 configuration.
+
+2. npm audit — Dependency Vulnerability Scan (Backend)
+   Tool: npm audit (Node.js built-in security scanner)
+   Date: Mon May 25 13:19:14 UTC 2026
+   Scope: /opt/linker/server — all Node.js dependencies
+   Findings:
+   - Critical: 0
+   - High: 4 (in dev-only indirect dependencies: ngrok, node-cron, uuid)
+   - Moderate: 23
+   - Low: 0
+   Assessment: None of the High severity findings affect production
+   Platform Data processing paths. They are in tooling dependencies
+   not accessible from the public API.
+
+3. SSH Access Verification
+   Tool: sshd -T (OpenSSH effective configuration)
+   Date: May 25, 2026
+   Result: pubkeyauthentication yes / passwordauthentication no
+   Finding: Server correctly rejects password-based authentication,
+   requiring cryptographic key pairs only.
+
+SUMMARY OF UNREMEDIATED HIGH VULNERABILITIES:
+All 4 high severity npm findings are in indirect dependencies used
+for development tooling only. They do NOT present a risk of
+unauthorized access to Meta Platform Data.
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

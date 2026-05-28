@@ -28,7 +28,9 @@ import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import AddFriendList from "~/src/components/add-friend/add-friend-list";
 import AddFriendGrid from "~/src/components/add-friend/add-friend-grid";
 import AddFriendCard from "~/src/components/add-friend/add-friend-card";
-import { uniqBy } from "lodash";
+import debounce from "lodash/debounce";
+import cloneDeep from "lodash/cloneDeep";
+import uniqBy from "lodash/uniqBy";
 import { PAGE_SIZE } from "~/src/constants";
 import { useTranslation } from "react-i18next";
 import {
@@ -38,7 +40,6 @@ import {
   removeSenderReaction,
   setMe,
 } from "~/src/redux/userSlice";
-import _ from "lodash"; // استيراد lodash
 import { router, useLocalSearchParams, useSegments } from "expo-router";
 import { getLocales } from "expo-localization";
 import Popup from "~/src/components/popup";
@@ -118,7 +119,7 @@ const Explore = () => {
 
   const debouncedSearch = useMemo(
     () =>
-      _.debounce((fd, page, sb) => {
+      debounce((fd, page, sb) => {
         onSearchUsers(fd, page, sb);
         dispatch(setPage(1));
       }, 1000),
@@ -131,8 +132,8 @@ const Explore = () => {
     debouncedSearch.cancel();
     const snap = filterSnapshotRef.current;
     if (snap != null) {
-      setFormData(_.cloneDeep(snap));
-      onSearchUsers(_.cloneDeep(snap), 1, sortBy);
+      setFormData(cloneDeep(snap));
+      onSearchUsers(cloneDeep(snap), 1, sortBy);
     }
     setSearchChanged(false);
     setShowFilter(false);
@@ -140,13 +141,13 @@ const Explore = () => {
   }, [sortBy, onSearchUsers, dispatch, debouncedSearch]);
 
   const openFilter = useCallback(() => {
-    filterSnapshotRef.current = _.cloneDeep(formData);
+    filterSnapshotRef.current = cloneDeep(formData);
     setShowFilter(true);
     dispatch(setPage(1));
   }, [formData, dispatch]);
 
   const applyFilterAndClose = useCallback(() => {
-    filterSnapshotRef.current = _.cloneDeep(formData);
+    filterSnapshotRef.current = cloneDeep(formData);
     setSearchChanged(false);
     setShowFilter(false);
     dispatch(setChangeFilter(false));
@@ -191,22 +192,28 @@ const Explore = () => {
   };
 
   const handleSearchUsers = (res) => {
-    const newData = [...(res.data.length > 0 ? res.data : [])];
-    const uniqueData = uniqBy([...exploreUsers, ...newData], "_id");
-    dispatch(setExploreUsers(page === 1 ? newData : uniqueData));
-    dispatch(setHasMore(res.total > exploreUsers.length));
+    const newData = [...(res.data?.length > 0 ? res.data : [])];
+    const currentPage = res.currentPage ?? 1;
+    const uniqueData =
+      currentPage === 1
+        ? newData
+        : uniqBy([...exploreUsers, ...newData], "_id");
+    dispatch(setExploreUsers(uniqueData));
+    dispatch(setHasMore(res.total > uniqueData.length && newData.length > 0));
     setUsersCount(res.total);
     dispatch(setLoading(false));
+    dispatch(setRefreshing(false));
   };
   const handleLoadMore = () => {
     if (loading || !hasMore || showFilter) return;
+    const nextPage = page + 1;
+    dispatch(setPage(nextPage));
+    onSearchUsers(formData, nextPage, sortBy, true);
   };
   const onRefresh = () => {
     dispatch(setRefreshing(true));
     dispatch(setPage(1));
-    setTimeout(() => {
-      dispatch(setRefreshing(false));
-    }, 1000); // Refresh indicator will be visible for at least 1 second
+    onSearchUsers(formData, 1, sortBy, false);
   };
 
   const { isDarkColorScheme } = useColorScheme();
@@ -717,10 +724,10 @@ const Explore = () => {
                   color={isDarkColorScheme ? "#64748b" : "#94a3b8"}
                 />
                 <Text className="w-10/12 mt-3 text-center text-slate-700 dark:text-slate-300">
-                  No profiles match your filters yet.
+                  {t("explore.emptyTitle")}
                 </Text>
                 <Text className="w-10/12 mt-2 text-center text-slate-500 dark:text-slate-400">
-                  Try broadening age, gender, or search terms.
+                  {t("explore.emptySubtitle")}
                 </Text>
                 {emptyHints.map((hint) => (
                   <Text

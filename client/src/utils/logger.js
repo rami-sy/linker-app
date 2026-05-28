@@ -10,15 +10,27 @@ const LOG_LEVELS = {
   ERROR: 3,
 };
 
+function parseLogLevel(value, fallback) {
+  if (!value) return fallback;
+  const key = String(value).trim().toUpperCase();
+  return LOG_LEVELS[key] ?? fallback;
+}
+
 class Logger {
   constructor() {
     // Enable debug logging in development or when explicitly set
-    this.debugEnabled = process.env.NODE_ENV === 'development' || 
-                       process.env.REACT_APP_MEDIASOUP_DEBUG === 'true';
+    this.debugEnabled =
+      process.env.EXPO_PUBLIC_MEDIASOUP_DEBUG === 'true' ||
+      process.env.REACT_APP_MEDIASOUP_DEBUG === 'true';
     
     // Default log level
-    this.logLevel = this.debugEnabled ? LOG_LEVELS.DEBUG : LOG_LEVELS.INFO;
-    this.telemetryEnabled = process.env.REACT_APP_CALL_TELEMETRY === 'true';
+    this.logLevel = parseLogLevel(
+      process.env.EXPO_PUBLIC_LOG_LEVEL,
+      this.debugEnabled ? LOG_LEVELS.DEBUG : LOG_LEVELS.WARN
+    );
+    this.telemetryEnabled =
+      process.env.EXPO_PUBLIC_CALL_TELEMETRY === 'true' ||
+      process.env.REACT_APP_CALL_TELEMETRY === 'true';
   }
 
   setLogLevel(level) {
@@ -59,7 +71,7 @@ class Logger {
 
   warn(message, ...args) {
     if (this._shouldLog(LOG_LEVELS.WARN)) {
-      // console.warn(...this._formatMessage(LOG_LEVELS.WARN, message, ...args));
+      console.warn(...this._formatMessage(LOG_LEVELS.WARN, message, ...args));
     }
   }
 

@@ -46,7 +46,17 @@ class WorkerManager {
    * تهيئة Workers بناءً على عدد CPU cores
    */
   async initialize() {
-    const numWorkers = os.cpus().length;
+    const configuredWorkers = Number.parseInt(
+      process.env.MEDIASOUP_WORKERS,
+      10
+    );
+    const cpuCount = os.cpus().length;
+    const defaultWorkers =
+      process.env.NODE_ENV === "production" ? cpuCount : Math.min(2, cpuCount);
+    const numWorkers =
+      Number.isFinite(configuredWorkers) && configuredWorkers > 0
+        ? configuredWorkers
+        : defaultWorkers;
     logger.info(`🚀 Initializing ${numWorkers} MediaSoup workers...`);
 
     for (let i = 0; i < numWorkers; i++) {

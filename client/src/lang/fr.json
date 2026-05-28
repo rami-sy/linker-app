@@ -869,14 +869,17 @@
         "widenAgeRange": "Élargissez votre tranche d'âge.",
         "increaseDistance": "Augmentez la distance pour découvrir des correspondances proches.",
         "tryRecommended": "Passez au tri recommandé."
-      }
+      },
+      "emptyTitle": "No profiles match your filters yet.",
+      "emptySubtitle": "Try broadening age, gender, or search terms."
     },
     "navigation": {
       "chats": "Discussions",
       "explore": "Explorer",
       "friends": "Amis",
       "profile": "Profil",
-      "users": "Utilisateurs"
+      "users": "Utilisateurs",
+      "liveStreams": "Live Streams"
     },
     "general": {
       "pleaseEnterValidPhoneNumber": "Veuillez saisir un numéro de téléphone valide",
@@ -1261,7 +1264,18 @@
         "ready": "Prêt",
         "processing": "Traitement...",
         "failed": "Échoué",
-        "viewInHistory": "Voir dans les enregistrements"
+        "viewInHistory": "Voir dans les enregistrements",
+        "countOne": "{{count}} recording",
+        "countMany": "{{count}} recordings",
+        "download": "Download",
+        "save": "Save",
+        "processingMessage": "Recording is being processed...",
+        "stoppedMessage": "Call recording has stopped.",
+        "completedMessage": "Recording completed! Duration: {{duration}}s",
+        "loadError": "Failed to load recordings",
+        "downloadStarted": "Recording download started",
+        "savedToGallery": "Recording saved to gallery",
+        "downloadFailed": "Failed to download recording"
       },
       "transfer": "Transférer",
       "transferCall": "Transférer l'appel",
@@ -1430,6 +1444,40 @@
       "listView": "Vue liste",
       "groupedView": "Vue groupée",
       "rowHint": "Appuyez pour rappeler, appui long pour sélectionner"
+    },
+    "system": {
+      "offlineBanner": "Offline mode - some features may be limited",
+      "reconnectingBanner": "Reconnecting to chat...",
+      "reconnectingQueued": " ({{count}} queued)",
+      "pendingQueueBanner": "{{count}} pending action(s) waiting to sync"
+    },
+    "liveStreams": {
+      "title": "Live Streams",
+      "subtitle": "Watch live broadcasts from your network",
+      "searchPlaceholder": "Search streams...",
+      "streamCountOne": "{{count}} stream",
+      "streamCountMany": "{{count}} streams",
+      "loading": "Loading live streams...",
+      "errorTitle": "Error",
+      "retry": "Retry",
+      "emptyTitle": "No live streams available",
+      "emptySubtitle": "Check back later for live broadcasts",
+      "liveBadge": "LIVE",
+      "you": "You",
+      "viewerOne": "viewer",
+      "viewerMany": "viewers",
+      "unknownUser": "Unknown",
+      "stopStream": "Stop Stream",
+      "viewStream": "View Stream",
+      "sortMostViewers": "Most Viewers",
+      "sortLeastViewers": "Least Viewers",
+      "sortNewest": "Newest",
+      "sortOldest": "Oldest",
+      "searchEmptyTitle": "No streams found",
+      "searchEmptySubtitle": "Try adjusting your search query",
+      "sortViewers": "Viewers",
+      "sortDate": "Date",
+      "sortName": "Name"
     }
   }
 }

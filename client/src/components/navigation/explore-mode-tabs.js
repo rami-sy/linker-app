@@ -19,6 +19,9 @@ const ExploreModeTabs = ({ isDarkColorScheme, items, rightContent = null }) => {
           {items.map((item) => (
             <TouchableOpacity
               key={item.name}
+              accessibilityRole="tab"
+              accessibilityLabel={item.label || item.name}
+              accessibilityState={{ selected: !!item.active }}
               className={`items-center justify-center mx-1 p-2 rounded-2xl ${
                 item.active ? palette.activePill : palette.idlePill
               }`}

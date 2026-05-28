@@ -21,7 +21,10 @@ const mongoose = require("mongoose");
 /**
  * Valid permission values
  */
-const VALID_PERMISSION_VALUES = ["everyone", "admin", "moderator", "friends", "specific", "noOne"];
+const {
+  VALID_PERMISSION_VALUES,
+  CALL_SETTINGS_KEYS,
+} = require("../../../shared/permissions");
 
 /**
  * Check if a user is an admin in a room

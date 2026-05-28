@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -22,6 +23,23 @@ class ErrorBoundary extends React.Component {
 
   handleReset = () => {
     this.setState({ hasError: false, error: null, errorInfo: null });
+  };
+
+  handleGoHome = () => {
+    this.handleReset();
+    router.replace('/');
+  };
+
+  handleCopyDetails = async () => {
+    if (!__DEV__) return;
+    const details = `${this.state.error?.toString?.() || ''}\n${this.state.errorInfo?.componentStack || ''}`;
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        await navigator.clipboard.writeText(details);
+      }
+    } catch (error) {
+      console.warn('Failed to copy error details', error);
+    }
   };
 
   render() {
@@ -53,6 +71,20 @@ class ErrorBoundary extends React.Component {
             >
               <Text style={styles.buttonText}>إعادة المحاولة</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.secondaryButton]}
+              onPress={this.handleGoHome}
+            >
+              <Text style={styles.buttonText}>الرجوع للرئيسية</Text>
+            </TouchableOpacity>
+            {__DEV__ && (
+              <TouchableOpacity
+                style={[styles.button, styles.ghostButton]}
+                onPress={this.handleCopyDetails}
+              >
+                <Text style={styles.buttonText}>نسخ تفاصيل الخطأ</Text>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       );
@@ -116,6 +148,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     borderRadius: 12,
     minWidth: 200,
+    marginTop: 10,
+  },
+  secondaryButton: {
+    backgroundColor: '#0f766e',
+  },
+  ghostButton: {
+    backgroundColor: '#334155',
   },
   buttonText: {
     color: '#f6f8f9',

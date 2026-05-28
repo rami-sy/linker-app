@@ -24,7 +24,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import MCIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import MsgIcon from "../../../assets/icons/msg-icon";
 import { useFriendAction } from "../../sockets/friend";
-import { addRoom, clearRoom, setRoom } from "../../redux/chatSlice";
+import { addRoom, clearRoom, setRoom, updateRoom } from "../../redux/chatSlice";
 import { SocketContext } from "../../contexts/socket.context";
 import Button from "../button";
 import UserInteractiveIcon from "../user/user-interactive-icon";
@@ -36,6 +36,7 @@ import {
 import { Loader } from "lucide-react-native";
 import ChatLockPasswordModal from "../chat/chat-lock-password-modal";
 import { addAlert } from "~/src/redux/alertSlice";
+import logger from "~/src/utils/logger";
 import { useColorScheme } from "../../../lib/useColorScheme";
 import { ProfileGlyph } from "./profile-icon-map";
 import ExploreProfileActionBar from "../explore/explore-profile-action-bar";
@@ -139,7 +140,15 @@ const UserCard = ({
           })
         );
       }
-    } catch (_) {}
+    } catch (error) {
+      logger.error("handleReaction failed", error);
+      dispatch(
+        addAlert({
+          type: "error",
+          message: t("general.error"),
+        })
+      );
+    }
   };
 
   const opacity = useSharedValue(0); // لعمل تأثير الفيد إن عند التحميل
@@ -338,7 +347,7 @@ const UserCard = ({
         <View className="mt-2 w-full flex-row items-start">
           <UserImage
             text="text-5xl font-bold"
-            user={userProfile}
+            user={currentUser && user?._id === userProfile?._id ? user : userProfile}
             size="w-24 h-24"
             onPress={onImagePress}
             statusSize="w-8 h-8 border-4 right-0 bottom-0 border-[#f6f8f9] dark:border-[#1e212b]"

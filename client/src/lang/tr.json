@@ -869,14 +869,17 @@
         "widenAgeRange": "Yaş aralığınızı genişletin.",
         "increaseDistance": "Yakınlardaki eşleşmeleri keşfetmek için mesafeyi artırın.",
         "tryRecommended": "Önerilen sıralamaya geçin."
-      }
+      },
+      "emptyTitle": "No profiles match your filters yet.",
+      "emptySubtitle": "Try broadening age, gender, or search terms."
     },
     "navigation": {
       "chats": "Sohbetler",
       "explore": "Keşfet",
       "friends": "Arkadaşlar",
       "profile": "Profil",
-      "users": "Kullanıcılar"
+      "users": "Kullanıcılar",
+      "liveStreams": "Live Streams"
     },
     "general": {
       "pleaseEnterValidPhoneNumber": "Lütfen geçerli bir telefon numarası girin",
@@ -1261,7 +1264,18 @@
         "ready": "Hazır",
         "processing": "İşleniyor...",
         "failed": "Başarısız",
-        "viewInHistory": "Kayıtlarda görüntüle"
+        "viewInHistory": "Kayıtlarda görüntüle",
+        "countOne": "{{count}} recording",
+        "countMany": "{{count}} recordings",
+        "download": "Download",
+        "save": "Save",
+        "processingMessage": "Recording is being processed...",
+        "stoppedMessage": "Call recording has stopped.",
+        "completedMessage": "Recording completed! Duration: {{duration}}s",
+        "loadError": "Failed to load recordings",
+        "downloadStarted": "Recording download started",
+        "savedToGallery": "Recording saved to gallery",
+        "downloadFailed": "Failed to download recording"
       },
       "transfer": "Aktar",
       "transferCall": "Aramayı Aktar",
@@ -1430,6 +1444,40 @@
       "listView": "Liste Görünümü",
       "groupedView": "Gruplu Görünüm",
       "rowHint": "Tekrar aramak için dokun, seçmek için uzun bas"
+    },
+    "system": {
+      "offlineBanner": "Offline mode - some features may be limited",
+      "reconnectingBanner": "Reconnecting to chat...",
+      "reconnectingQueued": " ({{count}} queued)",
+      "pendingQueueBanner": "{{count}} pending action(s) waiting to sync"
+    },
+    "liveStreams": {
+      "title": "Live Streams",
+      "subtitle": "Watch live broadcasts from your network",
+      "searchPlaceholder": "Search streams...",
+      "streamCountOne": "{{count}} stream",
+      "streamCountMany": "{{count}} streams",
+      "loading": "Loading live streams...",
+      "errorTitle": "Error",
+      "retry": "Retry",
+      "emptyTitle": "No live streams available",
+      "emptySubtitle": "Check back later for live broadcasts",
+      "liveBadge": "LIVE",
+      "you": "You",
+      "viewerOne": "viewer",
+      "viewerMany": "viewers",
+      "unknownUser": "Unknown",
+      "stopStream": "Stop Stream",
+      "viewStream": "View Stream",
+      "sortMostViewers": "Most Viewers",
+      "sortLeastViewers": "Least Viewers",
+      "sortNewest": "Newest",
+      "sortOldest": "Oldest",
+      "searchEmptyTitle": "No streams found",
+      "searchEmptySubtitle": "Try adjusting your search query",
+      "sortViewers": "Viewers",
+      "sortDate": "Date",
+      "sortName": "Name"
     }
   }
 }

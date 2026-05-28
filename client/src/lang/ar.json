@@ -873,14 +873,51 @@
         "widenAgeRange": "وسّع نطاق العمر.",
         "increaseDistance": "زد المسافة لاكتشاف نتائج أقرب.",
         "tryRecommended": "جرّب الترتيب الموصى به."
-      }
+      },
+      "emptyTitle": "لا توجد ملفات تطابق الفلاتر بعد.",
+      "emptySubtitle": "جرّب توسيع العمر أو الجنس أو كلمات البحث."
     },
     "navigation": {
       "chats": "الدردشات",
       "explore": "التصفح",
       "friends": "الأصدقاء",
       "profile": "الملف الشخصي",
-      "users": "المستخدمين"
+      "users": "المستخدمين",
+      "liveStreams": "البث المباشر"
+    },
+    "system": {
+      "offlineBanner": "وضع عدم الاتصال - بعض الميزات قد تكون محدودة",
+      "reconnectingBanner": "جاري إعادة الاتصال بالدردشة...",
+      "reconnectingQueued": " ({{count}} في الانتظار)",
+      "pendingQueueBanner": "{{count}} إجراء(ات) بانتظار المزامنة"
+    },
+    "liveStreams": {
+      "title": "البث المباشر",
+      "subtitle": "شاهد البثوث المباشرة من شبكتك",
+      "searchPlaceholder": "ابحث في البثوث...",
+      "streamCountOne": "بث واحد",
+      "streamCountMany": "{{count}} بث",
+      "loading": "جاري تحميل البثوث المباشرة...",
+      "errorTitle": "خطأ",
+      "retry": "إعادة المحاولة",
+      "emptyTitle": "لا توجد بثوث مباشرة",
+      "emptySubtitle": "تحقق لاحقاً من البثوث المباشرة",
+      "searchEmptyTitle": "لا توجد بثوث مطابقة",
+      "searchEmptySubtitle": "جرّب تعديل عبارة البحث",
+      "sortViewers": "المشاهدون",
+      "sortDate": "التاريخ",
+      "sortName": "الاسم",
+      "liveBadge": "مباشر",
+      "you": "أنت",
+      "viewerOne": "مشاهد",
+      "viewerMany": "مشاهدين",
+      "unknownUser": "غير معروف",
+      "stopStream": "إيقاف البث",
+      "viewStream": "عرض البث",
+      "sortMostViewers": "الأكثر مشاهدة",
+      "sortLeastViewers": "الأقل مشاهدة",
+      "sortNewest": "الأحدث",
+      "sortOldest": "الأقدم"
     },
     "chat": {
       "newMessagesDivider": "رسائل جديدة",
@@ -1250,10 +1287,21 @@
         "loading": "جاري تحميل التسجيلات...",
         "noRecordings": "لا توجد تسجيلات",
         "noRecordingsDescription": "ستظهر تسجيلات المكالمات والبث المباشر هنا",
+        "loadError": "فشل تحميل التسجيلات",
+        "downloadStarted": "بدأ تنزيل التسجيل",
+        "savedToGallery": "تم حفظ التسجيل في المعرض",
+        "downloadFailed": "فشل تنزيل التسجيل",
         "ready": "جاهز",
         "processing": "جاري المعالجة...",
         "failed": "فشل",
-        "viewInHistory": "عرض في التسجيلات"
+        "viewInHistory": "عرض في التسجيلات",
+        "countOne": "تسجيل واحد",
+        "countMany": "{{count}} تسجيل",
+        "download": "تنزيل",
+        "save": "حفظ",
+        "processingMessage": "جاري معالجة التسجيل...",
+        "stoppedMessage": "توقف تسجيل المكالمة.",
+        "completedMessage": "اكتمل التسجيل! المدة: {{duration}}s"
       },
       "transfer": "نقل",
       "transferCall": "نقل المكالمة",

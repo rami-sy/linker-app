@@ -1,0 +1,48 @@
+Admin Audit Log Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+OVERVIEW:
+The Linker backend environment (hosted on DigitalOcean, Ubuntu 24.04 LTS)
+collects admin audit logs through Ubuntu's built-in logging infrastructure.
+
+HOW ADMIN AUDIT LOGS ARE COLLECTED:
+
+1. SSH Access Logging (Executing programs / privileged access)
+   - All SSH login attempts (successful and failed) are recorded in:
+     /var/log/auth.log
+   - Each entry includes: timestamp, user, source IP, and authentication method.
+   - Example events logged:
+     * Admin login via SSH public key
+     * Failed login attempts
+
+2. Privileged Command Logging (Executing programs or scripts)
+   - All commands run with elevated privileges (sudo) are recorded in:
+     /var/log/auth.log
+   - Includes: timestamp, which user ran the command, and the command itself.
+
+3. System Event Logging (Creating/disabling accounts, password changes)
+   - systemd-journald records all system-level events including:
+     * Service starts/stops (nginx, pm2, redis, mongodb)
+     * System restarts and reboots
+     * Package installations and upgrades (apt)
+   - Accessible via: journalctl
+
+4. Application Logs
+   - Node.js API server logs are managed by PM2 and stored in:
+     /root/.pm2/logs/
+   - Nginx access and error logs are stored in:
+     /var/log/nginx/
+
+SCOPE:
+These logs cover all administrative actions taken in the backend environment
+where Meta Platform Data (user profile data: gender, birthday) is stored.
+
+Indicators covered:
+[✓] Executing programs or scripts — via auth.log (sudo) and journald
+[✓] Creating or disabling accounts — via auth.log and journald
+[✓] Resetting passwords or changing MFA configurations — via auth.log
+[✓] Editing, moving, or deleting log files — via journald (file system events)
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

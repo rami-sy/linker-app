@@ -506,10 +506,10 @@ export default function AppLayout() {
             }}
           >
             <Text style={{ color: "#fff", fontSize: 14, fontWeight: "600" }}>
-              {t("system.reconnectingBanner", {
-                defaultValue: "Reconnecting to chat...",
-              })}
-              {queuedOperations > 0 ? ` (${queuedOperations} queued)` : ""}
+              {t("system.reconnectingBanner")}
+              {queuedOperations > 0
+                ? t("system.reconnectingQueued", { count: queuedOperations })
+                : ""}
             </Text>
           </View>
         )}

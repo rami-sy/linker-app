@@ -8,6 +8,7 @@ import * as Haptics from "expo-haptics";
 import { setUserProfile } from "../../../../../src/redux/userSlice";
 import { SocketContext } from "../../../../../src/contexts/socket.context";
 import FeIcon from "react-native-vector-icons/Feather";
+import { useTranslation } from "react-i18next";
 import {
   getNavPalette,
   getShellShadowStyle,
@@ -36,6 +37,7 @@ const countUnreadLoadedMessages = (room, userId) => {
 };
 
 const TabsLayout = () => {
+  const { t } = useTranslation();
   const { isDarkColorScheme } = useColorScheme();
   const segments = useSegments();
   const { rooms } = useSelector((state) => state.chats);
@@ -61,20 +63,20 @@ const TabsLayout = () => {
 
   const currentSegment = segments?.[4];
   const palette = getNavPalette(isDarkColorScheme);
-  const isLiveActive = currentSegment?.includes("live-streams");
+  // const isLiveActive = currentSegment?.includes("live-streams");
   const isChatsActive = currentSegment === "chats" || currentSegment === undefined;
   const isExploreActive =
     currentSegment?.includes("explore") || currentSegment?.includes("swiper");
   const isUserActive = currentSegment === "user";
 
   const tabs = [
-    {
-      key: "live-streams",
-      href: "/live-streams",
-      icon: "radio",
-      active: isLiveActive,
-      onPress: handlePress,
-    },
+    // {
+    //   key: "live-streams",
+    //   href: "/live-streams",
+    //   icon: "radio",
+    //   active: isLiveActive,
+    //   onPress: handlePress,
+    // },
     {
       key: "chats",
       href: "/chats",
@@ -82,6 +84,7 @@ const TabsLayout = () => {
       active: isChatsActive,
       onPress: handlePress,
       badge: chatsUnreadTotal,
+      label: t("navigation.chats"),
     },
     {
       key: "explore",
@@ -89,6 +92,7 @@ const TabsLayout = () => {
       icon: "search",
       active: isExploreActive,
       onPress: handlePress,
+      label: t("navigation.explore"),
     },
   ];
 
@@ -109,6 +113,9 @@ const TabsLayout = () => {
               href={tab.href}
               className="flex flex-row items-center justify-center flex-1 h-full"
               onPress={tab.onPress}
+              accessibilityRole="tab"
+              accessibilityLabel={tab.label}
+              accessibilityState={{ selected: tab.active }}
             >
               <View
                 className={`relative h-11 w-full max-w-[72px] items-center justify-center rounded-2xl ${
@@ -133,6 +140,9 @@ const TabsLayout = () => {
 
           <TouchableOpacity
             className="flex flex-row items-center justify-center flex-1 h-full"
+            accessibilityRole="tab"
+            accessibilityLabel={t("navigation.profile")}
+            accessibilityState={{ selected: isUserActive }}
             onPress={async () => {
               handlePress();
               dispatch(setUserProfile(null));

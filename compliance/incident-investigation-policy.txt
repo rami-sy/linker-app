@@ -1,0 +1,47 @@
+Security Incident Investigation Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+OVERVIEW:
+If a security event is identified that indicates unauthorized access to
+Platform Data may have occurred or been attempted, the following investigation
+process is followed immediately.
+
+INVESTIGATION PROCESS:
+
+Step 1 — Identify and Confirm the Event
+- Review Nginx access logs for anomalous patterns:
+  grep -E '"40[134]|"50[0-9]' /var/log/nginx/access.log
+- Review auth.log for unauthorized SSH access attempts:
+  grep "Invalid\|Failed\|Accepted" /var/log/auth.log
+- Review application error logs:
+  tail -200 /root/.pm2/logs/linker-error.log
+
+Step 2 — Contain the Threat
+- If an active intrusion is suspected, immediately block the offending IP:
+  ufw deny from <suspicious-ip>
+- If an account is suspected compromised, revoke SSH keys immediately:
+  Remove the key from /root/.ssh/authorized_keys
+- If the application is actively being exploited, take the server offline:
+  pm2 stop linker
+
+Step 3 — Assess the Scope
+- Determine which data was potentially accessed:
+  * Identify affected user records in MongoDB
+  * Check if Meta Platform Data (gender, birthday) was involved
+- Review logs from the past 30 days for the time window of the incident
+
+Step 4 — Report to Meta
+- Per Meta's Platform Terms, if unauthorized access to Platform Data
+  is confirmed or suspected, Meta will be notified promptly via:
+  https://developers.facebook.com/incident/report
+- Notification will include: date, nature of incident, data affected,
+  and steps taken to contain and remediate.
+
+Step 5 — Remediate and Document
+- Apply patches or configuration changes to close the vulnerability
+- Document the incident, root cause, and corrective actions taken
+- Conduct a post-incident review within 7 days
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

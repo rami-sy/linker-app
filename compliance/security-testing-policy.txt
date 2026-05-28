@@ -1,0 +1,31 @@
+Security Testing Policy — Linker App (linker.land)
+Date: May 2026
+
+1. TESTING FREQUENCY
+   The Linker application backend is tested for security vulnerabilities at least once every 12 months.
+
+2. TESTING METHODOLOGY (Web Scan)
+   - Tool used: Qualys SSL Labs (https://www.ssllabs.com/ssltest/)
+   - Scope: linker.land (143.198.117.84) — all public-facing API endpoints and web interface
+   - Test date: May 25, 2026
+   - Result: A+ (highest rating)
+
+3. FINDINGS TRIAGE PROCESS
+   - All findings are reviewed immediately after the scan.
+   - Critical and High severity findings are remediated within 7 days.
+   - Medium severity findings are remediated within 30 days.
+   - Low severity findings are logged and addressed in the next release cycle.
+
+4. CURRENT SCAN FINDINGS (May 25, 2026)
+   - Critical vulnerabilities: None
+   - High vulnerabilities: None
+   - Medium: PQC Key Exchange not supported (informational only, no risk to Platform Data)
+   - No findings present a risk of unauthorized access to Meta Platform Data.
+
+5. REMEDIATION CONFIRMATION
+   All identified issues have been reviewed. No unremediated Critical or High vulnerabilities exist
+   that could lead to unauthorized access to Platform Data.
+
+Confirmed by: Rami Sweyri — Sole Developer
+Linker App (linker.land)
+May 25, 2026

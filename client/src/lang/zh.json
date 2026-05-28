@@ -869,14 +869,17 @@
         "widenAgeRange": "扩大您的年龄范围。",
         "increaseDistance": "增加距离以发现附近的匹配。",
         "tryRecommended": "切换到推荐排序。"
-      }
+      },
+      "emptyTitle": "No profiles match your filters yet.",
+      "emptySubtitle": "Try broadening age, gender, or search terms."
     },
     "navigation": {
       "chats": "聊天",
       "explore": "探索",
       "friends": "好友",
       "profile": "个人资料",
-      "users": "用户"
+      "users": "用户",
+      "liveStreams": "Live Streams"
     },
     "general": {
       "pleaseEnterValidPhoneNumber": "请输入有效的手机号",
@@ -1261,7 +1264,18 @@
         "ready": "准备好",
         "processing": "处理中...",
         "failed": "失败",
-        "viewInHistory": "在录制中查看"
+        "viewInHistory": "在录制中查看",
+        "countOne": "{{count}} recording",
+        "countMany": "{{count}} recordings",
+        "download": "Download",
+        "save": "Save",
+        "processingMessage": "Recording is being processed...",
+        "stoppedMessage": "Call recording has stopped.",
+        "completedMessage": "Recording completed! Duration: {{duration}}s",
+        "loadError": "Failed to load recordings",
+        "downloadStarted": "Recording download started",
+        "savedToGallery": "Recording saved to gallery",
+        "downloadFailed": "Failed to download recording"
       },
       "transfer": "转接",
       "transferCall": "转接通话",
@@ -1430,6 +1444,40 @@
       "listView": "列表视图",
       "groupedView": "分组视图",
       "rowHint": "点击再次拨打，长按选择"
+    },
+    "system": {
+      "offlineBanner": "Offline mode - some features may be limited",
+      "reconnectingBanner": "Reconnecting to chat...",
+      "reconnectingQueued": " ({{count}} queued)",
+      "pendingQueueBanner": "{{count}} pending action(s) waiting to sync"
+    },
+    "liveStreams": {
+      "title": "Live Streams",
+      "subtitle": "Watch live broadcasts from your network",
+      "searchPlaceholder": "Search streams...",
+      "streamCountOne": "{{count}} stream",
+      "streamCountMany": "{{count}} streams",
+      "loading": "Loading live streams...",
+      "errorTitle": "Error",
+      "retry": "Retry",
+      "emptyTitle": "No live streams available",
+      "emptySubtitle": "Check back later for live broadcasts",
+      "liveBadge": "LIVE",
+      "you": "You",
+      "viewerOne": "viewer",
+      "viewerMany": "viewers",
+      "unknownUser": "Unknown",
+      "stopStream": "Stop Stream",
+      "viewStream": "View Stream",
+      "sortMostViewers": "Most Viewers",
+      "sortLeastViewers": "Least Viewers",
+      "sortNewest": "Newest",
+      "sortOldest": "Oldest",
+      "searchEmptyTitle": "No streams found",
+      "searchEmptySubtitle": "Try adjusting your search query",
+      "sortViewers": "Viewers",
+      "sortDate": "Date",
+      "sortName": "Name"
     }
   }
 }

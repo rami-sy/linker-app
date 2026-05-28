@@ -1,0 +1,33 @@
+SSH Access Security Policy — Linker App (linker.land)
+Date: May 2026
+
+REMOTE ACCESS METHOD:
+All remote access to the Linker backend server (DigitalOcean Droplet) is performed exclusively via SSH using public key authentication (SSH key pair). Password-based SSH login is disabled on the server.
+
+ALTERNATIVE PROTECTION (SSH Key Authentication):
+SSH key authentication provides stronger security than passwords or MFA because:
+- Private key must be physically present on the authorized device
+- Key length: ED25519 (equivalent to 256-bit security)
+- Brute force attacks are computationally infeasible
+
+PASSWORD COMPLEXITY (for any password-protected accounts):
+a. Minimum password length: 16 characters
+b. Requires uppercase, lowercase, numbers, and special characters
+c. Password reuse is not permitted (minimum 10 iterations before reuse)
+d. Minimum password age: 1 day (cannot be changed within 24 hours)
+
+FAILED LOGIN ATTEMPT REQUIREMENTS:
+a. Authentication backoff delays are enforced via SSH rate limiting (fail2ban)
+b. Temporary account lockout after 5 consecutive failed attempts (15 minutes)
+c. Automatic hard lockout after 10 consecutive failed login attempts
+   (requires manual admin reset)
+
+HIGHLIGHTS:
+- [Section 1] Password complexity policy: enforced on all accounts
+- [Section 2a] Authentication backoff: enforced via fail2ban on SSH
+- [Section 2b] Throttling: time-doubling between retries
+- [Section 3] Hard lockout: after 10 failed attempts
+
+Confirmed by: Rami Sweyri — Sole Developer
+Linker App (linker.land)
+May 2026

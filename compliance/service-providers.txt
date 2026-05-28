@@ -1,0 +1,8 @@
+Service Providers — Linker App (linker.land)
+
+1. DigitalOcean, LLC
+   Role: Cloud infrastructure and server hosting
+   Website: https://www.digitalocean.com
+   Data stored: All user data is stored on a DigitalOcean Droplet (VPS) located in a secure data center.
+
+All service providers are contractually obligated to handle Platform Data in compliance with Meta's Platform Terms and applicable data protection laws.

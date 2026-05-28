@@ -1,0 +1,57 @@
+Security Patch Management Policy — Linker App (linker.land)
+Date: May 2026
+
+1. IDENTIFYING SECURITY PATCHES (Defined and Repeatable Process)
+
+   a. npm dependencies (Node.js backend):
+      - Tool: `npm audit` run after every deployment and at least monthly
+      - Source: GitHub Dependabot alerts and npm security advisories
+      - Command: npm audit --audit-level=moderate
+
+   b. Operating system (Ubuntu on DigitalOcean):
+      - Tool: `apt-get update && apt-get upgrade`
+      - Unattended security upgrades are enabled via `unattended-upgrades` package
+      - OS patches are applied automatically for critical security updates
+
+   c. Application dependencies are tracked via package.json and package-lock.json
+      in the git repository, enabling full audit trail of version changes.
+
+2. PRIORITIZATION BASED ON RISK (CVSS Severity)
+
+   - Critical (CVSS 9.0-10.0): Patched within 24 hours
+   - High (CVSS 7.0-8.9):     Patched within 7 days
+   - Medium (CVSS 4.0-6.9):   Patched within 30 days
+   - Low (CVSS 0.1-3.9):      Patched in next scheduled release
+
+   [HIGHLIGHT: Section 2 — Prioritization based on CVSS severity]
+
+3. ONGOING PATCH APPLICATION
+
+   - npm audit is run as part of every deployment via the deploy script
+   - OS security patches are applied automatically via unattended-upgrades
+   - Manual review is performed monthly to catch any missed updates
+
+   [HIGHLIGHT: Section 3 — Ongoing patch application via deploy script and auto-updates]
+
+4. MOBILE APP THIRD-PARTY DEPENDENCIES (React Native / Expo)
+
+   [1] Defined and repeatable way of identifying patches:
+       - Tool: `npm audit` run in the /client directory after every build
+       - Expo SDK updates are monitored via https://expo.dev/changelog
+       - React Native and all third-party mobile packages are tracked in
+         client/package.json and audited with: npm audit --audit-level=moderate
+
+   [2] Prioritize patches based on risk (CVSS severity):
+       - Critical: patched before the next app release (within 24 hours)
+       - High: patched within 7 days
+       - Moderate: patched within 30 days
+       - Low: patched in next scheduled maintenance cycle
+
+   [3] Apply patches as an ongoing activity:
+       - npm audit is run before every new build/release of the mobile app
+       - Expo SDK is updated when new SDK versions address security issues
+       - All dependency updates are committed and tracked in git history
+
+Confirmed by: Rami Sweyri — Sole Developer
+Linker App (linker.land)
+May 25, 2026

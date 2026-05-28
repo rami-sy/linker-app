@@ -8927,4 +8927,5 @@ module.exports = ({ socket, io, redisClient }) => {
       logger.error("Error handling call permission response:", error);
     }
   });
+  require("./mediasoup")({ socket, io, redisClient });
 };

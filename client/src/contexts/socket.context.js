@@ -332,7 +332,9 @@ export const SocketContextProvider = ({ children }) => {
     logger.info("userNotFound", data);
     try {
       socket?.disconnect?.();
-    } catch (_) {}
+    } catch (error) {
+      logger.warn("socket disconnect during userNotFound failed", error);
+    }
     void forceLogoutNow("userNotFound");
   };
   const connectSocket = async (force = false) => {
@@ -649,8 +651,9 @@ export const SocketContextProvider = ({ children }) => {
               roomStateSync.fetchLatestState(rid);
             }
           }
-        } catch (_) {}
-        offlineQueue.processQueue();
+        } catch (error) {
+          logger.warn("Failed to resync rooms after reconnect", error);
+        }
       };
 
       const handleDisconnect = () => {

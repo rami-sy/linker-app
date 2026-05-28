@@ -20,6 +20,17 @@ export const userSlice = createSlice({
   reducers: {
     setMe: (state, action) => {
       state.user = action.payload;
+      if (
+        state.userProfile?._id &&
+        action.payload?._id &&
+        String(state.userProfile._id) === String(action.payload._id)
+      ) {
+        state.userProfile = {
+          ...state.userProfile,
+          images: action.payload.images ?? state.userProfile.images,
+          colors: action.payload.colors ?? state.userProfile.colors,
+        };
+      }
     },
     setSocketId: (state, action) => {
       state.socketId = action.payload;
@@ -132,7 +143,6 @@ export const userSlice = createSlice({
       state.blockedUsers.push(action.payload);
     },
     removeBlockedUser: (state, action) => {
-      console.log({ payload: action.payload });
       state.blockedUsers = state.blockedUsers.filter(
         (user) => user?._id !== action.payload._id
       );

@@ -1,0 +1,7 @@
+{
+  "name": "@linker/shared",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "description": "Shared contracts between Linker client and server"
+}

@@ -1,0 +1,41 @@
+Account Access Maintenance Policy — Linker App (linker.land)
+Date: May 25, 2026
+
+OVERVIEW:
+This policy defines how the Linker App manages, reviews, and revokes
+administrative access to systems where Meta Platform Data is stored.
+
+ACCOUNT MAINTENANCE REQUIREMENTS:
+
+[1] Revoke access that is no longer required
+    When an access grant becomes unnecessary (e.g., a task is completed,
+    a role changes, or a service is decommissioned), access is revoked
+    immediately by removing the corresponding SSH public key from:
+    /root/.ssh/authorized_keys
+    Command used: sed -i '/key-identifier/d' /root/.ssh/authorized_keys
+
+[2] Revoke access that is no longer being used
+    All SSH keys are reviewed at least once every 12 months.
+    Keys that have not been used within the past 12 months are removed.
+    Last login time is checked via: last -a | head -20
+    Unused keys are identified and removed from authorized_keys.
+
+[3] Revoke access promptly when a person leaves the organization
+    If a developer, contractor, or collaborator departs, their SSH key
+    is removed from /root/.ssh/authorized_keys immediately upon departure.
+    This is a manual process triggered by the departure event.
+    Target revocation time: within 24 hours of departure.
+
+CURRENT ACCESS INVENTORY:
+- 1 active SSH key (sole developer: Rami Sweyri)
+- No shared accounts or service accounts with Platform Data access
+- Access is reviewed annually (next review: May 2027)
+
+HOW REVOCATION IS INITIATED:
+Access is revoked by editing /root/.ssh/authorized_keys and removing
+the specific key entry. This immediately prevents future SSH logins
+using that key without requiring a service restart.
+
+Confirmed by: Rami Sweyri — Sole Developer & System Administrator
+Linker App (linker.land)
+May 25, 2026

@@ -1,0 +1,21 @@
+Written Statement — Hosting Provider Security Certification
+Linker App (linker.land)
+Date: May 2026
+
+Hosting Provider: DigitalOcean, LLC
+
+DigitalOcean holds the following certifications that cover physical security and secure media disposal controls, as evaluated by a third-party auditor:
+
+1. SOC 2 Type II
+   - Auditor: Independent third-party auditing firm
+   - Controls covered: CC6.4 (Physical Access Controls) and CC6.5 (Secure Media Disposal)
+   - Reference: https://www.digitalocean.com/trust/certification-reports
+
+2. ISO/IEC 27001:2013
+   - Controls covered: A.8.3 (Media Handling), A.11.1 (Secure Areas), A.11.2 (Equipment Security)
+   - Reference: https://www.digitalocean.com/trust/certification-reports
+
+All Platform Data received from Meta is stored exclusively on DigitalOcean infrastructure, which is covered by the above certifications.
+
+Prepared by: Rami Sweyri
+Application: Linker (linker.land)

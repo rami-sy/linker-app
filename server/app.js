@@ -171,6 +171,8 @@ app.use(helmet({
         "https://www.googleapis.com",
         "https://api.ipify.org",
         "https://xcarpentier.github.io",
+        "https://www.facebook.com",
+        "https://graph.facebook.com",
       ],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       objectSrc: ["'none'"],

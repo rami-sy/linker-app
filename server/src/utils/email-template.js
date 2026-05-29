@@ -16,6 +16,7 @@ function buildEmailHtml({ title, body, footer, cta, ctaUrl }) {
   const textMain = "#1e293b";
   const textMuted = "#64748b";
   const borderColor = "#e2e8f0";
+  const logoUrl = process.env.EMAIL_LOGO_URL;
 
   const ctaButton =
     cta && ctaUrl
@@ -55,15 +56,25 @@ function buildEmailHtml({ title, body, footer, cta, ctaUrl }) {
             <td style="height:4px;background:${teal};font-size:0;">&nbsp;</td>
           </tr>
 
-          <!-- Logo + Brand -->
+          <!-- Brand -->
           <tr>
             <td style="padding:28px 36px 12px;text-align:center;">
-              <div style="display:inline-flex;align-items:center;gap:8px;">
-                <div style="width:36px;height:36px;border-radius:10px;background:${teal};
-                            display:inline-block;vertical-align:middle;"></div>
-                <span style="font-size:22px;font-weight:700;color:${textMain};
-                             vertical-align:middle;letter-spacing:-0.5px;">Linker</span>
-              </div>
+              <table cellpadding="0" cellspacing="0" role="presentation" align="center" style="margin:0 auto;">
+                <tr>
+                  ${
+                    logoUrl
+                      ? `<td style="padding-right:10px;vertical-align:middle;">
+                           <img src="${logoUrl}" width="70" alt="Linker logo"
+                                style="display:block;border:0;outline:none;text-decoration:none;width:70px;height:auto;"/>
+                         </td>`
+                      : ""
+                  }
+                  <td style="font-size:24px;line-height:30px;font-weight:800;color:${textMain};
+                             font-family:'Segoe UI',Arial,sans-serif;letter-spacing:-0.6px;">
+                    Linker
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 

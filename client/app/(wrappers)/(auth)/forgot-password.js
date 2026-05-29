@@ -104,6 +104,10 @@ const ForgetPassword = () => {
             {t("auth.forgetPassword.subtitle") ||
               "Enter your email address and we'll send you a reset code."}
           </Text>
+          <Text className="text-xs text-slate-400 dark:text-slate-500 text-center w-3/4 mb-5">
+            {t("auth.forgetPassword.spamNote") ||
+              "If you don't see the email, please check your Spam or Junk folder."}
+          </Text>
 
           {/* Form card */}
           <View

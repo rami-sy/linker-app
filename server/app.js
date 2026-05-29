@@ -1,6 +1,11 @@
-require("dotenv").config({
-  path: process.env.NODE_ENV === "development" ? ".env.dev" : ".env",
-});
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
+if (process.env.NODE_ENV === "development") {
+  require("dotenv").config({
+    path: path.resolve(__dirname, ".env.dev"),
+    override: true,
+  });
+}
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -15,7 +20,6 @@ const port = process.env.PORT || 4000;
 const http = require("http");
 const https = require("https");
 const redis = require("redis");
-const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
 const logger = require("./src/utils/logger");

@@ -144,6 +144,10 @@ const VerifyEmail = () => {
             {t("auth.verifyEmail.subtitle") ||
               "We sent a 6-digit code to your email. Enter it below to verify your account."}
           </Text>
+          <Text className="text-xs text-slate-400 dark:text-slate-500 text-center w-3/4 mb-5">
+            {t("auth.verifyEmail.spamNote") ||
+              "If you don't see the email, please check your Spam or Junk folder."}
+          </Text>
 
           {/* Form card */}
           <View

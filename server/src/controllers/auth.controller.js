@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const User = require("../models/user.model");
 const twilio = require("twilio");
+const nodemailer = require("nodemailer");
 const validator = require("validator");
 const generateVerifyCode = require("../utils/generate-code");
 const { buildEmailHtml, buildEmailText } = require("../utils/email-template");
@@ -17,7 +18,9 @@ const logger = require("../utils/logger");
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
-// Email via Gmail REST API (HTTPS port 443 — no SMTP ports needed)
+// Email can be sent via SMTP app password or Gmail REST API OAuth2.
+const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
+const smtpConfigured = !!(process.env.SMTP_USER && process.env.SMTP_PASS);
 const gmailOAuthConfigured = !!(
   process.env.SMTP_USER &&
   process.env.GMAIL_CLIENT_ID &&
@@ -25,13 +28,24 @@ const gmailOAuthConfigured = !!(
   process.env.GMAIL_REFRESH_TOKEN
 );
 
-if (!gmailOAuthConfigured) {
-  logger.error(
-    "Gmail OAuth2 credentials are missing. Please set SMTP_USER, GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN."
+if (!smtpConfigured && !gmailOAuthConfigured) {
+  logger.warn(
+    "Email credentials are missing. Configure SMTP_USER/SMTP_PASS or Gmail OAuth2 credentials."
   );
 }
 
-const SMTP_FROM = process.env.SMTP_FROM || process.env.SMTP_USER || "noreply@linker.land";
+const smtpPort = Number.parseInt(process.env.SMTP_PORT, 10) || 587;
+const transporter = smtpConfigured
+  ? nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: smtpPort,
+      secure: process.env.SMTP_SECURE === "true" || smtpPort === 465,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
+  : null;
 
 const gmailOAuth2Client = gmailOAuthConfigured
   ? new OAuth2Client(
@@ -45,11 +59,18 @@ if (gmailOAuth2Client) {
   gmailOAuth2Client.setCredentials({ refresh_token: process.env.GMAIL_REFRESH_TOKEN });
 }
 
+function formatEmailFrom(from) {
+  if (!from) return SMTP_FROM;
+  if (typeof from === "string") return from;
+  if (from.name && from.address) return `"${from.name}" <${from.address}>`;
+  return from.address || SMTP_FROM;
+}
+
 async function sendGmailApiEmail({ from, to, subject, text, html }) {
   const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString("base64")}?=`;
   const messageParts = [
-    `From: ${from}`,
-    `To: ${to}`,
+    `From: ${formatEmailFrom(from)}`,
+    `To: ${Array.isArray(to) ? to.join(", ") : to}`,
     `Content-Type: text/html; charset=utf-8`,
     `MIME-Version: 1.0`,
     `Subject: ${utf8Subject}`,
@@ -84,8 +105,8 @@ const sendEmail = async (
   { responseMessage, from, to, subject, text, html, devCode },
   res
 ) => {
-  if (!gmailOAuthConfigured) {
-    logger.warn("Gmail OAuth2 not configured; skipping email send", { to, subject });
+  if (!transporter && !gmailOAuthConfigured) {
+    logger.warn("Email provider not configured; skipping email send", { to, subject });
     if (!isNonProd) {
       return res.status(500).json({
         message: "Email service is not configured.",
@@ -102,7 +123,15 @@ const sendEmail = async (
   }
 
   try {
-    const info = await sendGmailApiEmail({ from: from || SMTP_FROM, to, subject, text, html });
+    const info = transporter
+      ? await transporter.sendMail({
+          from: from || SMTP_FROM,
+          to,
+          subject,
+          text,
+          html,
+        })
+      : await sendGmailApiEmail({ from: from || SMTP_FROM, to, subject, text, html });
     logger.debug("Email sent successfully", { to, subject, messageId: info?.id });
     return res.status(200).json({
       message: responseMessage,

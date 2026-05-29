@@ -48,6 +48,7 @@
       },
       "forgetPassword": {
         "subtitle": "Enter your email and we'll send you a reset code.",
+        "spamNote": "If you don't see the email, please check your Spam or Junk folder.",
         "emailPlaceholder": "Email",
         "sendResetCode": "Send Reset Code",
         "resendCode": "Resend Code",
@@ -96,6 +97,7 @@
       },
       "verifyEmail": {
         "subtitle": "We sent a 6-digit code to your email. Enter it below to verify your account.",
+        "spamNote": "If you don't see the email, please check your Spam or Junk folder.",
         "emailLabel": "Email",
         "emailPlaceholder": "Email",
         "verificationCodeLabel": "Verification Code",

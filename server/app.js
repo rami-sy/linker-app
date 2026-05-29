@@ -24,6 +24,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 const logger = require("./src/utils/logger");
 const os = require("os");
+const sharp = require("sharp");
 
 // ✅ TLS/SSL Configuration
 const { TLSConfig } = require('./src/utils/encryptionService');
@@ -382,6 +383,25 @@ if (process.env.NODE_ENV !== "production") {
 
 const { getIO, initIO } = require("./socket");
 const User = require("./src/models/user.model");
+const clientLogoPath = path.join(__dirname, "..", "client", "assets", "dark-logo.svg");
+let linkerLogoPngCache = null;
+
+app.get("/assets/linker-logo.png", async (req, res, next) => {
+  try {
+    if (!linkerLogoPngCache) {
+      linkerLogoPngCache = await sharp(clientLogoPath)
+        .resize({ width: 240 })
+        .png()
+        .toBuffer();
+    }
+
+    res.setHeader("Content-Type", "image/png");
+    res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
+    res.send(linkerLogoPngCache);
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.use(
   "/recordings",

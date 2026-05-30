@@ -17,10 +17,17 @@ import {
   statusCodes,
 } from "@react-native-google-signin/google-signin";
 
+import Constants from "expo-constants";
 import { GoogleOAuthProvider, useGoogleLogin } from "@react-oauth/google";
 import { useColorScheme } from "~/lib/useColorScheme";
 
-const WEB_CLIENT_ID = process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
+const publicExtra = Constants.expoConfig?.extra || Constants.manifest?.extra || {};
+const WEB_CLIENT_ID =
+  process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID ||
+  publicExtra.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID;
+const IOS_CLIENT_ID =
+  process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID ||
+  publicExtra.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID;
 
 const WebGoogleButton = ({ onToken, onError, isLoading, isDarkColorScheme }) => {
   const login = useGoogleLogin({
@@ -63,6 +70,7 @@ const GoogleAuth = ({ onError }) => {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: WEB_CLIENT_ID,
+      iosClientId: IOS_CLIENT_ID || undefined,
       offlineAccess: true,
       forceCodeForRefreshToken: true,
       profileImageSize: 120,
@@ -112,6 +120,26 @@ const GoogleAuth = ({ onError }) => {
   };
 
   if (Platform.OS === "web") {
+    if (!WEB_CLIENT_ID) {
+      return (
+        <TouchableOpacity
+          disabled
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            marginVertical: 12,
+            padding: 8,
+            borderRadius: 999,
+            marginBottom: 24,
+            backgroundColor: isDarkColorScheme ? "#dee4e6" : "#2D2D37",
+            opacity: 0.45,
+          }}
+        >
+          <Image source={typeof GoogleLogo === "string" ? { uri: GoogleLogo } : GoogleLogo} style={{ width: 40, height: 40 }} />
+        </TouchableOpacity>
+      );
+    }
+
     return (
       <GoogleOAuthProvider clientId={WEB_CLIENT_ID}>
         <WebGoogleButton
